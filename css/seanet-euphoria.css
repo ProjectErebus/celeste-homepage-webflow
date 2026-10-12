@@ -249,3 +249,6 @@ svg.cmp { width: 100%; max-width: 460px; height: auto; display: block; }
 @media (max-width: 640px) { .backing { flex-direction: column; align-items: flex-start; gap: 0.5rem; } }
 svg.only-narrow { display: none; }
 @media (max-width: 640px) { svg.only-wide { display: none !important; } svg.only-narrow { display: block; width: 100%; height: auto; } }
+.vs.keep td:first-child { width: 20%; }
+@media (max-width: 900px) { .vs.keep td:first-child { display: table-cell; width: 28%; } .vs.keep td { font-size: 0.85rem; } }
+.doc .graphic svg.cmp { max-width: 560px; }
