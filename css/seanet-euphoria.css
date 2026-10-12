@@ -252,3 +252,31 @@ svg.only-narrow { display: none; }
 .vs.keep td:first-child { width: 20%; }
 @media (max-width: 900px) { .vs.keep td:first-child { display: table-cell; width: 28%; } .vs.keep td { font-size: 0.85rem; } }
 .doc .graphic svg.cmp { max-width: 560px; }
+
+/* Variables used by the animations carried over from the original SeaNet proposal (dark ground). */
+:root {
+  --teal-accent: #5AABCC; --teal-text: #5AABCC; --green-accent: #4A9468; --green-text: #4A9468; --gold-accent: #C9A66B; --gold-text: #C9A66B;
+  --tx-max: #FFFFFF; --tx85: rgba(255,255,255,0.85); --tx75: rgba(255,255,255,0.75); --tx7: rgba(255,255,255,0.7); --tx6: rgba(255,255,255,0.6);
+  --tx5: rgba(255,255,255,0.5); --tx45: rgba(255,255,255,0.45); --tx4: rgba(255,255,255,0.4); --tx35: rgba(255,255,255,0.35); --tx34: rgba(255,255,255,0.34);
+  --tx32: rgba(255,255,255,0.32); --tx3: rgba(255,255,255,0.3); --tx22: rgba(255,255,255,0.22); --tx2: rgba(255,255,255,0.2); --tx18: rgba(255,255,255,0.18);
+  --tx12: rgba(255,255,255,0.12); --tx11: rgba(255,255,255,0.11); --tx1: rgba(255,255,255,0.1); --tx08: rgba(255,255,255,0.08); --tx06: rgba(255,255,255,0.06);
+  --tx05: rgba(255,255,255,0.05); --tx04: rgba(255,255,255,0.04); --tx02: rgba(255,255,255,0.02); --tx015: rgba(255,255,255,0.015);
+}
+
+/* Technical proposal: centred column. */
+body.doc .sec-inner, body.doc .doc-hero .sec-inner { text-align: center; }
+body.doc .headline, body.doc .sub, body.doc p.body, body.doc .sec .sub { margin-left: auto; margin-right: auto; }
+body.doc .sec .sub, body.doc p.body { max-width: 62ch; }
+body.doc .graphic { margin-left: auto; margin-right: auto; }
+body.doc .graphic svg { margin: 0 auto; }
+body.doc .graphic.pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 2.6rem; align-items: center; max-width: 1040px; }
+body.doc .req, body.doc .vs, body.doc .facts, body.doc .cols-2, body.doc .cols-3, body.doc .toc { margin-left: auto; margin-right: auto; text-align: left; }
+body.doc .req, body.doc .vs { max-width: 900px; }
+body.doc .facts { max-width: 960px; }
+body.doc .cols-3 { max-width: 1000px; text-align: center; }
+body.doc .cols-2 { max-width: 960px; }
+body.doc .toc { max-width: 760px; }
+body.doc .chips { justify-content: center; }
+body.doc .photo-bg ~ .sec-inner .sub { color: var(--tx82); }
+@media (max-width: 900px) { body.doc .graphic.pair { grid-template-columns: 1fr; gap: 2rem; } }
+body.doc #investment .chips { justify-content: flex-start; }
