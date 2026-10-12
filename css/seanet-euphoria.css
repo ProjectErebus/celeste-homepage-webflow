@@ -227,3 +227,14 @@ body.doc { overflow-x: hidden; }
 .asks span { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); }
 .asks span::before { content: '\2192\00a0'; }
 .cap { font-size: 0.9rem; line-height: 1.5; color: var(--tx55); margin-top: 0.6rem; max-width: 46ch; }
+
+/* Full-width photo band between proposal sections */
+.photo-band { position: relative; height: 56vh; min-height: 320px; background-size: cover; background-position: center; border-top: 1px solid var(--border-color); }
+.photo-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,11,10,0.55) 0%, rgba(12,11,10,0.05) 30%, rgba(12,11,10,0.05) 70%, rgba(12,11,10,0.75) 100%); }
+.photo-band .cap { position: absolute; left: 3.5rem; bottom: 1.6rem; z-index: 2; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tx82); }
+@media (max-width: 900px) { .photo-band { height: 38vh; min-height: 220px; } .photo-band .cap { left: 1.25rem; } }
+
+/* Dimmed full-bleed yacht photo behind a slide or section */
+.photo-bg.tint { opacity: 0.32; }
+.photo-bg.tint::after { background: linear-gradient(180deg, rgba(12,11,10,0.55) 0%, rgba(12,11,10,0.35) 50%, rgba(12,11,10,0.7) 100%); }
+.sec .photo-bg ~ .sec-inner { position: relative; z-index: 5; }
