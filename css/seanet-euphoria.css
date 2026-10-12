@@ -173,3 +173,49 @@ body.deck { overflow: hidden; height: 100vh; height: 100dvh; }
 @media (prefers-reduced-motion: reduce) {
   .slide { transition: none; }
 }
+
+/* ── Long-form proposal ── */
+body.doc { overflow-x: hidden; }
+.doc-nav { position: fixed; top: 3px; left: 0; right: 0; height: 60px; z-index: 150; background: var(--nav-grad-92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 2.2rem; gap: 1rem; }
+.doc-nav .where { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.doc-hero { position: relative; min-height: 100vh; min-height: 100dvh; display: flex; align-items: flex-end; padding: 6rem 3.5rem 3.5rem; }
+.doc-hero .photo-bg::after { background: linear-gradient(180deg, rgba(12,11,10,0.25) 0%, rgba(12,11,10,0.45) 45%, rgba(12,11,10,0.95) 85%); }
+.sec { position: relative; padding: 6.5rem 3.5rem; border-top: 1px solid var(--tx07); scroll-margin-top: 64px; }
+.sec-inner { width: 100%; max-width: 1180px; margin: 0 auto; }
+.sec-num { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tx48); margin-bottom: 0.6rem; }
+.sec h2.headline { font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
+.sec h3 { font-family: var(--display); font-weight: 400; font-size: 1.15rem; color: var(--tx92); margin-bottom: 0.35rem; }
+.sec p.body { font-size: 0.95rem; line-height: 1.62; color: var(--tx55); }
+.sec p.body b { font-weight: 500; color: var(--tx82); }
+.graphic { margin-top: 2.4rem; max-width: 900px; }
+.toc { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; margin-top: 1.8rem; }
+.toc a { display: flex; gap: 1rem; align-items: baseline; padding: 0.75rem 0; border-top: 1px solid var(--tx07); text-decoration: none; color: var(--tx82); font-size: 0.98rem; transition: color 0.2s; }
+.toc a:hover { color: var(--teal); }
+.toc a span { font-family: var(--mono); font-size: 0.64rem; color: var(--teal); width: 1.8rem; flex-shrink: 0; }
+.req { width: 100%; border-collapse: collapse; margin-top: 1.8rem; }
+.req th { font-family: var(--mono); font-size: 0.64rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; text-align: left; color: var(--tx48); padding: 0 1.2rem 0.7rem 0; border-bottom: 1px solid var(--tx14); }
+.req td { padding: 0.85rem 1.2rem 0.85rem 0; border-bottom: 1px solid var(--tx07); font-size: 0.92rem; line-height: 1.5; color: var(--tx55); vertical-align: top; }
+.req td:first-child { color: var(--tx92); width: 30%; }
+.tag { display: inline-block; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 2px; border: 1px solid rgba(90,171,204,0.45); color: var(--teal); white-space: nowrap; }
+.tag.ism { border-color: rgba(201,166,107,0.5); color: var(--gold); }
+.tag.out { border-color: var(--tx14); color: var(--tx48); }
+.pipeline { counter-reset: p; display: grid; grid-template-columns: repeat(7, 1fr); gap: 1rem; margin-top: 2rem; }
+.pipeline > div { border-top: 1px solid var(--teal); padding-top: 0.7rem; }
+.pipeline > div::before { counter-increment: p; content: '0' counter(p); font-family: var(--mono); font-size: 0.62rem; color: var(--teal); }
+.pipeline h4 { font-family: var(--display); font-weight: 400; font-size: 1rem; color: var(--tx92); margin: 0.3rem 0; }
+.pipeline p { font-size: 0.82rem; line-height: 1.5; color: var(--tx55); }
+.facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; margin-top: 1.6rem; }
+.fact { display: flex; gap: 0.8rem; padding: 0.7rem 0; border-top: 1px solid var(--tx07); font-size: 0.92rem; line-height: 1.5; color: var(--tx55); }
+.fact::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); margin-top: 0.55rem; flex-shrink: 0; }
+.fact b { font-weight: 500; color: var(--tx82); }
+@media (max-width: 1100px) { .pipeline { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px) {
+  .doc-nav { padding: 0 1rem; }
+  .doc-hero { padding: 5rem 1.25rem 2.4rem; }
+  .sec { padding: 4.5rem 1.25rem; }
+  .toc, .facts { grid-template-columns: 1fr; }
+  .pipeline { grid-template-columns: 1fr 1fr; }
+  .req thead { display: none; }
+  .req tr { display: block; padding: 0.8rem 0; border-bottom: 1px solid var(--tx07); }
+  .req td { display: block; border: none; padding: 0.2rem 0; width: auto !important; }
+}

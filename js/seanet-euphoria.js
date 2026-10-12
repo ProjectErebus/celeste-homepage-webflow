@@ -79,4 +79,29 @@
     window.addEventListener('hashchange', fromHash);
     fromHash();
   };
+
+  /* initDoc(): long-form proposal. Scroll progress bar, current-section label, and each animation
+     restarts from its first frame when it scrolls into view. */
+  window.initDoc = function () {
+    var fill = document.getElementById('progress-fill');
+    var where = document.getElementById('where');
+    var secs = Array.prototype.slice.call(document.querySelectorAll('[data-title]'));
+    function onScroll() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      fill.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+      var label = '';
+      secs.forEach(function (s) { if (s.getBoundingClientRect().top < 140) label = s.getAttribute('data-title'); });
+      if (where.textContent !== label) where.textContent = label;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    if (!reduce && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.target.setCurrentTime) e.target.setCurrentTime(0);
+        });
+      }, { threshold: 0.35 });
+      document.querySelectorAll('svg.anim').forEach(function (svg) { io.observe(svg); });
+    }
+  };
 })();
