@@ -238,3 +238,14 @@ body.doc { overflow-x: hidden; }
 .photo-bg.tint { opacity: 0.32; }
 .photo-bg.tint::after { background: linear-gradient(180deg, rgba(12,11,10,0.55) 0%, rgba(12,11,10,0.35) 50%, rgba(12,11,10,0.7) 100%); }
 .sec .photo-bg ~ .sec-inner { position: relative; z-index: 5; }
+
+/* Deck: stated facts (not quotes), free terms, and the programme line under the founder. */
+.asks.facts q { quotes: none; }
+.terms-row b.free { color: #0C0B0A; background: var(--green); border-radius: 3px; padding: 0.12rem 0.6rem; font-weight: 600; }
+.backing { display: flex; align-items: center; gap: 0.9rem; margin-top: 1.1rem; padding-top: 0.9rem; border-top: 1px solid var(--tx07); max-width: 560px; }
+.backing img { height: 11px; width: auto; opacity: 0.85; flex-shrink: 0; }
+.backing span { font-size: 0.8rem; line-height: 1.45; color: var(--tx55); }
+svg.cmp { width: 100%; max-width: 460px; height: auto; display: block; }
+@media (max-width: 640px) { .backing { flex-direction: column; align-items: flex-start; gap: 0.5rem; } }
+svg.only-narrow { display: none; }
+@media (max-width: 640px) { svg.only-wide { display: none !important; } svg.only-narrow { display: block; width: 100%; height: auto; } }
