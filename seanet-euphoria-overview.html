@@ -46,7 +46,7 @@
     <span><span class="back">&larr;</span>Celeste<span class="os">OS</span></span>
     <span class="brand-tag">M/Y Euphoria</span>
   </a>
-  <div class="slide-counter" id="slide-num">01 / 09</div>
+  <div class="slide-counter" id="slide-num">01 / 10</div>
   <div class="nav-buttons">
     <button class="nav-btn" id="prev-btn" onclick="go(-1)">&larr; Prev</button>
     <button class="nav-btn" id="next-btn" onclick="go(1)">Next &rarr;</button>
@@ -83,57 +83,106 @@
   <!-- 02 · WHAT EUPHORIA TOLD US -->
   <section class="slide" id="slide-2" aria-label="What you told us">
     <div class="slide-body">
-      <div class="eyebrow">02 · What you told us</div>
-      <h1 class="headline">Six things that cost Euphoria time today, and what Celeste does about each.</h1>
-      <div class="ask-grid">
-        <div class="ask">
-          <q>Operational knowledge keeps leaving with departing crew.</q>
-          <div class="does"><span><b>The handover writes itself</b> from the work already logged. Nothing lives in one person's head.</span></div>
+      <div class="split wide-right">
+        <div>
+          <div class="eyebrow">02 · What you told us</div>
+          <h1 class="headline">Every crew change, the yacht forgets a little more.</h1>
+          <ul class="asks">
+            <li><q>Knowledge keeps leaving with departing crew.</q><span>The handover writes itself</span></li>
+            <li><q>Paper logbooks, no digital maintenance system.</q><span>Point the file watcher at the folder</span></li>
+            <li><q>A damaged galley appliance, no proper fault trail.</q><span>Fault to sign-off, warranty checked</span></li>
+            <li><q>Crew-list discrepancies at a customs boarding.</q><span>Crew page: who's aboard, and when</span></li>
+            <li><q>People have to resend things.</q><span>Linked once, found by everyone</span></li>
+            <li><q>Signed, verifiable records for ISM.</q><span>Sealed, and checkable by anyone</span></li>
+          </ul>
         </div>
-        <div class="ask">
-          <q>Paper logbooks. No digital maintenance or work-order system.</q>
-          <div class="does"><span><b>Point the file watcher at the folder.</b> Scans and files become searchable records. No migration project.</span></div>
-        </div>
-        <div class="ask">
-          <q>A damaged galley appliance, and no proper fault or work-order trail.</q>
-          <div class="does"><span><b>Fault to work order to sign-off</b>, every step timestamped. The warranty is checked the moment the fault is logged.</span></div>
-        </div>
-        <div class="ask">
-          <q>A customs and immigration boarding over crew-list discrepancies.</q>
-          <div class="does"><span><b>The crew page shows who is aboard</b>, with times on board and away, kept current by the crew.</span></div>
-        </div>
-        <div class="ask">
-          <q>People have to resend things. A waste of time.</q>
-          <div class="does"><span><b>One person links a document once.</b> Everyone finds it, on every record it belongs to.</span></div>
-        </div>
-        <div class="ask">
-          <q>We need signed, verifiable records for ISM.</q>
-          <div class="does"><span><b>Every action is sealed</b> on an append-only ledger, and exports can be checked by anyone at verifier.celeste7.ai.</span></div>
+        <div>
+          <svg class="anim" data-dur="11" viewBox="0 0 540 300" role="img" aria-label="Today each crew rotation starts with less knowledge than the last; with Celeste every rotation starts with more.">
+            <g data-in="0.02"><circle cx="16" cy="16" r="4" fill="#C0503A"/><text x="28" y="20" font-size="9.5" letter-spacing="1.2" fill="rgba(255,255,255,0.7)">TODAY · KNOWLEDGE LEAVES WITH THE CREW</text></g>
+            <g data-in="0.48"><circle cx="16" cy="36" r="4" fill="#5AABCC"/><text x="28" y="40" font-size="9.5" letter-spacing="1.2" fill="#5AABCC">WITH CELESTE · KEPT, AND BUILDING</text></g>
+            <line x1="20" y1="250" x2="530" y2="250" stroke="rgba(255,255,255,0.14)"/>
+            <g font-size="8.5" letter-spacing="1" text-anchor="middle" fill="rgba(255,255,255,0.45)">
+              <text x="70" y="270">ROTATION 1</text><text x="170" y="270">ROTATION 2</text><text x="270" y="270">ROTATION 3</text><text x="370" y="270">ROTATION 4</text><text x="470" y="270">ROTATION 5</text>
+            </g>
+            <!-- today: each rotation starts lower; the dashed ghost is what walked off -->
+            <g data-in="0.04"><rect x="40" y="90" width="24" height="160" rx="2" fill="rgba(192,80,58,0.55)"/></g>
+            <g data-in="0.12"><rect x="140" y="90" width="24" height="42" rx="2" fill="none" stroke="#C0503A" stroke-dasharray="3 3"/><rect x="140" y="132" width="24" height="118" rx="2" fill="rgba(192,80,58,0.55)"/></g>
+            <g data-in="0.20"><rect x="240" y="132" width="24" height="26" rx="2" fill="none" stroke="#C0503A" stroke-dasharray="3 3"/><rect x="240" y="158" width="24" height="92" rx="2" fill="rgba(192,80,58,0.55)"/></g>
+            <g data-in="0.28"><rect x="340" y="158" width="24" height="18" rx="2" fill="none" stroke="#C0503A" stroke-dasharray="3 3"/><rect x="340" y="176" width="24" height="74" rx="2" fill="rgba(192,80,58,0.55)"/></g>
+            <g data-in="0.36"><rect x="440" y="176" width="24" height="12" rx="2" fill="none" stroke="#C0503A" stroke-dasharray="3 3"/><rect x="440" y="188" width="24" height="62" rx="2" fill="rgba(192,80,58,0.55)"/></g>
+            <!-- with Celeste: every rotation inherits the last one and adds to it -->
+            <g data-in="0.50"><rect x="76" y="90" width="24" height="160" rx="2" fill="#5AABCC"/></g>
+            <g data-in="0.56"><rect x="176" y="78" width="24" height="172" rx="2" fill="#5AABCC"/></g>
+            <g data-in="0.62"><rect x="276" y="66" width="24" height="184" rx="2" fill="#5AABCC"/></g>
+            <g data-in="0.68"><rect x="376" y="54" width="24" height="196" rx="2" fill="#5AABCC"/></g>
+            <g data-in="0.74"><rect x="476" y="42" width="24" height="208" rx="2" fill="#5AABCC"/></g>
+            <g data-in="0.8"><text x="530" y="292" font-size="9" letter-spacing="1.1" text-anchor="end" fill="#5AABCC">SAME CREW CHANGES · NOTHING WALKS OFF</text></g>
+          </svg>
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>From your notes and our call</span><span>02 / 09</span></div>
+    <div class="slide-footer"><span>From your notes and our call</span><span>02 / 10</span></div>
   </section>
 
   <!-- 03 · NOT ANOTHER AI CHAT -->
   <section class="slide" id="slide-3" aria-label="Why not a general AI assistant">
     <div class="slide-body">
       <div class="eyebrow">03 · What Celeste is</div>
-      <h1 class="headline">Not another AI chat. <em>The engineering record that builds itself.</em></h1>
-      <p class="sub">A chat assistant answers when someone asks. Celeste keeps Euphoria's engineering record whether anyone asks or not, and it gets more useful with every job logged.</p>
-      <table class="vs">
-        <thead><tr><th></th><th>General AI assistant</th><th class="us">CelesteOS</th></tr></thead>
-        <tbody>
-          <tr><td>When it works</td><td>Only when someone asks the right question</td><td class="us">In the background, as the crew works: warranty checks, document links, handovers</td></tr>
-          <tr><td>Memory</td><td>Starts from zero; files re-uploaded every time</td><td class="us">Every fault, note and link stays on the vessel's record, through every crew change</td></tr>
-          <tr><td>Answers</td><td>Plausible text, source unclear</td><td class="us">Every result opens the record or document it came from</td></tr>
-          <tr><td>Changes</td><td>An answer in a chat window, then gone</td><td class="us">The system proposes, a named crew member approves, and the change is sealed on the ledger</td></tr>
-          <tr><td>Your data</td><td>Depends on the plan someone signed up to</td><td class="us">Never used to train AI. Each vessel's records walled off from every other</td></tr>
-        </tbody>
-      </table>
-      <p class="note" style="margin-top:1.2rem;">Celeste uses the same class of AI models. The difference is everything built around them, by a former superyacht ETO and Head of Department.</p>
+      <h1 class="headline" style="max-width:32ch;">Not another AI chat. <em>The engineering record that builds itself.</em></h1>
+      <div class="cols-2" style="margin-top:2rem; gap:3rem;">
+        <div>
+          <div class="label" style="color:var(--teal);">It remembers</div>
+          <svg class="anim" data-dur="10" viewBox="0 0 470 280" role="img" aria-label="A general AI chat resets to zero every session; Celeste's record keeps growing with every job logged." style="margin-top:0.6rem;">
+            <line x1="40" y1="250" x2="455" y2="250" stroke="rgba(255,255,255,0.14)"/>
+            <line x1="40" y1="250" x2="40" y2="24" stroke="rgba(255,255,255,0.14)"/>
+            <text x="46" y="20" font-size="8.5" letter-spacing="1.1" fill="rgba(255,255,255,0.45)">WHAT IT KNOWS ABOUT EUPHORIA</text>
+            <text x="455" y="270" font-size="8.5" letter-spacing="1.1" text-anchor="end" fill="rgba(255,255,255,0.45)">TIME →</text>
+            <path d="M40 250 L95 205 L95 250 L150 205 L150 250 L205 205 L205 250 L260 205 L260 250 L315 205 L315 250 L370 205 L370 250 L425 205 L425 250" pathLength="1" fill="none" stroke="#C0503A" stroke-width="1.6" stroke-dasharray="1" stroke-dashoffset="1">
+              <animate attributeName="stroke-dashoffset" dur="10s" repeatCount="indefinite" values="1;1;0;0;1" keyTimes="0;0.04;0.42;0.94;1"/>
+            </path>
+            <g data-in="0.2"><text x="50" y="168" font-size="9" letter-spacing="1" fill="#C0503A">AI CHAT · RESETS EVERY SESSION</text></g>
+            <path d="M40 250 C 170 238, 300 160, 445 40" pathLength="1" fill="none" stroke="#5AABCC" stroke-width="2.4" stroke-dasharray="1" stroke-dashoffset="1">
+              <animate attributeName="stroke-dashoffset" dur="10s" repeatCount="indefinite" values="1;1;0;0;1" keyTimes="0;0.46;0.82;0.94;1"/>
+            </path>
+            <g data-in="0.82"><circle cx="445" cy="40" r="5" fill="#5AABCC"/><text x="300" y="56" font-size="9" letter-spacing="1" text-anchor="end" fill="#5AABCC">CELESTEOS · GROWS WITH EVERY JOB</text></g>
+          </svg>
+          <p class="cap">Every fault, note and link stays on the vessel's record, through every crew change.</p>
+        </div>
+        <div>
+          <div class="label" style="color:var(--green);">The crew decides</div>
+          <svg class="anim" data-dur="10" viewBox="0 0 470 280" role="img" aria-label="Celeste suggests a change with its source; only after a named crew member confirms does it pass into the record, signed and sealed." style="margin-top:0.6rem;">
+            <g data-in="0.02">
+              <rect x="6" y="30" width="212" height="132" rx="4" fill="#141311" stroke="rgba(201,166,107,0.5)"/>
+              <text x="20" y="52" font-size="8.5" letter-spacing="1.1" fill="#C9A66B">SUGGESTED BY CELESTE</text>
+              <text x="20" y="76" font-size="12" class="t-body" fill="rgba(255,255,255,0.9)">Link manual → port main engine</text>
+              <text x="20" y="98" font-size="8.5" fill="#5AABCC">Source ↗ MAN V8-1000 manual, p.112</text>
+              <rect x="20" y="124" width="74" height="22" rx="2" fill="none" stroke="#5AABCC"/><text x="57" y="139" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="#5AABCC">CONFIRM</text>
+              <rect x="102" y="124" width="74" height="22" rx="2" fill="none" stroke="rgba(255,255,255,0.2)"/><text x="139" y="139" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="rgba(255,255,255,0.45)">DECLINE</text>
+            </g>
+            <g data-in="0.16">
+              <g stroke="rgba(255,255,255,0.82)" stroke-width="1.6" fill="none"><circle cx="57" cy="208" r="8"/><path d="M41 240 A16 16 0 0 1 73 240"/></g>
+              <text x="57" y="262" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="rgba(255,255,255,0.6)">CHIEF ENG.</text>
+              <line x1="57" y1="196" x2="57" y2="150" stroke="rgba(255,255,255,0.4)" stroke-dasharray="2 3"/>
+            </g>
+            <g data-in="0.28"><rect x="20" y="124" width="74" height="22" rx="2" fill="#4A9468"/><text x="57" y="139" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="#0C0B0A">CONFIRMED</text></g>
+            <!-- the gate: only a named, permitted crew member passes it -->
+            <line x1="240" y1="22" x2="240" y2="236" stroke="rgba(255,255,255,0.22)" stroke-dasharray="4 4"/>
+            <g stroke="rgba(255,255,255,0.5)" stroke-width="1.3" fill="none"><rect x="233" y="100" width="14" height="11" rx="1.5"/><path d="M236 100 V96 a4 4 0 0 1 8 0 V100"/></g>
+            <text x="240" y="254" font-size="8" letter-spacing="1" text-anchor="middle" fill="rgba(255,255,255,0.4)">NOTHING PASSES WITHOUT A NAMED PERSON</text>
+            <g data-in="0.36"><line x1="218" y1="96" x2="268" y2="96" stroke="#4A9468" stroke-width="1.4" stroke-dasharray="3 6"><animate attributeName="stroke-dashoffset" from="9" to="0" dur="0.6s" repeatCount="indefinite"/></line></g>
+            <rect x="268" y="30" width="198" height="160" rx="4" fill="#141311" stroke="rgba(255,255,255,0.12)"/>
+            <text x="282" y="52" font-size="8.5" letter-spacing="1.1" fill="rgba(255,255,255,0.48)">EUPHORIA'S RECORD</text>
+            <g data-in="0.44"><text x="282" y="80" font-size="11.5" class="t-body" fill="rgba(255,255,255,0.9)">Manual linked to port main engine</text></g>
+            <g data-in="0.54"><text x="282" y="104" font-size="9" fill="#4A9468">✓ Signed · Chief Eng. · 09:42</text></g>
+            <g data-in="0.62"><text x="282" y="126" font-size="9" fill="#4A9468">✓ Sealed on the ledger</text></g>
+            <g data-in="0.7"><line x1="282" y1="146" x2="452" y2="146" stroke="rgba(255,255,255,0.08)"/><text x="282" y="172" font-size="8.5" fill="rgba(255,255,255,0.5)">Declined? Nothing changes.</text></g>
+          </svg>
+          <p class="cap">The system proposes, with its source. A named crew member approves. Only then does anything change.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:1.4rem;">Celeste uses the same class of AI models. The difference is everything built around them, by a former superyacht ETO and Head of Department.</p>
     </div>
-    <div class="slide-footer"><span>The record, not the chat</span><span>03 / 09</span></div>
+    <div class="slide-footer"><span>The record, not the chat</span><span>03 / 10</span></div>
   </section>
 
   <!-- 04 · WARRANTY FINDER -->
@@ -210,7 +259,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Background process · warranty finder</span><span>04 / 09</span></div>
+    <div class="slide-footer"><span>Background process · warranty finder</span><span>04 / 10</span></div>
   </section>
 
   <!-- 05 · SUGGESTED DOCUMENTS + HANDOVER -->
@@ -288,7 +337,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Background processes · suggested documents · handover</span><span>05 / 09</span></div>
+    <div class="slide-footer"><span>Background processes · suggested documents · handover</span><span>05 / 10</span></div>
   </section>
 
   <!-- 06 · SEARCH + SHOW RELATED -->
@@ -332,15 +381,64 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Search · show related</span><span>06 / 09</span></div>
+    <div class="slide-footer"><span>Search · show related</span><span>06 / 10</span></div>
   </section>
 
-  <!-- 07 · ONBOARDING + PROOF -->
-  <section class="slide" id="slide-7" aria-label="Onboarding and proof">
+  <!-- 07 · PROOF: LEDGER + VERIFIER -->
+  <section class="slide" id="slide-7" aria-label="Ledger and verifier">
+    <div class="slide-body">
+      <div class="eyebrow">07 · Proof nobody can argue with</div>
+      <h1 class="headline" style="max-width:30ch;">Every step recorded. <em>Anyone can check it.</em></h1>
+      <div class="cols-2" style="margin-top:1.8rem; gap:3rem;">
+        <div>
+          <div class="label" style="color:var(--teal);">The trail builds itself</div>
+          <svg class="anim" data-dur="12" viewBox="0 0 470 320" role="img" aria-label="The galley appliance fault, warranty suggestion, work order, claim and sign-off are each recorded with who and when, then sealed." style="margin-top:0.6rem;">
+            <line x1="30" y1="26" x2="30" y2="262" stroke="rgba(255,255,255,0.12)"/>
+            <g data-in="0.03"><circle cx="30" cy="30" r="6" fill="#C0503A"/><text x="50" y="27" font-size="8.5" letter-spacing="1" fill="rgba(255,255,255,0.45)">MON 09:14 · STEWARDESS</text><text x="50" y="44" font-size="12" class="t-body" fill="rgba(255,255,255,0.9)">Fault F-0142 · galley appliance damaged</text></g>
+            <g data-in="0.12"><circle cx="30" cy="80" r="6" fill="#C9A66B"/><text x="50" y="77" font-size="8.5" letter-spacing="1" fill="rgba(255,255,255,0.45)">MON 09:14 · CELESTE SUGGESTS</text><text x="50" y="94" font-size="12" class="t-body" fill="rgba(255,255,255,0.9)">Builder warranty in force · claim possible</text></g>
+            <g data-in="0.21"><circle cx="30" cy="130" r="6" fill="#5AABCC"/><text x="50" y="127" font-size="8.5" letter-spacing="1" fill="rgba(255,255,255,0.45)">MON 09:20 · CHIEF ENG.</text><text x="50" y="144" font-size="12" class="t-body" fill="rgba(255,255,255,0.9)">Work order WO-0311 opened</text></g>
+            <g data-in="0.30"><circle cx="30" cy="180" r="6" fill="#5AABCC"/><text x="50" y="177" font-size="8.5" letter-spacing="1" fill="rgba(255,255,255,0.45)">TUE 16:05 · CHIEF ENG.</text><text x="50" y="194" font-size="12" class="t-body" fill="rgba(255,255,255,0.9)">Claim pack sent to Alpha Custom Yachts</text></g>
+            <g data-in="0.39"><circle cx="30" cy="230" r="6" fill="#4A9468"/><text x="50" y="227" font-size="8.5" letter-spacing="1" fill="rgba(255,255,255,0.45)">THU 11:30 · CHIEF ENG. · CAPTAIN</text><text x="50" y="244" font-size="12" class="t-body" fill="rgba(255,255,255,0.9)">Repaired, signed off, acknowledged</text></g>
+            <g data-in="0.48"><rect x="16" y="272" width="250" height="30" rx="2" fill="rgba(74,148,104,0.12)" stroke="#4A9468"/><text x="30" y="291" font-size="9" letter-spacing="1.1" fill="#4A9468">SEALED · PROOF a3f2…9c1e</text></g>
+          </svg>
+        </div>
+        <div>
+          <div class="label" style="color:var(--green);">Owners, surveyors and insurers can verify it</div>
+          <svg class="anim" data-dur="12" viewBox="0 0 470 320" role="img" aria-label="A sealed record dropped on the public verifier reads verified; a copy edited after sealing reads failed." style="margin-top:0.6rem;">
+            <g data-in="0.04">
+              <path d="M10 40 h70 l14 14 v70 h-84 z" fill="#141311" stroke="rgba(255,255,255,0.3)"/><path d="M80 40 v14 h14" fill="none" stroke="rgba(255,255,255,0.3)"/>
+              <g stroke="rgba(255,255,255,0.3)"><line x1="22" y1="72" x2="80" y2="72"/><line x1="22" y1="84" x2="80" y2="84"/><line x1="22" y1="96" x2="66" y2="96"/></g>
+              <text x="52" y="146" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="rgba(255,255,255,0.7)">SEALED WO-0311</text>
+            </g>
+            <g data-in="0.14"><line x1="96" y1="86" x2="170" y2="138" stroke="#5AABCC" stroke-width="1.3" stroke-dasharray="3 6"><animate attributeName="stroke-dashoffset" from="9" to="0" dur="0.6s" repeatCount="indefinite"/></line></g>
+            <rect x="170" y="104" width="120" height="112" rx="4" fill="rgba(90,171,204,0.07)" stroke="#5AABCC"/>
+            <g stroke="#5AABCC" stroke-width="1.5" fill="none"><path d="M230 126 l16 6 v14 c0 11-7 19-16 22 c-9-3-16-11-16-22 v-14 z"/></g>
+            <text x="230" y="190" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="#5AABCC">VERIFIER</text>
+            <text x="230" y="204" font-size="7.5" text-anchor="middle" fill="rgba(255,255,255,0.5)">verifier.celeste7.ai</text>
+            <g data-in="0.24"><line x1="290" y1="138" x2="320" y2="96" stroke="#4A9468" stroke-width="1.3"/><circle cx="332" cy="86" r="11" fill="#4A9468"/><path d="M327 86 l4 4 l7 -8" stroke="#0C0B0A" stroke-width="2" fill="none"/>
+              <text x="350" y="83" font-size="10" letter-spacing="1.1" fill="#4A9468">VERIFIED</text><text x="350" y="98" font-size="8.5" class="t-body" fill="rgba(255,255,255,0.6)">Unaltered since sealing</text></g>
+            <g data-in="0.46">
+              <path d="M10 196 h70 l14 14 v70 h-84 z" fill="#141311" stroke="rgba(192,80,58,0.6)"/><path d="M80 196 v14 h14" fill="none" stroke="rgba(192,80,58,0.6)"/>
+              <g stroke="rgba(255,255,255,0.3)"><line x1="22" y1="228" x2="80" y2="228"/><line x1="22" y1="252" x2="66" y2="252"/></g><line x1="22" y1="240" x2="80" y2="240" stroke="#C0503A" stroke-width="2"/>
+              <text x="52" y="302" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="rgba(255,255,255,0.7)">EDITED COPY</text>
+            </g>
+            <g data-in="0.56"><line x1="96" y1="242" x2="170" y2="190" stroke="#5AABCC" stroke-width="1.3" stroke-dasharray="3 6"><animate attributeName="stroke-dashoffset" from="9" to="0" dur="0.6s" repeatCount="indefinite"/></line></g>
+            <g data-in="0.66"><line x1="290" y1="190" x2="320" y2="232" stroke="#C0503A" stroke-width="1.3"/><circle cx="332" cy="242" r="11" fill="#C0503A"/><path d="M327 237 l10 10 M337 237 l-10 10" stroke="#0C0B0A" stroke-width="2"/>
+              <text x="350" y="239" font-size="10" letter-spacing="1.1" fill="#C0503A">FAILED</text><text x="350" y="254" font-size="8.5" class="t-body" fill="rgba(255,255,255,0.6)">Changed after sealing</text></g>
+            <g data-in="0.76"><text x="230" y="40" font-size="8.5" letter-spacing="1.1" text-anchor="middle" fill="rgba(255,255,255,0.5)">NO ACCOUNT · NOTHING UPLOADED</text></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span>Ledger · verifier.celeste7.ai</span><span>07 / 10</span></div>
+  </section>
+
+  <!-- 08 · ONBOARDING + PROOF -->
+  <section class="slide" id="slide-8" aria-label="Onboarding and proof">
     <div class="slide-body">
       <div class="split">
         <div>
-          <div class="eyebrow">07 · Onboarding · zero effort from the crew</div>
+          <div class="eyebrow">08 · Onboarding · zero effort from the crew</div>
           <h1 class="headline">Point it at the folder. Live in about a day.</h1>
           <p class="sub">No uploads, no spreadsheets, no migration project. The Celeste file watcher copies the folders you choose without ever editing them (scanned logbooks included), and every file is read, classified and linked into equipment, certificate and document records. New files keep flowing in on their own.</p>
           <div class="cols-2" style="margin-top:1.8rem; gap:1.6rem;">
@@ -387,37 +485,74 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Onboarding · proof</span><span>07 / 09</span></div>
+    <div class="slide-footer"><span>Onboarding · proof</span><span>08 / 10</span></div>
   </section>
 
-  <!-- 08 · THE REFIT TRIAL → FLEET -->
-  <section class="slide" id="slide-8" aria-label="The refit trial and fleet rollout">
-    <div class="photo-bg left" style="background-image:url('/images/euphoria/anchorage-aerial.jpg'); background-position:70% center;"></div>
+  <!-- 09 · THE REFIT TRIAL → FLEET -->
+  <section class="slide" id="slide-9" aria-label="The refit trial and fleet rollout">
+    <div class="photo-bg left" style="background-image:url('/images/euphoria/anchorage-aerial.jpg'); background-position:70% center; opacity:0.6;"></div>
     <div class="slide-body">
-      <div class="eyebrow">08 · The plan</div>
+      <div class="eyebrow">09 · The plan</div>
       <h1 class="headline">Euphoria first, through the Barcelona refit. Then the fleet.</h1>
-      <div class="cols-4" style="margin-top:2rem; max-width:1000px;">
-        <div class="step on"><div class="when">Before 6 Nov</div><h3>Onboard</h3><p>File watcher on the root folder. Live in about a day. Crew sign in.</p></div>
-        <div class="step on"><div class="when">Refit · 3–4 months</div><h3>Capture</h3><p>Every yard job, contractor document and warranty item lands on the record as it happens.</p></div>
-        <div class="step"><div class="when">End of refit</div><h3>Review</h3><p>With Clinton and Ron: what was found, captured and proven.</p></div>
-        <div class="step"><div class="when">Then</div><h3>Fleet</h3><p>Each SeaNet vessel added the same way. Management sees them all in one fleet view.</p></div>
+      <div class="cols-4" style="margin-top:1.6rem;">
+        <div class="step on"><div class="when">Before 6 Nov</div><h3>Onboard</h3><p>Live in about a day. Crew sign in.</p></div>
+        <div class="step on"><div class="when">Refit · 3–4 months</div><h3>Capture</h3><p>Every yard job and warranty item, as it happens.</p></div>
+        <div class="step"><div class="when">End of refit</div><h3>Review</h3><p>With Clinton and Ron, against the measures.</p></div>
+        <div class="step"><div class="when">Then</div><h3>Fleet</h3><p>Each SeaNet vessel added the same way.</p></div>
       </div>
-      <div style="margin-top:2.2rem; max-width:620px;">
-        <div class="label" style="margin-bottom:0.4rem;">What you'll see by the end of the refit</div>
-        <div class="measure"><span class="n">01</span><span>Warranty items identified on Euphoria's own equipment, and what they're worth.</span></div>
-        <div class="measure"><span class="n">02</span><span>Every refit fault and work order captured, each with a sealed trail.</span></div>
-        <div class="measure"><span class="n">03</span><span>Any document, found in seconds by anyone aboard or ashore.</span></div>
-        <div class="measure"><span class="n">04</span><span>A complete handover generated at the next crew change.</span></div>
+      <div class="split" style="margin-top:2rem; align-items:start;">
+        <div>
+          <div class="label" style="margin-bottom:0.4rem;">What you'll see by the end of the refit</div>
+          <div class="measure"><span class="n">01</span><span>Warranty items identified on Euphoria's own equipment, and their value.</span></div>
+          <div class="measure"><span class="n">02</span><span>Every refit fault and work order captured, each with a sealed trail.</span></div>
+          <div class="measure"><span class="n">03</span><span>Any document, found in seconds, aboard or ashore.</span></div>
+          <div class="measure"><span class="n">04</span><span>A complete handover generated at the next crew change.</span></div>
+        </div>
+        <div>
+          <svg class="anim" data-dur="12" viewBox="0 0 500 300" role="img" aria-label="The fleet view grows from one vessel to nine while the list of items needing a decision stays three lines long.">
+            <rect x="0" y="0" width="500" height="300" rx="4" fill="rgba(20,19,17,0.92)" stroke="rgba(255,255,255,0.12)"/>
+            <text x="20" y="28" font-size="9" letter-spacing="1.2" fill="#5AABCC">FLEET VIEW · SEANET</text>
+            <g font-size="9" letter-spacing="1.2" text-anchor="end" fill="rgba(255,255,255,0.8)">
+              <text data-in="0" data-out="0.3" x="480" y="28">1 VESSEL</text>
+              <text data-in="0.3" data-out="0.62" x="480" y="28">4 VESSELS</text>
+              <text data-in="0.62" x="480" y="28">9 VESSELS</text>
+            </g>
+            <line x1="20" y1="40" x2="480" y2="40" stroke="rgba(255,255,255,0.08)"/>
+            <text x="20" y="62" font-size="8.5" letter-spacing="1.1" fill="rgba(255,255,255,0.45)">NEEDS A DECISION</text>
+            <g data-in="0.04">
+              <rect x="20" y="74" width="460" height="46" rx="3" fill="rgba(255,255,255,0.03)"/><circle cx="36" cy="97" r="4" fill="#C9A66B"/>
+              <text x="50" y="93" font-size="12" class="t-body" fill="rgba(255,255,255,0.92)">M/Y Euphoria</text><text x="50" y="110" font-size="9.5" class="t-body" fill="rgba(255,255,255,0.55)">Warranty claim possible · galley appliance</text>
+              <rect x="400" y="87" width="66" height="20" rx="2" fill="none" stroke="#4A9468"/><text x="433" y="101" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="#4A9468">CLAIM</text>
+            </g>
+            <g data-in="0.34">
+              <rect x="20" y="128" width="460" height="46" rx="3" fill="rgba(255,255,255,0.03)"/><circle cx="36" cy="151" r="4" fill="#C0503A"/>
+              <text x="50" y="147" font-size="12" class="t-body" fill="rgba(255,255,255,0.92)">SeaNet vessel 2</text><text x="50" y="164" font-size="9.5" class="t-body" fill="rgba(255,255,255,0.55)">Fault open 9 days · stbd generator</text>
+              <rect x="400" y="141" width="66" height="20" rx="2" fill="none" stroke="#C0503A"/><text x="433" y="155" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="#C0503A">OVERDUE</text>
+            </g>
+            <g data-in="0.66">
+              <rect x="20" y="182" width="460" height="46" rx="3" fill="rgba(255,255,255,0.03)"/><circle cx="36" cy="205" r="4" fill="#C9A66B"/>
+              <text x="50" y="201" font-size="12" class="t-body" fill="rgba(255,255,255,0.92)">SeaNet vessel 3</text><text x="50" y="218" font-size="9.5" class="t-body" fill="rgba(255,255,255,0.55)">Statutory inspection due in 14 days</text>
+              <rect x="400" y="195" width="66" height="20" rx="2" fill="none" stroke="#C9A66B"/><text x="433" y="209" font-size="8.5" letter-spacing="1" text-anchor="middle" fill="#C9A66B">DUE</text>
+            </g>
+            <g font-size="9" class="t-body" fill="rgba(255,255,255,0.45)">
+              <text data-in="0.06" data-out="0.3" x="20" y="252">+ 37 items handled on Euphoria. Nothing to decide.</text>
+              <text data-in="0.3" data-out="0.62" x="20" y="252">+ 152 items handled across 4 vessels. Nothing to decide.</text>
+              <text data-in="0.62" x="20" y="252">+ 341 items handled across 9 vessels. Nothing to decide.</text>
+            </g>
+            <g data-in="0.74"><text x="20" y="282" font-size="9" letter-spacing="1.2" fill="#5AABCC">MORE VESSELS · SAME SHORT LIST</text></g>
+            <text x="480" y="282" font-size="7.5" letter-spacing="1" text-anchor="end" fill="rgba(255,255,255,0.3)">ILLUSTRATIVE</text>
+          </svg>
+        </div>
       </div>
     </div>
-    <div class="slide-footer"><span>One yacht now · the fleet next</span><span>08 / 09</span></div>
+    <div class="slide-footer"><span>One yacht now · the fleet next</span><span>09 / 10</span></div>
   </section>
 
-  <!-- 09 · TERMS + NEXT STEP -->
-  <section class="slide" id="slide-9" aria-label="Terms and next step">
+  <!-- 10 · TERMS + NEXT STEP -->
+  <section class="slide" id="slide-10" aria-label="Terms and next step">
     <div class="photo-bg left" style="background-image:url('/images/euphoria/bow-sunset.jpg'); background-position:65% center;"></div>
     <div class="slide-body">
-      <div class="eyebrow">09 · Terms</div>
+      <div class="eyebrow">10 · Terms</div>
       <h1 class="headline">Start at zero. Stay because it works.</h1>
       <div class="cols-2" style="margin-top:1.8rem; max-width:860px; gap:3rem;">
         <div>
@@ -447,7 +582,7 @@
         <div><div class="who">Alex Short · <a href="tel:+13056455690" style="text-decoration:none; color:var(--tx55);">+1 (305) 645-5690</a></div><div class="role">Founder &amp; Lead Engineer · Celeste7 Ltd</div></div>
       </div>
     </div>
-    <div class="slide-footer"><span>Celeste7 Ltd · ready when you are</span><span>09 / 09</span></div>
+    <div class="slide-footer"><span>Celeste7 Ltd · ready when you are</span><span>10 / 10</span></div>
   </section>
 
 </main>

@@ -20,8 +20,9 @@
       an.setAttribute('attributeName', 'opacity');
       an.setAttribute('dur', dur);
       an.setAttribute('repeatCount', 'indefinite');
-      an.setAttribute('values', '0;0;1;1;0');
-      an.setAttribute('keyTimes', '0;' + a + ';' + b + ';' + o + ';1');
+      var gone = Math.min(o + 0.03, 1);
+      an.setAttribute('values', gone < 1 ? '0;0;1;1;0;0' : '0;0;1;1;0');
+      an.setAttribute('keyTimes', '0;' + a + ';' + b + ';' + o + ';' + gone + (gone < 1 ? ';1' : ''));
       el.appendChild(an);
     });
     if (reduce && svg.pauseAnimations) svg.pauseAnimations();

@@ -219,3 +219,11 @@ body.doc { overflow-x: hidden; }
   .req tr { display: block; padding: 0.8rem 0; border-bottom: 1px solid var(--tx07); }
   .req td { display: block; border: none; padding: 0.2rem 0; width: auto !important; }
 }
+
+/* Deck: compact "you said → we do" list, animation captions */
+.asks { list-style: none; margin-top: 1.4rem; }
+.asks li { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.55rem 0; border-top: 1px solid var(--tx07); }
+.asks q { quotes: '\201C' '\201D'; font-family: var(--display); font-weight: 300; font-size: 1rem; line-height: 1.35; color: var(--tx82); }
+.asks span { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); }
+.asks span::before { content: '\2192\00a0'; }
+.cap { font-size: 0.9rem; line-height: 1.5; color: var(--tx55); margin-top: 0.6rem; max-width: 46ch; }
