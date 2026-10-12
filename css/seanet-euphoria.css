@@ -277,3 +277,16 @@ body.doc { overflow-x: hidden; }
   .js-anim .s3 .draw line { stroke-dashoffset: 0; transition: none; }
   .caret { animation: none; }
 }
+
+/* S1 the gap — a run of records with one missing (celeste-design previews/scenes/the-gap.html) */
+.s1 .row { display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 0 4px; border-bottom: 1px solid var(--border-sub); }
+.s1 .row .seal { color: var(--txt2); }
+.s1 .row .t { font-size: 13.5px; color: var(--txt); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.s1 .row .id, .s1 .row .ts { font-family: var(--font-mono); font-size: 11px; color: var(--txt3); letter-spacing: .02em; }
+.s1 .row .ts { width: 92px; text-align: right; flex: none; }
+.s1 .gap { border-bottom: 1px dashed rgba(255,255,255,.13); }
+.s1 .gap .seal { color: var(--txt3); }
+.s1 .gap .hole { flex: 1; height: 11px; border: 1px dashed rgba(255,255,255,.16); border-radius: 3px; }
+.s1 .edge { opacity: .32; }
+ul.plain.tight li { padding: 8px 0 8px 18px; font-size: 13.5px; }
+ul.plain.tight li::before { top: 16px; }

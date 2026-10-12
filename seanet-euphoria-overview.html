@@ -41,6 +41,7 @@
 </script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="unknown" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 3"/></symbol>
   <symbol id="draft" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="16" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
   <symbol id="committed" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/></symbol>
   <symbol id="sealed" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="16" y1="0" x2="16" y2="3.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/></symbol>
@@ -53,7 +54,7 @@
     <span><span class="back">&larr;</span>Celeste<span class="os" style="font-weight:600;color:var(--teal);">OS</span></span>
     <span class="brand-tag">M/Y Euphoria · Overview</span>
   </a>
-  <div class="counter" id="slide-num">01 / 11</div>
+  <div class="counter" id="slide-num">01 / 12</div>
   <div class="nav-buttons">
     <button class="nav-btn" id="prev-btn" onclick="go(-1)">&larr; Prev</button>
     <button class="nav-btn" id="next-btn" onclick="go(1)">Next &rarr;</button>
@@ -70,19 +71,53 @@
       <div class="wordmark">Celeste<span class="os">OS</span></div>
       <div class="eyebrow" style="margin:2.4rem 0 18px;">Prepared for SeaNet · M/Y Euphoria</div>
       <h1 class="title">What Euphoria keeps.</h1>
-      <p class="body" style="color:var(--txt);">One engineering record for one yacht through the Barcelona refit, then the same record across the SeaNet fleet.</p>
+      <p class="body" style="color:var(--txt);">Where Euphoria's engineering record leaks today, what that costs, and how it stops, starting with the Barcelona refit.</p>
     </div>
     <div class="slide-footer"><span>Celeste7 Ltd</span><span>Alpha Custom Yachts Squalo 100 · 2025</span></div>
   </section>
 
-  <!-- 02 · THE PROBLEM · S8 two-curve -->
+  <!-- 02 · WHERE EUPHORIA LEAKS · S1 -->
+  <section class="slide" aria-label="Where Euphoria leaks today">
+    <div class="slide-body">
+      <div class="split" style="align-items:start;">
+        <div>
+          <div class="eyebrow">02 · Where Euphoria leaks today</div>
+          <h2 class="head">Five leaks, each already costing Euphoria.</h2>
+          <ul class="plain tight" style="margin-top:1.4rem;">
+            <li><strong>The galley appliance.</strong> No fault trail, so any warranty claim rests on memory. A denied claim runs €20k–€100k.*</li>
+            <li><strong>The customs boarding.</strong> A crew list that did not match who was aboard, at the moment it was asked for.</li>
+            <li><strong>Crew rotation.</strong> At 50%+ annual turnover in some superyacht roles, what one crew learns leaves with them.†</li>
+            <li><strong>Resending.</strong> The same file hunted for by every new person, every time.</li>
+            <li><strong>Paper logbooks.</strong> Nothing an owner, surveyor or insurer can check.</li>
+          </ul>
+        </div>
+        <div class="scene s1" style="margin-top:2.6rem;">
+          <div class="row edge"><svg class="seal"><use href="#committed"/></svg><span class="t">Port main engine — 500 h service</span><span class="ts">14 Aug 2026</span></div>
+          <div class="row"><svg class="seal"><use href="#committed"/></svg><span class="t">Stbd generator — impeller replaced</span><span class="ts">02 Sep 2026</span></div>
+          <div class="row gap"><svg class="seal" style="color:var(--txt3)"><use href="#unknown"/></svg><span class="hole"></span><span class="ts">—</span></div>
+          <div class="row"><svg class="seal"><use href="#committed"/></svg><span class="t">Passerelle — hydraulic ram inspected</span><span class="ts">21 Sep 2026</span></div>
+          <div class="row"><svg class="seal"><use href="#committed"/></svg><span class="t">Watermaker — membranes flushed</span><span class="ts">30 Sep 2026</span></div>
+          <div class="row edge"><svg class="seal"><use href="#committed"/></svg><span class="t">Tender crane — load test</span><span class="ts">08 Oct 2026</span></div>
+        </div>
+      </div>
+      <p class="note" style="margin-top:1.6rem;">* Celeste estimate, from warranty claims seen across vessels. † Praxis Group turnover data via Sentini Marine, "Rotation Without Risk", 2026 (celeste7.ai/sources).</p>
+    </div>
+    <div class="slide-footer"><span>From your notes and our call</span><span>02 / 12</span></div>
+  </section>
+
+  <!-- 03 · WHAT IT COSTS · S8 two-curve -->
   <section class="slide" aria-label="The problem">
     <div class="slide-body">
       <div class="split">
         <div>
-          <div class="eyebrow">02 · The problem</div>
-          <h2 class="head">Every rotation, the yacht loses what the last crew knew.</h2>
-          <p class="body">Five crew, paper logbooks, no digital maintenance record. When someone rotates off, what they knew about Euphoria leaves with them, and the next crew starts lower.</p>
+          <div class="eyebrow">03 · What it costs each of you</div>
+          <h2 class="head">Every rotation starts lower than the last.</h2>
+          <p class="body">Five crew, paper logbooks, no digital maintenance record. Each rotation inherits less than the one before.</p>
+          <ul class="plain tight" style="margin-top:1.2rem;">
+            <li><strong>Owners:</strong> you pay for maintenance you cannot see, and for repairs that may already have been covered.</li>
+            <li><strong>Fleet captain:</strong> there is no record to show how well Euphoria is run.</li>
+            <li><strong>Operations:</strong> another tool to evaluate is the last thing needed. This is one folder on one yacht.</li>
+          </ul>
         </div>
         <div class="scene s8">
           <svg viewBox="0 0 560 310" role="img" aria-label="Two curves from a shared origin: one descends with each rotation, one holds.">
@@ -98,27 +133,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>The problem</span><span>02 / 11</span></div>
-  </section>
-
-  <!-- 03 · WHAT EUPHORIA ASKED FOR · spec table -->
-  <section class="slide" aria-label="What Euphoria asked for">
-    <div class="slide-body">
-      <div class="eyebrow">03 · What Euphoria asked for</div>
-      <h2 class="head">Six needs, each answered by the record.</h2>
-      <table class="spec" style="margin-top:2rem; max-width:980px;">
-        <thead><tr><th>Euphoria</th><th>The record</th></tr></thead>
-        <tbody>
-          <tr><td>Knowledge leaves with departing crew</td><td>The handover is compiled from logged work and signed at crew change</td></tr>
-          <tr><td>Paper logbooks, no digital maintenance system</td><td>The file watcher reads the folders, scans included, into records</td></tr>
-          <tr><td>A damaged galley appliance, no fault trail</td><td>Fault, work order and sign-off, each timestamped; warranty checked on entry</td></tr>
-          <tr><td>Crew-list discrepancies at a customs boarding</td><td>The crew page records who is aboard, with times on and off</td></tr>
-          <tr><td>People resend the same documents</td><td>A document linked once is attached to every record it belongs to</td></tr>
-          <tr><td>Signed, verifiable records for ISM</td><td>An append-only ledger; sealed exports anyone can verify</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="slide-footer"><span>From your notes and our call</span><span>03 / 11</span></div>
+    <div class="slide-footer"><span>The cost of the leak</span><span>03 / 12</span></div>
   </section>
 
   <!-- 04 · A NOTE IS NOT A RECORD · S5 -->
@@ -126,7 +141,7 @@
     <div class="slide-body">
       <div class="eyebrow">04 · Not another AI chat</div>
       <h2 class="head">A note is not a record.</h2>
-      <p class="body">An answer in a chat window has no author, no time and no source. Celeste keeps records: attributed, timestamped, linked to the manual page they came from, and approved by a named crew member before anything changes.</p>
+      <p class="body">A line in a paper log, a WhatsApp message, an answer in a chat window: none has an author, a time or a source anyone can check later. Any answer for Euphoria has to be <strong>signed, sourced, kept through crew change and checkable by a third party</strong>, without extra work for the crew. A note meets none of these. A Celeste record meets all of them.</p>
       <div class="scene s5" style="margin-top:2rem; max-width:900px;">
         <div class="half">
           <div class="card dim">
@@ -146,7 +161,7 @@
       </div>
       <p class="note" style="margin-top:1.6rem;">Celeste uses the same class of frontier AI models. The difference is everything built around them, by a former superyacht ETO and Head of Department. Celeste has been accepted into Anthropic's Claude for Startups programme.</p>
     </div>
-    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>04 / 11</span></div>
+    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>04 / 12</span></div>
   </section>
 
   <!-- 05 · WARRANTY · S10 -->
@@ -155,8 +170,8 @@
       <div class="split">
         <div>
           <div class="eyebrow">05 · Warranty</div>
-          <h2 class="head">Every fault is checked against the warranty.</h2>
-          <p class="body">When a fault is logged, Celeste reads Euphoria's own documents (the builder's delivery pack, manufacturer warranty cards, invoices) for cover on that equipment, and shows the clause before a part is ordered.</p>
+          <h2 class="head">Warranty money is lost to missing paperwork, not bad luck.</h2>
+          <p class="body">Euphoria is a 2025 Alpha build with warranty work already open. Every fault raised without the warranty checked is a repair that may be paid for twice. With Celeste, each fault is checked against Euphoria's own documents (delivery pack, warranty cards, invoices) and the clause is shown before a part is ordered.</p>
         </div>
         <div class="scene">
           <div class="hero-row"><svg class="seal"><use href="#committed"/></svg><span class="t">Galley appliance, damage reported</span><span class="pill pg"><i></i>In warranty</span></div>
@@ -168,15 +183,15 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>05 / 11</span></div>
+    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>05 / 12</span></div>
   </section>
 
   <!-- 06 · HANDOVER · S2 -->
   <section class="slide" aria-label="Handover">
     <div class="slide-body">
       <div class="eyebrow">06 · Handover</div>
-      <h2 class="head">The handover already exists.</h2>
-      <p class="body">Notes and closed work, entered across the day, compile into one handover at crew change. Every line links to its record; outgoing, incoming and captain sign it.</p>
+      <h2 class="head">Every crew change, someone starts from zero.</h2>
+      <p class="body">Today the handover is whatever the leaving engineer remembers to write on the last night. With Celeste it already exists: notes and closed work compile into one handover, every line linked to its record, signed by outgoing, incoming and captain.</p>
       <div class="scene s2" style="margin-top:2.2rem; max-width:980px;">
         <div class="rows">
           <div class="r st" style="--d:0s"><svg class="seal"><use href="#sealed"/></svg><span class="t">Port main engine — raw-water hose clip re-clamped</span><span class="h">08:05</span></div>
@@ -193,7 +208,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>06 / 11</span></div>
+    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>06 / 12</span></div>
   </section>
 
   <!-- 07 · SEARCH · S4 -->
@@ -202,8 +217,8 @@
       <div class="split">
         <div>
           <div class="eyebrow">07 · Search</div>
-          <h2 class="head">One search reaches everything aboard.</h2>
-          <p class="body">Search reads inside every manual, scan, fault, note and photo caption, not just file names. A document linked once by one crew member is found by everyone, on every record it belongs to.</p>
+          <h2 class="head">Every new person hunts for the same files.</h2>
+          <p class="body">The manual, the invoice, the photo from last season: today each is found by asking someone, or resent. With Celeste one search reads inside every manual, scan, fault and note, and a document linked once is found by everyone.</p>
         </div>
         <div class="scene" style="max-width:560px;">
           <div class="field"><svg><use href="#mag"/></svg><span class="q">port main engine</span><span class="caret"></span></div>
@@ -215,15 +230,15 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>07 / 11</span></div>
+    <div class="slide-footer"><span>Illustrative records, Euphoria's equipment</span><span>07 / 12</span></div>
   </section>
 
   <!-- 08 · PROOF · S3 (the deck's single Draw) -->
   <section class="slide" aria-label="Proof">
     <div class="slide-body">
       <div class="eyebrow">08 · Proof</div>
-      <h2 class="head">Every action leaves a trace that cannot be altered.</h2>
-      <p class="body">Records are sealed as the work happens. A sealed export can be checked by an owner, surveyor or insurer at <a href="https://verifier.celeste7.ai" target="_blank" rel="noopener">verifier.celeste7.ai</a>, with no account and nothing uploaded.</p>
+      <h2 class="head">On paper, nobody can prove what was done.</h2>
+      <p class="body">An insurer, a surveyor, an owner, a flag inspector: each can ask, and a paper log cannot answer. With Celeste every action leaves a trace that cannot be altered, sealed as the work happens. A sealed export can be checked by an owner, surveyor or insurer at <a href="https://verifier.celeste7.ai" target="_blank" rel="noopener">verifier.celeste7.ai</a>, with no account and nothing uploaded.</p>
       <div class="scene s3" style="margin-top:2.6rem;">
         <div class="chain">
           <div class="rule"></div>
@@ -239,7 +254,7 @@
         <div class="foot st" style="--d:2s">Draft · Draft · Committed · Sealed · Sealed</div>
       </div>
     </div>
-    <div class="slide-footer"><span>Illustrative records · the galley appliance claim</span><span>08 / 11</span></div>
+    <div class="slide-footer"><span>Illustrative records · the galley appliance claim</span><span>08 / 12</span></div>
   </section>
 
   <!-- 09 · ONBOARDING · S6 two planes -->
@@ -247,7 +262,7 @@
     <div class="slide-body">
       <div class="eyebrow">09 · Onboarding</div>
       <h2 class="head">The folder becomes the record.</h2>
-      <p class="body">Install the file watcher on the computer that holds Euphoria's files and choose the root folder. Every file is read, scans included, and linked into equipment, documents and history. New files follow on their own. A yacht this size is live in about a day.</p>
+      <p class="body">Install the file watcher on the computer that holds Euphoria's files and choose the root folder. Every file is read, scans included, and linked into equipment, documents and history. New files follow on their own. A yacht this size is live in about a day. The decision is small: one yacht, one folder, nothing migrated, month to month.</p>
       <div class="scene s6" style="margin-top:2rem; max-width:980px;">
         <div class="plane left">
           <span class="cap">Euphoria · root folder</span>
@@ -271,13 +286,32 @@
       </div>
       <p class="note" style="margin-top:1.4rem;">For scale: M/Y BC's roughly 8,500 scattered OneDrive files, with no PMS, became roughly 10,500 linked, searchable records. Figures approximate; every vessel's documents differ.</p>
     </div>
-    <div class="slide-footer"><span>Onboarding</span><span>09 / 11</span></div>
+    <div class="slide-footer"><span>Onboarding</span><span>09 / 12</span></div>
+  </section>
+
+  <!-- REFIT RISK · spec table -->
+  <section class="slide" aria-label="The refit risk">
+    <div class="slide-body">
+      <div class="eyebrow">10 · The refit</div>
+      <h2 class="head">The refit is where Euphoria loses the most.</h2>
+      <p class="body">Three to four months in Barcelona: many contractors, a stack of yard paperwork, Alpha warranty work mixed in with refit work, and the crew's attention on the yard. What is not recorded in that window is not recovered later, for the life of the yacht.</p>
+      <table class="spec" style="margin-top:1.8rem; max-width:980px;">
+        <thead><tr><th>The refit produces</th><th>Without a record</th><th>With Celeste</th></tr></thead>
+        <tbody>
+          <tr><td>Contractor work</td><td>Paper job sheets, filed wherever they land</td><td>Each job a work order, with its documents attached</td></tr>
+          <tr><td>Warranty items</td><td>Mixed into yard invoices</td><td>Checked against Alpha's warranty as each is raised</td></tr>
+          <tr><td>Equipment changes</td><td>In someone's notebook</td><td>Recorded against the equipment they change</td></tr>
+          <tr><td>The crew change after</td><td>A verbal handover</td><td>A compiled, signed handover</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-footer"><span>The refit</span><span>10 / 12</span></div>
   </section>
 
   <!-- 10 · THE PLAN · spec table -->
   <section class="slide" aria-label="The plan">
     <div class="slide-body">
-      <div class="eyebrow">10 · The plan</div>
+      <div class="eyebrow">11 · The plan</div>
       <h2 class="head">Euphoria through the Barcelona refit. Then the fleet.</h2>
       <div class="cols-2" style="margin-top:2rem;">
         <table class="spec">
@@ -300,14 +334,15 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>The plan</span><span>10 / 11</span></div>
+    <div class="slide-footer"><span>The plan</span><span>11 / 12</span></div>
   </section>
 
   <!-- 11 · TERMS -->
   <section class="slide" aria-label="Terms">
     <div class="slide-body">
-      <div class="eyebrow">11 · Terms</div>
-      <h2 class="head">One rate per vessel. Unlimited seats.</h2>
+      <div class="eyebrow">12 · Terms</div>
+      <h2 class="head">Priced against one failure.</h2>
+      <p class="body">$995 a month is under $12,000 a year: less than one denied warranty claim. Unlimited seats, one rate per vessel.</p>
       <div class="cols-2" style="margin-top:2rem; align-items:start;">
         <table class="spec">
           <thead><tr><th>Term</th><th></th><th class="rt">Detail</th></tr></thead>
@@ -327,7 +362,7 @@
         </div>
       </div>
     </div>
-    <div class="slide-footer"><span>Celeste7 Ltd</span><span>11 / 11</span></div>
+    <div class="slide-footer"><span>Celeste7 Ltd</span><span>12 / 12</span></div>
   </section>
 
 </main>
