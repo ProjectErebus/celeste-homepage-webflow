@@ -1,36 +1,58 @@
 /* SeaNet · M/Y Euphoria pages.
-   Scenes (.scene) play once: elements marked .st Settle in (0.7s, staggered by --d), S3 draws its chain.
-   Nothing loops. The page adds .js-anim to <html> before paint; without it, or under reduced motion,
-   every scene renders its terminal frame (see css/seanet-euphoria.css).
-   initDeck(): slide navigation (buttons, arrow keys, swipe, #n deep links); a slide's scenes replay on entry.
-   initDoc(): long-form proposal; scroll progress, current-section label, each scene plays once in view. */
+   1. Sequenced SVG animations: any element inside svg.anim with data-in="0.2" fades in at 20% of the
+      svg's data-dur cycle and out at data-out (default 0.94). Reduced motion: everything shown, all paused.
+   2. initDeck(): slide navigation (buttons, arrow keys, swipe, #n deep links) for the overview deck. */
 
 (function () {
-  function play(scene) {
-    scene.classList.remove('go');
-    void scene.offsetWidth;
-    requestAnimationFrame(function () { setTimeout(function () { scene.classList.add('go'); }, 200); });
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function sequence(svg) {
+    var dur = (svg.getAttribute('data-dur') || '9') + 's';
+    svg.querySelectorAll('[data-in]').forEach(function (el) {
+      if (reduce) return;
+      var a = parseFloat(el.getAttribute('data-in'));
+      var o = parseFloat(el.getAttribute('data-out') || '0.94');
+      var b = Math.min(a + 0.04, o - 0.01);
+      if (a <= 0) { a = 0; b = 0.01; }
+      el.setAttribute('opacity', '0');
+      var an = document.createElementNS(NS, 'animate');
+      an.setAttribute('attributeName', 'opacity');
+      an.setAttribute('dur', dur);
+      an.setAttribute('repeatCount', 'indefinite');
+      var gone = Math.min(o + 0.03, 1);
+      an.setAttribute('values', gone < 1 ? '0;0;1;1;0;0' : '0;0;1;1;0');
+      an.setAttribute('keyTimes', '0;' + a + ';' + b + ';' + o + ';' + gone + (gone < 1 ? ';1' : ''));
+      el.appendChild(an);
+    });
+    if (reduce && svg.pauseAnimations) svg.pauseAnimations();
   }
+
+  window.restartAnims = function (root) {
+    if (reduce) return;
+    (root || document).querySelectorAll('svg.anim').forEach(function (svg) {
+      if (svg.setCurrentTime) svg.setCurrentTime(0);
+    });
+  };
+
+  document.querySelectorAll('svg.anim').forEach(sequence);
 
   window.initDeck = function () {
     var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
     var total = slides.length, current = 0;
     var num = document.getElementById('slide-num');
-    var bar = document.getElementById('progress-bar');
+    var fill = document.getElementById('progress-fill');
     var prev = document.getElementById('prev-btn'), next = document.getElementById('next-btn');
     function pad(n) { return (n < 10 ? '0' : '') + n; }
 
     function show(i, silent) {
       current = Math.max(0, Math.min(total - 1, i));
-      slides.forEach(function (s, k) {
-        s.classList.toggle('active', k === current);
-        if (k !== current) s.querySelectorAll('.scene').forEach(function (sc) { sc.classList.remove('go'); });
-      });
+      slides.forEach(function (s, k) { s.classList.toggle('active', k === current); });
       num.textContent = pad(current + 1) + ' / ' + pad(total);
-      bar.style.width = ((current + 1) / total * 100) + '%';
+      fill.style.width = ((current + 1) / total * 100) + '%';
       prev.disabled = current === 0; next.disabled = current === total - 1;
       slides[current].scrollTop = 0;
-      slides[current].querySelectorAll('.scene').forEach(play);
+      window.restartAnims(slides[current]);
       if (!silent && history.replaceState) history.replaceState(null, '', '#' + (current + 1));
     }
     window.go = function (d) { show(current + d); };
@@ -59,26 +81,28 @@
     fromHash();
   };
 
+  /* initDoc(): long-form proposal. Scroll progress bar, current-section label, and each animation
+     restarts from its first frame when it scrolls into view. */
   window.initDoc = function () {
-    var bar = document.getElementById('progress-bar');
+    var fill = document.getElementById('progress-fill');
     var where = document.getElementById('where');
     var secs = Array.prototype.slice.call(document.querySelectorAll('[data-title]'));
     function onScroll() {
       var h = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+      fill.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
       var label = '';
       secs.forEach(function (s) { if (s.getBoundingClientRect().top < 140) label = s.getAttribute('data-title'); });
       if (where.textContent !== label) where.textContent = label;
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    var scenes = document.querySelectorAll('.scene');
-    if (!('IntersectionObserver' in window)) { scenes.forEach(function (s) { s.classList.add('go'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { play(e.target); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.3 });
-    scenes.forEach(function (s) { io.observe(s); });
+    if (!reduce && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.target.setCurrentTime) e.target.setCurrentTime(0);
+        });
+      }, { threshold: 0.35 });
+      document.querySelectorAll('svg.anim').forEach(function (svg) { io.observe(svg); });
+    }
   };
 })();
