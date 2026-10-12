@@ -851,7 +851,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
 <div id="global-atmo"></div>
 
 <header class="c-topbar">
-  <a class="c-home" href="/seanet" aria-label="Back to SeaNet Co home"><span class="arr" aria-hidden="true">&larr;</span><span class="k-wordmark">Celeste<span>OS</span></span></a>
+  <a class="c-home" href="/seanet-euphoria" aria-label="Back to M/Y Euphoria home"><span class="arr" aria-hidden="true">&larr;</span><span class="k-wordmark">Celeste<span>OS</span></span></a>
   <a class="c-title" href="#contents" aria-label="Security Companion, go to contents">Security Companion</a>
   <div class="c-tools">
     <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Switch between light and dark">
@@ -865,7 +865,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
 <aside class="c-rail" aria-label="Sections">
   <div class="c-rail-head">
     <span class="c-rail-label">SeaNet Co · Security</span>
-    <span class="c-rail-count" id="c-rail-count">01 / 19</span>
+    <span class="c-rail-count" id="c-rail-count">01 / 18</span>
     <div class="c-rail-track" aria-hidden="true"><div class="c-rail-bar" id="c-rail-bar"></div></div>
   </div>
   <nav id="c-rail-nav" aria-label="Section list"></nav>
@@ -948,10 +948,9 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
       <li><a href="#s09"><span class="n">09</span><span class="q">Can a record be altered after the fact?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
       <li><a href="#s10"><span class="n">10</span><span class="q">How are files transferred from the vessel?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
       <li><a href="#s11"><span class="n">11</span><span class="q">How is crew personal data handled?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
-      <li><a href="#s12"><span class="n">12</span><span class="q">How is email handled?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
-      <li><a href="#s13"><span class="n">13</span><span class="q">What is returned at the end of a contract?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
-      <li><a href="#s14"><span class="n">14</span><span class="q">How are incidents detected and reported?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
-      <li><a href="#s15"><span class="n">15</span><span class="q">How can these protections be verified?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="#s13"><span class="n">12</span><span class="q">What is returned at the end of a contract?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="#s14"><span class="n">13</span><span class="q">How are incidents detected and reported?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="#s15"><span class="n">14</span><span class="q">How can these protections be verified?</span><span class="arr" aria-hidden="true">&rarr;</span></a></li>
     </ol>
   </div>
 </section>
@@ -1054,7 +1053,6 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
         <li>JWT signed with <code>ES256</code>, verified against published public keys, with issuer and audience checked.</li>
         <li>Role and vessel are resolved server-side from records the user cannot modify.</li>
         <li>Email and password fallback uses salted, hashed password storage.</li>
-        <li>Sign-in and Outlook integration are separate Microsoft applications with separate, minimal permissions.</li>
       </ul></div></div>
     <figure class="c-fig k-diagram" aria-label="An invited crew member signs in through Microsoft 365, confirms on a second device, and receives an access pass that expires."><svg viewBox="0 0 480 300" role="img" aria-label="A dashed boundary marks your organisation and holds its invited crew. An invited person passes Microsoft 365, a second device and the crew list into the boundary and receives a signed pass that expires. Two people who were not invited are stopped at the crew list.">
     <g fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1475,37 +1473,10 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
   <footer class="k-footer c-foot"><span><span class="n">11</span> · ONLY WHAT IS NEEDED</span></footer>
 </section>
 
-<section class="c-sec" id="s12" data-rail="Email" aria-labelledby="s12-h">
-  <div class="k-atmo atmo-centre"></div>
-  <div class="c-inner">
-    <p class="k-eyebrow">12 · Email</p>
-    <h2 class="k-h1" id="s12-h">How is email handled?</h2>
-    <p class="k-lead">CelesteOS reads email only to link it to the work it relates to. It never sends email, and it never stores the content of a message.</p>
-    <div class="c-pair"><div class="c-detail"><p class="c-pair-label">In plain terms</p>
-      <ul class="c-list">
-        <li>A crew member can connect their Outlook so that correspondence about a job, a part or a supplier is linked to the matching record in CelesteOS.</li>
-        <li>Access is read-only. CelesteOS cannot send, change or delete email.</li>
-        <li>The content of a message is never stored. CelesteOS keeps only a reference and basic details, and shows the message only when a crew member opens it, directly from Outlook.</li>
-      </ul>
-    </div><div class="c-proof"><p class="c-proof-label">How it is built</p><ul>
-        <li>Microsoft Graph with read-only mail permissions, through an application separate from sign-in.</li>
-        <li>Message bodies are not persisted. Only message identifiers and metadata are stored, and the body is fetched on demand when opened.</li>
-        <li>There is no CelesteOS mail relay and no sending capability.</li>
-      </ul></div></div>
-    <div class="c-faq">
-      <p class="c-faq-label">Questions owners ask</p>
-      <details class="c-q"><summary>Can CelesteOS send email from our account?</summary><div class="c-a">No. Access is read-only.</div></details>
-      <details class="c-q"><summary>Does CelesteOS keep copies of our emails?</summary><div class="c-a">No. It keeps only a reference to each linked message, and displays the message from Outlook when it is opened.</div></details>
-    </div>
-    
-  </div>
-  <footer class="k-footer c-foot"><span><span class="n">12</span> · READ-ONLY EMAIL</span></footer>
-</section>
-
 <section class="c-sec" id="s13" data-rail="Exit" aria-labelledby="s13-h">
   <div class="k-atmo atmo-deep"></div>
   <div class="c-inner">
-    <p class="k-eyebrow">13 · End of contract</p>
+    <p class="k-eyebrow">12 · End of contract</p>
     <h2 class="k-h1" id="s13-h">What is returned at the end of a contract?</h2>
     <p class="k-lead">The data belongs to the vessel. Original files and records are returned, then deleted from CelesteOS within 30 days. Sealed records remain verifiable after the contract ends.</p>
     <div class="c-proof"><p class="c-proof-label">How it is built</p><ul>
@@ -1520,13 +1491,13 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
       <details class="c-q"><summary>What happens to our data after the contract ends?</summary><div class="c-a">It is returned to you, then deleted from CelesteOS within 30 days.</div></details>
     </div>
   </div>
-  <footer class="k-footer c-foot"><span><span class="n">13</span> · RETURNED, THEN DELETED</span></footer>
+  <footer class="k-footer c-foot"><span><span class="n">12</span> · RETURNED, THEN DELETED</span></footer>
 </section>
 
 <section class="c-sec" id="s14" data-rail="Incidents" aria-labelledby="s14-h">
   <div class="k-atmo atmo-teal"></div>
   <div class="c-inner">
-    <p class="k-eyebrow">14 · Incidents</p>
+    <p class="k-eyebrow">13 · Incidents</p>
     <h2 class="k-h1" id="s14-h">How are incidents detected and reported?</h2>
     <p class="k-lead">Any incident affecting vessel data is reported to the customer within 72 hours of confirmation.</p>
     <div class="c-pair"><div class="c-detail"><p class="c-pair-label">In plain terms</p>
@@ -1549,13 +1520,13 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
     </div>
     
   </div>
-  <footer class="k-footer c-foot"><span><span class="n">14</span> · REPORTED WITHIN 72 HOURS</span></footer>
+  <footer class="k-footer c-foot"><span><span class="n">13</span> · REPORTED WITHIN 72 HOURS</span></footer>
 </section>
 
 <section class="c-sec" id="s15" data-rail="Verify" aria-labelledby="s15-h">
   <div class="k-atmo atmo-green"></div>
   <div class="c-inner">
-    <p class="k-eyebrow">15 · How to verify</p>
+    <p class="k-eyebrow">14 · How to verify</p>
     <h2 class="k-h1" id="s15-h">How can these protections be verified?</h2>
     <div class="c-detail">
       <table class="c-table">
@@ -1572,7 +1543,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
       <p class="c-contact"><a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a></p>
     </div>
   </div>
-  <footer class="k-footer c-foot"><span><span class="n">15</span> · CHECK IT YOURSELF</span></footer>
+  <footer class="k-footer c-foot"><span><span class="n">14</span> · CHECK IT YOURSELF</span></footer>
 </section>
 
 
@@ -1587,8 +1558,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
     </div>
     <span class="cl-status" id="cl-status" role="status" aria-live="polite"></span>
     <div class="cl-ctas">
-      <a class="k-cta" href="/seanet-proposal"><span aria-hidden="true">&larr;</span> Back to the SeaNet proposal</a>
-      <a class="k-cta" href="/seanet-security">Security at a glance, 7 slides</a>
+      <a class="k-cta" href="/seanet-euphoria-proposal"><span aria-hidden="true">&larr;</span> Back to the Euphoria proposal</a>
     </div>
   </div>
 </section>
