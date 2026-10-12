@@ -975,7 +975,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
         <ul class="c-compare-celeste" aria-label="CelesteOS">
           <li>Each crew member signs in individually, through Microsoft 365, with a second device</li>
           <li>Crew see only their own vessel, within the limits of their role</li>
-          <li>One read-only copy of each file, fingerprinted and held securely</li>
+          <li>One copy of each file, fingerprinted and held securely; the original is left as it was</li>
           <li>Every change recorded with its author and time. Nothing is erased</li>
           <li>Access ends when the crew member is removed from the vessel</li>
           <li>Security reviewed continuously. Every finding is corrected and re-tested</li>
@@ -1267,7 +1267,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
       <div class="k-card">
         <p class="c-note">How the output is controlled</p>
         <ul class="c-list">
-          <li><strong>The system proposes. Crew decide.</strong> Nothing is added to, changed on or removed from the vessel's record without the action of a signed-in crew member whose role permits it.</li>
+          <li><strong>The system proposes. Crew decide.</strong> Once a vessel is live, nothing is added to, changed on or removed from its record without the action of a signed-in crew member whose role permits it. Records created during onboarding are read from the vessel's own files, and each links to its source.</li>
           <li><strong>Every result shows its source.</strong> Each search result links to the document or record it came from.</li>
           <li><strong>The original is retained.</strong> Each document is stored as received. The system's reading is held alongside it.</li>
           <li><strong>Every change is recorded,</strong> with its author and time.</li>
@@ -1276,7 +1276,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
       <div class="k-card">
         <p class="c-note">How vessel data is protected</p>
         <ul class="c-list">
-          <li><strong>Vessel data is never used to train AI models.</strong> AI is accessed through a business service that does not train on customer data.</li>
+          <li><strong>Celeste does not train AI on vessel data.</strong> AI is reached from Celeste's servers only, never from the browser.</li>
           <li>The AI receives only the text required for the task at hand, never the vessel's full record.</li>
           <li>Email addresses, telephone numbers and payment card numbers are masked before text is indexed or read.</li>
           <li>AI services are reached only from our server, never from the user's browser.</li>
@@ -1285,15 +1285,15 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
     </div>
     <div class="c-proof"><p class="c-proof-label">How it is built</p><ul>
         <li>AI is used server-side for <code>OCR</code>, reading, embeddings and entity linking, through a single central client.</li>
-        <li>Every write to the operational record is a user-initiated action, authenticated and checked against the user's role.</li>
-        <li>Business API terms: no training on customer inputs or outputs.</li>
+        <li>After onboarding, every write to the operational record is a user-initiated action, authenticated and checked against the user's role. Onboarding writes are pipeline-generated and carry their source document.</li>
+        <li>AI providers used in processing are named as sub-processors in the Data Processing Agreement.</li>
         <li>Email and telephone masking before embedding. Payment card redaction before extraction.</li>
       </ul></div>
     <div class="c-faq">
       <p class="c-faq-label">Questions owners ask</p>
-      <details class="c-q"><summary>Does the AI change our records on its own?</summary><div class="c-a">No. Nothing is added to, changed on or removed from the vessel's record without the action of a signed-in crew member.</div></details>
+      <details class="c-q"><summary>Does the AI change our records on its own?</summary><div class="c-a">No. Once the vessel is live, nothing is added to, changed on or removed from its record without the action of a signed-in crew member. Records created during onboarding are read from the vessel's own files, and each links to its source.</div></details>
       <details class="c-q"><summary>What if the system reads a document incorrectly?</summary><div class="c-a">Every result links to the document it came from, so crew can check the source directly. Nothing enters the record without a crew member's action.</div></details>
-      <details class="c-q"><summary>Is our data used to train ChatGPT or any other AI model?</summary><div class="c-a">No. Vessel data is never used to train AI models.</div></details>
+      <details class="c-q"><summary>Is our data used to train ChatGPT or any other AI model?</summary><div class="c-a">No. Celeste does not use vessel data to train AI models. The AI providers used in processing are named in the Data Processing Agreement.</div></details>
     </div>
   </div>
   <footer class="k-footer c-foot"><span><span class="n">08</span> · THE SYSTEM PROPOSES. CREW DECIDE.</span></footer>
@@ -1385,7 +1385,7 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
   <div class="c-inner">
     <p class="k-eyebrow">10 · File transfer</p>
     <h2 class="k-h1" id="s10-h">How are files transferred from the vessel?</h2>
-    <p class="k-lead">A read-only copy is taken and fingerprinted. Nothing on the vessel is changed, moved or deleted.</p>
+    <p class="k-lead">A copy is taken and fingerprinted. Documents on the vessel are never changed, moved or deleted.</p>
     <div class="c-pair"><div class="c-detail"><p class="c-pair-label">In plain terms</p>
       <ul class="c-list">
         <li>A secure agent on the vessel monitors only the folders the vessel selects, and copies new or changed files.</li>
@@ -1438,13 +1438,13 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
   </svg></figure>
     <div class="c-faq">
       <p class="c-faq-label">Questions owners ask</p>
-      <details class="c-q"><summary>Does the agent change or delete files on the vessel?</summary><div class="c-a">No. It only reads and copies. It never edits, moves or deletes a file on the vessel.</div></details>
+      <details class="c-q"><summary>Does the agent change or delete files on the vessel?</summary><div class="c-a">No. It copies files and never edits, moves or deletes them. Its only write is a small marker file in the chosen root folder, identifying the watched folder.</div></details>
       <details class="c-q"><summary>What happens when the vessel loses its internet connection?</summary><div class="c-a">The agent pauses and resumes when the connection returns. Nothing is lost, and files are not treated as deleted while the vessel is offline.</div></details>
       <details class="c-q"><summary>Does it send everything on the computer?</summary><div class="c-a">No. It copies only the folders the vessel chooses.</div></details>
     </div>
     
   </div>
-  <footer class="k-footer c-foot"><span><span class="n">10</span> · A READ-ONLY COPY</span></footer>
+  <footer class="k-footer c-foot"><span><span class="n">10</span> · COPIED, NEVER EDITED</span></footer>
 </section>
 
 <section class="c-sec" id="s11" data-rail="Crew data" aria-labelledby="s11-h">
