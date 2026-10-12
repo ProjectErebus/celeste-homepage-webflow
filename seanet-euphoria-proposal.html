@@ -177,7 +177,7 @@
       <thead><tr><th>Test</th><th>How Celeste meets it</th></tr></thead>
       <tbody>
         <tr><td>Signed</td><td>Every entry carries the named person who made it, and the time</td></tr>
-        <tr><td>Sourced</td><td>Every value links to the document page it came from</td></tr>
+        <tr><td>Sourced</td><td>Every record links to the document it came from</td></tr>
         <tr><td>Kept</td><td>The record belongs to the vessel and survives every crew change</td></tr>
         <tr><td>Checkable</td><td>An owner, surveyor or insurer verifies a sealed record without an account</td></tr>
         <tr><td>No extra work</td><td>Built from the files and the work the crew already produce</td></tr>
@@ -212,7 +212,7 @@
   <div class="sec-inner">
     <div class="eyebrow">06 · A note is not a record</div>
     <h2 class="head">The model is one part. The record around it is the product.</h2>
-    <p class="body">An answer in a chat window has no author, no time and no source, and it is gone when the window closes. Celeste keeps records: attributed, timestamped, linked to their source, approved by a named crew member, and kept through every crew change.</p>
+    <p class="body">An answer in a chat window has no author, no time and no source, and it is gone when the window closes. Celeste keeps records: attributed, timestamped, linked to their source, and kept through every crew change. Once Euphoria is live, a named crew member approves every change.</p>
     <div class="scene s5 frame">
       <div class="half"><div class="card dim">
         <svg class="seal"><use href="#draft"/></svg>
@@ -228,9 +228,9 @@
     </div>
     <ul class="plain" style="margin-top:2.4rem; max-width:760px;">
       <li><strong>Background, not on request.</strong> Warranty checks on every fault, document suggestions and handover compilation run as the crew works.</li>
-      <li><strong>Sources on every result.</strong> Each result opens the record or document page it came from.</li>
-      <li><strong>Nothing changes without a person.</strong> The system proposes; a signed-in crew member whose role permits it approves; the change is recorded on the ledger.</li>
-      <li><strong>Vessel data never trains AI.</strong> Models are reached server-side only, under business terms that exclude training.</li>
+      <li><strong>Sources on every result.</strong> Each result opens the record or document it came from.</li>
+      <li><strong>Nothing changes without a person.</strong> After onboarding, the system proposes; a signed-in crew member whose role permits it approves; the change is recorded on the ledger. Records created during onboarding each trace to the file they came from.</li>
+      <li><strong>Celeste does not train AI on vessel data.</strong> Models are reached from Celeste's servers only, never from the browser.</li>
     </ul>
   </div>
 </section>
@@ -280,17 +280,17 @@
         <h3 class="sub">The install</h3>
         <table class="spec">
           <tbody>
-            <tr><td>Register</td><td>registration.celeste7.ai, confirmed with a one-time code</td><td class="m">2 min</td></tr>
-            <tr><td>Install</td><td>The installer for Mac or Windows, built for Euphoria</td><td class="m">5 min</td></tr>
-            <tr><td>Choose</td><td>The root folder; network drives are detected</td><td class="m">2 min</td></tr>
-            <tr><td>Run</td><td>The watcher starts with the computer from then on</td><td class="m">—</td></tr>
+            <tr><td>Register</td><td>registration.celeste7.ai, confirmed with a one-time code</td><td class="m"></td></tr>
+            <tr><td>Install</td><td>The installer for Mac or Windows, built for Euphoria</td><td class="m"></td></tr>
+            <tr><td>Choose</td><td>The root folder; network drives are detected</td><td class="m"></td></tr>
+            <tr><td>Run</td><td>The watcher starts with the computer from then on</td><td class="m"></td></tr>
           </tbody>
         </table>
       </div>
       <div>
         <h3 class="sub">The file watcher</h3>
         <ul class="plain">
-          <li><strong>Never edits your documents.</strong> It copies; nothing on the vessel is changed, moved or deleted.</li>
+          <li><strong>Never edits your documents.</strong> It copies them; it never changes, moves or deletes a document on the vessel.</li>
           <li><strong>Only the folder you choose</strong>, with boundary checks so nothing outside it is sent.</li>
           <li><strong>Fingerprints every file</strong> (SHA-256) and re-checks weekly, so a silent overwrite is caught.</li>
           <li><strong>Continues after onboarding.</strong> New and changed files follow on their own; a changed file becomes a new version.</li>
@@ -323,7 +323,7 @@
         <div class="eyebrow">09 · Background process · warranty</div>
         <h2 class="head">Warranty money is lost to missing paperwork, not bad luck.</h2>
         <p class="body">Every fault raised without the warranty checked is a repair that may be paid for twice. With Celeste, when a fault is entered, Celeste searches Euphoria's own documents (the builder's delivery pack, manufacturer warranty cards, invoices) for cover on that equipment, and shows the clause before a part is ordered.</p>
-        <p class="body">Euphoria is a 2025 build with Alpha warranty work already open, going into a refit that will raise dozens of faults. The check runs on every one of them; each finding links to the page it came from.</p>
+        <p class="body">Euphoria is a 2025 build with Alpha warranty work already open, going into a refit that will raise many more. The check runs on every one of them; each finding links to the page it came from.</p>
       </div>
       <div class="scene">
         <div class="hero-row"><svg class="seal"><use href="#committed"/></svg><span class="t">Galley appliance, damage reported</span><span class="pill pg"><i></i>In warranty</span></div>
@@ -481,20 +481,20 @@
     <div class="eyebrow">16 · Security</div>
     <h2 class="head">Seven independent layers between the internet and a vessel's records.</h2>
     <div class="cols-2" style="margin-top:2rem;">
-      <ul class="plain">
-        <li><strong>Microsoft 365 sign-in</strong> with a second device; Celeste never sees the password.</li>
+      <div><h3 class="sub">The seven layers</h3><ul class="plain">
+        <li><strong>Microsoft 365 sign-in</strong>, with a second device as set in SeaNet's Microsoft 365 policy; Celeste never sees the password.</li>
         <li><strong>Approved crew list per vessel.</strong> A valid login that is not on it is refused.</li>
         <li><strong>Signed access pass</strong> on every request; any alteration invalidates it.</li>
         <li><strong>Vessel and role resolved by the server</strong>, never taken from the user's device.</li>
         <li><strong>Every query scoped to the vessel</strong>; cross-vessel references are rejected.</li>
-      </ul>
-      <ul class="plain">
         <li><strong>Row-level rules on every table</strong> in the database itself.</li>
         <li><strong>Separate identity and records databases</strong>; access to one gives nothing in the other.</li>
+      </ul></div>
+      <div><h3 class="sub">Also</h3><ul class="plain">
         <li><strong>Encrypted</strong> in transit (TLS 1.2+) and at rest (AES-256), with daily backups.</li>
         <li><strong>Incidents reported within 72 hours</strong> of confirmation.</li>
         <li><strong>At contract end</strong>, original files and records returned, then deleted within 30 days.</li>
-      </ul>
+      </ul></div>
     </div>
     <p class="note" style="margin-top:1.6rem;"><a href="/seanet-security-companion">Security companion, full detail</a></p>
   </div>
@@ -578,7 +578,7 @@
     <p class="body">Alex Short worked as an Electro-Technical Officer and then Head of Department on motor yachts from 70 to 125 metres: Maryah, Legend, Freedom, Nero and Whisper. More than once he joined mid-rotation and found the knowledge had already left. That is why Celeste is built for fast input in the engine room and exact, verifiable records for management, and why SeaNet has a direct line to the people who build it.</p>
     <blockquote style="margin-top:2.4rem;"><div class="q">A vessel should never lose what its crew knows.</div><div class="a">Alex Short · Founder · former ETO</div></blockquote>
     <h3 class="sub" style="margin-top:2.8rem;">Technology approach</h3>
-    <p class="body" style="margin-top:0.4rem;">Celeste is a maritime technology company applying frontier AI to superyacht engineering. <strong>Celeste has been accepted into Anthropic's Claude for Startups programme</strong>, which supports how our team builds with frontier models. The models are one part of the system. What Celeste delivers is the engineering record around them: documents read and linked the way vessels actually run, crew approval before anything enters the record, a source on every answer, and a ledger anyone can verify independently.</p>
+    <p class="body" style="margin-top:0.4rem;">Celeste is a maritime technology company applying frontier AI to superyacht engineering. <strong>Celeste has been accepted into Anthropic's Claude for Startups programme</strong>, which supports how our team builds with frontier models. The models are one part of the system. What Celeste delivers is the engineering record around them: documents read and linked the way vessels actually run, a named person approving every change once live, a source on every answer, and a ledger anyone can verify independently.</p>
   </div>
 </section>
 
