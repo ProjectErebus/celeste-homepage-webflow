@@ -247,8 +247,8 @@ body.doc { overflow-x: hidden; }
 .backing span { font-size: 0.8rem; line-height: 1.45; color: var(--tx55); }
 svg.cmp { width: 100%; max-width: 460px; height: auto; display: block; }
 @media (max-width: 640px) { .backing { flex-direction: column; align-items: flex-start; gap: 0.5rem; } }
-svg.only-narrow { display: none; }
-@media (max-width: 640px) { svg.only-wide { display: none !important; } svg.only-narrow { display: block; width: 100%; height: auto; } }
+svg.only-narrow { display: none !important; }
+@media (max-width: 640px) { svg.only-wide { display: none !important; } svg.only-narrow { display: block !important; width: 100%; height: auto; } }
 .vs.keep td:first-child { width: 20%; }
 @media (max-width: 900px) { .vs.keep td:first-child { display: table-cell; width: 28%; } .vs.keep td { font-size: 0.85rem; } }
 .doc .graphic svg.cmp { max-width: 560px; }
@@ -280,3 +280,31 @@ body.doc .chips { justify-content: center; }
 body.doc .photo-bg ~ .sec-inner .sub { color: var(--tx82); }
 @media (max-width: 900px) { body.doc .graphic.pair { grid-template-columns: 1fr; gap: 2rem; } }
 body.doc #investment .chips { justify-content: flex-start; }
+
+/* Technical proposal: breathing room. */
+body.doc .sec { padding-top: 8.5rem; padding-bottom: 8.5rem; }
+body.doc .sec .headline { margin-bottom: 1.2rem; }
+body.doc .sec .sub { line-height: 1.7; }
+body.doc .graphic { margin-top: 3.4rem; margin-bottom: 0.6rem; }
+body.doc .facts { margin-top: 3.4rem; column-gap: 4.5rem; }
+body.doc .fact { padding: 1rem 0; }
+body.doc .req, body.doc .vs { margin-top: 3.4rem; }
+body.doc .req td { padding-top: 1.1rem; padding-bottom: 1.1rem; }
+body.doc .cols-3 { max-width: 1120px; gap: 3.4rem; margin-top: 3rem !important; }
+body.doc .cols-3 .step { padding-top: 1.2rem; }
+body.doc .cols-3 .step p { max-width: 36ch; margin: 0 auto; line-height: 1.6; }
+body.doc .cols-2 { gap: 4.5rem !important; margin-top: 3.6rem !important; }
+body.doc .measure { padding: 1rem 0; }
+body.doc h3 { margin-bottom: 0.6rem; }
+body.doc .closer { margin: 3.6rem auto 0; max-width: 620px; }
+body.doc .closer > img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 1px solid var(--tx14); display: block; margin: 0 auto 1rem; }
+body.doc .closer .who { font-size: 1rem; color: var(--tx92); }
+body.doc .closer .who a { color: var(--tx55); text-decoration: none; }
+body.doc .closer .role { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx48); margin-top: 0.3rem; }
+body.doc .closer p.body { margin-top: 1.2rem; color: var(--tx82); }
+@media (max-width: 900px) {
+  body.doc .sec { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+  body.doc .cols-3, body.doc .cols-2 { gap: 2.4rem !important; }
+  body.doc .facts { margin-top: 2.4rem; }
+  body.doc .graphic { margin-top: 2.4rem; }
+}
