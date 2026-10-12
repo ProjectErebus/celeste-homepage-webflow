@@ -72,18 +72,18 @@
     <h2 class="headline">Every question this proposal answers.</h2>
     <nav class="toc">
       <a href="#summary"><span>01</span>The proposal in one page</a>
-      <a href="#needs"><span>02</span>What Euphoria needs, and what Celeste does</a>
-      <a href="#approach"><span>03</span>Why this isn't another AI chat</a>
-      <a href="#record"><span>04</span>One record: core and ISM domains</a>
-      <a href="#onboarding"><span>05</span>Onboarding with the file watcher</a>
-      <a href="#warranty"><span>06</span>Warranty finder</a>
-      <a href="#documents"><span>07</span>Suggested documents</a>
-      <a href="#handover"><span>08</span>Handover generation</a>
-      <a href="#search"><span>09</span>Search and Show Related</a>
-      <a href="#ledger"><span>10</span>The ledger and the verifier</a>
-      <a href="#ism"><span>11</span>The ISM package</a>
-      <a href="#fleet"><span>12</span>Crew, fleet and vessel isolation</a>
-      <a href="#security"><span>13</span>Security</a>
+      <a href="#needs"><span>02</span>The problems on board, and how Celeste handles each</a>
+      <a href="#approach"><span>03</span>Why a chat answer is not enough</a>
+      <a href="#record"><span>04</span>One record, instead of scattered places</a>
+      <a href="#onboarding"><span>05</span>Putting disorganised files together</a>
+      <a href="#warranty"><span>06</span>Repairs the warranty already covered</a>
+      <a href="#documents"><span>07</span>Finding the same manual every time</a>
+      <a href="#handover"><span>08</span>Starting from zero at crew change</a>
+      <a href="#search"><span>09</span>Finding anything aboard</a>
+      <a href="#ledger"><span>10</span>Proving what was done</a>
+      <a href="#ism"><span>11</span>Closing problems for audit (ISM)</a>
+      <a href="#fleet"><span>12</span>SeaNet's view of the fleet</a>
+      <a href="#security"><span>13</span>Who can see Euphoria's records</a>
       <a href="#trial"><span>14</span>The refit trial</a>
       <a href="#scope"><span>15</span>What's not included</a>
       <a href="#investment"><span>16</span>Investment</a>
@@ -108,21 +108,22 @@
 </section>
 
 <!-- 02 NEEDS -->
-<section class="sec" id="needs" data-title="02 · What Euphoria needs">
+<section class="sec" id="needs" data-title="02 · Problems on board">
   <div class="sec-inner">
-    <div class="sec-num">02 · Requirements</div>
-    <h2 class="headline">What Euphoria asked for, and where each one lands.</h2>
+    <div class="sec-num">02 · Problems on board</div>
+    <h2 class="headline">The problems Euphoria has, or could have next month, and how Celeste handles each.</h2>
     <table class="req">
-      <thead><tr><th>Euphoria's need</th><th>What Celeste does</th><th>Where</th></tr></thead>
+      <thead><tr><th>The problem</th><th>How Celeste handles it</th></tr></thead>
       <tbody>
-        <tr><td>Operational knowledge leaves with departing crew</td><td>Handover generated from logged work; every note and link stays on the vessel's record</td><td><span class="tag">Core</span></td></tr>
-        <tr><td>Paper logbooks, no digital maintenance system</td><td>File watcher reads the folders, OCR reads the scans, records are created from what's already there</td><td><span class="tag">Core</span></td></tr>
-        <tr><td>A proper fault and work-order trail (the galley appliance)</td><td>Fault → work order → sign-off, each step timestamped on the ledger; warranty checked when the fault is submitted</td><td><span class="tag">Core</span></td></tr>
-        <tr><td>Crew-list accuracy (the customs boarding)</td><td>Crew page shows who is aboard, with times on board and away</td><td><span class="tag">Core</span></td></tr>
-        <tr><td>People resending the same documents</td><td>Suggested documents and search: a document linked once is found by everyone</td><td><span class="tag">Core</span></td></tr>
-        <tr><td>Signed, verifiable records for ISM</td><td>Append-only ledger and verifiable exports, plus corrective actions, non-conformities, drills, statutory inspections, safety equipment and SMS documents</td><td><span class="tag">Core</span> <span class="tag ism">ISM</span></td></tr>
-        <tr><td>Show the fleet how efficiently Euphoria runs</td><td>Fleet view across every SeaNet vessel on Celeste, each vessel's data isolated underneath</td><td><span class="tag">Core</span></td></tr>
-        <tr><td>Charter operations</td><td>Stay on SeaNet's own platform. Celeste is the engineering layer alongside it</td><td><span class="tag out">Not included</span></td></tr>
+        <tr><td>The engineer rotates off, and the next one starts from scratch</td><td>The handover is compiled from the work already logged. Every note, link and fix stays with the yacht, not the person.</td></tr>
+        <tr><td>Engine hours and service history sit in paper logbooks nobody can search</td><td>Point the file watcher at the folder. Scans are read into records the crew can find in seconds.</td></tr>
+        <tr><td>A galley appliance fails, and nobody can show when it was reported, who looked at it or what was done</td><td>Fault, work order and sign-off are each recorded with a name and a time, as the work happens.</td></tr>
+        <tr><td>A repair is paid for that the builder's warranty already covered</td><td>Every fault is checked against Euphoria's own warranty documents before a part is ordered.</td></tr>
+        <tr><td>Customs boards, and the crew list does not match who is aboard</td><td>The crew page records who is aboard, with times on and off, kept current by the crew.</td></tr>
+        <tr><td>A new crew member spends an afternoon hunting for a manual someone already found</td><td>A document linked once is attached to every record it belongs to, and found by everyone after.</td></tr>
+        <tr><td>An insurer, surveyor or owner asks for proof of maintenance, and the only answer is a paper log</td><td>Every action is sealed as it happens. An export can be checked by anyone at verifier.celeste7.ai.</td></tr>
+        <tr><td>An audit asks how a non-conformity was closed</td><td>The non-conformity, its corrective action and the evidence are recorded together and sealed.</td></tr>
+        <tr><td>SeaNet cannot see how Euphoria is run without calling the boat</td><td>The fleet view shows every SeaNet vessel on Celeste, each vessel's records kept separate.</td></tr>
       </tbody>
     </table>
   </div>
@@ -134,7 +135,7 @@
 <section class="sec" id="approach" data-title="03 · Approach">
   <div class="sec-inner">
     <div class="sec-num">03 · Why this isn't another AI chat</div>
-    <h2 class="headline">The model is one part. The engineering record around it is the product.</h2>
+    <h2 class="headline">A chat answer helps once. Euphoria needs a record that is still there next season.</h2>
     <p class="sub">A general assistant answers when someone asks the right question, then forgets. Celeste works in the background as the crew works, and once it is live, every change it makes lands on a record a named person has approved.</p>
     <table class="vs">
       <thead><tr><th></th><th>General AI assistant</th><th class="us">CelesteOS</th></tr></thead>
@@ -153,18 +154,13 @@
 <!-- 04 RECORD -->
 <section class="sec" id="record" data-title="04 · One record">
   <div class="sec-inner">
-    <div class="sec-num">04 · The record</div>
-    <h2 class="headline">Eleven core domains. Six ISM domains. One search bar over all of them.</h2>
-    <p class="sub">Everything is linked: a fault knows its equipment, the equipment knows its manual, parts, warranty and history, and the handover knows all of it. Celeste is deliberately focused on engineering; it does not try to be a crew HR, accounting or charter system.</p>
-    <div class="cols-2" style="margin-top:2rem;">
-      <div>
-        <div class="label">Core · included</div>
-        <div class="chips"><span class="chip">Work orders</span><span class="chip">Faults</span><span class="chip">Equipment</span><span class="chip">Handover</span><span class="chip">Crew</span><span class="chip">Review queue</span><span class="chip">Parts / inventory</span><span class="chip">Certificates</span><span class="chip">Documents</span><span class="chip">Warranty</span><span class="chip">Notifications</span></div>
-      </div>
-      <div>
-        <div class="label" style="color:var(--gold);">ISM package</div>
-        <div class="chips"><span class="chip ism">Corrective actions</span><span class="chip ism">Drills</span><span class="chip ism">SMS documents</span><span class="chip ism">Non-conformities</span><span class="chip ism">Statutory inspections</span><span class="chip ism">Safety equipment</span></div>
-      </div>
+    <div class="sec-num">04 · One record</div>
+    <h2 class="headline">Today a fault, its manual and its history live in different places. On Celeste they are one record.</h2>
+    <p class="sub">Open a fault and the equipment, its manual, its parts, its warranty and its history are already attached. Nobody has to know where something was filed, or who filed it, and the handover draws on all of it. Celeste is deliberately limited to engineering; it is not a crew HR, accounting or charter system.</p>
+    <div style="margin-top:2rem;">
+      <div class="label">Everything Euphoria's record holds</div>
+      <div class="chips"><span class="chip">Work orders</span><span class="chip">Faults</span><span class="chip">Equipment</span><span class="chip">Handover</span><span class="chip">Crew</span><span class="chip">Review queue</span><span class="chip">Parts / inventory</span><span class="chip">Certificates</span><span class="chip">Documents</span><span class="chip">Warranty</span><span class="chip">Notifications</span><span class="chip ism">Corrective actions</span><span class="chip ism">Drills</span><span class="chip ism">SMS documents</span><span class="chip ism">Non-conformities</span><span class="chip ism">Statutory inspections</span><span class="chip ism">Safety equipment</span></div>
+      <p class="note" style="margin-top:0.8rem;">Safety-management items (in gold) come with the ISM package.</p>
     </div>
   </div>
 </section>
@@ -173,8 +169,8 @@
 <section class="sec" id="onboarding" data-title="05 · Onboarding">
   <div class="sec-inner">
     <div class="sec-num">05 · Onboarding</div>
-    <h2 class="headline">Point the file watcher at the root folder. Celeste does the rest.</h2>
-    <p class="sub">No bulk upload, no spreadsheets to fill in, no migration project. One install on the computer that holds Euphoria's files, one folder chosen, and the crew carries on working.</p>
+    <h2 class="headline">However disorganised the files, Celeste puts them together.</h2>
+    <p class="sub">Nothing needs tidying first: no bulk upload, no spreadsheets to fill in, no migration project. One install on the computer that holds Euphoria's files, one folder chosen, and the crew carries on working.</p>
     <div class="graphic"><svg class="anim" data-dur="9" viewBox="0 0 600 300" role="img" aria-label="The file watcher copies files from Euphoria's root folder; Celeste reads, classifies and links them into interrelated records.">
             <rect x="6" y="20" width="190" height="230" rx="4" fill="#141311" stroke="rgba(255,255,255,0.12)"/>
             <text x="20" y="42" font-size="9" letter-spacing="1.1" fill="#5AABCC">/EUPHORIA</text>
@@ -246,9 +242,9 @@
   <div class="sec-inner">
     <div class="split wide-right">
       <div>
-        <div class="sec-num">06 · Background process</div>
-        <h2 class="headline">Warranty finder</h2>
-        <p class="sub">When a fault is submitted, Celeste searches Euphoria's own documents for warranty cover on that equipment (the builder's delivery pack, manufacturer warranty cards, invoices) and tells the crew whether a claim is possible, before a part is ordered.</p>
+        <div class="sec-num">06 · Warranty</div>
+        <h2 class="headline">A repair paid for twice is money the builder already owed.</h2>
+        <p class="sub">With Celeste, when a fault is submitted, Celeste searches Euphoria's own documents for warranty cover on that equipment (the builder's delivery pack, manufacturer warranty cards, invoices) and tells the crew whether a claim is possible, before a part is ordered.</p>
         <p class="body" style="margin-top:1rem;">Every finding links to the document it came from, so the crew and SeaNet can check the terms themselves. Euphoria is a recent Alpha build with warranty work already in play, going into a refit that will raise many more faults: the check runs on every one of them without anyone having to remember.</p>
       </div>
       <div><svg class="anim" data-dur="10" viewBox="0 0 560 330" role="img" aria-label="A galley appliance fault is submitted; Celeste searches the vessel's documents, finds the builder warranty in force, and flags that a claim is possible.">
@@ -320,9 +316,9 @@
   <div class="sec-inner">
     <div class="split wide-right">
       <div>
-        <div class="sec-num">07 · Background process</div>
-        <h2 class="headline">Suggested documents: one person accepts, everyone finds it.</h2>
-        <p class="sub">Celeste scans for documents that belong to a piece of equipment and suggests the link, with its source. One crew member accepts, and the document is attached to every fault, work order, part and note for that equipment, from then on.</p>
+        <div class="sec-num">07 · Finding documents</div>
+        <h2 class="headline">Every new person hunts for the same manual.</h2>
+        <p class="sub">With Celeste, one person links it once and everyone finds it. Celeste scans for documents that belong to a piece of equipment and suggests the link, with its source. One crew member accepts, and the document is attached to every fault, work order, part and note for that equipment, from then on.</p>
         <div class="fact" style="margin-top:1rem;"><span><b>Only your own documents.</b> Nothing is pulled from the web.</span></div>
         <div class="fact"><span><b>Nothing links without approval.</b> Declining leaves no trace; undo removes every link it created.</span></div>
         <div class="fact"><span><b>Survives crew change.</b> The link belongs to the vessel, not the person who made it.</span></div>
@@ -360,9 +356,9 @@
   <div class="sec-inner">
     <div class="split wide-right">
       <div>
-        <div class="sec-num">08 · Background process</div>
-        <h2 class="headline">Handover generation, from rough notes to a signed record.</h2>
-        <p class="sub">Crew note things the way they'd say them. At crew change, Celeste compiles the notes and the logged work into a handover grouped by department, each line linked to the exact equipment, fault or work order it concerns.</p>
+        <div class="sec-num">08 · Handover</div>
+        <h2 class="headline">Every crew change, someone starts from zero.</h2>
+        <p class="sub">Today the handover is whatever the leaving engineer remembers to write on the last night. With Celeste it already exists: crew note things the way they'd say them. At crew change, Celeste compiles the notes and the logged work into a handover grouped by department, each line linked to the exact equipment, fault or work order it concerns.</p>
         <p class="body" style="margin-top:1rem;">The outgoing engineer signs, the incoming engineer acknowledges, the captain is on the chain, and the handover is sealed. The next person reads the yacht's actual state, not what someone remembered at 1 a.m. on their last night.</p>
       </div>
       <div><svg class="anim" data-dur="10" viewBox="0 0 520 300" role="img" aria-label="Rough crew notes are compiled into a structured handover, grouped by department, each line linked to its record, then signed.">
@@ -410,8 +406,8 @@
 <section class="sec" id="search" data-title="09 · Search">
   <div class="sec-inner">
     <div class="sec-num">09 · Search and Show Related</div>
-    <h2 class="headline">Ask in plain words. Every result opens its source.</h2>
-    <p class="sub">Search reaches inside every manual, scan, fault, work order, note, handover and photo caption, not just file names. Every action logged on Celeste is searchable too, so the record gets easier to use the more it's used. <b style="color:var(--tx82); font-weight:500;">Show Related</b> runs the search the other way: open any item and see everything connected to it.</p>
+    <h2 class="headline">If nobody can find it, it might as well not exist.</h2>
+    <p class="sub">With Celeste, ask in plain words and every result opens its source. Search reaches inside every manual, scan, fault, work order, note, handover and photo caption, not just file names. Every action logged on Celeste is searchable too, so the record gets easier to use the more it's used. <b style="color:var(--tx82); font-weight:500;">Show Related</b> runs the search the other way: open any item and see everything connected to it.</p>
     <div class="graphic"><svg class="anim" data-dur="10" viewBox="0 0 640 340" role="img" aria-label="Searching 'port main engine' returns the port MAN V8-1000; Show Related surfaces its manual, a fault, a work order, a handover note, a photo and a part.">
             <defs><clipPath id="type-clip"><rect x="160" y="8" height="40" width="0"><animate attributeName="width" dur="10s" repeatCount="indefinite" values="0;0;230;230;0" keyTimes="0;0.02;0.14;0.95;1"/></rect></clipPath></defs>
             <rect x="120" y="8" width="400" height="40" rx="20" fill="rgba(90,171,204,0.06)" stroke="#5AABCC"/>
@@ -446,7 +442,7 @@
 <section class="sec" id="ledger" data-title="10 · Ledger">
   <div class="sec-inner">
     <div class="sec-num">10 · The ledger and the verifier</div>
-    <h2 class="headline">Nothing is overwritten. Anything sealed can be checked by anyone.</h2>
+    <h2 class="headline">On paper, nobody can prove what was done. On Celeste, anyone can check.</h2>
     <div class="cols-2" style="margin-top:2rem; gap:3rem;">
       <div>
         <h3>Append-only, attributed</h3>
@@ -464,8 +460,8 @@
 <section class="sec" id="ism" data-title="11 · ISM package">
   <div class="sec-inner">
     <div class="sec-num">11 · The ISM package · $3,495 per vessel per month in total</div>
-    <h2 class="headline">The same record, extended to the safety management system.</h2>
-    <p class="sub">Six further domains, built on the same ledger: every entry signed, timestamped and linked to the equipment, crew and documents it concerns.</p>
+    <h2 class="headline">When an inspector asks how a problem was closed, the answer is already on record.</h2>
+    <p class="sub">The ISM package adds non-conformities, corrective actions, drills, statutory inspections, safety equipment and SMS documents to the same record. Every entry is signed, timestamped and linked to the equipment, crew and documents it concerns.</p>
     <div class="cols-3" style="margin-top:2rem;">
       <div class="step on" style="border-top-color:var(--gold);"><div class="when" style="color:var(--gold);">Non-conformities</div><h3>Recorded as they happen</h3><p>A customs boarding over crew-list discrepancies is logged as a non-conformity, with who, when and what was found.</p></div>
       <div class="step on" style="border-top-color:var(--gold);"><div class="when" style="color:var(--gold);">Corrective actions</div><h3>Closed with evidence</h3><p>Each non-conformity gets its corrective action, an owner and a close-out, sealed on the ledger.</p></div>
@@ -482,7 +478,7 @@
   <div class="photo-bg left" style="background-image:url('/images/euphoria/anchorage-aerial.jpg'); background-position:70% center;"></div>
   <div class="sec-inner" style="position:relative; z-index:5;">
     <div class="sec-num">12 · Crew, fleet and vessel isolation</div>
-    <h2 class="headline">Each crew sees their yacht. Management sees the fleet.</h2>
+    <h2 class="headline">SeaNet sees how Euphoria is run, without calling the boat.</h2>
     <div class="cols-3" style="margin-top:2rem; max-width:1000px;">
       <div class="step on"><div class="when">Crew page</div><h3>Who is aboard</h3><p>Crew toggle who is on board, with times on board and away. The list is current when the boarding party arrives.</p></div>
       <div class="step on"><div class="when">Fleet view</div><h3>Every vessel, one login</h3><p>SeaNet's managers switch between vessels instantly and see exceptions across all of them, without opening each record.</p></div>
@@ -495,7 +491,8 @@
 <section class="sec" id="security" data-title="13 · Security">
   <div class="sec-inner">
     <div class="sec-num">13 · Security</div>
-    <h2 class="headline">Seven independent layers between the internet and a vessel's records.</h2>
+    <h2 class="headline">Euphoria's records are seen only by the people who should see them.</h2>
+    <p class="sub">Seven independent layers sit between the internet and a vessel's records.</p>
     <div class="facts">
       <div class="fact"><span><b>Microsoft 365 sign-in</b>, with a second device as set in SeaNet's Microsoft 365 policy; Celeste never sees the password.</span></div>
       <div class="fact"><span><b>Approved crew list per vessel.</b> A valid Microsoft login that isn't on it is refused.</span></div>
