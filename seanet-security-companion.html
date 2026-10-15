@@ -495,12 +495,6 @@ a[href^="mailto:"] { -webkit-user-select: text; user-select: text; }
   line-height: 1.7; color: var(--tx48); margin: 0;
 }
 
-/* .c-contact: a contact line */
-.c-contact {
-  margin: 1.6rem 0 0; font-size: 1rem; color: var(--tx82);
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem;
-}
-.c-contact a { color: var(--teal-text); }
 
 /* .c-table: compare-table style */
 .c-table { width: 100%; border-collapse: collapse; text-align: left; }
@@ -638,6 +632,18 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
 .cl-copy svg { width: 14px; height: 14px; }
 .cl-status { display: block; min-height: 1.4em; margin-top: 0.7rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-text); }
 .cl-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 2.4rem; }
+/* Close: signature and programme line, as in the Euphoria proposal. */
+.cl-closer { margin: 3.6rem auto 0; max-width: 620px; text-align: center; }
+.cl-closer-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 1px solid var(--tx14); display: block; margin: 0 auto 1rem; }
+.cl-sig { margin: 0; font-family: 'Eloquia Display', 'DM Sans', system-ui, sans-serif; font-weight: 300; font-size: clamp(2rem, 3.4vw, 2.6rem); line-height: 1.1; letter-spacing: -0.01em; color: var(--tx-max); }
+.cl-role { margin: 0.6rem 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx48); }
+.cl-who { margin: 0.8rem 0 0; font-size: 0.95rem; }
+.cl-who a { color: var(--tx82); text-decoration: none; }
+.cl-backing { margin: 2.4rem auto 0; padding-top: 2rem; border-top: 1px solid var(--tx14); max-width: 520px; }
+.cl-backing img { height: 22px; width: auto; display: block; margin: 0 auto 0.9rem; }
+.cl-backing p { margin: 0; font-size: 0.92rem; line-height: 1.5; color: var(--tx82); }
+html[data-theme="light"] .cl-backing img { filter: invert(1); }
+@media print { .cl-backing img { filter: invert(1); } }
 
 /* ---------- Mobile nav ---------- */
 .c-mnav-trigger {
@@ -1540,7 +1546,6 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
           <tr><td>Sealed records cannot be altered undetected</td><td>Upload a sealed PDF to <code>verifier.celeste7.ai</code>, then alter one character and upload it again</td><td>The first passes and the second fails</td></tr>
         </tbody>
       </table>
-      <p class="c-contact"><a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a></p>
     </div>
   </div>
   <footer class="k-footer c-foot"><span><span class="n">14</span> · CHECK IT YOURSELF</span></footer>
@@ -1559,6 +1564,16 @@ details.c-adv { width: min(680px, 100%); max-width: 680px; margin: 1.8rem auto 0
     <span class="cl-status" id="cl-status" role="status" aria-live="polite"></span>
     <div class="cl-ctas">
       <a class="k-cta" href="/seanet-euphoria-proposal"><span aria-hidden="true">&larr;</span> Back to the Euphoria proposal</a>
+    </div>
+    <div class="cl-closer">
+      <img class="cl-closer-img" src="/images/euphoria/alex-short.jpg" alt="Alex Short" width="120" height="120">
+      <p class="cl-sig">Alex Short</p>
+      <p class="cl-role">Founder &amp; Lead Engineer &middot; Celeste7 Ltd</p>
+      <p class="cl-who"><a href="tel:+13056455690">+1 (305) 645-5690</a></p>
+      <div class="cl-backing">
+        <img src="/images/euphoria/anthropic-wordmark.svg" alt="Anthropic" width="196" height="22">
+        <p>Celeste has been accepted into Anthropic's Claude for Startups programme.</p>
+      </div>
     </div>
   </div>
 </section>

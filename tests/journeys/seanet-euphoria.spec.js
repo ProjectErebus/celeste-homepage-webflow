@@ -16,6 +16,7 @@ import { test, expect } from '@playwright/test';
 const LANDING = '/seanet-euphoria.html';
 const DECK = '/seanet-euphoria-overview.html';
 const PROPOSAL = '/seanet-euphoria-proposal.html';
+const COMPANION = '/seanet-security-companion.html';
 
 const PROPOSAL_SECTIONS = [
   'summary', 'needs', 'record', 'onboarding', 'compound', 'warranty', 'handover', 'documents', 'search',
@@ -104,6 +105,20 @@ test.describe('seanet-euphoria · copy', () => {
       for (const re of HEDGES) expect(words, String(re)).not.toMatch(re);
     });
   }
+});
+
+test.describe('seanet-euphoria · security companion', () => {
+  test('closes with the founder and the programme line; no stray contact lines', async ({ page }) => {
+    await page.goto(COMPANION);
+    const close = page.locator('#close');
+    await expect(close.locator('.cl-sig')).toHaveText('Alex Short');
+    await expect(close.locator('.cl-closer-img')).toHaveAttribute('src', '/images/euphoria/alex-short.jpg');
+    await expect(close.locator('.cl-backing img')).toHaveAttribute('src', '/images/euphoria/anthropic-wordmark.svg');
+    await expect(close.locator('.cl-backing p')).toHaveText("Celeste has been accepted into Anthropic's Claude for Startups programme.");
+    // The address appears once in the close and once as a FAQ answer, nowhere else.
+    await expect(page.locator('#s15 a[href^="mailto:"]')).toHaveCount(0);
+    await expect(page.locator('a[href^="mailto:"]')).toHaveCount(1);
+  });
 });
 
 test.describe('seanet-euphoria · deck', () => {

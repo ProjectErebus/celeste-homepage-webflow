@@ -12,7 +12,7 @@ safely.
 | `seanet-euphoria.html` | Landing page. Links the three documents. Its card styles are inline (`.doc-card`). |
 | `seanet-euphoria-overview.html` | The 10-slide overview deck (`body.deck`). Navigation via `initDeck()`. |
 | `seanet-euphoria-proposal.html` | The technical proposal (`body.doc`), 17 numbered sections. Scroll behaviour via `initDoc()`. |
-| `seanet-security-companion.html` | Security companion. Self-contained (own inline styles and fonts); does not use the shared CSS or JS. |
+| `seanet-security-companion.html` | Security companion. Self-contained (own inline styles and fonts); does not use the shared CSS or JS. Closes like the proposal: founder signature and the Anthropic programme line (`.cl-closer`). |
 | `css/seanet-euphoria.css` | One stylesheet for the landing page, deck and proposal, in 14 ordered sections (see its header). |
 | `js/seanet-euphoria.js` | Animation sequencing, reduced motion, deck navigation, proposal scroll state. |
 | `images/euphoria/` | Yacht photography, founder photo, Celeste logo, Anthropic wordmark. Every file is referenced. |
