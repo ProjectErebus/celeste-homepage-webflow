@@ -164,12 +164,12 @@
   <h2>5. Storage, security, retention</h2>
 
   <h3>Where data is stored</h3>
-  <p>Customer and contact data is stored in managed databases hosted on Amazon Web Services (via Supabase) and on Vercel's hosting infrastructure. Both providers operate primary data centres in the United States and the European Union. Backups are retained by these providers under their respective data-protection programmes.</p>
+  <p>Customer and contact data is stored on servers operated by Hetzner Online GmbH in Germany (European Union), including the application databases, file storage and encrypted backups. The website and application are delivered through Vercel and Cloudflare edge networks, a session-security cache runs on Redis Cloud in the United States, and AI processing takes place in the United States (see below).</p>
 
   <h3>Security measures</h3>
   <ul>
     <li>Encryption in transit (TLS 1.2 or higher) for all connections to celeste7.ai and its sub-services.</li>
-    <li>Encryption at rest for all stored personal data (AES-256, provided by AWS / Supabase).</li>
+    <li>Encrypted backups, stored in Germany.</li>
     <li>Role-based access control: only the small number of CelesteOS staff with a legitimate operational need can access stored personal data, and all access is logged.</li>
     <li>Append-only, tamper-evident audit ledger and cryptographic receipts (SealMark) for all in-platform actions; sealed records are independently verifiable at <a href="https://verifier.celeste7.ai" target="_blank" rel="noopener">verifier.celeste7.ai</a> without an account (see <a href="/trust">/trust</a>).</li>
     <li>Two-factor authentication required on all administrative accounts.</li>
@@ -193,11 +193,13 @@
   <p>We share personal data only with the following processors, each bound by a written data-processing agreement:</p>
   <ul>
     <li><strong>Vercel Inc.</strong> (US / global edge): website hosting and edge delivery.</li>
-    <li><strong>Supabase Inc.</strong> (EU or US): managed database, authentication, and storage on AWS infrastructure.</li>
-    <li><strong>Upstash Inc.</strong> (US): cache used for rate limiting and session management.</li>
-    <li><strong>OpenAI</strong> (US): AI inference, as described below.</li>
-    <li><strong>Microsoft Corporation</strong> (US / global): the Microsoft Graph API &mdash; where you connect your Outlook mailbox, to <strong>read and synchronise your mailbox metadata</strong> (subjects, senders/recipients, dates and a short preview) so vessel-related correspondence is searchable, and to create email <em>drafts</em> in your own mailbox for you to send. CelesteOS does not send email on your behalf, and accesses only your own connected mailbox &mdash; not other mailboxes or organisation-wide files.</li>
-    <li><strong>Microsoft Corporation</strong> (US / global): <strong>Microsoft Entra ID</strong> &mdash; authentication and single sign-on, where crew sign in to the CelesteOS application using their own organisation's Microsoft 365 work account. Microsoft verifies identity and enforces multi-factor authentication; CelesteOS receives only the user's name, work email, a Microsoft directory identifier, the organisation's tenant identifier, and a transient confirmation that MFA was satisfied (not stored), and never receives or stores a crew password. This is a separate, dedicated connection from the Outlook mailbox integration above, with different scopes; one cannot affect the other.</li>
+    <li><strong>Hetzner Online GmbH</strong> (Germany): application hosting, databases, file storage and encrypted backups.</li>
+    <li><strong>Cloudflare Inc.</strong> (global edge): DNS and network protection for our application and sign-in services.</li>
+    <li><strong>Redis Ltd</strong> (US): session-security cache (sign-in protection and short-lived caching).</li>
+    <li><strong>OpenAI</strong>, <strong>Anthropic</strong> and <strong>TypeSafe AI, Inc.</strong> (US): AI processing, as described below. <strong>Google LLC</strong> (Cloud Vision): reading text from scanned documents.</li>
+    <li><strong>Microsoft Corporation</strong> (US / global): Microsoft Graph &mdash; sending transactional emails such as password resets and verification codes from our own mailbox. CelesteOS does not read or connect to your mailbox.</li>
+    <li><strong>Functional Software, Inc.</strong> (Sentry): error monitoring; personal data and secrets are removed from error reports before they are sent.</li>
+    <li><strong>Microsoft Corporation</strong> (US / global): <strong>Microsoft Entra ID</strong> &mdash; authentication and single sign-on, where crew sign in to the CelesteOS application using their own organisation's Microsoft 365 work account. Microsoft verifies identity and enforces multi-factor authentication; CelesteOS receives only the user's name, work email, a Microsoft directory identifier, the organisation's tenant identifier, and a transient confirmation that MFA was satisfied (not stored), and never receives or stores a crew password. </li>
     <li><strong>LinkedIn Corporation</strong>: only where you authorise LinkedIn-based authentication; LinkedIn's own privacy policy applies to data they retain.</li>
     <li><strong>Google LLC</strong> (US): Google Analytics 4 (analytics) and Google Ads (advertising and conversion measurement) &mdash; set only with your consent; see section 9.</li>
     <li><strong>Wise Payments Ltd</strong> (UK): payment processing, acting as an independent controller of payment and KYC data.</li>
@@ -205,7 +207,7 @@
   <p>A current, named sub-processor register with locations, terms, and transfer mechanisms is available to pilot customers under the Data Processing Agreement.</p>
 
   <h3>AI inference</h3>
-  <p>CelesteOS uses a third-party AI inference provider (OpenAI) for three operations only: semantic search across your own records, document suggestion, and cited-answer generation. Only the minimum text needed for the requested operation is sent. The provider does <strong>not</strong> train its models on this data, and we have disabled all data-sharing options in our account with the provider (sharing of inputs and outputs, of evaluation and fine-tuning data, and of model feedback). Under the provider's standard terms, API inputs and outputs are retained for up to 30 days for abuse monitoring and then deleted; Zero Data Retention &mdash; which would remove that 30-day window &mdash; is a separate enterprise control we do not currently hold. We apply data-minimisation to limit what is sent.</p>
+  <p>CelesteOS uses third-party AI providers (OpenAI, Anthropic, and TypeSafe AI's &ldquo;Jev&rdquo; model) for search and cited answers, document classification and extraction, and drafting support such as handover notes, and Google Cloud Vision to read text from scanned documents. We send the text or images reasonably needed for each operation. Names and vessel names are <strong>not</strong> removed before processing, so please avoid entering unnecessary personal details. Our providers do not train their models on this data. Under OpenAI's standard terms, inputs and outputs are kept for up to 30 days for abuse monitoring and then deleted; we do not currently hold a zero-data-retention arrangement with OpenAI. AI output can be wrong and should be checked before you rely on it.</p>
 
   <p>We do not sell, rent, or trade personal data to advertisers, data brokers, or third parties for marketing purposes.</p>
   <p>We may disclose data where legally required (court order, regulatory request, lawful investigation), or where necessary to protect the rights, safety, or property of CelesteOS, our customers, or the public.</p>
@@ -213,7 +215,7 @@
 
 <section id="international">
   <h2>7. International transfers</h2>
-  <p>Database and object storage can be provisioned in the European Union or the United States per customer (EU residency on request). API processing and AI inference currently transit United States infrastructure; an EU-resident backend is on our roadmap. Where personal data is transferred outside the European Economic Area or the United Kingdom, we rely on the European Commission's Standard Contractual Clauses (SCCs) and, for UK transfers, the International Data Transfer Addendum. Our processors (Vercel, Supabase, AWS, Upstash, OpenAI, Microsoft, Google) maintain equivalent safeguards. Documentation is available on written request.</p>
+  <p>Customer data is stored in Germany (European Union). Some processing takes place in the United States: edge delivery (Vercel, Cloudflare), the session-security cache (Redis Cloud), error monitoring (Sentry) and AI processing (OpenAI, Anthropic, TypeSafe AI, Google). Where personal data is transferred outside the European Economic Area or the United Kingdom, we rely on the European Commission's Standard Contractual Clauses (SCCs) and, for UK transfers, the International Data Transfer Addendum, or on the provider's certification under the EU-U.S. Data Privacy Framework where it holds one. Documentation is available on written request.</p>
 </section>
 
 <section id="rights">
@@ -234,8 +236,8 @@
 
 <section id="cookies">
   <h2>9. Cookies and tracking</h2>
-  <p>celeste7.ai uses <strong>strictly necessary cookies</strong> for session management and routing, which are always on. With your consent, we also set non-essential cookies for: <strong>Google Analytics 4</strong> (measurement ID G-230QN4JY4P) &mdash; first-party analytics cookies such as <code>_ga</code> to understand aggregate website usage; and <strong>Google Ads</strong> (ID AW-17947526022) &mdash; to measure the performance of our advertising, which may set advertising and conversion cookies. Google acts as a processor for this data; online identifiers and IP-derived approximate location are processed and transferred to the United States under the EU Standard Contractual Clauses and the UK Addendum. We do not deploy social-media tracking pixels (Meta Pixel, LinkedIn Insight Tag, TikTok Pixel, etc.).</p>
-  <p>These non-essential cookies are set <strong>only after you accept them</strong> in the cookie banner shown on your first visit; if you reject, they are not set &mdash; we use Google Consent Mode to enforce this at the source. You can withdraw or change your consent at any time by clearing this site's data in your browser, which restores the banner.</p>
+  <p>celeste7.ai uses <strong>strictly necessary cookies</strong> for session management and routing, which are always on. With your consent, we also set non-essential cookies for: <strong>Google Analytics 4</strong> (measurement ID G-230QN4JY4P) &mdash; first-party analytics cookies such as <code>_ga</code> to understand aggregate website usage; and <strong>Google Ads</strong> (ID AW-17947526022) &mdash; to measure the performance of our advertising, which may set advertising and conversion cookies. Google acts as a processor for this data; online identifiers and IP-derived approximate location are processed and transferred to the United States under the EU Standard Contractual Clauses and the UK Addendum. With your analytics consent we also use <strong>Contentsquare</strong> session analytics, which records how pages are used (clicks, scrolls) with typed text masked. We do not deploy social-media tracking pixels (Meta Pixel, LinkedIn Insight Tag, TikTok Pixel, etc.).</p>
+  <p>No analytics or advertising script is loaded until you accept that category in the cookie banner; if you reject, none is loaded. If your browser sends a Global Privacy Control signal, we treat it as an opt-out of advertising and never load Google Ads. You can change or withdraw your consent at any time with the &ldquo;Your Privacy Choices&rdquo; link in the footer of every page, which also deletes the analytics and advertising cookies we can reach.</p>
 </section>
 
 <section id="children">
