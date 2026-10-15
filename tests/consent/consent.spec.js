@@ -20,6 +20,7 @@ const PAGES = [
   '/index.html', '/about.html', '/privacy-policy.html', '/terms-of-service.html', '/trust.html', '/sources.html',
   '/blogs/index.html', '/blogs/audit-trail-superyacht.html', '/handover.html', '/records.html', '/search.html',
   '/intelligence.html', '/404.html', '/401.html', '/landing-v2.html', '/landing-v3.html', '/landing-v4.html',
+  '/cookies.html', '/acceptable-use.html', '/subprocessors.html',
 ];
 
 let server, base;

@@ -31,7 +31,7 @@
   var ADS_ID = 'AW-17947526022';
   var GTAG_SRC = 'https://www.googletagmanager.com/gtag/js?id=';
   var CS_SRC = 'https://t.contentsquare.net/uxa/9a0fb681c240a.js';
-  var POLICY_URL = '/privacy-policy#cookies';
+  var POLICY_URL = '/cookies';
 
   var gpc = (function () { try { return navigator.globalPrivacyControl === true; } catch (e) { return false; } })();
 

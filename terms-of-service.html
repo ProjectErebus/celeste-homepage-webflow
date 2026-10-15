@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Terms of Service · CelesteOS</title>
-<meta name="description" content="Terms of Service for the celeste7.ai website. Operated by Celeste7 LTD. Governed by the law of England and Wales.">
+<title>Terms of Use · CelesteOS</title>
+<meta name="description" content="Terms of Use for celeste7.ai, the Collective site and any access to the CelesteOS Service without a signed agreement. Provided by CelesteOS LLC, a Florida limited liability company.">
 <meta name="robots" content="index, follow">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <link rel="canonical" href="https://celeste7.ai/terms-of-service">
@@ -20,12 +20,11 @@
   /* Brand display face — Eloquia Display (bundled WOFF2), per celeste-brand-typography */
   @font-face { font-family: 'Eloquia Display'; src: url('fonts/Eloquia-Display-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
   @font-face { font-family: 'Eloquia Display'; src: url('fonts/Eloquia-Display-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Eloquia Display'; src: url('fonts/Eloquia-Display-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
-
   body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; max-width: 880px; margin: 0 auto; padding: 4rem 2rem 6rem; line-height: 1.65; }
   h1 { font-family: 'Eloquia Display', system-ui, sans-serif; font-size: clamp(2.2rem, 4.4vw, 3rem); font-weight: 300; letter-spacing: -0.012em; margin: 0 0 0.4rem; }
   .effective { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em; opacity: 0.6; margin-bottom: 2.4rem; }
   h2 { font-family: 'Eloquia Display', system-ui, sans-serif; font-size: 1.4rem; font-weight: 400; margin: 2.6rem 0 0.8rem; letter-spacing: -0.005em; }
+  h3 { font-size: 1.02rem; font-weight: 600; margin: 1.4rem 0 0.5rem; }
   p { margin: 0.4rem 0 1rem; opacity: 0.9; }
   ul { padding-left: 1.3rem; }
   li { margin-bottom: 0.4rem; opacity: 0.9; }
@@ -33,6 +32,34 @@
   .toc { background: rgba(127,127,127,0.05); border-left: 2px solid currentColor; padding: 1rem 1.2rem; margin: 1.5rem 0 3rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.86rem; }
   .toc a { display: block; padding: 0.18rem 0; opacity: 0.78; text-decoration: none; }
   .toc a:hover { opacity: 1; text-decoration: underline; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.6rem 0.7rem; border-bottom: 1px solid rgba(127,127,127,0.18); vertical-align: top; }
+  th { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; font-weight: 500; }
+
+  /* Legal documents (CelesteOS LLC, US) */
+  .legal { overflow-wrap: anywhere; }
+  .legal h2 { scroll-margin-top: 72px; }
+  .legal section { scroll-margin-top: 72px; }
+  .doc-meta { margin: 0 0 2rem; padding: 0; font-size: 0.92rem; }
+  .doc-meta div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 0.2rem 1rem; padding: 0.35rem 0; border-bottom: 1px solid rgba(127,127,127,0.14); }
+  .doc-meta dt { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; padding-top: 0.2rem; }
+  .doc-meta dd { margin: 0; opacity: 0.9; }
+  @media (max-width: 600px) { .doc-meta div { grid-template-columns: 1fr; } }
+  .legal p.lead { border-left: 2px solid #5AABCC; padding: 0.2rem 0 0.2rem 1rem; }
+  .callout { background: rgba(127,127,127,0.06); border-left: 2px solid currentColor; padding: 0.8rem 1.1rem; margin: 0.6rem 0 1.2rem; }
+  .callout p { margin: 0; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.86em; background: rgba(127,127,127,0.1); padding: 0.05em 0.3em; border-radius: 3px; }
+  .tbl { margin: 1rem 0 1.5rem; }
+  .tbl table { margin: 0; }
+  .doc-foot { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(127,127,127,0.18); font-size: 0.8rem; opacity: 0.7; }
+  @media (max-width: 700px) {
+    body { padding-left: 16px; padding-right: 16px; }
+    .tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .tbl table, .tbl tbody, .tbl tr, .tbl td { display: block; width: 100%; }
+    .tbl tr { border-bottom: 1px solid rgba(127,127,127,0.25); padding: 0.5rem 0; }
+    .tbl td { border: 0; padding: 0.25rem 0; }
+    .tbl td::before { content: attr(data-label); display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
+  }
 </style>
     <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
     <script src="/js/cookie-consent.js"></script>
@@ -71,126 +98,250 @@
 </header>
 <div class="c7bar-spacer" style="height: 53px;"></div>
 
+<main class="legal">
+<h1>Terms of Use</h1>
+<div class="effective">Last updated: October 15, 2026</div>
+<dl class="doc-meta">
+<div><dt>Provider</dt><dd>CelesteOS LLC, a Florida limited liability company ("<strong>Company</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>")</dd></div>
+<div><dt>Applies to</dt><dd>the websites at celeste7.ai and its public subdomains (including all of <code>collective.celeste7.ai</code>, both its public pages and the pages available after sign-in), and any access to the CelesteOS Service that is not covered by a signed Agreement</dd></div>
+<div><dt>Version</dt><dd>1.0</dd></div>
+<div><dt>Effective date</dt><dd>October 15, 2026</dd></div>
+</dl>
 
+<nav class="toc" aria-label="Contents">
+  <a href="#section-1">1. Scope and Relationship to Your Agreement</a>
+  <a href="#section-2">2. Definitions</a>
+  <a href="#section-3">3. Eligibility</a>
+  <a href="#section-4">4. Accounts</a>
+  <a href="#section-5">5. License and Restrictions</a>
+  <a href="#section-6">6. Ownership and Trademarks</a>
+  <a href="#section-7">7. Your Content</a>
+  <a href="#section-8">8. Evaluation Access to the Service Without an Agreement</a>
+  <a href="#section-9">9. Feedback</a>
+  <a href="#section-10">10. Verifier</a>
+  <a href="#section-11">11. The Collective Site and Public-Source Content</a>
+  <a href="#section-12">12. Third-Party Links and Services</a>
+  <a href="#dmca">13. Copyright Complaints (DMCA)</a>
+  <a href="#section-14">14. Privacy and Cookies</a>
+  <a href="#section-15">15. Disclaimers</a>
+  <a href="#section-16">16. Limitation of Liability</a>
+  <a href="#section-17">17. Indemnification</a>
+  <a href="#section-18">18. Suspension and Termination</a>
+  <a href="#arbitration">19. Dispute Resolution; Binding Arbitration</a>
+  <a href="#governing-law">20. Governing Law and Venue</a>
+  <a href="#section-21">21. Export Controls and Sanctions</a>
+  <a href="#section-22">22. Changes to These Terms</a>
+  <a href="#section-23">23. State-Specific Notices</a>
+  <a href="#section-24">24. General</a>
+  <a href="#contact">25. Contact</a>
+</nav>
 
-<h1>Terms of Service</h1>
-<div class="effective">Effective: 02 June 2026 · Version 1.0</div>
-
-<p>These Website Terms of Service ("these Terms") are operated by <strong>Celeste7 LTD</strong>, a company incorporated in England and Wales (company number 16617331), registered office 7 Vindex Close, Lincoln, England, LN1 1AH, operating address Miami, Florida, USA. They govern your access to and use of the celeste7.ai website.</p>
-
-<div class="toc">
-  <a href="#scope">1. Scope of these Terms</a>
-  <a href="#acceptance">2. Acceptance of these Terms</a>
-  <a href="#ip">3. Intellectual property</a>
-  <a href="#use">4. Permitted use and user conduct</a>
-  <a href="#links">5. Third-party links</a>
-  <a href="#disclaimers">6. Disclaimers</a>
-  <a href="#liability">7. Limitation of liability</a>
-  <a href="#privacy">8. Privacy and cookies</a>
-  <a href="#changes">9. Changes to these Terms and to the Website</a>
-  <a href="#general">10. General</a>
-  <a href="#law">11. Governing law and jurisdiction</a>
-  <a href="#contact">12. Contact</a>
-</div>
-
-<section id="scope">
-  <h2>1. Scope of these Terms</h2>
-  <p>1.1 These Terms govern access to and use of the website located at celeste7.ai and its public sub-domains, including the public verifier at verifier.celeste7.ai (together, "the Website").</p>
-  <p>1.2 These Terms apply to the Website only. They do not govern access to or use of the CelesteOS application at app.celeste7.ai or the Service itself. Access to and use of the Service is governed exclusively by the Pilot Programme Agreement or the Subscription Agreement, as applicable, together with the Data Processing Agreement incorporated into each of those agreements. Nothing in these Terms purports to govern, vary, supplement or limit the terms applicable to the Service.</p>
-  <p>1.3 In these Terms, "the Provider", "we", "us" and "our" mean Celeste7 LTD; "you" and "your" mean the individual or entity accessing the Website. "the Service" or "CelesteOS" means the browser-based operational platform; "SealMark" means the Provider's cryptographic record-sealing and verification system; "the Verifier" means verifier.celeste7.ai.</p>
+<p>These Terms of Use ("<strong>Terms</strong>") are a legal agreement between you and Company. They govern your access to and use of the Sites and, where Section 1.2 applies, the Service.</p>
+<p>By clicking "I agree" (or a similar button or checkbox) when it is presented to you, by creating an account, or by otherwise accessing or using the Sites or the Service, you agree to these Terms and to the Acceptable Use Policy described in Section 5.3. If you are accepting on behalf of an organization, you confirm that you have authority to bind that organization, and "you" means both you and that organization. If you do not agree, do not use the Sites or the Service.</p>
+<p class="lead"><strong>IMPORTANT — PLEASE READ SECTION 19 CAREFULLY.</strong> Section 19 requires most disputes between you and Company to be resolved by binding individual arbitration rather than in court, and it waives your right to a jury trial and to participate in a class action. You may opt out of arbitration within 30 days, as described in Section 19.8.</p>
+<section id="section-1">
+<h2>1. Scope and Relationship to Your Agreement</h2>
+<p>1.1 <strong>Sites.</strong> These Terms govern your use of the websites operated by Company, including celeste7.ai, <code>collective.celeste7.ai</code>, <code>registration.celeste7.ai</code>, and any other page that links to these Terms (together, the "<strong>Sites</strong>").</p>
+<p>1.2 <strong>Service accessed without an Agreement.</strong> If you access the Service (including at <code>app.celeste7.ai</code>) and neither you nor the organization you represent has a signed Agreement with Company covering that access — for example, a self-serve evaluation or demonstration account — these Terms, the Acceptable Use Policy, and any additional terms presented to you at registration govern that access. Section 8 sets out additional terms for that access.</p>
+<p>1.3 <strong>Where a signed Agreement exists, the Agreement governs the Service.</strong> If you or your organization has signed an Agreement with Company (such as a Master Subscription Agreement and Order Form, or a trial agreement), that Agreement — not these Terms — governs the Service, including Customer Data, fees, warranties, support, liability and dispute resolution relating to the Service. In that case these Terms govern only your use of the Sites. If these Terms conflict with a signed Agreement on any matter relating to the Service, the Agreement controls.</p>
+<p>1.4 <strong>Authorized Users of a Customer.</strong> If you use the Service as an Authorized User of a Customer (for example, as a crew member or shore-based manager invited by a vessel operator or management company), your access is provided under the Customer's Agreement. The Customer controls your account and may change or remove your access. You must comply with the Acceptable Use Policy. Nothing in these Terms gives you individually rights under the Customer's Agreement.</p>
+<p>1.5 <strong>Verifier.</strong> The Verifier is governed by the Verifier Terms of Use (see Section 10).</p>
+<p>1.6 <strong>Collective Site.</strong> The Sites include the whole of the Collective Site, both its public pages and the features available after you sign in (such as searching Public-Source Content). You sign in with your CelesteOS account. These Terms, including Section 11, govern your use of the Collective Site. If your organization has a signed Agreement or a Collective Network Participation Agreement that expressly governs Public-Source Content or the Collective, that agreement controls on those matters if it conflicts with these Terms.</p>
 </section>
-
-<section id="acceptance">
-  <h2>2. Acceptance of these Terms</h2>
-  <p>2.1 By accessing or using the Website, you confirm that you have read, understood and agree to be bound by these Terms and by any documents expressly referred to in them. If you do not agree to these Terms, you must not access or use the Website.</p>
-  <p>2.2 You confirm that you are at least 18 years of age and, where you access the Website on behalf of an organisation, that you have authority to bind that organisation to these Terms.</p>
-  <p>2.3 These Terms are entered into between you and the Provider. The Provider may be contacted at <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> or by post at the registered office stated above.</p>
+<section id="section-2">
+<h2>2. Definitions</h2>
+<p>In these Terms:</p>
+<p>2.1 "<strong>Agreement</strong>" means a written agreement for the Service signed (including electronically) by Company and a Customer, such as a Master Subscription Agreement together with an Order Form.</p>
+<p>2.2 "<strong>AI Features</strong>" means features of the Service that use machine-learning or large-language-model technology, including search and answers with citations, document classification and extraction, optical character recognition, drafting assistance (for example, handover drafts), and suggested document links.</p>
+<p>2.3 "<strong>Authorized User</strong>" means an individual whom a Customer permits to access the Service under its Agreement.</p>
+<p>2.4 "<strong>Collective</strong>" means Company's cross-fleet engineering-knowledge program described on <code>collective.celeste7.ai</code>.</p>
+<p>2.5 "<strong>Collective Site</strong>" means the website at <code>collective.celeste7.ai</code>, including its public pages and the pages and features available after sign-in.</p>
+<p>2.6 "<strong>Customer</strong>" means an organization that has signed an Agreement with Company.</p>
+<p>2.7 "<strong>Output</strong>" means content generated by an AI Feature in response to an input.</p>
+<p>2.8 "<strong>Public-Source Content</strong>" means content that Company collects or derives from publicly available third-party sources and makes available through the Collective Site, such as public incident and accident-investigation reports, industry publications, public forum and discussion posts, question-and-answer posts and published manuals, together with any fields, labels, summaries, rankings and tallies that Company or its automated tools (including AI models) derive from that content.</p>
+<p>2.9 "<strong>Service</strong>" means Company's hosted CelesteOS software-as-a-service platform for vessel operations, maintenance and records, including the web application and its AI Features.</p>
+<p>2.10 "<strong>Vessel</strong>" means a ship or yacht in connection with which the Service is used.</p>
+<p>2.11 "<strong>Verifier</strong>" means Company's public record-verification tool at <code>verifier.celeste7.ai</code>.</p>
+<p>2.12 "<strong>Your Content</strong>" means any information, text, files, documents or other material you submit through the Sites or, where Section 1.2 applies, the Service.</p>
 </section>
-
-<section id="ip">
-  <h2>3. Intellectual property</h2>
-  <p>3.1 All content on the Website, including but not limited to text, graphics, logos, icons, images, page layouts, design, the "CelesteOS" name and marks, the "SealMark" name, audio, video, data compilations and software, is owned by the Provider or its licensors and is protected by copyright, trade mark, database and other intellectual property rights under the law of England and Wales and other jurisdictions.</p>
-  <p>3.2 Subject to your compliance with these Terms, the Provider grants you a limited, non-exclusive, non-transferable, revocable licence to access and view the Website for your own lawful, personal and internal business reference purposes.</p>
-  <p>3.3 Except as expressly permitted by these Terms or by applicable mandatory law, you may not copy, reproduce, republish, download, post, broadcast, transmit, adapt, modify, distribute, sell, licence or otherwise exploit any content on the Website without the prior written consent of the Provider.</p>
-  <p>3.4 No right, title or interest in any content on the Website is transferred to you. All rights not expressly granted are reserved by the Provider.</p>
+<section id="section-3">
+<h2>3. Eligibility</h2>
+<p>3.1 <strong>Age.</strong> You must be at least 18 years old to use the Sites or the Service.</p>
+<p>3.2 <strong>Business use.</strong> The Sites and the Service are offered for business and professional purposes connected with the operation, management or support of Vessels. They are not offered to consumers for personal, family or household purposes. By using them you confirm that you are acting for business or professional purposes.</p>
+<p>3.3 <strong>Authority.</strong> If you register for an account or accept these Terms on behalf of an organization, you represent that you are authorized to do so.</p>
+<p>3.4 <strong>Sanctions.</strong> You may not use the Sites or the Service if Section 21.2 prohibits it.</p>
 </section>
-
-<section id="use">
-  <h2>4. Permitted use and user conduct</h2>
-  <p>4.1 You agree to use the Website only for lawful purposes and in accordance with these Terms.</p>
-  <p>4.2 You must not:</p>
-  <ul>
-    <li>(a) use the Website in any way that breaches any applicable local, national or international law or regulation, or that is unlawful or fraudulent or has any unlawful or fraudulent purpose or effect;</li>
-    <li>(b) scrape, harvest, data-mine, crawl, index (other than by a recognised public search engine acting in accordance with our published instructions, if any), or otherwise systematically extract content or data from the Website;</li>
-    <li>(c) reverse engineer, decompile, disassemble or otherwise attempt to derive the source code, structure or underlying ideas of any software made available through the Website, except to the extent such restriction is prohibited by applicable mandatory law;</li>
-    <li>(d) access the Website by any automated means, including any robot, spider, script, bot or offline reader, except as expressly authorised in writing by the Provider;</li>
-    <li>(e) introduce or transmit any virus, trojan, worm, logic bomb, time bomb, keystroke logger, spyware, adware or other material that is malicious or technologically harmful;</li>
-    <li>(f) attempt to gain unauthorised access to, interfere with, damage or disrupt any part of the Website, the server on which the Website is stored, or any server, computer or database connected to the Website, or attempt to circumvent any access control, rate limit or security measure;</li>
-    <li>(g) impose an unreasonable or disproportionately large load on the Website infrastructure, or carry out any denial-of-service or distributed denial-of-service attack;</li>
-    <li>(h) use the Website to transmit, or procure the sending of, any unsolicited or unauthorised advertising or promotional material or any other form of similar solicitation; or</li>
-    <li>(i) use any content on the Website in a manner that infringes the intellectual property rights or other rights of the Provider or any third party.</li>
-  </ul>
-  <p>4.3 Use of the Verifier is permitted solely for confirming the integrity of a sealed record or sealed export presented to you. The Verifier performs verification in your browser, without an account and without the Provider's involvement. You must not use the Verifier in any manner inconsistent with paragraph 4.2.</p>
-  <p>4.4 The Provider reserves the right, without liability and without prejudice to its other rights, to suspend, restrict or terminate your access to the Website where it reasonably considers that you have breached these Terms.</p>
+<section id="section-4">
+<h2>4. Accounts</h2>
+<p>4.1 <strong>Registration.</strong> Some features require an account. You agree to provide accurate, current and complete information and to keep it up to date.</p>
+<p>4.2 <strong>Credentials.</strong> You are responsible for keeping your sign-in credentials confidential and for activity under your account. Credentials are personal to you: do not share them or allow anyone else to use your account. Notify us promptly at <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> (subject line "Security") if you believe your account has been accessed without authorization.</p>
+<p>4.3 <strong>Organization accounts.</strong> If your account was created by, or is associated with, an organization (including a Customer), that organization may administer your account, view and control content associated with it, and suspend or remove your access.</p>
+<p>4.4 <strong>Closing your account.</strong> You may stop using the Sites at any time. To close an account that is not administered by a Customer, contact <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>. If your account is administered by a Customer, contact that Customer.</p>
 </section>
-
-<section id="links">
-  <h2>5. Third-party links</h2>
-  <p>5.1 The Website may contain links to websites, resources or services provided by third parties. Such links are provided for your information only and do not signify that the Provider endorses, or is responsible or liable for, those websites, resources or services or their content.</p>
-  <p>5.2 The Provider has no control over the content of third-party websites or resources and accepts no responsibility for them or for any loss or damage that may arise from your use of them. Your use of any third-party website or resource is at your own risk and subject to the terms and policies of the relevant third party.</p>
+<section id="section-5">
+<h2>5. License and Restrictions</h2>
+<p>5.1 <strong>License.</strong> Subject to these Terms, Company grants you a limited, revocable, non-exclusive, non-transferable, non-sublicensable license to access and use the Sites, and where Section 1.2 applies the Service, for your internal business purposes.</p>
+<p>5.2 <strong>Restrictions.</strong> Except as expressly permitted by these Terms or by applicable law that cannot be waived, you may not: (a) copy, modify, distribute, sell, rent, lease, sublicense or commercially exploit the Sites or the Service, or any part of them; (b) reverse engineer, decompile or disassemble any software made available through the Sites or the Service, or attempt to derive its source code; (c) access the Sites or the Service to build a competing product or service, or to copy their features, design or content; (d) use any robot, spider, scraper or other automated means to access or extract content from the Sites or the Service, other than recognized public search engines that follow our robots.txt instructions; (e) remove or alter any proprietary notices; or (f) use the Sites or the Service in violation of applicable law.</p>
+<p>5.3 <strong>Acceptable Use Policy.</strong> Your use of the Sites and the Service is subject to Company's Acceptable Use Policy, available at <a href="/acceptable-use">https://celeste7.ai/acceptable-use</a>, which is incorporated into these Terms by reference.</p>
+<p>5.4 <strong>Changes to the Sites.</strong> We may change, suspend or discontinue all or part of the Sites at any time. Where a signed Agreement exists, changes to the Service are governed by that Agreement.</p>
 </section>
-
-<section id="disclaimers">
-  <h2>6. Disclaimers</h2>
-  <p>6.1 The content on the Website is provided for general information purposes only. It does not constitute professional, legal, financial, regulatory, maritime, technical or any other form of advice on which you should rely. Before taking, or refraining from, any action on the basis of content on the Website, you should obtain professional or specialist advice appropriate to your circumstances.</p>
-  <p>6.2 Statements on the Website describing the features, security characteristics or functionality of CelesteOS (including, for the avoidance of doubt, any description of SealMark, the Verifier, data isolation or data handling) are provided for general information only. They do not form part of any contract for the Service. The binding description of the Service is set out in the Pilot Programme Agreement or the Subscription Agreement and the Data Processing Agreement.</p>
-  <p>6.3 To the fullest extent permitted by law, the Website and all content on it are provided on an "as is" and "as available" basis, without any warranties, representations or conditions of any kind, whether express or implied, including any implied warranty or condition of satisfactory quality, fitness for a particular purpose, accuracy, completeness, non-infringement, or that the Website will be uninterrupted, timely, secure or error-free, or that any defects will be corrected, or that the Website or the server that makes it available are free of viruses or other harmful components.</p>
-  <p>6.4 The Provider does not warrant that the content on the Website is accurate, complete or current, and reserves the right to change, suspend or withdraw all or any part of the Website at any time without notice.</p>
+<section id="section-6">
+<h2>6. Ownership and Trademarks</h2>
+<p>6.1 <strong>Company materials.</strong> The Sites, the Service, and all content and materials on them that are not Your Content or third-party content within Public-Source Content — including text, graphics, designs, software, documentation, and the CelesteOS, SealMark and other names and logos — are owned by Company or its licensors and are protected by intellectual-property laws. Except for the limited license in Section 5.1, these Terms grant you no rights in them. All rights not expressly granted are reserved.</p>
+<p>6.2 <strong>Trademarks.</strong> You may not use Company's names, logos or trademarks without our prior written permission. Third-party names and marks shown on the Sites belong to their owners, and their appearance does not imply endorsement.</p>
 </section>
-
-<section id="liability">
-  <h2>7. Limitation of liability</h2>
-  <p>7.1 Nothing in these Terms excludes or limits the Provider's liability where it would be unlawful to do so. This includes liability for death or personal injury caused by negligence, for fraud or fraudulent misrepresentation, and for any other liability that cannot be excluded or limited under the law of England and Wales.</p>
-  <p>7.2 Subject to paragraph 7.1, and to the fullest extent permitted by law, the Provider will not be liable to you, whether in contract, tort (including negligence), breach of statutory duty or otherwise, for any: (a) loss of profits, sales, business or revenue; (b) business interruption; (c) loss of anticipated savings; (d) loss of business opportunity, goodwill or reputation; (e) loss of or corruption of data; or (f) any indirect or consequential loss, arising out of or in connection with your use of, or inability to use, the Website or any content on it, or reliance on any content on the Website.</p>
-  <p>7.3 Subject to paragraph 7.1, the Provider's total aggregate liability to you arising out of or in connection with these Terms and your use of the Website, whether in contract, tort (including negligence), breach of statutory duty or otherwise, is limited to the greater of (a) the total fees (if any) you have paid to the Provider in the 12 months immediately preceding the event giving rise to the liability, or (b) one hundred pounds sterling (GBP 100).</p>
-  <p>7.4 This paragraph 7 does not affect, and is separate from, the liability provisions of the Pilot Programme Agreement or the Subscription Agreement, which govern liability in respect of the Service.</p>
+<section id="section-7">
+<h2>7. Your Content</h2>
+<p>7.1 <strong>Ownership.</strong> As between you and Company, you retain ownership of Your Content.</p>
+<p>7.2 <strong>License to Company.</strong> You grant Company and its service providers a worldwide, non-exclusive, royalty-free license to host, store, copy, process, transmit and display Your Content solely to operate, provide, secure and support the Sites and the Service, to respond to your requests, and to comply with law. Our handling of personal information in Your Content is described in our Privacy Policy (Section 14).</p>
+<p>7.3 <strong>Your responsibility.</strong> You are responsible for Your Content and represent that (a) you have all rights, permissions and lawful bases needed to submit it and to grant the license in Section 7.2 — including any rights needed for manuals, drawings or other documents supplied by equipment manufacturers or other third parties, and any notices or consents required for personal information about crew members or other individuals; and (b) submitting it does not violate law, any third party's rights, or the Acceptable Use Policy.</p>
+<p>7.4 <strong>No obligation to monitor.</strong> We are not obligated to review Your Content but may remove or disable access to it if we reasonably believe it violates these Terms or the Acceptable Use Policy, or if required by law.</p>
+<p>7.5 <strong>Forms and enquiries.</strong> If you submit a contact form, demo request, access request or registration form, please do not include sensitive information (for example, health information, passport or identity-document numbers, or financial-account details) unless we specifically request it through a secure channel.</p>
 </section>
-
-<section id="privacy">
-  <h2>8. Privacy and cookies</h2>
-  <p>8.1 The Provider processes personal data collected through the Website in accordance with the <a href="/privacy-policy">Privacy Policy</a>, which also describes our use of cookies and similar technologies and forms part of your use of the Website. You are encouraged to read it before using the Website.</p>
-  <p>8.2 By using the Website you acknowledge such processing and confirm that any data you provide is accurate.</p>
+<section id="section-8">
+<h2>8. Evaluation Access to the Service Without an Agreement</h2>
+<p>This Section 8 applies only where Section 1.2 applies.</p>
+<p>8.1 <strong>Purpose.</strong> Evaluation access is provided so you can assess whether the Service is suitable for your organization. You may not use it as your operational system for any Vessel.</p>
+<p>8.2 <strong>No commitments.</strong> Evaluation access may be limited in features, time, storage or number of Vessels, and may be suspended or ended at any time. No service-level, support or availability commitments apply.</p>
+<p>8.3 <strong>Data.</strong> We may delete evaluation accounts and their content 30 days after the evaluation ends unless you and Company sign an Agreement before then. Before the evaluation ends you may export content you uploaded using the export features available in the Service.</p>
+<p>8.4 <strong>AI Features and Output.</strong> AI Features rely on third-party AI providers that process inputs on our behalf, as described in our Privacy Policy. Output is generated automatically, may be inaccurate, incomplete or out of date, and may differ for similar inputs. You must review Output, including any cited source, before relying on it.</p>
+<p>8.5 <strong>Not a system of record; not safety-critical.</strong> The Service is an operational support tool. It is not class-approved or type-approved, is not a system of record for any classification society or flag State, and is not designed or intended for safety-critical, navigational or emergency use. Decisions about the operation, maintenance, safety and seaworthiness of any Vessel remain at all times with its Master, officers, crew and operator.</p>
+<p>8.6 <strong>Record sealing.</strong> Where the Service offers SealMark sealed exports, the seal is designed to show that the sealed content has not been altered since it was sealed, by making later alteration detectable (tamper-evident). It does not prove that the content was accurate or truthful when entered, and no system is tamper-proof.</p>
 </section>
-
-<section id="changes">
-  <h2>9. Changes to these Terms and to the Website</h2>
-  <p>9.1 The Provider may revise and update these Terms from time to time. The version in force at any time is the version published on the Website, identified by its version number and effective date.</p>
-  <p>9.2 Any changes take effect from the date the revised Terms are published on the Website. Your continued access to or use of the Website after revised Terms are published constitutes your acceptance of those revised Terms. If you do not agree to the revised Terms, you must stop using the Website.</p>
-  <p>9.3 The Provider may update, change, suspend or withdraw all or any part of the Website, and may restrict access to some or all of the Website, at its discretion and without notice. Subject to paragraph 7.1, and to the fullest extent permitted by law, the Provider will not be liable to you if for any reason the Website is unavailable at any time or for any period.</p>
+<section id="section-9">
+<h2>9. Feedback</h2>
+<p>If you give us suggestions, ideas or other feedback about the Sites or the Service ("<strong>Feedback</strong>"), you grant Company a perpetual, irrevocable, worldwide, royalty-free, fully paid, non-exclusive license to use, disclose and exploit that Feedback for any purpose, without obligation or attribution. Feedback does not include Your Content, and we will not identify you publicly as its source without your permission. Please do not submit Feedback that you consider confidential.</p>
 </section>
-
-<section id="general">
-  <h2>10. General</h2>
-  <p>10.1 If any provision of these Terms is found to be invalid, unlawful or unenforceable, that provision will be deemed severed and the remaining provisions will continue in full force and effect.</p>
-  <p>10.2 A failure or delay by the Provider in exercising any right or remedy under these Terms does not constitute a waiver of that or any other right or remedy.</p>
-  <p>10.3 These Terms, and any document expressly incorporated by reference, constitute the entire agreement between you and the Provider in relation to your use of the Website.</p>
-  <p>10.4 A person who is not a party to these Terms has no right under the Contracts (Rights of Third Parties) Act 1999 to enforce any provision of these Terms.</p>
-  <p>10.5 The Provider may transfer its rights and obligations under these Terms to another organisation. You may not transfer your rights or obligations under these Terms without the Provider's prior written consent.</p>
+<section id="section-10">
+<h2>10. Verifier</h2>
+<p>The Verifier is provided under the separate Verifier Terms of Use at <a href="https://verifier.celeste7.ai/terms">https://verifier.celeste7.ai/terms</a>, which govern your use of the Verifier. In summary, and without limiting those terms: the Verifier runs in your browser and does not upload the file you check; it performs a structural content-integrity check; and it does not currently validate digital signatures or timestamps. A Verifier result is not a certification, audit opinion or legal determination about a record. If the Verifier Terms of Use conflict with these Terms on any matter relating to the Verifier, the Verifier Terms of Use control.</p>
 </section>
-
-<section id="law">
-  <h2>11. Governing law and jurisdiction</h2>
-  <p>11.1 These Terms, their subject matter and their formation (and any non-contractual disputes or claims arising out of or in connection with them) are governed by and construed in accordance with the law of England and Wales.</p>
-  <p>11.2 The courts of England and Wales have exclusive jurisdiction to settle any dispute or claim arising out of or in connection with these Terms, their subject matter or their formation.</p>
+<section id="section-11">
+<h2>11. The Collective Site and Public-Source Content</h2>
+<p>11.1 <strong>What the Collective Site shows.</strong> The Collective Site shows Public-Source Content to signed-in users and, to Authorized Users of Customers that participate in the Collective, insights built from the contributions of participating fleets. Data contributed by a Customer is shown to others only in de-identified form under that Customer's Collective Network Participation Agreement.</p>
+<p>11.2 <strong>Changes.</strong> Descriptions of the Collective on the Sites are general information. We may change the Collective's features, design, scope, data sources or eligibility criteria, or discontinue the program or any feature, at any time, subject to any signed agreement with a Customer.</p>
+<p>11.3 <strong>Participation terms.</strong> Contributing data to the Collective, and access to insights built from contributed data, are available only to Customers who opt in under a separate written Collective Network Participation Agreement. That agreement, not the Sites, sets out how contributions are handled. Searching Public-Source Content does not require participation and does not involve any Customer's data.</p>
+<p>11.4 <strong>Requests for access.</strong> Requesting access to the Collective does not by itself entitle you to participate.</p>
+<p>11.5 <strong>Signed-in access.</strong> Searching Public-Source Content requires you to sign in. We decide who may access the signed-in features of the Collective Site and may limit, suspend or end your access at any time. Having a CelesteOS account does not by itself entitle you to that access.</p>
+<p>11.6 <strong>Third-party content.</strong> Public-Source Content comes from third parties. We do not create the underlying content, and we do not endorse, verify or take responsibility for it or for the views of its authors. Rights in that content belong to its authors, publishers and licensors. We show a link to the original source where we have one; items without a traceable source are marked as unsourced. Particular items may be subject to the source's own license terms (for example, the Creative Commons Attribution-ShareAlike license or the UK Open Government Licence). Those terms govern those items, and you must comply with them if you reuse an item in any way they cover. Links to sources are Third-Party Services under Section 12.</p>
+<p>11.7 <strong>NOT REPAIR OR ENGINEERING ADVICE.</strong> PUBLIC-SOURCE CONTENT, INCLUDING ANY DESCRIPTION OF A FAULT, CAUSE OR REMEDY, IS PROVIDED FOR GENERAL INFORMATION ONLY. IT IS NOT ENGINEERING, TECHNICAL, REPAIR OR SAFETY ADVICE OR A REPAIR PROCEDURE, AND IT HAS NOT BEEN VERIFIED BY US OR BY ANY EQUIPMENT MANUFACTURER, CLASSIFICATION SOCIETY OR FLAG ADMINISTRATION. Outcome labels and warnings (such as "Confirmed fix", "Tried — didn't work", "Temporary fix" or "Made the fault worse") were assigned by automated tools, including AI models, based on what the original source reported. They are not our findings, and no person has checked them. Rankings and tallies show how often an outcome was reported, not whether a remedy is effective or safe. Content may be inaccurate, incomplete, outdated or about different equipment or conditions, and a remedy it describes may be unsafe, damage equipment or affect warranty coverage. Always follow the manufacturer's manuals and service instructions, classification-society and flag-state requirements and the vessel's Safety Management System, and rely on qualified personnel. Section 15.3 applies.</p>
+<p>11.8 <strong>Permitted use and restrictions.</strong> You may use Public-Source Content only as an internal reference for your work on vessels. You may not: (a) republish, redistribute, sell or license it, except as the source's own license terms allow; (b) scrape, bulk-download or systematically extract it, or circumvent any rate limit or access control (Section 5.2(d) also applies); (c) use it to train, fine-tune or evaluate an AI model or to build a competing product or service; (d) remove or alter any source link, attribution, license notice, label, warning or disclaimer; or (e) use any name, user name or other personal information that appears in it to identify, profile or contact the individual concerned.</p>
+<p>11.9 <strong>Takedown and correction.</strong> If you believe an item of Public-Source Content infringes your copyright, send a notice under Section 13. For any other request to remove or correct an item (for example, because it is inaccurate, or because you are its author and want it removed), email <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> (for requests about personal information, use the subject line "Privacy request"). Our Privacy Policy explains how we handle personal information in Public-Source Content.</p>
 </section>
-
+<section id="section-12">
+<h2>12. Third-Party Links and Services</h2>
+<p>12.1 The Sites and the Service may link to or integrate with websites, applications or services operated by third parties ("<strong>Third-Party Services</strong>"), such as sign-in providers or calendar-booking tools. We do not control and are not responsible for Third-Party Services. Your use of them is at your own risk and is governed by the third party's own terms and privacy practices.</p>
+<p>12.2 A link to a Third-Party Service does not mean we endorse it.</p>
+</section>
+<section id="dmca">
+<h2>13. Copyright Complaints (DMCA)</h2>
+<p>13.1 <strong>Notices.</strong> Company respects intellectual-property rights. If you believe material on the Sites or in the Service infringes your copyright, send a written notice to our designated agent that includes the information required by 17 U.S.C. §512(c)(3): (a) your physical or electronic signature (or that of a person authorized to act for the copyright owner); (b) identification of the copyrighted work; (c) identification of the allegedly infringing material and information reasonably sufficient for us to locate it; (d) your contact information; (e) a statement that you have a good-faith belief that the use is not authorized by the copyright owner, its agent or the law; and (f) a statement, under penalty of perjury, that the information in the notice is accurate and that you are authorized to act on behalf of the copyright owner.</p>
+<p>13.2 <strong>Designated agent.</strong></p>
+<div class="callout"><p>Copyright Agent, CelesteOS LLC, 7901 4th St N, #36609, St Petersburg, FL 33702, USA · <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> (subject: "Copyright notice")</p></div>
+<p>13.3 <strong>Counter-notices.</strong> If material you submitted was removed or disabled and you believe this was a mistake or misidentification, you may send a counter-notice to the designated agent containing the information required by 17 U.S.C. §512(g)(3). We will handle valid counter-notices as that section provides.</p>
+<p>13.4 <strong>Repeat infringers.</strong> We may, in appropriate circumstances, suspend or terminate the accounts of users who repeatedly infringe.</p>
+<p>13.5 <strong>Customer accounts.</strong> If a notice concerns content in a Customer's account, we will also notify the Customer, which remains responsible for its content under its Agreement.</p>
+<p>13.6 <strong>Misrepresentations.</strong> Under 17 U.S.C. §512(f), a person who knowingly materially misrepresents that material is infringing, or was removed by mistake, may be liable for damages.</p>
+<p>13.7 <strong>Public-Source Content.</strong> This Section 13 applies to Public-Source Content on the Collective Site. Because that content comes from third-party sources rather than from users, we will remove or disable access to an item that is the subject of a valid notice and will not restore it unless we reasonably conclude that it is not infringing.</p>
+</section>
+<section id="section-14">
+<h2>14. Privacy and Cookies</h2>
+<p>Our Privacy Policy at <a href="/privacy-policy">https://celeste7.ai/privacy-policy</a> explains how we collect, use and share personal information through the Sites and the Service, and our Cookie Notice at <a href="/cookies">https://celeste7.ai/cookies</a> explains our use of cookies and similar technologies on the Sites. Where a Customer's Agreement and Data Processing Addendum apply, they govern Company's processing of Customer Data on the Customer's behalf.</p>
+</section>
+<section id="section-15">
+<h2>15. Disclaimers</h2>
+<p>15.1 <strong>"As is."</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SITES, AND ANY ACCESS TO THE SERVICE UNDER SECTION 1.2, ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND. COMPANY AND ITS LICENSORS AND SUPPLIERS DISCLAIM ALL WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, AND ANY WARRANTIES ARISING FROM COURSE OF DEALING OR USAGE OF TRADE. WE DO NOT WARRANT THAT THE SITES OR THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE OR SECURE, THAT DEFECTS WILL BE CORRECTED, OR THAT OUTPUT OR PUBLIC-SOURCE CONTENT (INCLUDING ANY LABEL, WARNING, RANKING OR TALLY) WILL BE ACCURATE OR COMPLETE.</p>
+<p>15.2 <strong>Information only.</strong> Content on the Sites — including product descriptions, feature lists, pricing, security descriptions, articles and Public-Source Content — is general information. It is not legal, regulatory, technical, engineering or operational advice and does not form part of any contract. The Service, its features and its fees are as set out in a signed Agreement.</p>
+<p>15.3 <strong>Maritime decisions.</strong> Nothing on the Sites or in the Service replaces the professional judgment of the Master, officers, crew, operator, classification society, flag State or any other competent authority.</p>
+<p>15.4 <strong>Where an Agreement applies.</strong> This Section 15 does not limit any warranty Company gives a Customer in a signed Agreement.</p>
+</section>
+<section id="section-16">
+<h2>16. Limitation of Liability</h2>
+<p>16.1 <strong>Excluded damages.</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, COMPANY AND ITS AFFILIATES, LICENSORS AND SUPPLIERS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, BUSINESS, GOODWILL OR DATA, OR COSTS OF SUBSTITUTE SERVICES, ARISING OUT OF OR RELATING TO THESE TERMS, THE SITES OR THE SERVICE (INCLUDING ANY USE OF OR RELIANCE ON PUBLIC-SOURCE CONTENT), WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+<p>16.2 <strong>Cap.</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, COMPANY'S TOTAL LIABILITY ARISING OUT OF OR RELATING TO THESE TERMS, THE SITES OR THE SERVICE ACCESSED UNDER SECTION 1.2, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, WILL NOT EXCEED THE GREATER OF (A) USD 100 AND (B) THE AMOUNTS YOU PAID TO COMPANY UNDER THESE TERMS IN THE 12 MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM. MULTIPLE CLAIMS DO NOT ENLARGE THIS LIMIT.</p>
+<p>16.3 <strong>Exceptions.</strong> Some jurisdictions do not allow the exclusion or limitation of certain damages or warranties, so some of the above may not apply to you. Nothing in these Terms limits liability that cannot be limited under applicable law, including liability for fraud, intentional torts, or gross negligence or willful misconduct where the law prohibits its limitation.</p>
+<p>16.4 <strong>Agreement liability.</strong> Where a signed Agreement applies, liability relating to the Service is governed exclusively by that Agreement, and this Section 16 applies only to your use of the Sites.</p>
+<p>16.5 <strong>Basis of the bargain.</strong> These limitations are an essential basis of the bargain between you and Company and apply even if a limited remedy fails of its essential purpose.</p>
+</section>
+<section id="section-17">
+<h2>17. Indemnification</h2>
+<p>17.1 To the extent permitted by law, you will defend, indemnify and hold harmless Company and its affiliates, officers, directors, employees and agents from and against third-party claims, and related losses, damages, liabilities, costs and reasonable attorneys' fees, arising out of (a) Your Content; (b) your breach of these Terms or the Acceptable Use Policy; or (c) your violation of applicable law or any third party's rights.</p>
+<p>17.2 We will give you prompt notice of a claim (although delay does not relieve you of your obligations except to the extent you are prejudiced). We may participate in the defense with counsel of our choice at our own expense, or assume control of the defense at your expense. You may not settle a claim that imposes any obligation or admission on Company without our prior written consent.</p>
+<p>17.3 Where a signed Agreement applies, indemnities relating to the Service are governed by that Agreement.</p>
+</section>
+<section id="section-18">
+<h2>18. Suspension and Termination</h2>
+<p>18.1 <strong>By you.</strong> You may stop using the Sites at any time.</p>
+<p>18.2 <strong>By us.</strong> We may suspend or terminate your access to the Sites or, where Section 1.2 applies, the Service, with or without notice, if we reasonably believe you have breached these Terms or the Acceptable Use Policy, if your use creates a security, legal or operational risk to Company or others, if Section 21 requires it, or if we discontinue the Sites or evaluation access. Where practicable and lawful, we will tell you why.</p>
+<p>18.3 <strong>Agreement access.</strong> Suspension or termination of a Customer's or Authorized User's access to the Service is governed by the Customer's Agreement.</p>
+<p>18.4 <strong>Survival.</strong> Sections 2, 5.2, 6, 7.2 (for the period needed to complete deletion), 7.3, 9, 11.6 to 11.8, 13.6, and 15 through 25 survive termination.</p>
+</section>
+<section id="arbitration">
+<h2>19. Dispute Resolution; Binding Arbitration</h2>
+<p class="lead"><strong>PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR RIGHTS, INCLUDING YOUR RIGHT TO SUE IN COURT AND TO A JURY TRIAL.</strong></p>
+<p>19.1 <strong>Scope; Agreement disputes excluded.</strong> This Section 19 applies to any dispute, claim or controversy between you and Company arising out of or relating to these Terms, the Sites, the Service accessed under Section 1.2, or the Verifier (where the Verifier Terms of Use incorporate this Section 19), including disputes about the formation, interpretation, validity or enforceability of these Terms ("<strong>Dispute</strong>"), whether arising before or after you accepted these Terms. It does not apply to disputes under a signed Agreement, which are resolved as that Agreement provides.</p>
+<p>19.2 <strong>Informal resolution first.</strong> Before starting arbitration or a small-claims action, the party raising a Dispute must send the other a written notice describing the Dispute, the relief sought, and the sender's contact details (and, for you, the email address associated with any account). Notices to Company go to <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> with a copy to 7901 4th St N, #36609, St Petersburg, FL 33702, USA. The parties will try in good faith to resolve the Dispute, including by a telephone or video conference on request, for 60 days after the notice is received. Applicable limitation periods are tolled during that 60-day period.</p>
+<p>19.3 <strong>Agreement to arbitrate.</strong> If the Dispute is not resolved under Section 19.2, you and Company agree that it will be resolved exclusively by final and binding arbitration before a single arbitrator, on an individual basis, except as provided in Section 19.4. This Section 19 is governed by the Federal Arbitration Act, 9 U.S.C. §1 et seq., and, to the extent not inconsistent with it, the Revised Florida Arbitration Code (Fla. Stat. ch. 682).</p>
+<p>19.4 <strong>Exceptions.</strong> Either party may (a) bring an individual action in small-claims court for a Dispute within that court's jurisdiction, for as long as it remains there on an individual basis; and (b) seek injunctive or other equitable relief in court to prevent the actual or threatened infringement, misappropriation or violation of its intellectual-property rights, confidential information or trade secrets, or to stop unauthorized access to or interference with the Sites or the Service.</p>
+<p>19.5 <strong>Rules and forum.</strong> The arbitration will be administered by the American Arbitration Association ("<strong>AAA</strong>") under its Commercial Arbitration Rules, except that if you are an individual and a court or the AAA determines that the AAA Consumer Arbitration Rules apply, those rules apply. The rules are available at www.adr.org. The seat of arbitration is Pinellas County, Florida, unless you are an individual subject to the AAA Consumer Arbitration Rules, in which case any in-person hearing will take place in the county where you reside or another mutually agreed location. The arbitrator may conduct proceedings by video conference or on written submissions. Fees are allocated as the applicable AAA rules provide. The arbitrator may award any individual relief that a court could award, and judgment on the award may be entered in any court of competent jurisdiction.</p>
+<p>19.6 <strong>Authority of the arbitrator.</strong> The arbitrator decides all issues relating to the Dispute, including arbitrability and the scope, validity and enforceability of this Section 19, except that a court of competent jurisdiction decides (a) the validity, enforceability and effect of Section 19.7; (b) whether Section 19.9 has been satisfied or applies; and (c) any dispute about which version of this Section 19 applies.</p>
+<p>19.7 <strong>Class-action and jury-trial waiver.</strong> YOU AND COMPANY EACH KNOWINGLY, VOLUNTARILY AND INTENTIONALLY WAIVE THE RIGHT TO A TRIAL BY JURY IN ANY DISPUTE, INCLUDING ANY DISPUTE THAT PROCEEDS IN COURT UNDER SECTION 19.4, SECTION 19.8 OR SECTION 20. YOU AND COMPANY MAY BRING CLAIMS AGAINST EACH OTHER ONLY IN AN INDIVIDUAL CAPACITY, AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS, COLLECTIVE, CONSOLIDATED OR REPRESENTATIVE PROCEEDING. The arbitrator may not consolidate more than one person's claims (except as provided in Section 19.9) and may award relief only in favor of the individual party seeking it and only to the extent necessary to provide relief warranted by that party's individual claim. If a court finds this Section 19.7 unenforceable as to any claim or form of relief, that claim or relief (and only that claim or relief) will be severed and decided by a court under Section 20, after the arbitration of all other claims is complete, and the court proceeding will be stayed pending the arbitration.</p>
+<p>19.8 <strong>30-day opt-out.</strong> You may opt out of this agreement to arbitrate by sending a written notice to <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> (subject line "Arbitration Opt-Out") within 30 days after you first accept these Terms. The notice must include your name, your organization (if any), the email address associated with your account (if any), and a clear statement that you opt out of arbitration. If you opt out, Section 20 governs Disputes, and all other provisions of these Terms still apply. Opting out of arbitration does not affect any prior or later arbitration agreement you have with Company, including in a signed Agreement.</p>
+<p>19.9 <strong>Mass arbitration.</strong> If 25 or more demands for arbitration that raise substantially similar Disputes are filed against, or on behalf of, Company by or with the assistance of the same or coordinated counsel or entities ("<strong>Mass Filing</strong>"), then, to the extent the AAA Mass Arbitration Supplementary Rules (or successor rules) apply, they govern; and in any event: (a) the AAA will administer the demands in batches of up to 100, with one arbitrator appointed per batch and, to the extent permitted by the applicable rules, one set of administrative fees per batch; (b) the parties will select up to 10 demands as bellwether cases to proceed first, with the remaining demands held in abeyance (and AAA fees for them not assessed) until the bellwether cases are decided; (c) the parties will then mediate the remaining demands in good faith for at least 60 days before further arbitrations proceed; and (d) applicable limitation periods are tolled for each claimant from the date its pre-arbitration notice under Section 19.2 is received until its demand is resolved. A court has authority to enforce this Section 19.9 and, if necessary, to enjoin the filing or prosecution of demands that do not comply with it.</p>
+<p>19.10 <strong>Changes to this Section.</strong> If Company makes a material change to this Section 19, we will give you at least 30 days' notice. The change will not apply to any Dispute of which Company had notice before the change took effect. You may reject the change by sending notice to <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> within 30 days after the change takes effect, in which case the previous version of this Section 19 continues to apply to you.</p>
+<p>19.11 <strong>Severability.</strong> Except as provided in Section 19.7, if any part of this Section 19 is found unenforceable, that part will be severed and the rest of this Section 19 remains in effect.</p>
+<p>19.12 <strong>Confidentiality.</strong> Except as needed to enforce an award or as required by law, the parties will keep the arbitration proceedings and award confidential.</p>
+</section>
+<section id="governing-law">
+<h2>20. Governing Law and Venue</h2>
+<p>These Terms, and any Dispute, are governed by the laws of the State of Florida and applicable US federal law, without regard to conflict-of-laws rules. The United Nations Convention on Contracts for the International Sale of Goods does not apply. For any Dispute not subject to arbitration under Section 19 (including where you opt out), you and Company consent to the exclusive jurisdiction and venue of the state courts located in Pinellas County, Florida, and the United States District Court for the Middle District of Florida, Tampa Division (where it has subject-matter jurisdiction), except that either party may seek relief under Section 19.4(b) in any court of competent jurisdiction.</p>
+</section>
+<section id="section-21">
+<h2>21. Export Controls and Sanctions</h2>
+<p>21.1 <strong>Export controls.</strong> The Sites and the Service may be subject to US export-control laws, including the Export Administration Regulations, and to the export laws of other countries. You will not export, re-export or transfer them, or any related technical data, in violation of those laws.</p>
+<p>21.2 <strong>Sanctions.</strong> You represent and warrant that (a) you are not, and are not owned 50% or more (individually or in the aggregate), or controlled by, or acting on behalf of, any person identified on a US government restricted-party list (including the Specially Designated Nationals and Blocked Persons List maintained by the US Department of the Treasury's Office of Foreign Assets Control ("<strong>OFAC</strong>")) or on an equivalent list maintained by the United Nations, the European Union or the United Kingdom; (b) you are not located, organized or ordinarily resident in a country or region subject to comprehensive US sanctions; and (c) you will not use the Sites or the Service in connection with any Vessel that is blocked property or is identified on any such list, or for the benefit of any person described in clause (a), or otherwise in violation of US, UN, EU or UK sanctions law.</p>
+<p>21.3 <strong>Consequences.</strong> We may immediately suspend or terminate access, without liability, if we reasonably believe Section 21.2 is or will be breached, and we may take any action required by law, including blocking or reporting property or transactions.</p>
+</section>
+<section id="section-22">
+<h2>22. Changes to These Terms</h2>
+<p>22.1 We may update these Terms from time to time. The current version, with its version number and effective date, is always available on the Sites.</p>
+<p>22.2 If we make a material change, we will give reasonable advance notice — for example, by posting a notice on the Sites, by an in-app notice, or by email to the address associated with your account — and, where you have an account, we will ask you to accept the updated Terms. Changes take effect on the date stated in the notice, which will be at least 14 days after the notice except where a shorter period is required for legal, security or regulatory reasons. Changes do not apply retroactively.</p>
+<p>22.3 If you do not agree to an updated version, you must stop using the Sites and the Service under these Terms. Section 19.10 governs changes to Section 19.</p>
+<p>22.4 Changes to these Terms never amend a signed Agreement; an Agreement can only be amended as it provides.</p>
+</section>
+<section id="section-23">
+<h2>23. State-Specific Notices</h2>
+<p>23.1 <strong>California.</strong> Under California Civil Code §1789.3, California users are entitled to the following notice: the provider of the Sites is CelesteOS LLC, 7901 4th St N, #36609, St Petersburg, FL 33702, USA. You may contact us at <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>. The Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs may be contacted in writing at 1625 North Market Blvd., Suite N 112, Sacramento, CA 95834, or by telephone at (800) 952-5210.</p>
+<p>23.2 <strong>Privacy rights.</strong> Residents of California and other US states with comprehensive privacy laws may have rights regarding their personal information. Our Privacy Policy explains those rights and how to exercise them.</p>
+</section>
+<section id="section-24">
+<h2>24. General</h2>
+<p>24.1 <strong>Electronic communications.</strong> You consent to receive communications from us electronically, including by email and by notices on the Sites or in the Service, and agree that they satisfy any requirement that communications be in writing. Electronic signatures and click-through acceptance are valid under the federal ESIGN Act and applicable state law (including Florida's Uniform Electronic Transaction Act, Fla. Stat. §668.50).</p>
+<p>24.2 <strong>Entire agreement.</strong> These Terms, the Acceptable Use Policy, and any terms or policies expressly incorporated by reference are the entire agreement between you and Company about their subject matter, subject to Section 1.3.</p>
+<p>24.3 <strong>Assignment.</strong> You may not assign or transfer these Terms without our prior written consent. We may assign these Terms in connection with a merger, acquisition, reorganization or sale of all or substantially all of our assets or business, or to an affiliate.</p>
+<p>24.4 <strong>Severability; waiver.</strong> If a provision of these Terms is held unenforceable, it will be enforced to the maximum extent permissible and the rest of these Terms remain in effect (subject to Section 19.7). A failure to enforce a provision is not a waiver.</p>
+<p>24.5 <strong>Force majeure.</strong> We are not liable for delay or failure to perform caused by events beyond our reasonable control.</p>
+<p>24.6 <strong>No third-party beneficiaries.</strong> These Terms do not create rights in any third party, except that the persons indemnified under Section 17 may enforce it.</p>
+<p>24.7 <strong>Relationship.</strong> Nothing in these Terms creates a partnership, joint venture, employment or agency relationship.</p>
+<p>24.8 <strong>Interpretation.</strong> Headings are for convenience only. "Including" means "including without limitation." If these Terms are translated, the English version controls.</p>
+<p>24.9 <strong>Accessibility.</strong> We want the Sites to be usable by everyone. If you have difficulty accessing any part of the Sites, please contact <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> and we will work with you to provide the information in another way.</p>
+</section>
 <section id="contact">
-  <h2>12. Contact</h2>
-  <p>Questions, comments and requests regarding these Terms or the Website may be addressed to:</p>
-  <p>Celeste7 LTD · Registered office: 7 Vindex Close, Lincoln, England, LN1 1AH · Operating address: Miami, Florida, USA<br>
-  Email: <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> · Telephone: +1 (305) 645-5690 · Website: celeste7.ai</p>
+<h2>25. Contact</h2>
+<p>CelesteOS LLC<br>
+7901 4th St N, #36609, St Petersburg, FL 33702, USA<br>
+General and notices: <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a><br>
+Legal and arbitration notices: <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a><br>
+Privacy: <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a><br>
+Security and vulnerability reports: <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> (subject line "Security")<br>
+Copyright agent: see Section 13.2</p>
 </section>
 
+<div class="doc-foot">
+<p>Version 1.0 — effective October 15, 2026.</p>
+<p>Portions of this document are derived from the Website Terms of Use template prepared and made publicly available by General Legal, PC ("General Legal") under CC0. General Legal has not reviewed, and takes no position on, this document or the modifications made to it.</p>
+</div>
+</main>
 
 <!-- ═══ CelesteOS site footer (canonical, self-contained) ═══ -->
 <style>
@@ -251,10 +402,11 @@
       <div>
         <div class="c7f-h">Legal</div>
         <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms-of-service">Terms of Service</a>
-        <a href="/privacy-policy#cookies">Cookies</a>
-        <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
-        <!-- TODO(legal): Privacy Policy (doc 07), Terms (doc 08) and Cookie Notice (doc 10) publication pending; links point to the current pages until then. -->
+        <a href="/terms-of-service">Terms of Use</a>
+        <a href="/cookies">Cookie Notice</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+        <a href="/subprocessors">Sub-processors</a>
+        <a href="/cookies" data-privacy-choices>Your Privacy Choices</a>
         <a href="/trust">Regulatory mapping</a>
         <a href="/sources">Sources &amp; claims</a>
       </div>
@@ -270,10 +422,13 @@
         <span class="c7f-word">CelesteOS</span>
       </div>
       <div class="c7f-legal">
-        <span>© 2026 Celeste7 LTD</span>
+        <span>© 2026 CelesteOS LLC</span>
         <a href="/privacy-policy">Privacy</a>
         <a href="/terms-of-service">Terms</a>
-        <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
+        <a href="/cookies">Cookies</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+        <a href="/subprocessors">Sub-processors</a>
+        <a href="/cookies" data-privacy-choices>Your Privacy Choices</a>
         <a href="/trust">Trust</a>
         <a href="/sources">Sources</a>
       </div>
