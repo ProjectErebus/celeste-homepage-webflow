@@ -21,7 +21,7 @@ import { readFileSync, existsSync, appendFileSync, mkdtempSync, rmSync } from 'n
 import { join } from 'node:path';
 import { tmpdir, homedir } from 'node:os';
 
-const REPO   = 'https://github.com/shortalex12333/celeste-homepage-webflow';
+const REPO   = 'https://github.com/ProjectErebus/celeste-homepage-webflow';
 const NTFY    = 'https://ntfy.sh/myi2-alerts-a9eb492b17a2b8db';
 const HOME    = join(homedir(), '.celeste-content-engine');
 const QUEUE   = join(HOME, 'queue.json');
@@ -71,7 +71,7 @@ async function main(){
   // Slugs that already have an OPEN engine PR — skip them so a duplicate is never drafted.
   const openPrSlugs = new Set();
   try {
-    const raw = sh('gh', ['pr', 'list', '--repo', 'shortalex12333/celeste-homepage-webflow', '--state', 'open', '--json', 'headRefName', '--jq', '.[].headRefName'], dir, 30000);
+    const raw = sh('gh', ['pr', 'list', '--repo', 'ProjectErebus/celeste-homepage-webflow', '--state', 'open', '--json', 'headRefName', '--jq', '.[].headRefName'], dir, 30000);
     for (const b of raw.split('\n')) {
       const m = b.trim().match(/^engine\/(.+)-\d{4}-\d{2}-\d{2}$/);
       if (m) openPrSlugs.add(m[1]);
@@ -123,7 +123,7 @@ async function main(){
     sh('git', ['add', 'blogs', 'images'], dir);  // sitemap regenerated on main above — never in the PR
     sh('git', ['-c', 'user.name=CelesteOS Content Engine', '-c', 'user.email=dev@celeste7.ai', 'commit', '-m', `content: ${item.canonicalSlug} — "${item.keyword}" (engine, gate-clean)`], dir);
     sh('git', ['push', '-u', 'origin', branch], dir, 60000);
-    const pr = sh('gh', ['pr', 'create', '--repo', 'shortalex12333/celeste-homepage-webflow', '--base', 'main', '--head', branch,
+    const pr = sh('gh', ['pr', 'create', '--repo', 'ProjectErebus/celeste-homepage-webflow', '--base', 'main', '--head', branch,
       '--title', `content: ${item.canonicalSlug} (engine, gate-clean) — review + merge`,
       '--body', `Auto-drafted by the twice-weekly content engine, gate-clean (truth + brand + structure), ${item.refresh ? 'refreshes the trusted /blogs/' + item.refresh + ' URL' : 'new post'} for "${item.keyword}".\n\nReview the writing, then merge to publish. Nothing is live until you merge.`], dir, 60000).trim();
     log(`PR: ${pr}`);

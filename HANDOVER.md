@@ -12,7 +12,7 @@ It's a **static site originally exported from Webflow** and then hand-edited. Th
 
 - **Production URL:** https://celeste7.ai
 - **Hosting:** Vercel (auto-deploys every push to `main`)
-- **GitHub:** https://github.com/shortalex12333/celeste-homepage-webflow
+- **GitHub:** https://github.com/ProjectErebus/celeste-homepage-webflow
 - **Stack:** static HTML + CSS + a small amount of vanilla JS. No build step. No framework. No npm install needed to make a copy edit.
 
 ---
