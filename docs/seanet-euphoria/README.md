@@ -19,8 +19,10 @@ safely.
 | `middleware.ts` | Serves these pages when `SEANET_VISIBLE=true`; `/seanet` redirects to `/seanet-euphoria`; the retired `/seanet-overview`, `/seanet-proposal`, `/seanet-security` return 404. |
 | `tests/journeys/seanet-euphoria.spec.js` | Contract test: structure, copy, layouts, accessibility names, deck focus, phone layout. |
 
-There is no build step. Animations are inline SVG on purpose: the JS sequences them and they read
-the colour tokens from the stylesheet, which external SVG files (`<img>`, `<object>`) cannot do.
+There is no build step. Animations are inline SVG on purpose: the JS sequences them, and inline
+SVG can read the stylesheet's colour tokens, which external SVG files (`<img>`, `<object>`) cannot.
+Token use is partial today: the drawings carried over from the original SeaNet proposal use
+`var(--teal-accent)` / `var(--tx*)`, while the sequenced drawings still hold raw colour values.
 
 ## Proposal sections
 
@@ -50,9 +52,12 @@ measures (14), the "alongside" block (15), terms rows (16), signature close (17)
   vertical, warranty and handover stack their panels, "Over time" splits into its two halves).
   Edit both copies together.
 - **Reduced motion.** The JS shows every animation at its finished frame and pauses it, never at
-  its first frame.
-- **Shared with the deck.** The warranty, handover, verifier and fleet-view drawings also appear in
-  the overview deck. A change to one should be copied to its twin.
+  its first frame. Short pulse loops (breathing dots, marching dashes) are replaced by their resting
+  state so nothing freezes mid-pulse.
+- **Shared with the deck.** The warranty, handover, verifier and fleet-view drawings (and their
+  phone versions) also appear in the overview deck. A change to one must be copied to its twin.
+- **Phone copies that show part of a wider drawing** carry the `clip` class so the rest of the
+  drawing does not spill in (section 05).
 
 ## Copy rules (founder)
 

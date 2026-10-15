@@ -61,19 +61,18 @@ test.describe('seanet-euphoria · proposal structure', () => {
     }
   });
 
-  test('04 and 13 use their own layouts, not the shared fact list', async ({ page }) => {
+  test('04, 11 and 13 do not fall back to the shared fact list', async ({ page }) => {
     await page.goto(PROPOSAL);
     await expect(page.locator('#onboarding .night-sheet')).toHaveCount(1);
-    await expect(page.locator('#onboarding .facts')).toHaveCount(0);
     await expect(page.locator('#security .access-record')).toHaveCount(1);
-    await expect(page.locator('#security .facts')).toHaveCount(0);
+    for (const id of ['onboarding', 'ism', 'security']) await expect(page.locator(`#${id} .facts`), `#${id}`).toHaveCount(0);
     await expect(page.locator('#security .access-record-link')).toHaveAttribute('href', '/seanet-security-companion');
   });
 
   test('security keeps every commitment', async ({ page }) => {
     await page.goto(PROPOSAL);
     const text = await page.locator('#security').innerText();
-    for (const fact of [/Approved crew only/i, /Microsoft 365/i, /second device/i, /never sees the password/i, /server/i, /database/i, /Encrypted/i, /backed up daily/i, /30 days/i, /never trains AI/i]) {
+    for (const fact of [/Approved crew only/i, /Microsoft 365/i, /second device/i, /never sees the password/i, /Set by the server/i, /database/i, /Encrypted in transit and at rest/i, /backed up daily/i, /30 days/i, /never trains AI/i]) {
       expect(text, String(fact)).toMatch(fact);
     }
   });
@@ -85,12 +84,24 @@ test.describe('seanet-euphoria · proposal structure', () => {
   });
 });
 
+// Hedging the founder has ruled out, checked in visible text, SVG text and accessible names.
+const HEDGES = [/\babout\b/i, /\bmay\b/i, /\bmight\b/i, /\btypically\b/i, /\bapproximately\b/i];
+
 test.describe('seanet-euphoria · copy', () => {
   for (const path of [LANDING, DECK, PROPOSAL]) {
-    test(`no retired copy on ${path}`, async ({ page }) => {
+    test(`no retired copy or hedging on ${path}`, async ({ page }) => {
       await page.goto(path);
       const html = await page.content();
       for (const re of RETIRED_COPY) expect(html, String(re)).not.toMatch(re);
+      const words = await page.evaluate(() => {
+        const main = document.querySelector('main, body');
+        const labels = Array.from(document.querySelectorAll('[aria-label]')).map((e) => e.getAttribute('aria-label'));
+        const svgText = Array.from(document.querySelectorAll('svg text')).map((t) => t.textContent);
+        const gate = document.getElementById('seanet-gate');
+        const body = main.innerText.replace(gate ? gate.innerText : '', '');
+        return [body, ...labels, ...svgText].join('\n');
+      });
+      for (const re of HEDGES) expect(words, String(re)).not.toMatch(re);
     });
   }
 });
@@ -107,8 +118,35 @@ test.describe('seanet-euphoria · deck', () => {
   });
 });
 
+test.describe('seanet-euphoria · reduced motion', () => {
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
+
+  test('animations rest on their finished frame', async ({ page }) => {
+    await page.goto(PROPOSAL);
+    // The plan timeline's last step ("Review") is lit, not dimmed.
+    // (The frame is set at the load event; poll until the first animation sample lands.)
+    const review = page.locator('#summary svg.only-wide text').filter({ hasText: 'Review' });
+    await expect.poll(() => review.evaluate((t) => parseFloat(getComputedStyle(t).opacity))).toBeGreaterThan(0.95);
+    // Breathing dots are not frozen mid-pulse.
+    const dots = await page.locator('#security svg.only-wide circle').evaluateAll((cs) => cs.map((c) => parseFloat(getComputedStyle(c).fillOpacity)));
+    dots.forEach((o) => expect(o).toBeGreaterThan(0.95));
+    // Sequenced drawings show their final layer.
+    const claim = await page.locator('#warranty svg.only-wide g[data-in="0.62"]').getAttribute('opacity');
+    expect(claim).toBe('1');
+  });
+});
+
 test.describe('seanet-euphoria · phone layout', () => {
   test.use({ viewport: { width: 390, height: 844 } });
+
+  test('deck animations swap to phone versions', async ({ page }) => {
+    await page.goto(DECK);
+    const wideShown = await page.locator('svg.only-wide').evaluateAll((els) => els.filter((e) => getComputedStyle(e).display !== 'none').length);
+    expect(wideShown).toBe(0);
+    for (const n of [2, 3, 4, 5, 6, 7, 8, 9]) {
+      await expect(page.locator(`#slide-${n} svg.only-narrow`), `slide ${n}`).toHaveCount(1);
+    }
+  });
 
   test('proposal has no horizontal scroll and swaps to phone animations', async ({ page }) => {
     await page.goto(PROPOSAL);

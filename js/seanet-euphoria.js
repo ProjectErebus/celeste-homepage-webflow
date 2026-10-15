@@ -1,24 +1,30 @@
 /* SeaNet · M/Y Euphoria pages.
    1. Sequenced SVG animations: any element inside svg.anim with data-in="0.2" fades in at 20% of the
       svg's data-dur cycle and out at data-out (default 0.94). SVGs without data-in carry their own SMIL.
-      Reduced motion: every animation is shown at its terminal frame and paused, never its first frame.
+      Reduced motion: every animation is shown at its finished frame and paused, never its first frame;
+      short pulse loops (dots, marching dashes) are removed so their elements rest at full value.
    2. initDeck(): slide navigation (buttons, arrow keys, swipe, #n deep links) for the overview deck.
    3. initDoc(): scroll progress, current-section label and restart-on-view for the technical proposal. */
 
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var TERMINAL = 0.88;         // point in the cycle treated as the finished frame (before any loop resets)
+  var TERMINAL = 0.92;         // point in the cycle treated as the finished frame (before the 0.94 resets)
   var DEFAULT_DUR = 9;         // seconds, when an svg has no data-dur
   var DEFAULT_OUT = 0.94;
 
-  // Cycle length: data-dur for sequenced SVGs, otherwise the longest SMIL animation inside.
+  // A pulse is a loop with no keyTimes (dots breathing, dashes marching); a reveal has keyTimes.
+  function isPulse(an) {
+    return an.getAttribute('repeatCount') === 'indefinite' && !an.hasAttribute('keyTimes');
+  }
+
+  // Cycle length: data-dur for sequenced SVGs, otherwise the longest reveal animation inside.
   function cycleSeconds(svg) {
     if (svg.hasAttribute('data-dur')) return parseFloat(svg.getAttribute('data-dur'));
     var longest = 0;
     svg.querySelectorAll('animate, animateMotion, animateTransform').forEach(function (an) {
       var d = parseFloat(an.getAttribute('dur'));
-      if (d > longest) longest = d;
+      if (!isPulse(an) && d > longest) longest = d;
     });
     return longest || DEFAULT_DUR;
   }
@@ -44,9 +50,26 @@
       an.setAttribute('keyTimes', '0;' + a + ';' + b + ';' + o + ';' + gone + (gone < 1 ? ';1' : ''));
       el.appendChild(an);
     });
-    if (reduce && svg.pauseAnimations) {
-      if (svg.setCurrentTime) svg.setCurrentTime(seconds * TERMINAL);
-      svg.pauseAnimations();
+    if (reduce) {
+      // Replace each pulse with its end state so nothing freezes mid-pulse: a draw (values a;…;z with
+      // a ≠ z, or from/to) rests at its last value; a breathing loop (a;…;a) rests at its drawn value.
+      svg.querySelectorAll('animate').forEach(function (an) {
+        if (!isPulse(an)) return;
+        var attr = an.getAttribute('attributeName');
+        var vals = (an.getAttribute('values') || '').split(';');
+        var end = an.getAttribute('to') || (vals.length > 1 && vals[0] !== vals[vals.length - 1] ? vals[vals.length - 1] : null);
+        if (attr && end !== null) an.parentNode.setAttribute(attr, end.trim());
+        an.parentNode.removeChild(an);
+      });
+      svg.querySelectorAll('animateMotion, animateTransform').forEach(function (an) {
+        if (isPulse(an)) an.parentNode.removeChild(an);
+      });
+      // An SVG's timeline starts at document load and would reset an earlier seek, so seek after load.
+      var settle = function () {
+        if (svg.setCurrentTime) svg.setCurrentTime(seconds * TERMINAL);
+        if (svg.pauseAnimations) svg.pauseAnimations();
+      };
+      if (document.readyState === 'complete') settle(); else window.addEventListener('load', settle);
     }
   }
 
@@ -87,8 +110,10 @@
 
     window.addEventListener('keydown', function (e) {
       if (document.getElementById('seanet-gate').style.display !== 'none') return;
-      // Let focused controls keep their own keys (Space presses a button, it does not turn the slide).
-      if (e.target && e.target.closest && e.target.closest('a, button, input, textarea, select, summary')) return;
+      var target = e.target && e.target.closest ? e.target : null;
+      // Typing fields keep every key. Links and buttons keep Space and Enter; arrows still turn the slide.
+      if (target && target.closest('input, textarea, select')) return;
+      if (target && (e.key === ' ' || e.key === 'Enter') && target.closest('a, button, summary')) return;
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(1); }
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
     });
