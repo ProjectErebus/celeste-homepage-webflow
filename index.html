@@ -42,24 +42,8 @@
     }
   }
   </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17947526022"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    // Consent Mode v2: default DENY non-essential until the user accepts (PECR/ePrivacy).
-    gtag('consent', 'default', {
-      ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
-      analytics_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted',
-      wait_for_update: 500
-    });
-
-    gtag('config', 'AW-17947526022');
-
-    gtag('config', 'G-230QN4JY4P');
-  </script>
-  <script defer src="/js/cookie-consent.js"></script>
+  <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
+  <script src="/js/cookie-consent.js"></script>
   <link rel="stylesheet" href="landing-v12.css?v=mom1">
 </head>
 <body>
@@ -1378,6 +1362,9 @@
           <div class="fcol-h">Legal</div>
           <a href="/privacy-policy">Privacy Policy</a>
           <a href="/terms-of-service">Terms of Service</a>
+          <a href="/privacy-policy#cookies">Cookies</a>
+          <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
+          <!-- TODO(legal): Privacy Policy (doc 07), Terms (doc 08) and Cookie Notice (doc 10) publication pending; links point to the current pages until then. -->
           <a href="/trust">Regulatory mapping</a>
           <a href="/sources">Sources &amp; claims</a>
         </div>
@@ -1393,6 +1380,7 @@
           <span>© 2026 Celeste7 LTD</span>
           <a href="/privacy-policy">Privacy</a>
         <a href="/terms-of-service">Terms</a>
+        <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
           <a href="/trust">Trust</a>
           <a href="/sources">Sources</a>
         </div>
@@ -1413,8 +1401,9 @@
     function track(name, props) {
       var ev = { e: name, p: props || {}, t: Date.now() };
       window.__celesteDebug.events.push(ev);
-      /* GA4: the page's event taxonomy flows into the existing gtag (G-230QN4JY4P).
-         Consent Mode v2 already gates storage; pre-consent these are cookieless pings. */
+      /* GA4: the page's event taxonomy flows into gtag (G-230QN4JY4P). gtag here is the consent
+         manager's dataLayer queue (/js/cookie-consent.js); nothing leaves the browser unless the
+         visitor opts in to analytics, which is when gtag.js is first fetched. */
       try { if (typeof gtag === 'function') { gtag('event', name, props || {}); } } catch (err) {}
       if (EVENTS_ENDPOINT && navigator.sendBeacon) {
         try { navigator.sendBeacon(EVENTS_ENDPOINT, JSON.stringify(ev)); } catch (err) {}

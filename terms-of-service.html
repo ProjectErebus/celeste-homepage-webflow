@@ -34,7 +34,8 @@
   .toc a { display: block; padding: 0.18rem 0; opacity: 0.78; text-decoration: none; }
   .toc a:hover { opacity: 1; text-decoration: underline; }
 </style>
-    <script defer src="/js/cookie-consent.js"></script>
+    <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
+    <script src="/js/cookie-consent.js"></script>
   </head>
 <body>
 <!-- ═══ CelesteOS site header (canonical, self-contained) ═══ -->
@@ -251,6 +252,9 @@
         <div class="c7f-h">Legal</div>
         <a href="/privacy-policy">Privacy Policy</a>
         <a href="/terms-of-service">Terms of Service</a>
+        <a href="/privacy-policy#cookies">Cookies</a>
+        <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
+        <!-- TODO(legal): Privacy Policy (doc 07), Terms (doc 08) and Cookie Notice (doc 10) publication pending; links point to the current pages until then. -->
         <a href="/trust">Regulatory mapping</a>
         <a href="/sources">Sources &amp; claims</a>
       </div>
@@ -269,6 +273,7 @@
         <span>© 2026 Celeste7 LTD</span>
         <a href="/privacy-policy">Privacy</a>
         <a href="/terms-of-service">Terms</a>
+        <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
         <a href="/trust">Trust</a>
         <a href="/sources">Sources</a>
       </div>
