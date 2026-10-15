@@ -115,6 +115,11 @@
     { "source": "/prototypes/show-related", "destination": "/410.html", "statusCode": 410 },
     { "source": "/prototypes/show-related.html", "destination": "/410.html", "statusCode": 410 },
     { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
-    { "source": "/dataterms", "destination": "/privacy-policy", "permanent": true }
+    { "source": "/dataterms", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/terms", "destination": "/terms-of-service", "permanent": true },
+    { "source": "/cookie-policy", "destination": "/cookies", "permanent": true },
+    { "source": "/cookie-notice", "destination": "/cookies", "permanent": true },
+    { "source": "/acceptable-use-policy", "destination": "/acceptable-use", "permanent": true },
+    { "source": "/sub-processors", "destination": "/subprocessors", "permanent": true }
   ]
 }

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sub-processors · CelesteOS</title>
+<meta name="description" content="The sub-processors CelesteOS LLC uses to provide the CelesteOS service, by role and location, and how to subscribe to change notices.">
+<meta name="robots" content="index, follow">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link rel="canonical" href="https://celeste7.ai/subprocessors">
+<link href="css/normalize.css" rel="stylesheet" type="text/css">
+<link href="css/webflow.css" rel="stylesheet" type="text/css">
+<link href="css/celeste7homepage.webflow.css" rel="stylesheet" type="text/css">
+<link href="css/hp-tokens.css" rel="stylesheet" type="text/css">
+<link rel="icon" href="favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+<script type="text/javascript">WebFont.load({ google: { families: ["DM Sans:300,400,500", "IBM Plex Mono:400,500,600"] }});</script>
+<style>
+  /* Brand display face — Eloquia Display (bundled WOFF2), per celeste-brand-typography */
+  @font-face { font-family: 'Eloquia Display'; src: url('fonts/Eloquia-Display-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Eloquia Display'; src: url('fonts/Eloquia-Display-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+  body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; max-width: 880px; margin: 0 auto; padding: 4rem 2rem 6rem; line-height: 1.65; }
+  h1 { font-family: 'Eloquia Display', system-ui, sans-serif; font-size: clamp(2.2rem, 4.4vw, 3rem); font-weight: 300; letter-spacing: -0.012em; margin: 0 0 0.4rem; }
+  .effective { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em; opacity: 0.6; margin-bottom: 2.4rem; }
+  h2 { font-family: 'Eloquia Display', system-ui, sans-serif; font-size: 1.4rem; font-weight: 400; margin: 2.6rem 0 0.8rem; letter-spacing: -0.005em; }
+  h3 { font-size: 1.02rem; font-weight: 600; margin: 1.4rem 0 0.5rem; }
+  p { margin: 0.4rem 0 1rem; opacity: 0.9; }
+  ul { padding-left: 1.3rem; }
+  li { margin-bottom: 0.4rem; opacity: 0.9; }
+  a { color: inherit; }
+  .toc { background: rgba(127,127,127,0.05); border-left: 2px solid currentColor; padding: 1rem 1.2rem; margin: 1.5rem 0 3rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.86rem; }
+  .toc a { display: block; padding: 0.18rem 0; opacity: 0.78; text-decoration: none; }
+  .toc a:hover { opacity: 1; text-decoration: underline; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.6rem 0.7rem; border-bottom: 1px solid rgba(127,127,127,0.18); vertical-align: top; }
+  th { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; font-weight: 500; }
+
+  /* Legal documents (CelesteOS LLC, US) */
+  .legal { overflow-wrap: anywhere; }
+  .legal h2 { scroll-margin-top: 72px; }
+  .legal section { scroll-margin-top: 72px; }
+  .doc-meta { margin: 0 0 2rem; padding: 0; font-size: 0.92rem; }
+  .doc-meta div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 0.2rem 1rem; padding: 0.35rem 0; border-bottom: 1px solid rgba(127,127,127,0.14); }
+  .doc-meta dt { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; padding-top: 0.2rem; }
+  .doc-meta dd { margin: 0; opacity: 0.9; }
+  @media (max-width: 600px) { .doc-meta div { grid-template-columns: 1fr; } }
+  .legal p.lead { border-left: 2px solid #5AABCC; padding: 0.2rem 0 0.2rem 1rem; }
+  .callout { background: rgba(127,127,127,0.06); border-left: 2px solid currentColor; padding: 0.8rem 1.1rem; margin: 0.6rem 0 1.2rem; }
+  .callout p { margin: 0; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.86em; background: rgba(127,127,127,0.1); padding: 0.05em 0.3em; border-radius: 3px; }
+  .tbl { margin: 1rem 0 1.5rem; }
+  .tbl table { margin: 0; }
+  .doc-foot { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(127,127,127,0.18); font-size: 0.8rem; opacity: 0.7; }
+  @media (max-width: 700px) {
+    body { padding-left: 16px; padding-right: 16px; }
+    .tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .tbl table, .tbl tbody, .tbl tr, .tbl td { display: block; width: 100%; }
+    .tbl tr { border-bottom: 1px solid rgba(127,127,127,0.25); padding: 0.5rem 0; }
+    .tbl td { border: 0; padding: 0.25rem 0; }
+    .tbl td::before { content: attr(data-label); display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
+  }
+</style>
+    <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
+    <script src="/js/cookie-consent.js"></script>
+  </head>
+<body>
+<!-- ═══ CelesteOS site header (canonical, self-contained) ═══ -->
+<style>
+  .c7bar { position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; justify-content: space-between; align-items: center;
+    padding: 1.05rem max(2rem, calc((100% - 1140px) / 2 + 2rem));
+    background: rgba(12, 11, 10, 0.88); -webkit-backdrop-filter: blur(14px) saturate(1.05); backdrop-filter: blur(14px) saturate(1.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+  .c7bar-mark { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.78rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255, 255, 255, 0.55); text-decoration: none; }
+  .c7bar-tag { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.62rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); border-left: 1px solid rgba(255,255,255,0.18);
+    padding-left: 12px; margin-left: 12px; margin-right: auto; white-space: nowrap; }
+  @media (max-width: 600px) { .c7bar-tag { display: none; } }
+  .c7bar-nav { display: flex; gap: 2rem; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase; }
+  .c7bar-nav a { color: rgba(255, 255, 255, 0.55); text-decoration: none; transition: color 0.2s ease; }
+  .c7bar-nav a:hover { color: #5AABCC; }
+  @media (max-width: 600px) { .c7bar-nav { flex-wrap: wrap; gap: 0.7rem 1rem; justify-content: flex-end; }
+    .c7bar-nav a { font-size: 0.6rem; } }
+</style>
+<header class="c7bar">
+  <a class="c7bar-mark" href="/">CelesteOS</a>
+  <span class="c7bar-tag">Yacht PMS</span>
+  <nav class="c7bar-nav">
+    <a href="/#how">How it works</a>
+    <a href="/#handover">Product</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/blogs">Blogs</a>
+    <a href="/trust">Trust</a>
+    <a href="mailto:contact@celeste7.ai">Contact</a>
+  </nav>
+</header>
+<div class="c7bar-spacer" style="height: 53px;"></div>
+
+<main class="legal">
+<h1>Sub-processor List</h1>
+<div class="effective">Last updated: October 15, 2026</div>
+<dl class="doc-meta">
+<div><dt>Version</dt><dd>1.0</dd></div>
+</dl>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#section-1">1. About This List</a>
+  <a href="#part-a">2. Part A — Sub-processors by Role (Public)</a>
+  <a href="#changes">3. Changes to Sub-processors</a>
+  <a href="#subscribe">4. Subscribe for Updates</a>
+</nav>
+
+<section id="section-1">
+<h2>1. About This List</h2>
+<p>1.1 <strong>Who this list is for.</strong> CelesteOS LLC ("<strong>Company</strong>") provides the CelesteOS service (the "<strong>Service</strong>") to business customers ("<strong>Customers</strong>"). When Company processes personal data contained in a Customer's data, it does so as the Customer's processor or service provider. A "<strong>Sub-processor</strong>" is a third party that Company engages to process that personal data. Third-party AI model providers used by the Service are Sub-processors.</p>
+<p>1.2 <strong>Two parts.</strong> This list has two parts:</p>
+<ul>
+<li><strong>Part A</strong> (public) describes Sub-processors by role and location.</li>
+<li><strong>Part B</strong> (named) identifies each Sub-processor. It forms Annex III of the Data Processing Addendum and is provided to Customers under that Addendum, and to prospective customers under a non-disclosure agreement.</li>
+</ul>
+<p>1.3 <strong>Where data is stored.</strong> The Service's primary hosting (database, authentication, file storage and encrypted backups) is in <strong>Germany</strong>. Data is also processed in the <strong>United States</strong> and through global networks, including for the edge network through which all App traffic passes, the session-security cache and the AI features. Company is a US entity.</p>
+</section>
+<section id="part-a">
+<h2>2. Part A — Sub-processors by Role (Public)</h2>
+<div class="tbl"><table>
+<thead><tr><th>Role</th><th>Location</th><th>Personal data involved</th></tr></thead>
+<tbody>
+<tr><td data-label="Role">Primary hosting, database, authentication, file storage, encrypted backups</td><td data-label="Location">Germany (EU)</td><td data-label="Personal data involved">All Customer data</td></tr>
+<tr><td data-label="Role">Web application hosting and edge network (all App traffic is routed through it)</td><td data-label="Location">United States / global edge</td><td data-label="Personal data involved">All App traffic in transit</td></tr>
+<tr><td data-label="Role">DNS and TLS-terminating network proxy for API and sign-in services</td><td data-label="Location">Global</td><td data-label="Personal data involved">API and sign-in traffic in transit; IP addresses</td></tr>
+<tr><td data-label="Role">Session-security cache (sign-in lockouts, session revocation, short-lived caches)</td><td data-label="Location">United States</td><td data-label="Personal data involved">Token identifiers, counters, short-lived cached data</td></tr>
+<tr><td data-label="Role">AI model providers (search and answers, document classification and extraction, text recognition, search ranking)</td><td data-label="Location">United States (one provider's processing region is under vendor confirmation)</td><td data-label="Personal data involved">Record and document text and search context. Names are not removed before processing</td></tr>
+<tr><td data-label="Role">Text recognition (OCR) for scanned documents</td><td data-label="Location">United States / global (Google Cloud)</td><td data-label="Personal data involved">Page images, processed in memory and not stored by the provider</td></tr>
+<tr><td data-label="Role">Sign-in and transactional email: "Sign in with Microsoft", sign-in verification, and password-reset, verification-code and account-notice emails sent from an email account we control</td><td data-label="Location">Global</td><td data-label="Personal data involved">Identity details (name, email address, account identifiers); content of transactional emails</td></tr>
+<tr><td data-label="Role">Error monitoring</td><td data-label="Location">United States</td><td data-label="Personal data involved">Error events and logs, which may include vessel identifiers; personal data is scrubbed before events are sent</td></tr>
+<tr><td data-label="Role">Push-notification delivery (browser and device makers' push services)</td><td data-label="Location">Global</td><td data-label="Personal data involved">Notification title and text</td></tr>
+<tr><td data-label="Role">Trusted timestamping for sealed records</td><td data-label="Location">Germany / United States</td><td data-label="Personal data involved">Cryptographic hash values only (timestamp requests contain only a hash)</td></tr>
+<tr><td data-label="Role">Internal alerting</td><td data-label="Location">United States</td><td data-label="Personal data involved">Alert titles; no Customer data intended</td></tr>
+<tr><td data-label="Role">Source-code hosting and build pipeline</td><td data-label="Location">United States</td><td data-label="Personal data involved">No Customer data</td></tr>
+</tbody></table></div>
+<p><strong>Collective.</strong> The Collective is hosted with the primary hosting provider in Germany (Nuremberg), and no additional Sub-processor is used for it. The Collective site shows content collected from public third-party sources ("Public-Source Content"), which is not Customer data and is processed by Company with its own models on its own infrastructure, and, to participating Customers, de-identified insights built from the contributions of Customers that have opted in. Authorized Users sign in to the Collective site with their account credentials through the same authentication service as the Service. Contribution processing for Customers that opt in uses the same hosting.</p>
+<p><strong>Recipients that are not Sub-processors.</strong></p>
+<ul>
+<li>Company's payment processor acts as an independent controller for billing data.</li>
+<li>Website analytics and advertising tools are used only on Company's marketing website, not in the Service. Company is the controller for that data; see the Privacy Policy and Cookie Notice.</li>
+</ul>
+</section>
+<section id="changes">
+<h2>3. Changes to Sub-processors</h2>
+<p>3.1 <strong>Advance notice.</strong> Company will give at least <strong>30 days' notice</strong> before a new Sub-processor, or a material change in an existing Sub-processor's role or processing location, begins processing Customer personal data. Each notice states the Sub-processor's name, role, location and the data concerned. Company gives notice by:</p>
+<p>(a) updating this list and its "Last updated" date;</p>
+<p>(b) emailing each Customer's designated privacy contact; and</p>
+<p>(c) emailing everyone subscribed under Section 4.</p>
+<p>3.2 <strong>Objections.</strong> A Customer may object on reasonable data-protection grounds within the notice period by writing to <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>. If the objection is not resolved within 30 days, the Customer may terminate the affected service and receive a refund of prepaid fees for the unused period, as set out in Section 8.5 of the Data Processing Addendum.</p>
+<p>3.3 <strong>Security incidents at a Sub-processor.</strong> If a security incident at a Sub-processor affects Customer personal data, Company notifies affected Customers without undue delay, with a target of 48 hours after Company confirms the incident (Data Processing Addendum, Section 7.1).</p>
+<p>3.4 <strong>Emergency replacement.</strong> If Company must replace a Sub-processor urgently, for example because of a security failure or the Sub-processor's withdrawal of service, Company may do so on shorter notice. It will notify Customers as soon as practicable, and the objection rights above apply from that notice (Data Processing Addendum, Section 8.6).</p>
+<p>3.5 <strong>Change log.</strong></p>
+<div class="tbl"><table>
+<thead><tr><th>Date</th><th>Change</th><th>Notice sent</th></tr></thead>
+<tbody>
+<tr><td data-label="Date">October 15, 2026</td><td data-label="Change">Initial list for CelesteOS LLC</td><td data-label="Notice sent">n/a</td></tr>
+</tbody></table></div>
+</section>
+<section id="subscribe">
+<h2>4. Subscribe for Updates</h2>
+<p>To receive notices of Sub-processor changes, email <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> with the subject "Subscribe — Sub-processor updates", giving your name, organization and email address. Customers' designated privacy contacts are subscribed automatically. We use the subscription list only to send these notices.</p>
+</section>
+
+<div class="doc-foot">
+<p><em>Version 1.0 — last updated October 15, 2026.</em></p>
+<p><em>Structure informed by the Data Processing Addendum (Global) template prepared and made publicly available by General Legal, PC ("General Legal") under CC0. General Legal has not reviewed, and takes no position on, this document.</em></p>
+</div>
+</main>
+
+<!-- ═══ CelesteOS site footer (canonical, self-contained) ═══ -->
+<style>
+  .c7f { border-top: 1px solid rgba(255,255,255,0.04); margin: 8vh calc(50% - 50vw) 0; background: linear-gradient(180deg, #0A0908, #0C0B0A); }
+  .c7f * { box-sizing: border-box; }
+  .c7f-in { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem 3rem; }
+  .c7f-cols { display: grid; grid-template-columns: repeat(4, 1fr) 1.5fr; gap: 2.5rem; }
+  @media (max-width: 920px) { .c7f-cols { grid-template-columns: 1fr 1fr 1fr; row-gap: 2.6rem; } .c7f-contact { grid-column: 1 / -1; } }
+  @media (max-width: 560px) { .c7f-cols { grid-template-columns: 1fr 1fr; } }
+  .c7f-h { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.1rem; }
+  .c7f-cols a { display: block; font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.88rem; font-weight: 300;
+    color: rgba(255,255,255,0.55); padding: 0.36rem 0; text-decoration: none; transition: color 0.2s ease; }
+  .c7f-cols a:hover { color: #5AABCC; }
+  .c7f-mail { font-size: 1rem !important; font-weight: 400 !important; color: rgba(255,255,255,0.92) !important; }
+  .c7f-note { margin: 0.9rem 0 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 0.8rem; font-weight: 300;
+    color: rgba(255,255,255,0.35); line-height: 1.65; max-width: 24em; }
+  .c7f-base { display: flex; align-items: center; justify-content: space-between; gap: 1.4rem; flex-wrap: wrap;
+    margin-top: 3.6rem; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.04); }
+  .c7f-brand { display: flex; align-items: center; gap: 10px; }
+  .c7f-seal { width: 18px; height: 18px; color: rgba(255,255,255,0.35); }
+  .c7f-word { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .c7f-legal { display: flex; gap: 1.4rem; flex-wrap: wrap; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.66rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.35); align-items: center; }
+  .c7f-legal a { display: inline; padding: 0; font-family: inherit; font-size: inherit; color: rgba(255,255,255,0.35); text-decoration: none; }
+  .c7f-legal a:hover { color: #5AABCC; }
+  .c7f-soc { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.66rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35); white-space: nowrap; text-decoration: none; }
+  .c7f-soc:hover { color: #5AABCC; }
+</style>
+<footer class="c7f">
+  <div class="c7f-in">
+    <div class="c7f-cols">
+      <div>
+        <div class="c7f-h">Product</div>
+        <a href="/#handover">Handover</a>
+        <a href="/#datum">Search</a>
+        <a href="/#show-related">Show Related</a>
+        <a href="/#money">Warranty-finder</a>
+        <a href="/#onboarding">Onboarding</a>
+      </div>
+      <div>
+        <div class="c7f-h">Trust &amp; proof</div>
+        <a href="/trust">Trust &amp; compliance</a>
+        <a href="https://verifier.celeste7.ai" target="_blank" rel="noopener">Verifier</a>
+        <a href="/#ledger">The ledger</a>
+        <a href="/sources">Sources</a>
+      </div>
+      <div>
+        <div class="c7f-h">Company</div>
+        <a href="/about">About us</a>
+        <a href="/#pilot">The pilot</a>
+        <a href="/blogs">Blog</a>
+        <a href="mailto:contact@celeste7.ai?subject=CelesteOS">Contact</a>
+        <a href="https://www.linkedin.com/company/celesteos/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div>
+        <div class="c7f-h">Legal</div>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Use</a>
+        <a href="/cookies">Cookie Notice</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+        <a href="/subprocessors">Sub-processors</a>
+        <a href="/cookies" data-privacy-choices>Your Privacy Choices</a>
+        <a href="/trust">Regulatory mapping</a>
+        <a href="/sources">Sources &amp; claims</a>
+      </div>
+      <div class="c7f-contact">
+        <div class="c7f-h">Get in touch</div>
+        <a class="c7f-mail" href="mailto:contact@celeste7.ai?subject=CelesteOS%20Pilot">contact@celeste7.ai</a>
+        <p class="c7f-note">Operational correspondence only. A pilot is three to five vessels. We reply within hours, not days.</p>
+      </div>
+    </div>
+    <div class="c7f-base">
+      <div class="c7f-brand">
+        <svg class="c7f-seal" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.6"/><line x1="16" y1="0" x2="16" y2="3.5" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/></svg>
+        <span class="c7f-word">CelesteOS</span>
+      </div>
+      <div class="c7f-legal">
+        <span>© 2026 CelesteOS LLC</span>
+        <a href="/privacy-policy">Privacy</a>
+        <a href="/terms-of-service">Terms</a>
+        <a href="/cookies">Cookies</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+        <a href="/subprocessors">Sub-processors</a>
+        <a href="/cookies" data-privacy-choices>Your Privacy Choices</a>
+        <a href="/trust">Trust</a>
+        <a href="/sources">Sources</a>
+      </div>
+      <a class="c7f-soc" href="https://www.linkedin.com/company/celesteos/" target="_blank" rel="noopener" aria-label="CelesteOS on LinkedIn">LinkedIn ↗</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

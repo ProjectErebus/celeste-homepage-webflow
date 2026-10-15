@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Privacy Policy · CelesteOS</title>
-<meta name="description" content="How CelesteOS collects, stores, processes, and protects personal data. Compliant with GDPR, UK GDPR, CCPA, and LinkedIn API Terms of Use.">
+<meta name="description" content="How CelesteOS LLC collects, uses, discloses and protects personal information across celeste7.ai, the CelesteOS Service, the Collective and the Verifier, and how to exercise your privacy rights.">
 <meta name="robots" content="index, follow">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <link rel="canonical" href="https://celeste7.ai/privacy-policy">
@@ -35,6 +35,31 @@
   table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; }
   th, td { text-align: left; padding: 0.6rem 0.7rem; border-bottom: 1px solid rgba(127,127,127,0.18); vertical-align: top; }
   th { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; font-weight: 500; }
+
+  /* Legal documents (CelesteOS LLC, US) */
+  .legal { overflow-wrap: anywhere; }
+  .legal h2 { scroll-margin-top: 72px; }
+  .legal section { scroll-margin-top: 72px; }
+  .doc-meta { margin: 0 0 2rem; padding: 0; font-size: 0.92rem; }
+  .doc-meta div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 0.2rem 1rem; padding: 0.35rem 0; border-bottom: 1px solid rgba(127,127,127,0.14); }
+  .doc-meta dt { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; padding-top: 0.2rem; }
+  .doc-meta dd { margin: 0; opacity: 0.9; }
+  @media (max-width: 600px) { .doc-meta div { grid-template-columns: 1fr; } }
+  .legal p.lead { border-left: 2px solid #5AABCC; padding: 0.2rem 0 0.2rem 1rem; }
+  .callout { background: rgba(127,127,127,0.06); border-left: 2px solid currentColor; padding: 0.8rem 1.1rem; margin: 0.6rem 0 1.2rem; }
+  .callout p { margin: 0; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.86em; background: rgba(127,127,127,0.1); padding: 0.05em 0.3em; border-radius: 3px; }
+  .tbl { margin: 1rem 0 1.5rem; }
+  .tbl table { margin: 0; }
+  .doc-foot { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(127,127,127,0.18); font-size: 0.8rem; opacity: 0.7; }
+  @media (max-width: 700px) {
+    body { padding-left: 16px; padding-right: 16px; }
+    .tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .tbl table, .tbl tbody, .tbl tr, .tbl td { display: block; width: 100%; }
+    .tbl tr { border-bottom: 1px solid rgba(127,127,127,0.25); padding: 0.5rem 0; }
+    .tbl td { border: 0; padding: 0.25rem 0; }
+    .tbl td::before { content: attr(data-label); display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
+  }
 </style>
     <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
     <script src="/js/cookie-consent.js"></script>
@@ -73,191 +98,351 @@
 </header>
 <div class="c7bar-spacer" style="height: 53px;"></div>
 
-
-
-
+<main class="legal">
 <h1>Privacy Policy</h1>
-<div class="effective">Effective: 14 May 2026 · Last updated: 29 June 2026</div>
+<div class="effective">Last updated: October 15, 2026</div>
+<dl class="doc-meta">
+<div><dt>Version</dt><dd>1.0</dd></div>
+<div><dt>Effective date</dt><dd>October 15, 2026</dd></div>
+</dl>
 
-<p>This Privacy Policy explains how CelesteOS ("we", "our", or "us") collects, uses, stores, and protects personal data when you visit celeste7.ai, request pilot access, sign in via third-party identity providers including LinkedIn, or otherwise interact with our services. It is written to comply with the EU General Data Protection Regulation (GDPR), UK GDPR, the California Consumer Privacy Act (CCPA), and the LinkedIn API Terms of Use.</p>
+<nav class="toc" aria-label="Contents">
+  <a href="#section-1">1. Who We Are and What This Policy Covers</a>
+  <a href="#section-2">2. Personal Information We Collect</a>
+  <a href="#section-3">3. How We Use Personal Information</a>
+  <a href="#section-4">4. How We Disclose Personal Information</a>
+  <a href="#cookies">5. Cookies, Analytics and Advertising on Our Websites</a>
+  <a href="#do-not-sell-or-share">6. "Sale" and "Sharing" of Personal Information; Targeted Advertising</a>
+  <a href="#section-7">7. Sensitive Personal Information</a>
+  <a href="#ai">8. Artificial Intelligence Features</a>
+  <a href="#section-9">9. The Collective</a>
+  <a href="#public-sources">10. Information We Collect from Public Sources (Collective)</a>
+  <a href="#section-11">11. The Verifier</a>
+  <a href="#section-12">12. The App on Your Device: Browser Storage and Offline Access</a>
+  <a href="#retention">13. Retention</a>
+  <a href="#section-14">14. Security</a>
+  <a href="#section-15">15. International Transfers</a>
+  <a href="#section-16">16. Children</a>
+  <a href="#rights">17. Your Privacy Rights</a>
+  <a href="#eea-uk">18. Additional Information for the EEA, UK and Switzerland</a>
+  <a href="#section-19">19. Changes to This Policy</a>
+  <a href="#contact">20. Contact Us</a>
+</nav>
 
-<div class="toc">
-  <a href="#who">1. Who we are</a>
-  <a href="#data">2. What data we collect</a>
-  <a href="#linkedin">3. Data collected via LinkedIn</a>
-  <a href="#purposes">4. Purposes and legal bases</a>
-  <a href="#storage">5. Storage, security, retention</a>
-  <a href="#sharing">6. Sharing and third-party processors</a>
-  <a href="#international">7. International transfers</a>
-  <a href="#rights">8. Your rights</a>
-  <a href="#cookies">9. Cookies and tracking</a>
-  <a href="#children">10. Children</a>
-  <a href="#changes">11. Changes to this policy</a>
-  <a href="#contact">12. Contact</a>
-</div>
-
-<section id="who">
-  <h2>1. Who we are</h2>
-  <p>CelesteOS is a service of <strong>Celeste7 LTD</strong>, a company registered in England and Wales (company number 16617331; registered office 7 Vindex Close, Lincoln, England, LN1 1AH), operating from Miami, Florida, USA. For all data-protection enquiries, contact: <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>.</p>
-  <p>We act as the data controller for any personal data we collect directly through the website, pilot enquiries, and identity-provider sign-ins. Where we process customer vessel data on behalf of a pilot customer, we act as data processor under that customer's instructions and a Data Processing Agreement.</p>
-  <p>As a UK-established company, Celeste7 LTD is its own representative for UK GDPR purposes. Where we are required to appoint a representative in the European Union under Article 27 of the EU GDPR, we will do so and identify them here.</p>
+<p class="lead"><strong>Notice at collection (California and other US states).</strong> We collect the categories of personal information listed in Section 2 and Section 17.6 for the purposes in Section 3. We keep each category for the periods in Section 13. Section 10 explains the information we collect from public sources for the Collective.</p>
+<p>We do not sell personal information for money. Our website uses Google advertising measurement tags, and some state laws treat that as "selling" or "sharing" personal information for cross-context behavioral (targeted) advertising. You can opt out at the "Your Privacy Choices" link in the footer of our Websites or by sending a Global Privacy Control signal (Section 6).</p>
+<p>We do not use sensitive personal information to infer characteristics about you (Section 7).</p>
+<section id="section-1">
+<h2>1. Who We Are and What This Policy Covers</h2>
+<p>1.1 <strong>Who we are.</strong> CelesteOS LLC ("<strong>Company</strong>", "<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>") is a Florida limited liability company located at 7901 4th St N, #36609, St Petersburg, FL 33702, USA. We provide CelesteOS, a hosted software platform that yacht operators and management companies use to manage maintenance, safety and compliance records for their vessels (the "<strong>Service</strong>").</p>
+<p>1.2 <strong>Defined terms in this Policy.</strong></p>
+<ul>
+<li>"<strong>Customer</strong>" means an organization (such as a yacht operator or management company) that subscribes to the Service.</li>
+<li>"<strong>Authorized User</strong>" means a person a Customer allows to use the Service, such as a crew member or shore-based manager.</li>
+<li>"<strong>Customer Data</strong>" means the records, documents and other content that a Customer and its Authorized Users put into the Service.</li>
+<li>"<strong>Websites</strong>" means celeste7.ai and our other marketing web pages that link to this Policy.</li>
+<li>"<strong>Verifier</strong>" means our public record-checking tool at verifier.celeste7.ai.</li>
+<li>"<strong>Collective</strong>" means our engineering-knowledge service for equipment faults and fixes. It displays Public-Source Content to signed-in users and includes an optional, opt-in program through which participating fleets share de-identified engineering insights (Section 9).</li>
+<li>"<strong>Collective Site</strong>" means our Collective website at collective.celeste7.ai, including its public pages and the pages available after sign-in.</li>
+<li>"<strong>Public-Source Content</strong>" means posts, reports and other content that we collect from publicly available third-party sources for the Collective, and the information we derive from it (Section 10).</li>
+</ul>
+<p>1.3 <strong>What this Policy covers.</strong> This Policy explains how we handle personal information when:</p>
+<p>(a) you visit our Websites, the Collective Site or the Verifier;</p>
+<p>(b) you contact us, book a demonstration or otherwise deal with us as a prospective customer, partner or supplier;</p>
+<p>(c) you use the Service or sign in to the Collective Site as an Authorized User. For this item, it covers only the account, security and relationship information we use for our own purposes (see Section 1.4); and</p>
+<p>(d) content you or others published on a public website (such as a forum post or a question-and-answer post) is collected as Public-Source Content (Section 10).</p>
+<p>1.4 <strong>What this Policy does not cover: Customer Data.</strong> The crew records, certificates, operational records, documents and other Customer Data in the Service belong to the Customer that subscribed to the Service. For Customer Data, <strong>the Customer is the controller (or "business")</strong>, and we act only as its processor or service provider under a written data processing agreement. If you are a crew member or other person whose information appears in a Customer's records, the Customer's own privacy notice applies. Please send requests about those records to the Customer, usually your employer or the vessel's management company. If you contact us instead, we will pass your request to the relevant Customer (Section 17.3).</p>
+<p>1.5 <strong>Related notices.</strong> Please also read our Cookie Notice (<a href="/cookies">https://celeste7.ai/cookies</a>) and our public Sub-processor List (<a href="/subprocessors">https://celeste7.ai/subprocessors</a>).</p>
 </section>
-
-<section id="data">
-  <h2>2. What data we collect</h2>
-
-  <h3>Data you provide directly</h3>
-  <ul>
-    <li>Name, professional role, vessel or company name, and contact email when you request pilot access or contact us.</li>
-    <li>Anything you choose to write in messages sent to us, including via the contact form.</li>
-  </ul>
-
-  <h3>Data collected automatically</h3>
-  <ul>
-    <li>IP address, approximate location derived from IP, browser type and version, operating system, referring URL, and pages visited.</li>
-    <li>Performance and error telemetry from our hosting provider (Vercel).</li>
-  </ul>
-
-  <h3>Data from third-party identity providers</h3>
-  <ul>
-    <li>If you sign in or authenticate via LinkedIn, we receive the specific fields described in section 3.</li>
-    <li>If crew sign in to the CelesteOS application via Microsoft Entra using their own organisation's Microsoft 365 work account, we receive only the user's name, work email, a Microsoft directory identifier, the organisation's tenant identifier, and a transient confirmation that multi-factor authentication was satisfied (not stored). We never receive or store a crew password.</li>
-  </ul>
+<section id="section-2">
+<h2>2. Personal Information We Collect</h2>
+<p>2.1 <strong>Information you give us.</strong></p>
+<ul>
+<li><strong>Contact and professional details:</strong> name, email address, telephone number, company, job title, vessel or fleet details, and the content of your messages, for example when you complete a contact form, book a demonstration or email us.</li>
+<li><strong>Account details (Authorized Users):</strong> name, work email address, role or rank, assigned vessel, and password (we store passwords only in hashed form).</li>
+<li><strong>Support communications:</strong> the content of support requests and our replies.</li>
+<li><strong>Billing contacts:</strong> name, email and billing address of the person responsible for a Customer's account. Payment card or bank details are collected directly by our payment processor, not by us.</li>
+</ul>
+<p>2.2 <strong>Information we receive from your organization.</strong> A Customer may create your Authorized User account and give us your name, work email, role and vessel assignment.</p>
+<p>2.3 <strong>Information we receive from Microsoft.</strong> If you choose "Sign in with Microsoft", Microsoft confirms your identity to us and sends us your name, work email address, a directory identifier and your organization's tenant identifier. We never receive your Microsoft password. We also use Microsoft's services to verify sign-ins and to send the service emails described in Section 3(a) from an email account we control. We do not read or access your own email.</p>
+<p>2.4 <strong>Information collected automatically.</strong></p>
+<ul>
+<li><strong>Website:</strong> IP address, approximate location derived from it (city or region level), browser and device type, pages viewed, referring page, time spent, clicks and similar interactions, and identifiers stored in cookies or similar technologies. Some of this is collected by Google and our session-analytics provider, as explained in Section 5 and our Cookie Notice.</li>
+<li><strong>Service (security and operations):</strong> IP address, browser and device information, sign-in times, failed sign-in counts, session identifiers and error logs. We use this to keep accounts and the Service secure and working. The Service does not use advertising or analytics cookies.</li>
+<li><strong>Collective Site:</strong> when you sign in, we process your email address, password (checked against the hashed version we hold), sign-in times and session identifiers, using the same account system as the Service, and your browser keeps a session token in local storage (Section 9.5). The Collective Site uses no cookies, analytics or advertising tools, and all of its scripts and fonts are served from its own domain, so your browser does not contact third-party content networks when you use it.</li>
+<li><strong>Hosting logs:</strong> when your browser loads the Collective Site or the Verifier, our hosting provider receives standard technical information, such as your IP address, browser type, the page requested and the time, and keeps it in its logs. We use this only to deliver and secure the pages.</li>
+</ul>
+<p>2.5 <strong>Information from public and professional sources.</strong> We may collect business contact details of prospective customers from publicly available professional sources, such as company websites and industry directories. For the Collective, we also collect content from public websites, which may include user names and other personal information (Section 10).</p>
 </section>
-
-<section id="linkedin">
-  <h2>3. Data collected via LinkedIn</h2>
-  <p>Where CelesteOS uses LinkedIn's API for authentication, professional-profile retrieval, or related features, we receive only the fields you have authorised via LinkedIn's consent screen. These typically include:</p>
-  <ul>
-    <li>LinkedIn member ID (an opaque identifier issued by LinkedIn).</li>
-    <li>First name, last name, and profile picture URL.</li>
-    <li>Primary email address registered with LinkedIn.</li>
-    <li>Current professional headline and, where authorised, current position and employer.</li>
-  </ul>
-  <p>We do <strong>not</strong> request, receive, store, or use:</p>
-  <ul>
-    <li>Your LinkedIn password or any authentication credentials.</li>
-    <li>Your LinkedIn connections list, messages, posts, or feed activity, unless an explicit feature requires it and you have authorised that scope.</li>
-    <li>Any LinkedIn data for advertising, retargeting, model training, or resale.</li>
-  </ul>
-  <p>We comply with the <a href="https://legal.linkedin.com/api-terms-of-use" target="_blank" rel="noopener">LinkedIn API Terms of Use</a>. LinkedIn data is used only for the purpose you authorised, retained only as long as needed for that purpose, and deleted on request.</p>
-  <p>You can revoke CelesteOS's access to your LinkedIn data at any time at <a href="https://www.linkedin.com/psettings/permitted-services" target="_blank" rel="noopener">linkedin.com/psettings/permitted-services</a>.</p>
+<section id="section-3">
+<h2>3. How We Use Personal Information</h2>
+<p>We use personal information to:</p>
+<p>(a) <strong>provide and administer accounts:</strong> create and manage Authorized User accounts, authenticate users and send service messages (such as password-reset emails, sign-in verification codes and account notices);</p>
+<p>(b) <strong>secure the Service:</strong> detect and prevent unauthorized access, fraud and abuse, including through sign-in lockouts and session revocation;</p>
+<p>(c) <strong>support you:</strong> respond to questions and support requests;</p>
+<p>(d) <strong>run our customer relationships:</strong> manage subscriptions, invoicing and renewals;</p>
+<p>(e) <strong>communicate with prospects:</strong> respond to enquiries, arrange demonstrations and send business-to-business information about the Service. You can opt out at any time (Section 17.1);</p>
+<p>(f) <strong>understand and improve our Websites:</strong> measure traffic and how visitors use our pages, using analytics tools where you allow them (Section 5);</p>
+<p>(g) <strong>measure our advertising:</strong> learn whether our online ads lead to visits or enquiries, where you allow this (Section 5);</p>
+<p>(h) <strong>comply with law and protect rights:</strong> meet legal, tax and accounting obligations, respond to lawful requests, and establish or defend legal claims;</p>
+<p>(i) <strong>handle business transfers:</strong> as part of a merger, financing, acquisition or similar transaction (Section 4.1(f));</p>
+<p>(j) <strong>create de-identified or aggregated information</strong> that no longer identifies anyone, for purposes such as improving the Service. We do not attempt to re-identify de-identified information, except to test whether our de-identification methods meet legal requirements; and</p>
+<p>(k) <strong>operate the Collective's public-source knowledge base:</strong> collect, organize and display Public-Source Content so that vessel engineers can find reported equipment faults and fixes (Section 10).</p>
 </section>
-
-<section id="purposes">
-  <h2>4. Purposes and legal bases (GDPR Art. 6)</h2>
-  <table>
-    <thead><tr><th>Purpose</th><th>Data used</th><th>Legal basis</th></tr></thead>
-    <tbody>
-      <tr><td>Respond to pilot-access enquiries and other contact</td><td>Name, email, role, message content</td><td>Legitimate interest (responding to your enquiry); contract steps prior to entering a pilot agreement</td></tr>
-      <tr><td>Authenticate you via LinkedIn (if used)</td><td>LinkedIn ID, name, email, profile picture</td><td>Performance of a contract (providing the service); your consent given via LinkedIn</td></tr>
-      <tr><td>Authenticate crew sign-in via Microsoft Entra</td><td>Name, work email, directory identifier, tenant identifier, transient MFA confirmation</td><td>Performance of a contract (providing the service); legitimate interest (securing access)</td></tr>
-      <tr><td>Operate and secure the website</td><td>IP, browser, telemetry</td><td>Legitimate interest (security, fraud prevention, service reliability)</td></tr>
-      <tr><td>Improve the product</td><td>Aggregated and de-identified analytics</td><td>Legitimate interest; data is not used to identify individuals</td></tr>
-      <tr><td>Comply with law</td><td>Any of the above, as required</td><td>Legal obligation</td></tr>
-    </tbody>
-  </table>
-  <p>We do not sell personal data. We do not use personal data for automated decision-making with legal or similarly significant effects.</p>
+<section id="section-4">
+<h2>4. How We Disclose Personal Information</h2>
+<p>4.1 <strong>Recipients.</strong> We disclose personal information to the following categories of recipients:</p>
+<p>(a) <strong>Service providers</strong> that help us run our business and the Service. These include cloud hosting and storage, edge network and security services, a session-security cache, identity and transactional email services, error monitoring, push-notification delivery and customer support tools. They may use personal information only to provide services to us.</p>
+<p>(b) <strong>Third-party AI model providers</strong>, which process content when you use AI features of the Service (Section 8).</p>
+<p>(c) <strong>Analytics and advertising partners</strong>: Google, and our session-analytics provider, on our Websites only, subject to your choices (Sections 5 and 6).</p>
+<p>(d) <strong>Our payment processor</strong>, which processes payment details under its own privacy terms.</p>
+<p>(e) <strong>Your organization.</strong> If you are an Authorized User, the Customer that gave you access can see your account details and activity in the Service.</p>
+<p>(f) <strong>Professional advisers, acquirers and investors</strong>, under confidentiality obligations, including in connection with a merger, acquisition, financing, sale of assets or similar transaction.</p>
+<p>(g) <strong>Authorities and others</strong>, where we believe in good faith that the law requires disclosure, or that disclosure is needed to protect rights, safety or property.</p>
+<p>(h) <strong>Others at your direction</strong>, for example where you ask us to share information.</p>
+<p>(i) <strong>Signed-in users of the Collective Site</strong>, who can see Public-Source Content, including user names or display names as they appeared in the original source (Section 10).</p>
+<p>4.2 <strong>Customer Data.</strong> We disclose Customer Data only on the Customer's instructions and to the sub-processors listed in our Sub-processor List.</p>
 </section>
-
-<section id="storage">
-  <h2>5. Storage, security, retention</h2>
-
-  <h3>Where data is stored</h3>
-  <p>Customer and contact data is stored on servers operated by Hetzner Online GmbH in Germany (European Union), including the application databases, file storage and encrypted backups. The website and application are delivered through Vercel and Cloudflare edge networks, a session-security cache runs on Redis Cloud in the United States, and AI processing takes place in the United States (see below).</p>
-
-  <h3>Security measures</h3>
-  <ul>
-    <li>Encryption in transit (TLS 1.2 or higher) for all connections to celeste7.ai and its sub-services.</li>
-    <li>Encrypted backups, stored in Germany.</li>
-    <li>Role-based access control: only the small number of CelesteOS staff with a legitimate operational need can access stored personal data, and all access is logged.</li>
-    <li>Append-only, tamper-evident audit ledger and cryptographic receipts (SealMark) for all in-platform actions; sealed records are independently verifiable at <a href="https://verifier.celeste7.ai" target="_blank" rel="noopener">verifier.celeste7.ai</a> without an account (see <a href="/trust">/trust</a>).</li>
-    <li>Two-factor authentication required on all administrative accounts.</li>
-    <li>Routine dependency vulnerability scanning and patching.</li>
-  </ul>
-
-  <h3>SOC-2 status</h3>
-  <p>CelesteOS is currently in pilot stage. A SOC-2 Type 2 attestation will be pursued once production customer volume warrants the engagement. We will publish the attesting auditor's name and report date here as soon as the audit is in progress. We do not currently hold a SOC-2 attestation and we do not describe ourselves as SOC-2 compliant.</p>
-
-  <h3>Retention</h3>
-  <ul>
-    <li>Pilot enquiry data: retained for 24 months from last contact, then deleted, unless we have an ongoing business relationship with you.</li>
-    <li>LinkedIn-derived profile data: retained for the duration of your active session and for 12 months thereafter, unless you request earlier deletion.</li>
-    <li>Telemetry and access logs: retained for 90 days for security investigation, then aggregated or deleted.</li>
-    <li>Customer vessel data (under a pilot DPA): retained per the DPA's terms and deleted within 30 days of termination unless the customer requests export first.</li>
-  </ul>
-</section>
-
-<section id="sharing">
-  <h2>6. Sharing and third-party processors</h2>
-  <p>We share personal data only with the following processors, each bound by a written data-processing agreement:</p>
-  <ul>
-    <li><strong>Vercel Inc.</strong> (US / global edge): website hosting and edge delivery.</li>
-    <li><strong>Hetzner Online GmbH</strong> (Germany): application hosting, databases, file storage and encrypted backups.</li>
-    <li><strong>Cloudflare Inc.</strong> (global edge): DNS and network protection for our application and sign-in services.</li>
-    <li><strong>Redis Ltd</strong> (US): session-security cache (sign-in protection and short-lived caching).</li>
-    <li><strong>OpenAI</strong>, <strong>Anthropic</strong> and <strong>TypeSafe AI, Inc.</strong> (US): AI processing, as described below. <strong>Google LLC</strong> (Cloud Vision): reading text from scanned documents.</li>
-    <li><strong>Microsoft Corporation</strong> (US / global): Microsoft Graph &mdash; sending transactional emails such as password resets and verification codes from our own mailbox. CelesteOS does not read or connect to your mailbox.</li>
-    <li><strong>Functional Software, Inc.</strong> (Sentry): error monitoring; personal data and secrets are removed from error reports before they are sent.</li>
-    <li><strong>Microsoft Corporation</strong> (US / global): <strong>Microsoft Entra ID</strong> &mdash; authentication and single sign-on, where crew sign in to the CelesteOS application using their own organisation's Microsoft 365 work account. Microsoft verifies identity and enforces multi-factor authentication; CelesteOS receives only the user's name, work email, a Microsoft directory identifier, the organisation's tenant identifier, and a transient confirmation that MFA was satisfied (not stored), and never receives or stores a crew password. </li>
-    <li><strong>LinkedIn Corporation</strong>: only where you authorise LinkedIn-based authentication; LinkedIn's own privacy policy applies to data they retain.</li>
-    <li><strong>Google LLC</strong> (US): Google Analytics 4 (analytics) and Google Ads (advertising and conversion measurement) &mdash; set only with your consent; see section 9.</li>
-    <li><strong>Wise Payments Ltd</strong> (UK): payment processing, acting as an independent controller of payment and KYC data.</li>
-  </ul>
-  <p>A current, named sub-processor register with locations, terms, and transfer mechanisms is available to pilot customers under the Data Processing Agreement.</p>
-
-  <h3>AI inference</h3>
-  <p>CelesteOS uses third-party AI providers (OpenAI, Anthropic, and TypeSafe AI's &ldquo;Jev&rdquo; model) for search and cited answers, document classification and extraction, and drafting support such as handover notes, and Google Cloud Vision to read text from scanned documents. We send the text or images reasonably needed for each operation. Names and vessel names are <strong>not</strong> removed before processing, so please avoid entering unnecessary personal details. Our providers do not train their models on this data. Under OpenAI's standard terms, inputs and outputs are kept for up to 30 days for abuse monitoring and then deleted; we do not currently hold a zero-data-retention arrangement with OpenAI. AI output can be wrong and should be checked before you rely on it.</p>
-
-  <p>We do not sell, rent, or trade personal data to advertisers, data brokers, or third parties for marketing purposes.</p>
-  <p>We may disclose data where legally required (court order, regulatory request, lawful investigation), or where necessary to protect the rights, safety, or property of CelesteOS, our customers, or the public.</p>
-</section>
-
-<section id="international">
-  <h2>7. International transfers</h2>
-  <p>Customer data is stored in Germany (European Union). Some processing takes place in the United States: edge delivery (Vercel, Cloudflare), the session-security cache (Redis Cloud), error monitoring (Sentry) and AI processing (OpenAI, Anthropic, TypeSafe AI, Google). Where personal data is transferred outside the European Economic Area or the United Kingdom, we rely on the European Commission's Standard Contractual Clauses (SCCs) and, for UK transfers, the International Data Transfer Addendum, or on the provider's certification under the EU-U.S. Data Privacy Framework where it holds one. Documentation is available on written request.</p>
-</section>
-
-<section id="rights">
-  <h2>8. Your rights</h2>
-  <p>Under GDPR, UK GDPR, and CCPA you have the following rights, free of charge, exercisable by emailing <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>:</p>
-  <ul>
-    <li><strong>Access:</strong> obtain a copy of the personal data we hold about you.</li>
-    <li><strong>Rectification:</strong> correct inaccurate or incomplete data.</li>
-    <li><strong>Erasure:</strong> request deletion ("right to be forgotten"). We will action this within 30 days unless we have a legal obligation to retain.</li>
-    <li><strong>Restriction:</strong> request that we limit how we use your data.</li>
-    <li><strong>Portability:</strong> receive your data in a structured, machine-readable format.</li>
-    <li><strong>Objection:</strong> object to processing based on legitimate interests.</li>
-    <li><strong>Withdraw consent:</strong> where processing is consent-based, withdraw it at any time without affecting prior lawful processing.</li>
-    <li><strong>Complaint:</strong> lodge a complaint with your supervisory authority. For UK residents this is the <a href="https://ico.org.uk" target="_blank" rel="noopener">Information Commissioner's Office (ICO)</a>; for EU residents, your national data-protection authority.</li>
-  </ul>
-  <p>For LinkedIn-sourced data specifically: you can also revoke our access to your LinkedIn account at <a href="https://www.linkedin.com/psettings/permitted-services" target="_blank" rel="noopener">linkedin.com/psettings/permitted-services</a>, which will stop further data transfer from LinkedIn to us.</p>
-</section>
-
 <section id="cookies">
-  <h2>9. Cookies and tracking</h2>
-  <p>celeste7.ai uses <strong>strictly necessary cookies</strong> for session management and routing, which are always on. With your consent, we also set non-essential cookies for: <strong>Google Analytics 4</strong> (measurement ID G-230QN4JY4P) &mdash; first-party analytics cookies such as <code>_ga</code> to understand aggregate website usage; and <strong>Google Ads</strong> (ID AW-17947526022) &mdash; to measure the performance of our advertising, which may set advertising and conversion cookies. Google acts as a processor for this data; online identifiers and IP-derived approximate location are processed and transferred to the United States under the EU Standard Contractual Clauses and the UK Addendum. With your analytics consent we also use <strong>Contentsquare</strong> session analytics, which records how pages are used (clicks, scrolls) with typed text masked. We do not deploy social-media tracking pixels (Meta Pixel, LinkedIn Insight Tag, TikTok Pixel, etc.).</p>
-  <p>No analytics or advertising script is loaded until you accept that category in the cookie banner; if you reject, none is loaded. If your browser sends a Global Privacy Control signal, we treat it as an opt-out of advertising and never load Google Ads. You can change or withdraw your consent at any time with the &ldquo;Your Privacy Choices&rdquo; link in the footer of every page, which also deletes the analytics and advertising cookies we can reach.</p>
+<h2>5. Cookies, Analytics and Advertising on Our Websites</h2>
+<p>5.1 <strong>What we use.</strong> On our Websites we use the following, as described in detail in our Cookie Notice:</p>
+<ul>
+<li><strong>Google Analytics</strong>, to measure website traffic and use;</li>
+<li><strong>Google Ads</strong> conversion measurement, to measure whether our ads lead to visits or enquiries;</li>
+<li>a <strong>session-analytics tool</strong>, which records how pages are used (for example, clicks, scrolls and page interactions) to help us improve them; and</li>
+<li>a strictly necessary record of your consent choice, stored in your browser.</li>
+</ul>
+<p>5.2 <strong>Consent.</strong> Analytics, advertising and session-analytics tools are off by default until you accept them in our consent banner. No Google, Contentsquare or other third-party measurement script is loaded before you make a choice, and none is loaded for a category you reject. You can change your choice at any time through the "Your Privacy Choices" link in the footer of every page.</p>
+<p>5.3 <strong>Google's use.</strong> Google may use information collected through these tools under its own terms. You can learn how Google uses information from sites that use its services at policies.google.com/technologies/partner-sites. You can also install Google's Analytics opt-out browser add-on.</p>
+<p>5.4 <strong>The Service, the Collective Site and the Verifier.</strong> The Service does not use cookies. It uses browser storage and an offline cache that are strictly necessary for the Service to work (Section 12). The Collective Site uses no cookies or analytics; it keeps a session token in your browser's local storage while you are signed in (Section 9.5), and serves all of its files from its own domain. The Verifier uses no cookies, browser storage or analytics, and its fonts are served from our own site (Section 11).</p>
 </section>
-
-<section id="children">
-  <h2>10. Children</h2>
-  <p>CelesteOS is a B2B product for maritime professionals. We do not knowingly collect personal data from anyone under 18 years of age. If we become aware that a minor has provided us personal data, we will delete it promptly.</p>
+<section id="do-not-sell-or-share">
+<h2>6. "Sale" and "Sharing" of Personal Information; Targeted Advertising</h2>
+<p>6.1 <strong>What we do.</strong> We do not sell personal information for money. However, when you allow advertising measurement on our Websites, Google receives online identifiers and information about your activity on our Websites. Google may use this information for its own advertising purposes. Under California law this may be "sharing" for cross-context behavioral advertising. Under other state laws it may be "targeted advertising" or a "sale". We treat it as such.</p>
+<p>6.2 <strong>What is involved.</strong> The categories involved are identifiers (such as cookie IDs and IP address), internet activity on our Websites, and approximate location. The recipient is our advertising partner, Google. We do <strong>not</strong> sell or share Customer Data, account data from the Service, or sensitive personal information.</p>
+<p>6.3 <strong>How to opt out.</strong> You can opt out of the sale or sharing of your personal information, and of targeted advertising, in any of these ways:</p>
+<ul>
+<li>use the "Your Privacy Choices" link in the footer of our Websites;</li>
+<li>decline or withdraw advertising cookies in our consent banner;</li>
+<li>turn on the Global Privacy Control ("GPC") signal in a browser or extension that supports it. We treat GPC as a valid opt-out request for that browser. If you had previously accepted advertising cookies, GPC overrides that choice unless you later confirm otherwise; or</li>
+<li>email <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> with the subject "Opt-out".</li>
+</ul>
+<p>Because opt-outs made through cookies or GPC are stored in your browser, they apply only to that browser and device.</p>
+<p>6.4 <strong>Children.</strong> We do not knowingly sell or share the personal information of anyone under 16.</p>
 </section>
-
-<section id="changes">
-  <h2>11. Changes to this policy</h2>
-  <p>We may update this policy to reflect changes in law, technology, or our business. The "Last updated" date at the top of the page reflects the most recent revision. Material changes (those that materially expand the categories of data we collect or the purposes we use it for) will be announced via email to active pilot contacts at least 30 days before they take effect.</p>
+<section id="section-7">
+<h2>7. Sensitive Personal Information</h2>
+<p>7.1 <strong>What we collect.</strong> The only sensitive personal information we collect as a controller is account log-in credentials (your user name together with your password, which we store only in hashed form). We use them only to authenticate you and secure your account. We do not use or disclose sensitive personal information to infer characteristics about you, or for any purpose that would give rise to a right to limit its use under California law.</p>
+<p>7.2 <strong>Sensitive information in Customer Data.</strong> A Customer may choose to store crew documents in the Service that contain sensitive information, such as medical fitness certificates or passport details. We process those only as the Customer's processor (Section 1.4).</p>
 </section>
-
+<section id="ai">
+<h2>8. Artificial Intelligence Features</h2>
+<p>8.1 <strong>What the AI features do.</strong> The Service includes features powered by third-party AI model providers, which provide:</p>
+<ul>
+<li>search and answers with source citations;</li>
+<li>document classification and data extraction;</li>
+<li>reading text from scanned documents;</li>
+<li>drafting handover notes from user notes;</li>
+<li>suggesting related documents; and</li>
+<li>finding warranty information.</li>
+</ul>
+<p>8.2 <strong>What is sent.</strong> When these features run, the text of the relevant records or documents, or page images, is sent to the AI model provider. We send only what each feature reasonably needs. We do <strong>not</strong> remove names or vessel names before sending. The only exception is that we mask email addresses and telephone numbers in text used to build search indexes.</p>
+<p>8.3 <strong>No training.</strong> Our contracts with AI model providers do not permit them to use content sent through the Service to train their models.</p>
+<p>8.4 <strong>Retention by providers.</strong> Some providers keep inputs for a limited period for abuse monitoring, which for at least one provider is up to 30 days, before deleting them.</p>
+<p>8.5 <strong>Outputs can be wrong.</strong> AI outputs can be inaccurate or incomplete. The Service does not use AI to make decisions about individuals that have legal or similarly significant effects. Decisions remain with the vessel's Master, crew and the Customer.</p>
+</section>
+<section id="section-9">
+<h2>9. The Collective</h2>
+<p>9.1 <strong>What it is.</strong> The Collective is an engineering-knowledge service about equipment failures and fixes. The Collective Site displays Public-Source Content (Section 10) and, to participating Customers, de-identified insights built from the contributions of participating fleets. Participating Customers contribute engineering information from their own records so that the whole fleet can learn which problems recur and what solved them. Sections 9.2 to 9.4 describe how that works. A Customer's data is never used for the Collective unless that Customer has opted in.</p>
+<p>9.2 <strong>Opt-in by Customers only.</strong> A Customer's data is used for the Collective only if that Customer opts in through its contract with us. Individual crew members do not opt in or out themselves. Questions about whether your organization participates should go to your organization.</p>
+<p>9.3 <strong>What is shared.</strong> If a Customer opts in, before anything is shared:</p>
+<ul>
+<li>the Customer's identity is replaced with a pseudonym;</li>
+<li>identifiers are removed by rule, including names, email addresses, vessel names, vessel identification numbers, call signs and equipment serial numbers;</li>
+<li>free-text notes are excluded by default; and</li>
+<li>nothing is published unless at least five independent fleets have reported the same failure and fix.</li>
+</ul>
+<p>What participants see are de-identified engineering patterns, not crew information and not any one vessel's records.</p>
+<p>9.4 <strong>Pseudonymized is not anonymous.</strong> The pseudonymized contributions are not anonymous, and we protect them as personal information where they relate to an identifiable person. Insights published to participants are de-identified.</p>
+<p>9.5 <strong>Signing in to the Collective Site.</strong> You sign in to the Collective Site with your CelesteOS account. We use the same account system as the Service and process your sign-in information as described in Section 2.4. While you are signed in, your browser keeps a session token in local storage so that you stay signed in; it is removed when you sign out. We do not use analytics or advertising tools on the Collective Site, and we do not record your searches for any purpose other than delivering results and keeping the site secure.</p>
+</section>
+<section id="public-sources">
+<h2>10. Information We Collect from Public Sources (Collective)</h2>
+<p>10.1 <strong>What we collect and from where.</strong> For the Collective, we collect posts, reports and other content that has been published on publicly accessible websites. Our sources include public accident-investigation and incident reports, industry safety notices, maritime and yachting news sites, public boating and engineering forums and discussion boards, public question-and-answer sites, public video and code-hosting platforms, and published equipment manuals. From these sources we may collect:</p>
+<ul>
+<li>the user name, display name or author name under which the content was published;</li>
+<li>the title, text and date of the post or report, and a link to it where available; and</li>
+<li>any personal information that the author or others included in the content, such as a person's name or a description of an incident. Such content may occasionally include information about health or injuries, for example in accident reports.</li>
+</ul>
+<p>10.2 <strong>Why we collect it.</strong> We use this information to build a searchable knowledge base of reported equipment faults, the remedies people tried, and the reported outcomes, so that vessel engineers can find relevant experience quickly (Section 3(k)). We do not use it to contact, profile or market to the people who wrote it, and we do not combine it with other information to identify them.</p>
+<p>10.3 <strong>How we process it.</strong> Our automated tools collect the content and then use AI models to extract technical fields (such as equipment, manufacturer, model and root cause) and to label reported outcomes. At present, these AI models run on our own equipment, and we do not send Public-Source Content to third-party AI model providers. If that changes, we will update this Policy first.</p>
+<p>10.4 <strong>Who can see it.</strong> Public-Source Content is shown to signed-in users of the Collective Site, with a link to the original source where we have one. It may include the user name or display name under which the content was originally published.</p>
+<p>10.5 <strong>How we limit personal information.</strong> We remove email addresses and telephone numbers from the text of collected content. We use automated tools to detect and remove other people's names from the text where they can, but these tools do not catch every name. User names and titles are currently displayed as they appeared in the original source. We review the corpus on an ongoing basis to reduce personal information, and we will remove or reduce any item on request (Section 10.8).</p>
+<p>10.6 <strong>Legal basis and this notice (EEA, UK and Switzerland).</strong> We rely on our <strong>legitimate interests</strong>, and the interests of the vessel engineers who use the Collective, in making publicly reported technical experience about equipment faults easier to find, which supports safe and reliable vessel maintenance. We have balanced these interests against the interests of the people concerned, taking into account that the content was published publicly in a technical context, the measures in Section 10.5, and your right to object. You can ask us for details of this assessment. This Section 10 is our notice to the people whose information we collect from public sources, as required by Article 14 of the GDPR and UK GDPR. We generally do not hold contact details for the authors of public posts, so contacting each of them individually would be impossible or would involve disproportionate effort, and would require us to collect more personal information about them. We therefore make this information publicly available here instead.</p>
+<p>10.7 <strong>Retention and location.</strong> We keep Public-Source Content for as long as the item remains useful to the knowledge base, and we remove it promptly on a valid objection or takedown request (Section 10.8). It is stored with our primary hosting provider in Germany. Collection and processing also take place on our own equipment in the United States.</p>
+<p>10.8 <strong>Your choices and rights.</strong> If you believe your information appears in Public-Source Content, you can ask us to remove it, correct it, give you a copy, or stop processing it, by emailing <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> with the user name or a link to the item or the original post. In the EEA, UK and Switzerland, you have the right to <strong>object</strong> to our processing based on legitimate interests (Section 18.4). We will stop displaying an item promptly while we review a request, and we will remove your information unless we have compelling legitimate grounds to keep it or the law requires otherwise. If you have deleted or edited the original post, please tell us, and we will update or remove our copy. These rights apply in addition to the rights in Sections 17 and 18.</p>
+<p>10.9 <strong>US state privacy laws.</strong> Some US state privacy laws, including California's, exclude "publicly available information" from the personal information they regulate. Under California law, that exclusion covers only information that is lawfully made available from government records, or that a business has a reasonable basis to believe is lawfully made available to the general public by the person concerned or by widely distributed media. Not all Public-Source Content may meet that test. Whether or not an exclusion applies, we will honor requests about Public-Source Content as described in Section 10.8. We do not sell or share Public-Source Content.</p>
+<p>10.10 <strong>Copyright and other requests.</strong> Requests from authors or rights holders about the content itself, rather than personal information, can be made under our Terms of Use.</p>
+</section>
+<section id="section-11">
+<h2>11. The Verifier</h2>
+<p>11.1 <strong>Your file is never uploaded.</strong> The Verifier lets anyone check whether the content of a sealed record export matches the integrity digests recorded in it. It runs entirely in your web browser. <strong>The file you check is never uploaded to us</strong>, and the Verifier makes no network requests during the check and uses no cookies, browser storage or analytics.</p>
+<p>11.2 <strong>Page hosting.</strong> When your browser loads the Verifier page, our hosting provider receives standard technical information, such as your IP address and browser type, as for any web page. That information is used only to deliver and secure the page. The Verifier's fonts are served from our own site, and the Verifier loads no files from third parties.</p>
+<p>11.3 <strong>What the check covers.</strong> The Verifier checks the file's internal content integrity. It does not currently validate the digital signature.</p>
+</section>
+<section id="section-12">
+<h2>12. The App on Your Device: Browser Storage and Offline Access</h2>
+<p>12.1 <strong>What is stored on your device.</strong> To keep you signed in and to let you work on board with poor connectivity, the Service stores the following in your browser:</p>
+<p>(a) your session token, user identifier, email address, role and vessel name, in your browser's local storage; and</p>
+<p>(b) copies of records you have viewed, for up to 7 days, in an offline cache. The cache is kept separately for each user and each vessel, is deleted when you sign out, and never includes crew certificates.</p>
+<p>12.2 <strong>Not encrypted by the app.</strong> This stored information is <strong>not encrypted by the Service</strong> on your device. Anyone with access to your unlocked device or browser profile could read it. Please use device encryption and a screen lock, and sign out on shared devices. Your organization may have its own device rules.</p>
+<p>12.3 <strong>Push notifications.</strong> If you enable push notifications, your browser registers with its push service (operated by your browser or device maker), and notification titles and text pass through that service.</p>
+</section>
+<section id="retention">
+<h2>13. Retention</h2>
+<p>We keep personal information only as long as needed for the purposes in Section 3, then delete or de-identify it.</p>
+<div class="tbl"><table>
+<thead><tr><th>Information</th><th>Retention</th></tr></thead>
+<tbody>
+<tr><td data-label="Information">Website analytics data (Google Analytics)</td><td data-label="Retention">14 months</td></tr>
+<tr><td data-label="Information">Advertising measurement and session-analytics data</td><td data-label="Retention">As set by those tools; see the Cookie Notice</td></tr>
+<tr><td data-label="Information">Consent choices</td><td data-label="Retention">12 months, after which we ask again</td></tr>
+<tr><td data-label="Information">Prospect enquiries and contact details</td><td data-label="Retention">24 months after our last contact with you, unless you become a customer or ask us to delete them sooner</td></tr>
+<tr><td data-label="Information">Authorized User account details</td><td data-label="Retention">For the life of the account, then deleted within 90 days after the account is closed, unless the Customer's agreement with us requires otherwise, subject to backup expiry</td></tr>
+<tr><td data-label="Information">Security logs and sign-in records</td><td data-label="Retention">12 months</td></tr>
+<tr><td data-label="Information">Support communications</td><td data-label="Retention">24 months after the request is closed</td></tr>
+<tr><td data-label="Information">Billing and contract records</td><td data-label="Retention">7 years, to meet tax and accounting obligations</td></tr>
+<tr><td data-label="Information">Encrypted backups</td><td data-label="Retention">Overwritten on a rolling cycle of no more than 90 days</td></tr>
+<tr><td data-label="Information">Content sent to AI model providers</td><td data-label="Retention">Up to 30 days at the provider for abuse monitoring, then deleted (no zero-retention arrangement with that provider)</td></tr>
+<tr><td data-label="Information">Customer Data</td><td data-label="Retention">As set by the Customer and our agreement with it (Section 1.4)</td></tr>
+<tr><td data-label="Information">Public-Source Content (Collective)</td><td data-label="Retention">For as long as the item remains useful to the knowledge base; removed promptly on a valid objection or takedown request (Section 10)</td></tr>
+<tr><td data-label="Information">Hosting logs for the Collective Site and the Verifier</td><td data-label="Retention">As set by our hosting provider, currently 30 days</td></tr>
+</tbody></table></div>
+</section>
+<section id="section-14">
+<h2>14. Security</h2>
+<p>We use administrative, technical and organizational measures designed to protect personal information, including:</p>
+<ul>
+<li>encryption in transit;</li>
+<li>encrypted backups;</li>
+<li>access controls that separate each Customer's and vessel's data; and</li>
+<li>monitoring for misuse.</li>
+</ul>
+<p>No method of transmission or storage is completely secure, and we cannot guarantee the security of personal information.</p>
+<p><strong>Security breaches.</strong> If a breach of security affects personal information that we control, we will notify affected individuals and regulators as the law requires. For example, for residents of Florida, we will notify affected individuals no later than 30 days after we determine that a breach occurred or have reason to believe one occurred (unless law enforcement asks us to delay or the law allows a short extension), and we will notify the Florida Department of Legal Affairs where 500 or more Florida residents are affected. If a breach affects Customer Data, we notify the affected Customer without undue delay, with a target of 48 hours after we confirm the breach, so that the Customer can meet its own notification duties.</p>
+<p>Please tell us promptly at <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> (subject line "Security") if you believe your account has been compromised.</p>
+</section>
+<section id="section-15">
+<h2>15. International Transfers</h2>
+<p>15.1 <strong>Where information is processed.</strong> We are based in the United States. Our primary hosting for the Service is in Germany. Personal information is also processed in the United States and in other countries where our service providers operate, including by our edge network, session-security cache, AI model providers and Google. Public-Source Content is stored in Germany and is also collected and processed on our own equipment in the United States (Section 10.7).</p>
+<p>15.2 <strong>Safeguards for EEA, UK and Swiss data.</strong> Where we transfer personal information from the European Economic Area, the United Kingdom or Switzerland to a country without an adequacy decision, we use appropriate safeguards. These include the European Commission's Standard Contractual Clauses, the UK International Data Transfer Addendum, and recipients' certifications under the EU-US Data Privacy Framework (including its UK Extension and the Swiss-US framework). You can ask for a copy of the relevant safeguards at <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>.</p>
+</section>
+<section id="section-16">
+<h2>16. Children</h2>
+<p>The Websites and the Service are intended for businesses and are not directed to children under 16. We do not knowingly collect personal information from children under 16 as a controller. If you believe we have done so, contact <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> and we will delete it.</p>
+</section>
+<section id="rights">
+<h2>17. Your Privacy Rights</h2>
+<p>17.1 <strong>Everyone.</strong> Wherever you live, you can:</p>
+<ul>
+<li>unsubscribe from our marketing emails using the link in each email, or by emailing <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>;</li>
+<li>update your account details through the Service or by asking your Customer administrator; and</li>
+<li>ask us questions about this Policy.</li>
+</ul>
+<p>17.2 <strong>US state privacy rights.</strong> Depending on your state of residence, you may have some or all of the following rights. These may include California, Colorado, Connecticut, Virginia, Utah, Texas, Oregon and other states with comprehensive privacy laws.</p>
+<ul>
+<li><strong>Know and access:</strong> to know what personal information we have collected about you, including the categories, sources, purposes and recipients, and to get a copy in a portable format.</li>
+<li><strong>Correct:</strong> to correct inaccurate personal information.</li>
+<li><strong>Delete:</strong> to delete personal information we collected from or about you, subject to legal exceptions.</li>
+<li><strong>Opt out:</strong> of the sale or sharing of personal information, and of targeted advertising (Section 6). We do not engage in profiling that produces legal or similarly significant effects.</li>
+<li><strong>Non-discrimination:</strong> to exercise these rights without discriminatory treatment.</li>
+</ul>
+<p>Note that several states' laws do not apply to information about people acting in a business or employment capacity. California's law does apply to that information.</p>
+<p>17.3 <strong>How to submit a request.</strong> Email <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> with the subject "Privacy request". We conduct business online, so we accept requests by email.</p>
+<ul>
+<li><strong>Verification.</strong> We will verify your identity by matching information you give us with information we hold, usually by confirming control of the email address associated with your account or enquiry. For requests for specific pieces of information, we may ask for more.</li>
+<li><strong>Requests about Customer Data.</strong> If your request concerns Customer Data, we will forward it to the relevant Customer and tell you we have done so.</li>
+<li><strong>Response times.</strong> We will respond within the time the law requires: generally 45 days, extendable once by a further 45 days where necessary, with notice to you.</li>
+</ul>
+<p>17.4 <strong>Authorized agents.</strong> You may use an authorized agent to submit a request. We may require written, signed permission from you, may verify the agent's identity, and, unless the agent holds a valid power of attorney, may ask you to confirm your identity directly with us.</p>
+<p>17.5 <strong>Appeals.</strong> If we decline your request, you may appeal by emailing <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> with the subject "Privacy Appeal" within a reasonable time after our decision. We will respond in writing within the time your state's law requires (generally 45 or 60 days), explaining our reasons. If we deny your appeal, you may contact your state Attorney General.</p>
+<p>17.6 <strong>California disclosures for the past 12 months.</strong></p>
+<div class="tbl"><table>
+<thead><tr><th>Category (Cal. Civ. Code § 1798.140)</th><th>Examples</th><th>Sources</th><th>Business purposes (Section 3)</th><th>Disclosed for a business purpose to</th><th>Sold or shared?</th></tr></thead>
+<tbody>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Identifiers</td><td data-label="Examples">Name, email, phone, IP address, account ID, cookie IDs</td><td data-label="Sources">You; your organization; Microsoft (sign-in); automatically</td><td data-label="Business purposes (Section 3)">(a)–(j)</td><td data-label="Disclosed for a business purpose to">Service providers; AI model providers; payment processor; professional advisers</td><td data-label="Sold or shared?"><strong>Shared</strong> (cookie IDs and IP, Websites only, with our advertising partner)</td></tr>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Customer records (§ 1798.80(e))</td><td data-label="Examples">Name, address, phone, employer, job title</td><td data-label="Sources">You; your organization</td><td data-label="Business purposes (Section 3)">(a), (c)–(e), (h)</td><td data-label="Disclosed for a business purpose to">Service providers; payment processor; professional advisers</td><td data-label="Sold or shared?">No</td></tr>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Commercial information</td><td data-label="Examples">Subscription and billing history</td><td data-label="Sources">You; your organization</td><td data-label="Business purposes (Section 3)">(d), (h)</td><td data-label="Disclosed for a business purpose to">Service providers; payment processor; professional advisers</td><td data-label="Sold or shared?">No</td></tr>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Internet or network activity</td><td data-label="Examples">Website browsing and interactions; Service and Collective Site sign-in and security logs; hosting logs</td><td data-label="Sources">Automatically</td><td data-label="Business purposes (Section 3)">(b), (f), (g)</td><td data-label="Disclosed for a business purpose to">Service providers; analytics and advertising partners</td><td data-label="Sold or shared?"><strong>Shared</strong> (Website activity only)</td></tr>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Approximate geolocation</td><td data-label="Examples">City or region inferred from IP</td><td data-label="Sources">Automatically</td><td data-label="Business purposes (Section 3)">(b), (f), (g)</td><td data-label="Disclosed for a business purpose to">Service providers; analytics and advertising partners</td><td data-label="Sold or shared?"><strong>Shared</strong> (Websites only)</td></tr>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Professional or employment information</td><td data-label="Examples">Employer, role or rank, vessel assignment</td><td data-label="Sources">You; your organization</td><td data-label="Business purposes (Section 3)">(a)–(e)</td><td data-label="Disclosed for a business purpose to">Service providers</td><td data-label="Sold or shared?">No</td></tr>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Identifiers and other content in public posts (Collective)</td><td data-label="Examples">User names, display names or author names, and any personal information in a public post or report</td><td data-label="Sources">Publicly available websites (Section 10.1)</td><td data-label="Business purposes (Section 3)">(k)</td><td data-label="Disclosed for a business purpose to">Service providers (hosting); signed-in users of the Collective Site</td><td data-label="Sold or shared?">No</td></tr>
+<tr><td data-label="Category (Cal. Civ. Code § 1798.140)">Sensitive personal information</td><td data-label="Examples">Account log-in and password (hashed)</td><td data-label="Sources">You</td><td data-label="Business purposes (Section 3)">(a), (b)</td><td data-label="Disclosed for a business purpose to">Service providers (hosting)</td><td data-label="Sold or shared?">No</td></tr>
+</tbody></table></div>
+<p>We do not collect biometric information, precise geolocation, or protected classification characteristics as a controller, except where such information happens to appear in Public-Source Content (Section 10.1). Some Public-Source Content may be "publicly available information" outside the scope of California law; we list it here anyway (Section 10.9). We do not draw inferences to create profiles about you. Retention periods are in Section 13.</p>
+<p>17.7 <strong>Shine the Light (California).</strong> We do not disclose personal information to third parties for their own direct marketing purposes.</p>
+<p>17.8 <strong>Nevada.</strong> We do not sell covered information as defined by Nevada law. Nevada residents may still send an opt-out request to <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>.</p>
+</section>
+<section id="eea-uk">
+<h2>18. Additional Information for the EEA, UK and Switzerland</h2>
+<p>18.1 <strong>Controller.</strong> CelesteOS LLC is the controller of the personal information described in this Policy. For Customer Data, the Customer is the controller and we are its processor (Section 1.4).</p>
+<p>18.2 <strong>Representative.</strong> We have not yet appointed a representative in the EU or the UK. Until a representative is appointed and named here, you can contact us directly at <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a> about any matter concerning your personal information, and we will respond.</p>
+<p>18.3 <strong>Legal bases.</strong></p>
+<div class="tbl"><table>
+<thead><tr><th>Purpose (Section 3)</th><th>Legal basis</th></tr></thead>
+<tbody>
+<tr><td data-label="Purpose (Section 3)">(a) Account administration and service messages</td><td data-label="Legal basis">Legitimate interests (operating the Service the Customer has contracted for)</td></tr>
+<tr><td data-label="Purpose (Section 3)">(b) Security of the Service</td><td data-label="Legal basis">Legitimate interests (keeping the Service and accounts secure); legal obligation where security law applies</td></tr>
+<tr><td data-label="Purpose (Section 3)">(c) Support</td><td data-label="Legal basis">Legitimate interests (responding to you)</td></tr>
+<tr><td data-label="Purpose (Section 3)">(d) Customer relationship, billing</td><td data-label="Legal basis">Legitimate interests; legal obligation for tax and accounting records</td></tr>
+<tr><td data-label="Purpose (Section 3)">(e) Prospect communications</td><td data-label="Legal basis">Legitimate interests (responding to enquiries and business-to-business marketing); steps at your request before a contract; consent where local law requires it for electronic marketing</td></tr>
+<tr><td data-label="Purpose (Section 3)">(f) Website analytics and session analytics</td><td data-label="Legal basis">Consent (withdrawable at any time)</td></tr>
+<tr><td data-label="Purpose (Section 3)">(g) Advertising measurement</td><td data-label="Legal basis">Consent (withdrawable at any time)</td></tr>
+<tr><td data-label="Purpose (Section 3)">(h) Legal compliance and claims</td><td data-label="Legal basis">Legal obligation; legitimate interests (establishing or defending claims)</td></tr>
+<tr><td data-label="Purpose (Section 3)">(i) Business transfers</td><td data-label="Legal basis">Legitimate interests</td></tr>
+<tr><td data-label="Purpose (Section 3)">(j) De-identification</td><td data-label="Legal basis">Legitimate interests (improving the Service without identifying anyone)</td></tr>
+<tr><td data-label="Purpose (Section 3)">(k) Collective public-source knowledge base</td><td data-label="Legal basis">Legitimate interests (making publicly reported technical experience about equipment faults easier to find, supporting safe and reliable vessel maintenance); you may object at any time (Section 10.8)</td></tr>
+<tr><td data-label="Purpose (Section 3)">Strictly necessary browser storage</td><td data-label="Legal basis">Legitimate interests; exempt from consent as strictly necessary</td></tr>
+</tbody></table></div>
+<p>Where we rely on legitimate interests, you can ask us for details of our balancing assessment.</p>
+<p>18.4 <strong>Your rights.</strong> You have the right to:</p>
+<ul>
+<li>access your personal information;</li>
+<li>correct it;</li>
+<li>delete it;</li>
+<li>restrict its processing;</li>
+<li>receive it in a portable format;</li>
+<li>object to processing based on legitimate interests or for direct marketing; and</li>
+<li>withdraw consent at any time, without affecting earlier processing.</li>
+</ul>
+<p>We will respond within one month, extendable by two further months for complex requests, in which case we will tell you why. We do not make decisions about you based solely on automated processing that produce legal or similarly significant effects.</p>
+<p>18.5 <strong>Erasure of records in the Service.</strong> Where your information is part of Customer Data, the Customer decides on erasure. Service records are kept in an append-only, tamper-evident form so that they remain reliable evidence for maritime safety and compliance purposes. Where erasure is required, it may therefore be carried out by removing or anonymizing your identifying details instead of deleting the underlying operational entry. Copies of sealed records that the Customer has already downloaded remain under the Customer's control.</p>
+<p>18.6 <strong>Complaints.</strong> You may complain to the data protection authority where you live or work, or where an alleged infringement occurred:</p>
+<ul>
+<li><strong>EEA:</strong> see the list of authorities at edpb.europa.eu.</li>
+<li><strong>UK:</strong> the Information Commissioner's Office (ico.org.uk; 0303 123 1113).</li>
+<li><strong>Switzerland:</strong> the FDPIC (edoeb.admin.ch).</li>
+</ul>
+<p>We would appreciate the chance to address your concerns first.</p>
+</section>
+<section id="section-19">
+<h2>19. Changes to This Policy</h2>
+<p>We may update this Policy from time to time. We will post the updated version with a new effective date. If changes are material, we will give additional notice, such as a notice on our Websites or an email to account holders.</p>
+</section>
 <section id="contact">
-  <h2>12. Contact</h2>
-  <p>For any question about this policy, your data, or to exercise any of the rights above:</p>
-  <p>Email: <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a></p>
-  <p>Postal address: 7 Vindex Close, Lincoln, England, LN1 1AH.</p>
+<h2>20. Contact Us</h2>
+<ul>
+<li><strong>Email:</strong> <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a></li>
+<li><strong>Mail:</strong> CelesteOS LLC, 7901 4th St N, #36609, St Petersburg, FL 33702, USA</li>
+<li><strong>EU/UK representative:</strong> see Section 18.2</li>
+</ul>
 </section>
 
-
+<div class="doc-foot">
+<p><em>Version 1.0 — effective October 15, 2026.</em></p>
+<p><em>Portions of this document are adapted from the Privacy Policy (GDPR Enhanced) template prepared and made publicly available by General Legal, PC ("General Legal") under CC0. General Legal has not reviewed, and takes no position on, this adaptation, and its use does not create an attorney-client relationship with General Legal.</em></p>
+</div>
+</main>
 
 <!-- ═══ CelesteOS site footer (canonical, self-contained) ═══ -->
 <style>
@@ -318,10 +503,11 @@
       <div>
         <div class="c7f-h">Legal</div>
         <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms-of-service">Terms of Service</a>
-        <a href="/privacy-policy#cookies">Cookies</a>
-        <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
-        <!-- TODO(legal): Privacy Policy (doc 07), Terms (doc 08) and Cookie Notice (doc 10) publication pending; links point to the current pages until then. -->
+        <a href="/terms-of-service">Terms of Use</a>
+        <a href="/cookies">Cookie Notice</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+        <a href="/subprocessors">Sub-processors</a>
+        <a href="/cookies" data-privacy-choices>Your Privacy Choices</a>
         <a href="/trust">Regulatory mapping</a>
         <a href="/sources">Sources &amp; claims</a>
       </div>
@@ -337,10 +523,13 @@
         <span class="c7f-word">CelesteOS</span>
       </div>
       <div class="c7f-legal">
-        <span>© 2026 Celeste7 LTD</span>
+        <span>© 2026 CelesteOS LLC</span>
         <a href="/privacy-policy">Privacy</a>
         <a href="/terms-of-service">Terms</a>
-        <a href="/privacy-policy#cookies" data-privacy-choices>Your Privacy Choices</a>
+        <a href="/cookies">Cookies</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+        <a href="/subprocessors">Sub-processors</a>
+        <a href="/cookies" data-privacy-choices>Your Privacy Choices</a>
         <a href="/trust">Trust</a>
         <a href="/sources">Sources</a>
       </div>

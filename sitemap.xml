@@ -112,8 +112,28 @@
   </url>
   <url>
     <loc>https://celeste7.ai/privacy-policy</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://celeste7.ai/terms-of-service</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://celeste7.ai/cookies</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://celeste7.ai/acceptable-use</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://celeste7.ai/subprocessors</loc>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://celeste7.ai/sources</loc>
