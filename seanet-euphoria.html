@@ -13,13 +13,13 @@
     .home .photo-bg::after { background: linear-gradient(180deg, rgba(12,11,10,0.2) 0%, rgba(12,11,10,0.5) 40%, rgba(12,11,10,0.93) 72%, rgba(12,11,10,0.97) 100%); }
     .home-inner { position: relative; z-index: 5; width: 100%; max-width: 1180px; margin: 0 auto; }
     .docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; margin-top: 2.4rem; }
-    .doc { display: block; text-decoration: none; border-top: 1px solid var(--tx14); padding-top: 1rem; transition: border-color 0.2s; }
-    .doc:hover { border-top-color: var(--teal); }
-    .doc .label { color: var(--teal); }
-    .doc h2 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; color: var(--tx92); margin: 0.4rem 0 0.35rem; }
-    .doc p { font-size: 0.92rem; line-height: 1.5; color: var(--tx55); }
-    .doc .go { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx48); margin-top: 0.8rem; }
-    .doc:hover .go { color: var(--teal); }
+    .doc-card { display: block; text-decoration: none; border-top: 1px solid var(--tx14); padding-top: 1rem; transition: border-color 0.2s; }
+    .doc-card:hover { border-top-color: var(--teal); }
+    .doc-card .label { color: var(--teal); }
+    .doc-card h2 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; color: var(--tx92); margin: 0.4rem 0 0.35rem; }
+    .doc-card p { font-size: 0.92rem; line-height: 1.5; color: var(--tx55); }
+    .doc-card .go { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx48); margin-top: 0.8rem; }
+    .doc-card:hover .go { color: var(--teal); }
     @media (max-width: 900px) { .home { padding: 2rem 1.25rem 1.6rem; } .docs { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -62,19 +62,19 @@
     <p class="sub" style="color:var(--tx82);">One yacht, live overnight and proven in a month. Then the SeaNet fleet.</p>
 
     <div class="docs">
-      <a class="doc" href="/seanet-euphoria-overview">
+      <a class="doc-card" href="/seanet-euphoria-overview">
         <div class="label">Overview · 10 slides</div>
         <h2>The short version</h2>
         <p>What Celeste does for Euphoria, the first month and the terms.</p>
         <div class="go">5 mins &rarr;</div>
       </a>
-      <a class="doc" href="/seanet-euphoria-proposal">
+      <a class="doc-card" href="/seanet-euphoria-proposal">
         <div class="label">Technical proposal</div>
         <h2>The detail</h2>
         <p>How it works underneath: onboarding, background processes, ISM, security and rollout.</p>
         <div class="go">15 mins &rarr;</div>
       </a>
-      <a class="doc" href="/seanet-security-companion">
+      <a class="doc-card" href="/seanet-security-companion">
         <div class="label">Security &amp; trust</div>
         <h2>How records are protected</h2>
         <p>Sign-in, vessel isolation, AI controls and how to verify any sealed record.</p>
