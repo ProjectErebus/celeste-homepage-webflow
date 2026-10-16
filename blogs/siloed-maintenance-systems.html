@@ -119,7 +119,7 @@
 
       <h2>The daily reality of siloed yacht maintenance</h2>
 
-      <p>On a typical 40-metre motor yacht, operational data lives in at least four places. The planned maintenance system — if one exists — records work orders and task completions. The parts inventory sits in a separate spreadsheet or a different module that may or may not sync with the maintenance schedule. Certificate expiry dates live in a folder, sometimes digital, sometimes physical. And critical supplier correspondence — warranty terms, delivery confirmations, technical advisories — sits in email inboxes that belong to individual crew members.</p>
+      <p>On a typical 40-metre motor yacht, operational data lives in at least four places. The planned maintenance system — if one exists — records work orders and task completions. The parts inventory sits in a separate spreadsheet or a different module that may or may not sync with the maintenance schedule. Certificate expiry dates live in a folder, sometimes digital, sometimes physical. And critical manufacturer documentation — warranty terms, service bulletins, technical advisories — sits on laptops and in personal folders that belong to individual crew members.</p>
 
       <p>A significant proportion of vessels in the 30 to 50 metre range still operate on a combination of spreadsheets and paper-based records <a href="#ref-1">[1]</a>. Even vessels that have adopted a planned maintenance system often find that the system records tasks but does not connect them to the broader operational context. Technical documentation is frequently incomplete, outdated, or stored in formats that only the person who created them can navigate <a href="#ref-2">[2]</a>.</p>
 
@@ -138,10 +138,10 @@
       <p>A component fails within its warranty period. The engineer files a claim. The manufacturer requests the full maintenance history, the fault diagnosis, the parts used in previous repairs, and evidence that all service was performed by authorised technicians. Each of these records exists in a different system. The engineer spends hours assembling a narrative from scattered sources — and <a href="/blogs/warranty-claim-documentation">the gaps in that narrative are interpreted as gaps in maintenance practice</a>.</p>
 
       <span class="topic-label">The maintenance schedule does not know about the budget</span>
-      <p>A planned maintenance task is due. The parts cost EUR 4,000. The quarterly maintenance budget has EUR 1,200 remaining. The engineer does not discover this until the purchase order is rejected. The task is deferred — but the deferral is not recorded against the equipment's maintenance history, so the next engineer sees an overdue task with no explanation.</p>
+      <p>A planned maintenance task is due. The parts cost EUR 4,000. The quarterly maintenance budget has EUR 1,200 remaining. The engineer does not discover this until the spend is refused. The task is deferred — but the deferral is not recorded against the equipment's maintenance history, so the next engineer sees an overdue task with no explanation.</p>
 
-      <span class="topic-label">Emails with supplier context live outside the maintenance system</span>
-      <p>The previous engineer negotiated a bulk pricing agreement with a chandlery. The delivery terms, payment conditions, and technical specifications were confirmed by email. When the engineer rotates off, those emails leave with their account. The incoming engineer starts the supplier relationship from scratch.</p>
+      <span class="topic-label">Manufacturer documentation lives outside the maintenance system</span>
+      <p>The previous engineer received a manufacturer's technical advisory that shortened the service interval on the watermaker membranes. It was saved to a personal folder on their laptop. When the engineer rotates off, the advisory leaves with them. The incoming engineer follows the original interval in the manual.</p>
 
       <span class="topic-label">The crew handover cannot pull from any of these systems</span>
       <p>When a chief engineer rotates off, the handover document — if one exists — is assembled manually from memory and personal notes. The maintenance system contributes a task list. Everything else — fault context, supplier intelligence, budget status, operational notes — must be reconstructed by the departing engineer in the final days of their rotation, under time pressure, from information scattered across systems that were never designed to be read together.</p>
@@ -164,7 +164,7 @@
 
       <p>Integration, in practice, means that the maintenance module and the parts module exist within the same software platform. The engineer can switch between them without logging into a different system. This is a real improvement over spreadsheets. It is not a solution to the silo problem.</p>
 
-      <p>Cross-domain means something different. It means that when an engineer opens a fault record, the system surfaces the equipment's warranty status, the parts that have been used in previous repairs of the same fault, the work orders that were generated, and the supplier correspondence related to the equipment — without the engineer searching for each piece separately. The fault record does not exist in isolation. It exists in context.</p>
+      <p>Cross-domain means something different. It means that when an engineer opens a fault record, the system surfaces the equipment's warranty status, the parts that have been used in previous repairs of the same fault, the work orders that were generated, and the manufacturer's documentation for the equipment — without the engineer searching for each piece separately. The fault record does not exist in isolation. It exists in context.</p>
 
       <p>The distinction matters because integration solves a workflow problem — fewer logins, fewer tabs. Cross-domain solves a knowledge problem — the information that an engineer needs to make a decision is assembled by the system, not by the engineer's memory.</p>
 
@@ -172,10 +172,10 @@
 
       <div class="article-split">
         <div class="article-split__text">
-          <p>A single search returning results across every operational domain — faults, work orders, parts, certificates, and supplier correspondence. This is what cross-domain search looks like when the system connects records rather than storing them in parallel modules.</p>
+          <p>A single search returning results across every operational domain — faults, work orders, parts, certificates, and manuals. This is what cross-domain search looks like when the system connects records rather than storing them in parallel modules.</p>
         </div>
         <div class="article-split__media">
-          <img src="/images/blog/art4-search-domains.png" alt="CelesteOS cross-domain search returning results across faults, work orders, parts, certificates, and supplier correspondence" loading="lazy" width="1600" height="900">
+          <img src="/images/blog/art4-search-domains.png" alt="CelesteOS cross-domain search returning results across faults, work orders, parts, certificates, and manuals" loading="lazy" width="1600" height="900">
         </div>
       </div>
 
@@ -185,24 +185,24 @@
 
       <p>Can it answer: "Show me everything related to this fault"?</p>
 
-      <p>Not "show me the fault record." Everything. The equipment it affects. The warranty status of that equipment. The last three work orders on it. The parts used. The parts currently in stock. The supplier who provided them. The certificate that depends on the equipment being operational. The email thread where the manufacturer confirmed the repair procedure.</p>
+      <p>Not "show me the fault record." Everything. The equipment it affects. The warranty status of that equipment. The last three work orders on it. The parts used. The parts currently in stock. The supplier who provided them. The certificate that depends on the equipment being operational. The service bulletin where the manufacturer confirmed the repair procedure.</p>
 
-      <p>If answering that question requires the engineer to open four modules, cross-reference two spreadsheets, and search their email inbox, the system is siloed — regardless of what its marketing materials claim.</p>
+      <p>If answering that question requires the engineer to open four modules, cross-reference two spreadsheets, and search a shared drive, the system is siloed — regardless of what its marketing materials claim.</p>
 
       <p>The value of maintenance data on a superyacht is not in the records themselves. It is in the connections between them. A work order that links to a fault that links to a part that links to a warranty that links to a supplier creates operational intelligence. A work order that exists alone in a task list is a checkbox. <a href="/blogs/seven-connections-yacht-pms">Seven specific connections determine whether a system produces that intelligence or stores isolated records</a>.</p>
 
       <div class="accent-callout">Connections, not records.</div>
 
       <figure class="article-full-bleed">
-        <img src="/images/blog/art4-cross-domain.png" alt="CelesteOS cross-domain links showing how a fault record connects to equipment, warranty, parts, work orders, and supplier correspondence" loading="lazy" width="1600" height="900">
-        <figcaption>Cross-domain links in action — a single fault record connected to equipment history, warranty status, parts inventory, work orders, and supplier correspondence.</figcaption>
+        <img src="/images/blog/art4-cross-domain.png" alt="CelesteOS cross-domain links showing how a fault record connects to equipment, warranty, parts, work orders, and manufacturer documentation" loading="lazy" width="1600" height="900">
+        <figcaption>Cross-domain links in action — a single fault record connected to equipment history, warranty status, parts inventory, work orders, and manufacturer documentation.</figcaption>
       </figure>
 
       <h2>Summary</h2>
 
       <ul class="summary-list">
-        <li>Superyacht maintenance data typically lives in four or more disconnected systems — PMS, parts inventory, certificate tracking, and email — with the chief engineer serving as the only integration layer between them.</li>
-        <li>Five specific silos — work orders, fault records, budget, supplier correspondence, and handover documentation — create measurable financial consequences including duplicated orders, denied warranty claims, and repeated fault diagnoses.</li>
+        <li>Superyacht maintenance data typically lives in four or more disconnected systems — PMS, parts inventory, certificate tracking, and document folders — with the chief engineer serving as the only integration layer between them.</li>
+        <li>Five specific silos — work orders, fault records, budget, manufacturer advisories, and handover documentation — create measurable financial consequences including duplicated orders, denied warranty claims, and repeated fault diagnoses.</li>
         <li>Knowledge loss at crew change, handover failures, and warranty documentation gaps are symptoms of the same structural problem: disconnected systems that tie operational knowledge to individuals rather than to the vessel.</li>
         <li>The distinction between "integrated" and "cross-domain" is the difference between features that coexist and features that inform each other — a difference that determines whether the system creates operational intelligence or stores isolated records.</li>
         <li>The test is simple: can the system answer "show me everything related to this fault" in one search? If not, the system is siloed regardless of its marketing.</li>

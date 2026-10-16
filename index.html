@@ -31,7 +31,7 @@
     "url": "https://celeste7.ai",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "description": "Search-first engineering intelligence system for superyachts. Unified vessel knowledge, manuals, work orders, faults, parts, emails, and handover records searchable from one interface.",
+    "description": "Search-first engineering intelligence system for superyachts. Unified vessel knowledge, manuals, work orders, faults, parts, certificates, and handover records searchable from one interface.",
     "publisher": {
       "@type": "Organization",
       "name": "CelesteOS",
@@ -458,11 +458,11 @@
             </div>
             <div class="lh-card">
               <div class="lh-card-label">03 · Linked</div>
-              <div class="lh-card-title">The part, the PO, the photo, recorded as they happen.</div>
+              <div class="lh-card-title">The part, the note, the photo, recorded as they happen.</div>
               <div class="lh-card-sub">Attached the moment they're made, not filed later.</div>
               <div class="lh-frag">
                 <div class="pp-row"><span class="pp-time">Thu · 11:32</span><span class="pp-role crew">Crew</span><span class="pp-what">photo added · <a class="pp-link">IMG-0541</a></span></div>
-                <div class="pp-row"><span class="pp-time">Wed · 10:04</span><span class="pp-role chief">Chief</span><span class="pp-what">relation added · <a class="pp-link">PO-0077</a> · spare impeller</span></div>
+                <div class="pp-row"><span class="pp-time">Wed · 10:04</span><span class="pp-role chief">Chief</span><span class="pp-what">relation added · <a class="pp-link">P-0213</a> · spare impeller</span></div>
               </div>
             </div>
             <div class="lh-card">
@@ -481,7 +481,7 @@
               <div class="lh-frag lh-live">
                 <div class="lh-day"><span class="lh-day-label">Today</span><span class="lh-day-counts"><span class="lh-day-mut">8 changes</span><span class="lh-day-read">3 reads</span></span></div>
                 <div class="pp-row"><span class="pp-time">14:32</span><span class="pp-role chief">Chief</span><span class="pp-what"><a class="pp-link">WO-1042</a> · status changed to <span class="pp-main">In progress</span></span></div>
-                <div class="pp-row"><span class="pp-time">11:40</span><span class="pp-role chief">Chief</span><span class="pp-what"><a class="pp-link">PO-0077</a> · created</span></div>
+                <div class="pp-row"><span class="pp-time">11:40</span><span class="pp-role chief">Chief</span><span class="pp-what"><a class="pp-link">F-2847</a> · note added</span></div>
                 <div class="pp-row"><span class="pp-time">10:15</span><span class="pp-role chief">Chief</span><span class="pp-what"><a class="pp-link">WO-1042</a> · checklist item completed</span></div>
               </div>
             </div>
@@ -509,15 +509,15 @@
           <p class="big">Eleven months later, the raw-water pump fails, and the captain asks: <em>"prove it."</em></p>
         </div>
         <div class="datum-inner">
-          <div class="ds-context"><span class="bm">CelesteOS</span><span>·</span><span>Claim MH-2206-114</span><span>·</span><span>Disputed</span></div>
+          <div class="ds-context"><span class="bm">CelesteOS</span><span>·</span><span>Warranty claim WC-2206-114</span><span>·</span><span>Disputed</span></div>
           <div class="pin-stack" style="min-height: 380px;">
             <div class="pin-layer" data-layer="1">
               <div class="crop">
                 <div class="crop-topbar"><span>Email · received 09:05</span></div>
-                <div class="pl-meta" style="border-top: none;"><span class="k">From</span><span class="v"><strong>Loss adjuster</strong> · Marine &amp; Hull Underwriters</span></div>
-                <div class="pl-meta"><span class="k">Re</span><span class="v">Claim MH-2206-114 · raw-water pump failure · MY Celeste</span></div>
+                <div class="pl-meta" style="border-top: none;"><span class="k">From</span><span class="v"><strong>Warranty claims</strong> · Pump manufacturer</span></div>
+                <div class="pl-meta"><span class="k">Re</span><span class="v">Warranty claim WC-2206-114 · raw-water pump failure · MY Celeste</span></div>
                 <div class="pl-quote">"Please provide evidence that scheduled maintenance was performed prior to the date of failure."</div>
-                <span class="pl-stamp">€380,000 · disputed</span>
+                <span class="pl-stamp">€38,000 · disputed</span>
               </div>
             </div>
             <div class="pin-layer" data-layer="2">
@@ -612,7 +612,7 @@
     <div class="datum-stage" id="datum-stage" data-state="1">
       <div class="ds-body">
           <div class="ds-frame">
-        <p class="big">One bar. Every record on the boat: work orders, faults, documents, parts, and the Outlook email where the supplier context actually lives. <em>At 2&nbsp;a.m., nobody opens a dashboard.</em></p>
+        <p class="big">One bar. Every record on the boat: work orders, faults, documents, parts, and the manual page that actually holds the answer. <em>At 2&nbsp;a.m., nobody opens a dashboard.</em></p>
       </div>
 
       <div class="datum-inner">
@@ -644,7 +644,7 @@
           <span class="ds-entity">port engine</span>
           <span class="ds-entity">alarm</span>
           <span class="ds-entity">previous occurrence</span>
-          <span class="ds-domains">Work orders · Documents · Emails · Parts · Faults</span>
+          <span class="ds-domains">Work orders · Documents · Parts · Faults</span>
         </div>
 
         <div class="ds-stack">
@@ -675,16 +675,16 @@
             </span>
             <span class="pill record">Record</span>
           </div>
-          <div class="ds-group">Email · 1</div>
+          <div class="ds-group">Documents · 1</div>
           <div class="ds-hit">
-            <img class="ds-ico ds-ico-app" src="img/outlook.svg" alt="" width="15" height="15">
+            <svg class="ds-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h5l3 3v9H4z"></path><path d="M9 2v3h3M6 8h4M6 10.5h4"></path></svg>
             <span class="ds-body">
-              <span class="ds-line"><span class="id">MAIL</span><span class="main">RE: <mark>Port Engine</mark> impeller &amp; hose clip order</span></span>
-              <span class="sub">OUTLOOK · MTU MARINE SUPPORT · 28 OCT 2025 · QUOTE ATTACHED</span>
+              <span class="ds-line"><span class="id">DOC</span><span class="main"><mark>Port Engine</mark> cooling circuit · impeller &amp; hose clips</span></span>
+              <span class="sub">MANUAL · MTU 12V 2000 M94 SERVICE MANUAL · §7.3 · PAGE 214</span>
             </span>
-            <span class="pill email">Email</span>
+            <span class="pill record">Manual</span>
           </div>
-          <div class="ds-resfoot"><svg class="ds-seal" viewBox="0 0 32 32" aria-hidden="true"><use href="#celeste-seal"></use></svg><span><strong>4 results · 2 fault history matches</strong> · Sources: fault log, maintenance history, Outlook · All records immutable</span></div>
+          <div class="ds-resfoot"><svg class="ds-seal" viewBox="0 0 32 32" aria-hidden="true"><use href="#celeste-seal"></use></svg><span><strong>4 results · 2 fault history matches</strong> · Sources: fault log, maintenance history, manuals · All records immutable</span></div>
         </div>
 
         <div class="ds-record">
@@ -907,7 +907,7 @@
     <div class="reveal" style="max-width: 720px;">
       <div class="eyebrow">Warranty-finder</div>
       <h2 class="display">Every fault is checked against <span class="accent">the warranty.</span></h2>
-      <p class="lead">Log the fault. If the equipment is still covered, the record says so, <strong>before the purchase order goes out.</strong> One click opens the exact document, clause cited, claim pack assembling from the ledger. You decide whether to claim.</p>
+      <p class="lead">Log the fault. If the equipment is still covered, the record says so, <strong>before the part is ordered.</strong> One click opens the exact document, clause cited, claim pack assembling from the ledger. You decide whether to claim.</p>
       <div class="how-block">
         <span class="how-k">How</span>
         <span class="how-v">The warranty date already sits on the equipment card. Submitting the fault runs <strong>the check nobody does at 09:14</strong>, and the claim pack assembles, audit-grade, in seconds.</span>
@@ -924,7 +924,7 @@
       <div class="atmo"><span class="a-amber"></span><span class="a-green"></span></div>
       <div class="ds-body">
           <div class="ds-frame">
-        <p class="big">Submit the fault. The warranty check runs with it, <em>before the purchase order goes out.</em></p>
+        <p class="big">Submit the fault. The warranty check runs with it, <em>before the part is ordered.</em></p>
       </div>
       <div class="datum-inner" style="width: min(600px, 100%);">
         <div class="ds-context"><span class="bm">CelesteOS</span><span>·</span><span>MY Celeste · 38m</span><span>·</span><span>Faults</span></div>
@@ -1021,7 +1021,7 @@
     <div class="reveal" style="max-width: 720px;">
       <div class="eyebrow">Onboarding</div>
       <h2 class="display">Onboard in hours. <span class="accent">Not weeks.</span></h2>
-      <p class="lead">Your existing manuals, PDFs, scans, exports, and emails are indexed <strong>as they are.</strong> No migration projects. No reformatting exercises. The vessel's record becomes searchable immediately.</p>
+      <p class="lead">Your existing manuals, PDFs, scans, and exports are indexed <strong>as they are.</strong> No migration projects. No reformatting exercises. The vessel's record becomes searchable immediately.</p>
       <div class="how-block">
         <span class="how-k">How</span>
         <span class="how-v">Three steps: register at <strong>registration.celeste7.ai</strong>, export your PMS and drop the files as they are, and the cloud ingest does the rest: <strong>encrypted in transit.</strong></span>
@@ -1103,7 +1103,7 @@
             <div class="crop">
               <div class="mfv-h">Indexing · in the cloud</div>
               <div class="ob-prog"><div class="ob-prog-fill"></div></div>
-              <div class="ob-count"><strong>1,482</strong> records indexed · manuals · faults · emails · certificates</div>
+              <div class="ob-count"><strong>1,482</strong> records indexed · manuals · faults · work orders · certificates</div>
               <div class="ob-foot" style="color: var(--teal);">Searchable · day one</div>
             </div>
           </div>
@@ -1149,7 +1149,7 @@
       <div class="cov-tile">
         <div class="cn">Work Orders</div>
         <div class="cl">Every maintenance task, planned to closed.</div>
-        <div class="cd">Creation → assignment → parts → photos → sign-off → ledger seal. Linked to faults, equipment, hours of rest.</div>
+        <div class="cd">Creation → assignment → parts → photos → sign-off → ledger seal. Linked to faults, equipment, parts.</div>
       </div>
       <div class="cov-tile">
         <div class="cn">Faults</div>
@@ -1167,19 +1167,19 @@
         <div class="cd">Alerts at 30 / 14 / 7 days. Source PDF attached. DPA-ready on inspection day.</div>
       </div>
       <div class="cov-tile">
-        <div class="cn">Purchase Orders</div>
-        <div class="cl">Procurement, request to delivery.</div>
-        <div class="cd">Approval chain by spend threshold. Linked to receiving and inventory on delivery.</div>
+        <div class="cn">Documents</div>
+        <div class="cl">Manuals, drawings, procedures, as they are.</div>
+        <div class="cd">Indexed on upload, searchable to the page. Cited from faults and work orders, never reformatted.</div>
       </div>
       <div class="cov-tile">
-        <div class="cn">Hours of Rest</div>
-        <div class="cl">MLC 2006, every crew member.</div>
-        <div class="cd">Self-reported, attestation-signed weekly. Violation detection on entry. Flag-state-ready summaries.</div>
+        <div class="cn">Warranty</div>
+        <div class="cl">Cover tracked on every equipment card.</div>
+        <div class="cd">Checked when a fault is logged. Clause cited, claim pack assembled from the ledger.</div>
       </div>
       <div class="cov-tile">
         <div class="cn">Parts &amp; Inventory</div>
         <div class="cl">Stock levels, minimums, locations.</div>
-        <div class="cd">Thresholds alert the home screen. Cross-linked to BOM, work orders, purchase orders, receiving.</div>
+        <div class="cd">Thresholds alert the home screen. Cross-linked to BOM, work orders, equipment.</div>
       </div>
     </div>
     <p class="cov-plus reveal">Plus the four things you wouldn't: <em>handover generation, immutable audit trails, cross-domain search, fleet view</em>, built into the same record, not bolted on.</p>
@@ -1218,7 +1218,7 @@
         <div class="trust-col">
           <div class="trust-name">GDPR</div>
           <div class="trust-status">Aligned</div>
-          <p class="trust-desc">EU data processed in the United States under SCCs and UK IDTA. DPA available on request.</p>
+          <p class="trust-desc">Hosted in Germany (EU). Transfers to US sub-processors under EU SCCs and the UK IDTA. DPA available on request.</p>
         </div>
         <div class="trust-col">
           <div class="trust-name">SOC-2</div>
@@ -1231,7 +1231,7 @@
           <p class="trust-desc">Sections 10 and 11. Audit evidence, not class approval.</p>
         </div>
       </div>
-      <p class="trust-foot">Full regulatory mapping including MLC 2006 and IMO MSC.428(98) → <a href="https://celeste7.ai/trust" target="_blank" rel="noopener">/trust</a></p>
+      <p class="trust-foot">Full regulatory mapping including the ISM Code and IMO MSC.428(98) → <a href="https://celeste7.ai/trust" target="_blank" rel="noopener">/trust</a></p>
     </section>
   </div>
 

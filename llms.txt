@@ -7,7 +7,7 @@ CelesteOS is a vessel knowledge management system that connects maintenance reco
 - NLP search across all vessel knowledge — manuals, faults, work orders, parts, history, handovers
 - Auto-generated engineering handover documents pulling from every operational domain
 - Signed immutable audit trail — every action recorded, attributable, append-only
-- Cross-domain actions — fault to work order to parts to purchase order, all connected
+- Cross-domain actions — fault to work order to parts to warranty, all connected
 - Email integration — Microsoft Exchange correspondence searchable alongside vessel records
 
 ## Who Uses It
