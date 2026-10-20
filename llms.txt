@@ -30,7 +30,7 @@ Key facts:
 - [ISM Internal Audit Checklist for Yachts](https://celeste7.ai/blogs/ism-internal-audit-checklist-yacht): an audit checklist where every line ties to a retrievable record.
 - [Chief Engineer Handover Checklist](https://celeste7.ai/blogs/engineering-handover-superyacht): the seven domains a proper handover covers.
 - [Engine Room Handover Checklist for Yachts](https://celeste7.ai/blogs/engine-room-handover-checklist): what to cover, in what order, and how to keep it current.
-- [What an Auto-Generated Engineering Handover Contains](https://celeste7.ai/blogs/auto-generated-handover): faults, work orders, parts and certificates compiled with links back to their sources.
+- [What a Handover Built From Logged Work Contains](https://celeste7.ai/blogs/auto-generated-handover): faults, work orders, parts and certificates compiled with links back to their sources.
 - [Crew Turnover and Knowledge Loss on Superyachts](https://celeste7.ai/blogs/knowledge-crisis-superyachts): what turnover costs, and what a handover must carry.
 - [How to Digitize Yacht Maintenance Records](https://celeste7.ai/blogs/digitize-yacht-maintenance-records): turning binders and scans into searchable history.
 - [How to Organize Yacht Manuals Onboard](https://celeste7.ai/blogs/organize-yacht-manuals-onboard): organising by findability rather than by folders.
