@@ -1,5 +1,5 @@
 # CelesteOS
-> Search-first engineering intelligence for superyachts (30m and above). Runs alongside your existing PMS.
+> Engineering and maintenance software for superyachts (30m and above). CelesteOS is the planned maintenance system.
 
 CelesteOS is a vessel knowledge management system that connects maintenance records, fault history, parts, certificates, and compliance into a single searchable interface.
 
