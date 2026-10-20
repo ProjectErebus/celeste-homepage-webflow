@@ -182,6 +182,26 @@ function checkText(text, { fullPage }) {
 
     if (!/application\/ld\+json/i.test(text))
       add(FAIL, 1, 'structure', 'no JSON-LD', 'add structured data (Article / FAQPage)');
+    else {
+      // Exactly one block, valid JSON, one @graph, and every {"@id"} reference resolves
+      // (defined in the graph, or a canonical site entity defined on the homepage).
+      const blocks = [...text.matchAll(/<script type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi)];
+      if (blocks.length !== 1) add(FAIL, 1, 'jsonld', `${blocks.length} JSON-LD blocks`, 'exactly one ld+json block with one @graph');
+      else try {
+        const ld = JSON.parse(blocks[0][1]);
+        const nodes = ld['@graph'];
+        if (!Array.isArray(nodes)) add(FAIL, 1, 'jsonld', 'JSON-LD has no @graph', 'wrap nodes in one @graph');
+        else {
+          const SITE = new Set(['organization', 'website', 'logo', 'founder', 'software', 'pilot'].map(k => `https://celeste7.ai/#${k}`));
+          const defined = new Set(), refs = [];
+          (function walk(v) { if (v && typeof v === 'object') {
+            if (v['@id']) (Object.keys(v).length === 1 ? refs.push(v['@id']) : defined.add(v['@id']));
+            Object.values(v).forEach(walk); } })(nodes);
+          for (const r of refs) if (!defined.has(r) && !SITE.has(r)) add(FAIL, 1, 'jsonld', `unresolved @id ${r}`, 'define it in the @graph');
+          if (nodes.filter(n => n['@type'] === 'BreadcrumbList').length > 1) add(FAIL, 1, 'jsonld', 'duplicate BreadcrumbList', 'one breadcrumb per page');
+        }
+      } catch (e) { add(FAIL, 1, 'jsonld', `JSON-LD does not parse: ${e.message}`, 'fix the JSON'); }
+    }
   }
 
   return violations;
@@ -276,7 +296,7 @@ function selfTest() {
 <title>Chief Engineer Handover Checklist for Superyachts — Celeste</title>
 <meta name="description" content="The seven domains a proper chief engineer handover covers, and the engine room steps most yachts get wrong.">
 <link rel="canonical" href="https://celeste7.ai/blogs/engineering-handover-superyacht">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Chief Engineer Handover Checklist"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"Chief Engineer Handover Checklist"}]}</script>
 </head><body>
 <h1>The Chief Engineer Handover Checklist Most Yachts Don't Have</h1>
 <p>Captured as you work. Both signatures timestamped. Locked after dual signature.</p>

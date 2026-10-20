@@ -26,6 +26,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, statS
 import { fileURLToPath } from 'node:url';
 import { dirname, join, basename, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { buildGraph, ldScript, absUrl, FALLBACK_IMAGE } from './lib/jsonld.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 // The site root is the parent of content-engine: /tmp/celeste-pipeline.
@@ -76,6 +77,7 @@ catch (e) { console.error(`publish: posts/${slug}/meta.json is not valid JSON: $
 for (const k of ['title', 'description', 'canonical']) {
   if (!meta[k]) { console.error(`publish: meta.json is missing required field "${k}".`); process.exit(2); }
 }
+meta.title = String(meta.title).replace(/\s+\u2014\s+Celeste$/, ' \u2014 CelesteOS');
 const canonical = meta.canonical || `https://celeste7.ai/blogs/${slug}`;
 
 // ─── 2. fail-closed gate ─────────────────────────────────────────────────────
@@ -126,20 +128,17 @@ if (!existsSync(TEMPLATE_PATH)) {
   process.exit(2);
 }
 let tpl = readFileSync(TEMPLATE_PATH, 'utf8');
-// The template emits the single, deterministic BreadcrumbList (Home › Blog › Title) on
-// every post. The drafter sometimes ALSO puts one in meta.jsonld's @graph (inconsistently:
-// some posts have it, some don't), which rendered TWO breadcrumb blocks. Strip any
-// BreadcrumbList the drafter added so the page never ships a duplicate — template stays the
-// one source of truth, the Article/FAQPage schema is preserved untouched.
-const stripBreadcrumb = (j) =>
-  (j && typeof j === 'object' && Array.isArray(j['@graph']))
-    ? { ...j, '@graph': j['@graph'].filter((n) => n?.['@type'] !== 'BreadcrumbList') }
-    : (Array.isArray(j) ? j.filter((n) => n?.['@type'] !== 'BreadcrumbList')
-    : (j?.['@type'] === 'BreadcrumbList' ? null : j));
-const cleanJsonld = stripBreadcrumb(meta.jsonld);
-const jsonldBlock = cleanJsonld
-  ? `<script type="application/ld+json">\n${JSON.stringify(cleanJsonld, null, 2)}\n  </script>`
-  : '';
+// ONE @graph per page (BlogPosting + WebPage + BreadcrumbList [+ FAQPage]) is built from the
+// RENDERED page by lib/jsonld.mjs, so the H1, description, FAQ Q&A and breadcrumb can never
+// drift from what is visible. meta.jsonld is only read for the original dates and Article.image;
+// any drafter-written graph is otherwise ignored (no duplicate breadcrumbs, no stale FAQ text).
+const jsonldBlock = '';
+const draftArticle = (Array.isArray(meta.jsonld?.['@graph']) ? meta.jsonld['@graph'] : [meta.jsonld]).find(n => /^(Blog|News)?Posting$|^Article$/.test(n?.['@type'] || '')) || {};
+const imgOk = (u) => { const p = new URL(absUrl(u)).pathname; return existsSync(join(SITE_ROOT, p)) || toCopy.some(a => `/images/blog/${basename(a.file)}` === p) || p === '/og-hero.jpg'; };
+const draftImg = typeof draftArticle.image === 'string' ? draftArticle.image : draftArticle.image?.url;
+const bodyImgs = [...body.matchAll(/<img[^>]*\ssrc="([^"]+)"/g)].map(m => m[1]);
+// Never emit a 404 og:image: first candidate that exists, else the site hero card.
+const ogImage = absUrl([draftImg, ...bodyImgs].filter(Boolean).find(imgOk) || FALLBACK_IMAGE);
 const updatedLabel = meta.updated || monthYear(date);
 const relatedLinks = renderRelatedLinks(meta.related);
 
@@ -164,11 +163,19 @@ const subs = {
   BODY: body,
   UPDATED: escapeHtml(updatedLabel),
   SLUG: escapeAttr(slug),
+  OG_IMAGE: escapeAttr(ogImage),
   RELATED_LINKS: relatedLinks,
 };
 let page = tpl;
 for (const [token, value] of Object.entries(subs)) {
   page = page.split(`{{${token}}}`).join(value);
+}
+
+// Inject the single JSON-LD graph, derived from the rendered page.
+{
+  const ld = buildGraph({ html: page, canonical, datePublished: draftArticle.datePublished || date,
+    dateModified: draftArticle.dateModified || date, image: ogImage, keyword: meta.keyword });
+  page = page.replace('<!-- Structured Data -->', `<!-- Structured Data -->\n  ${ldScript(ld)}`);
 }
 
 // Guard: no stray placeholders left in the rendered page. We tolerate a tiny
