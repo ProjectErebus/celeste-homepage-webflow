@@ -132,32 +132,6 @@
     "usage": "Calm evidence frame for \"the record carries its paperwork\". No banned-word risks in-image."
   },
   {
-    "id": "search-oil-leak",
-    "file": "assets/search-oil-leak.png",
-    "chapter": "search",
-    "supports": [
-      "\"oil leak\" search over tasks and documentation"
-    ],
-    "never": [
-      "Do NOT claim \"every domain cited\" (gating uncertain)."
-    ],
-    "alt": "Searching \"oil leak\" in CelesteOS: the results list operational tasks, \"Oil Leak to be fixed\" and \"Hydraulic Oil Leak\", followed by documentation including equipment manuals.",
-    "usage": "Live app capture 20 Oct 2026 (test vessel, light theme, 1440x900 frame cropped). Retaken without retired pages."
-  },
-  {
-    "id": "search-fuel-pressure",
-    "file": "assets/search-fuel-pressure.png",
-    "chapter": "search",
-    "supports": [
-      "\"fuel pressure\" search over faults and documentation"
-    ],
-    "never": [
-      "Do NOT claim \"every domain cited\" (gating uncertain)."
-    ],
-    "alt": "Searching \"fuel pressure\" in CelesteOS: the results list the matching faults, a fuel pressure alarm on the main engine and a fuel rail pressure transient on an auxiliary engine, followed by documentation.",
-    "usage": "Live app capture 20 Oct 2026 (test vessel, light theme, 1440x900 frame cropped). Retaken without retired pages."
-  },
-  {
     "id": "fault-record",
     "file": "assets/fault-record-fuel-pressure.png",
     "chapter": "show related, search",
