@@ -32,7 +32,7 @@ the auditor?" Every line names the record it depends on.
 - Records that can be retroactively modified cannot serve as evidence.
 - Audit prep becomes retrieval, not assembly.
 
-Cross-chapter SAFE lines I may borrow (in-truth, pre-cleared):
+Cross-chapter SAFE lines that may be borrowed (in-truth, pre-cleared):
 - Search: "Natural-language search across your vessel's records and manuals." / "Results open the source record itself." / "Type what you'd ask a colleague."
 - Show Related: "Open any record and CelesteOS surfaces what's related." / "See what's connected. Immediately."
 - Cloud: "CelesteOS is the planned maintenance system." / "Existing manuals, PDFs, scans and exports are imported as they are."
@@ -53,7 +53,7 @@ Cross-chapter SAFE lines I may borrow (in-truth, pre-cleared):
 
 ## Assets (respect NEVER lines)
 
-- `{{asset:ledger}}` — append-only activity timeline. NEVER hop-back/Chrome-history, NEVER sealed PDF.
+- `{{asset:ledger}}` — RETIRED 20 Oct 2026 (image shows a purchase-order entry). Do not use. Append-only activity timeline. NEVER hop-back/Chrome-history, NEVER sealed PDF.
 - `{{asset:work-order}}` — work order carrying its official docs (SOP, ISM procedure, class cert) +
   running-hours schedule. Calm evidence frame for "the record carries its paperwork".
 - `{{asset:fault-detail}}` — fault lens with corrective action + related entities (WO, equipment,

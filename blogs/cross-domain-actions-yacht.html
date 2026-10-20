@@ -12,8 +12,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Add This to Your Handover? How Cross-Domain Actions Eliminate Admin on Superyachts">
   <meta name="twitter:description" content="Conventional yacht maintenance systems require engineers to enter the same information into multiple modules. Cross-domain actions connect faults to work orders, work orders to parts, and every record to the handover — one click each.">
-  <meta property="og:image" content="https://celeste7.ai/images/blog-usp/art11-chain.png">
-  <meta name="twitter:image" content="https://celeste7.ai/images/blog-usp/art11-chain.png">
+  <meta property="og:image" content="https://celeste7.ai/images/blog/handover-draft-drawer.png">
+  <meta name="twitter:image" content="https://celeste7.ai/images/blog/handover-draft-drawer.png">
   <link rel="alternate" type="application/rss+xml" title="CelesteOS Blog" href="/blogs/feed.xml">
   <link rel="canonical" href="https://celeste7.ai/blogs/cross-domain-actions-yacht">
   <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -39,12 +39,12 @@
       "headline": "Add This to Your Handover? How Cross-Domain Actions Eliminate Admin on Superyachts",
       "description": "Conventional yacht maintenance systems require engineers to enter the same information into multiple modules. Cross-domain actions connect faults to work orders, work orders to parts, and every record to the handover — one click each.",
       "datePublished": "2026-04-09T00:00:00+00:00",
-      "dateModified": "2026-04-09T00:00:00+00:00",
+      "dateModified": "2026-10-20T00:00:00+00:00",
       "image": {
         "@type": "ImageObject",
         "@id": "https://celeste7.ai/blogs/cross-domain-actions-yacht#primaryimage",
-        "url": "https://celeste7.ai/images/blog-usp/art11-chain.png",
-        "contentUrl": "https://celeste7.ai/images/blog-usp/art11-chain.png"
+        "url": "https://celeste7.ai/images/blog/handover-draft-drawer.png",
+        "contentUrl": "https://celeste7.ai/images/blog/handover-draft-drawer.png"
       },
       "author": {
         "@type": "Organization",
@@ -200,24 +200,21 @@
       <p>The engineer logs a fault on the port watermaker. The system recognises that a fault without a corresponding work order is an open loop. It offers to create the work order — pre-populated with the equipment reference, fault description, and department assignment. One confirmation. The work order exists, linked to the fault that generated it.</p>
 
       <span class="topic-label">Work order created: "Check parts inventory?"</span>
-      <p>The work order is created. The system identifies the equipment and surfaces the parts typically associated with watermaker membrane replacement. It shows current stock levels. If the membrane is in stock, the engineer proceeds. If it is not, the system shows the last supplier and order history. No inventory module navigation. No separate search.</p>
+      <p>The work order is created. The system identifies the equipment and surfaces the parts typically associated with watermaker membrane replacement. It shows current stock levels. If the membrane is in stock, the engineer proceeds. If it is not, the system shows the last supplier. No inventory module navigation. No separate search.</p>
 
       <span class="topic-label">Fault with work order: "Add to handover draft?"</span>
-      <p>The fault has a work order. Parts are on order. The system offers to add this item to the current <a href="/blogs/auto-generated-handover">handover draft</a> — pulling the fault summary, work order status, and parts status into a single handover entry. The departing engineer does not need to remember to update the handover. The system proposes it at the moment the information is created.</p>
+      <p>The fault has a work order and its parts are identified. The system offers to add this item to the current <a href="/blogs/auto-generated-handover">handover draft</a> — pulling the fault summary, work order status, and parts status into a single handover entry. The departing engineer does not need to remember to update the handover. The system proposes it at the moment the information is created.</p>
 
       <p>Each action is one click. Each action connects domains that would otherwise require separate navigation. Each action produces a linked record — the handover item links to the work order, which links to the fault, which links to the equipment, which links to the parts.</p>
 
-      <figure class="article-full-bleed">
-        <img src="/images/blog-usp/art11-popup.png" alt="Cross-domain action popup in CelesteOS showing contextual prompts — Create work order, Check parts inventory, Add to handover — connecting maintenance records across domains with one click" loading="lazy" width="1600" height="900">
-      </figure>
 
       <h2>The system proposes, the engineer decides</h2>
 
       <p>Cross-domain actions in CelesteOS follow a strict rule: the system never executes an action without the engineer's explicit confirmation.</p>
 
-      <p>The system does not auto-create work orders. It does not auto-deduct parts from inventory. It does not auto-add items to handovers. It proposes the next logical step and waits for the engineer to confirm, modify, or dismiss.</p>
+      <p>The system does not create work orders on its own. It does not deduct parts from inventory on its own. It does not add items to handovers on its own. It proposes the next logical step and waits for the engineer to confirm, modify, or dismiss.</p>
 
-      <p>This is a deliberate design decision, not a limitation. In regulated maritime operations, every action must be attributable to a named individual. Auto-execution removes attribution. It creates records that no one explicitly authorised — records that cannot withstand <a href="/blogs/audit-trail-superyacht">audit scrutiny</a> because no person decided to create them.</p>
+      <p>This is a deliberate design decision, not a limitation. In regulated maritime operations, every action must be attributable to a named individual. Executing without confirmation removes attribution. It creates records that no one explicitly authorised — records that cannot withstand <a href="/blogs/audit-trail-superyacht">audit scrutiny</a> because no person decided to create them.</p>
 
       <div class="pull-quote">The system proposes. The engineer decides. Every record is attributable.</div>
 
@@ -234,17 +231,13 @@
       <p>The incoming engineer does not need to search the fault log, then the maintenance module, then the parts inventory to understand the status of a repair. The records are linked from creation. Following one record leads to every connected record.</p>
 
       <span class="topic-label">Forgotten handover items eliminated</span>
-      <p>Items are added to the handover draft at the moment they are created — not retrospectively, under time pressure, from memory. The handover assembles itself as the engineer works.</p>
+      <p>Items are offered for the handover draft at the moment they are created — not retrospectively, under time pressure, from memory. The engineer confirms each one, and the draft builds up as the work is logged.</p>
 
       <span class="topic-label">Orphaned records eliminated</span>
       <p>A fault without a work order. A work order without parts. A repair without a handover entry. In systems without cross-domain actions, these gaps are common because creating the connection requires navigating to a different module and manually linking records. When the connection is proposed at the point of creation, orphaned records become the exception rather than the norm.</p>
 
-      <figure class="article-full-bleed">
-        <img src="/images/blog-usp/art11-chain.png" alt="Connected maintenance records in CelesteOS — cross-domain chain showing fault linked to work order linked to parts inventory linked to handover entry, with timestamped attribution at every step" loading="lazy" width="1600" height="900">
-        <figcaption>One fault. One click per connection. The fault links to the work order, the work order to the parts, the parts to the handover. Every link timestamped and attributable.</figcaption>
-      </figure>
 
-      <h2>Handover auto-population</h2>
+      <h2>Handover items proposed from linked records</h2>
 
       <p>Article #6 in this series distinguished between integration and cross-domain connection. Integration means modules coexist within the same platform. Cross-domain means modules inform each other.</p>
 
@@ -252,9 +245,6 @@
 
       <p>The administrative overhead on a superyacht is not caused by bad software. It is caused by software that stores information in domains but does not connect them. Cross-domain actions close the gap between doing work and recording work — by making recording an extension of doing, not a separate task.</p>
 
-      <figure class="article-full-bleed">
-        <img src="/images/blog-usp/art11-drawer.png" alt="Cross-domain handover auto-population drawer showing connected maintenance records — faults, work orders, and parts automatically compiled into the engineering handover draft" loading="lazy" width="1600" height="900">
-      </figure>
 
       <div class="accent-callout">Recording work becomes an extension of doing work.</div>
 
@@ -263,12 +253,12 @@
       <ul class="summary-list">
         <li>Conventional yacht maintenance systems require engineers to enter the same information into multiple modules separately — fault log, work orders, inventory, compliance, handover — consuming engineering time and creating documentation gaps.</li>
         <li>Cross-domain actions are system-initiated suggestions that connect the current task to related records in other domains: "Create work order?" "Check parts inventory?" "Add to handover draft?" One click each.</li>
-        <li>The system proposes, the engineer decides. No auto-execution. Every action is attributable to a named individual — essential for <a href="/blogs/audit-trail-superyacht">audit and regulatory compliance</a>.</li>
+        <li>The system proposes, the engineer decides. Nothing executes without confirmation. Every action is attributable to a named individual — essential for <a href="/blogs/audit-trail-superyacht">audit and regulatory compliance</a>.</li>
         <li>Connected records eliminate duplicate entry, manual cross-referencing, forgotten <a href="/blogs/auto-generated-handover">handover items</a>, and orphaned records.</li>
         <li>The result: recording work becomes an extension of doing work, not a separate administrative task deferred under time pressure.</li>
       </ul>
 
-      <p><em>CelesteOS is a Maritime Technical Intelligence System for superyachts where cross-domain actions connect faults to work orders, work orders to parts, and every record to the handover — proposed by the system, confirmed by the engineer. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
+      <p><em>CelesteOS is the planned maintenance system for superyachts where cross-domain actions connect faults to work orders, work orders to parts, and every record to the handover — proposed by the system, confirmed by the engineer. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
 
       <!-- Sources -->
       <div class="article-sources">

@@ -47,7 +47,7 @@ Severity legend used below:
 - "The draft accumulates as the engineer works."
 - "Months of context accumulate as a by-product of normal work."
 - "Never asked twice if dismissed."
-- "The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges: 'I have read and understood the operational state of this vessel.'"
+- "The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges in writing that the operational state of the vessel has been read and understood."
 - "Both signatures timestamped. Locked after dual signature." (two-signature outgoing/HOD flow is live)
 - "Every entry resolves back to a live record — one click opens the fault, the work order, the part." (handover wormhole is live)
 - "The handover is a live index into the vessel's operational data, not a static document."
@@ -173,7 +173,7 @@ Severity legend used below:
 **This is the strongest fully-live moment. Lead with it.**
 
 ### SAFE (approved phrasings)
-- "Open any record and CelesteOS surfaces what's related — work orders, parts, equipment, handovers, and correspondence."
+- "Open any record and CelesteOS surfaces what's related — work orders, parts, equipment, and handovers."
 - "See what's connected. Immediately."
 - "Stay oriented without leaving the page."
 - "Show Related sits in every record's header."
@@ -202,7 +202,7 @@ Severity legend used below:
 - "Browser-based. Any modern browser — desktop, tablet, mobile. No app installation."
 - "Crew on rotation can review records remotely with their existing credentials."
 - "Your data is yours. Nothing is held hostage." (export commitment — keep as commitment, not feature depiction)
-- "Your existing manuals, PDFs, scans, exports, and emails are indexed as they are. No reformatting exercises."
+- "Your existing manuals, PDFs, scans, and exports are indexed as they are. No reformatting exercises." (emails are NOT ingested — retired)
 
 ### BANNED overclaims
 | Banned phrasing | Why | Safe substitute |
@@ -265,7 +265,7 @@ Mechanical gate — hard-fail a draft if any of these match in product-claim con
 /\bmagic\w*/i
 /\brevolutio\w*/i
 /game[- ]chang\w*/i
-/\bintelligent\b/i           ("Maritime Technical Intelligence System" legacy name: do NOT introduce in new copy; "intelligence" as product-magic is off-brand)
+/\bintelligen(t|ce)\b/i      ("Maritime Technical Intelligence System" legacy name: do NOT introduce in new copy; CelesteOS IS the planned maintenance system. "intelligence" as product-magic is off-brand; say "knowledge")
 ```
 
 ### Banned overclaim patterns (cross-chapter, mechanical)
@@ -298,6 +298,11 @@ Mechanical gate — hard-fail a draft if any of these match in product-claim con
 /SOC[- ]?2 (certified|compliant)/i
 /GDPR compliant/i
 /zero data retention/i
+/hours[- ]of[- ]rest/i        (retired page — founder ruling 20 Oct 2026)
+/shopping[- ]lists?/i          (retired page)
+/purchase[- ]orders?/i         (retired page)
+/\breceiving (page|module|workflow|screen|log)\b/i   (retired page)
+/\binbox\b|(outlook|exchange) integration|email (integration|ingest\w*|sync)/i   (retired — emails are never ingested)
 ```
 
 ### CALL-ONLY patterns (pricing — never in published copy)

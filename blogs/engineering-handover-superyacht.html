@@ -165,7 +165,7 @@
           "name": "What should a chief engineer handover checklist include?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Seven connected domains: equipment condition, outstanding defects and open work orders, maintenance status, parts on order with supplier contacts, certificate expiry and the compliance timeline, vessel-specific safety procedures, and the undocumented operational notes. Critically, each item should resolve back to its underlying record rather than living as a flat line, so the incoming engineer can follow it to the fault, the work order, and the part."
+            "text": "Seven connected domains: equipment condition, outstanding defects and open work orders, maintenance status, parts awaited with supplier contacts, certificate expiry and the compliance timeline, vessel-specific safety procedures, and the undocumented operational notes. Critically, each item should resolve back to its underlying record rather than living as a flat line, so the incoming engineer can follow it to the fault, the work order, and the part."
           }
         },
         {
@@ -280,7 +280,7 @@
         <li><strong>Equipment inventory and condition.</strong> Not a list of what is aboard, but the current operational state of each critical system: what is fully functional, what is degraded, what has been modified from original specification and why.</li>
         <li><strong>Outstanding defects and open work orders.</strong> Every known fault, its diagnosis status, what has been tried, what worked and what did not — the history behind the defect, not its bare existence.</li>
         <li><strong>Maintenance system status.</strong> What is current, what is overdue, and what was deferred deliberately. Deferred maintenance without documented reasoning is indistinguishable from neglected maintenance.</li>
-        <li><strong>Parts on order and supplier contacts.</strong> What has been ordered, from whom, expected delivery, and the fallback source if the primary supplier fails. The supplier relationships an incoming engineer would otherwise spend months rebuilding.</li>
+        <li><strong>Parts awaited and supplier contacts.</strong> What is still awaited, from whom, the expected delivery, and the fallback source if the primary supplier fails. The supplier relationships an incoming engineer would otherwise spend months rebuilding.</li>
         <li><strong>Certificates and the compliance timeline.</strong> Which certificates expire before the next yard period, which flag-state or class surveys are approaching, and whether the supporting documentation is current. Certificates tracked to expiry, with renewal dates and the source PDF attached.</li>
         <li><strong>Safety-critical procedures specific to the vessel.</strong> Emergency shutdown sequences, bilge and fire-zone configuration, and any procedure that deviates from the manufacturer default because of how this vessel was built.</li>
         <li><strong>Operational notes.</strong> The undocumented knowledge — which behaviours are normal for this vessel, which alarm thresholds were adjusted and why, which equipment needs watching beyond its maintenance interval. This is the domain a verbal walk-around attempts to cover in an afternoon and almost always fails to transfer.</li>
@@ -306,7 +306,7 @@
 
       <p>The International Safety Management Code addresses crew transitions. Section 6 requires that new personnel be given proper familiarisation with their duties; Section 10 requires the company to keep the ship maintained in conformity with the rules and to record inspections, non-conformities, and corrective actions <a href="#ref-4">[4]</a>. These are necessary. They are not sufficient for knowledge transfer.</p>
 
-      <p>The ISM Code requires that maintenance records exist. It does not require that they be connected across domains. A fault log does not link to the work order it generated; a work order does not link to the parts ordered; a parts order does not link to the warranty claim it supports. Each record sits in its own silo, findable only if you already know what you are looking for and where it was filed. The REG Yacht Code, which superseded the MCA's LY3 for Red Ensign vessels, similarly defines documentation standards without prescribing a structured handover format <a href="#ref-5">[5]</a>.</p>
+      <p>The ISM Code requires that maintenance records exist. It does not require that they be connected across domains. A fault log does not link to the work order it generated; a work order does not link to the parts used; a part record does not link to the warranty claim it supports. Each record sits in its own silo, findable only if you already know what you are looking for and where it was filed. The REG Yacht Code, which superseded the MCA's LY3 for Red Ensign vessels, similarly defines documentation standards without prescribing a structured handover format <a href="#ref-5">[5]</a>.</p>
 
       <p>The gap between "records exist" and "knowledge transfers" is where the cost lands. When the engineer who did the work is gone and the records are scattered, a warranty claim that should be straightforward becomes <a href="/blogs/warranty-claim-documentation">indefensible</a> — and a single denied claim on a main engine or generator can reach well into six figures <a href="#ref-2">[2]</a>. The owner absorbs the loss not because the maintenance was skipped, but because the evidence left with the engineer. The records were there. The connections between them were not.</p>
 
@@ -319,7 +319,7 @@
       <p>When the rotation comes, the draft is reviewed, not written from scratch. The outgoing engineer signs. The incoming engineer acknowledges, in writing, that they have read and understood the operational state of the vessel. Both signatures are timestamped, and the handover is locked after dual signature. The result reads like a dated technical report a surveyor can hold — a document number, the period covered, and the contents listed by department.</p>
 
       <figure class="article-figure">
-  <img src="/images/blog/handover-export-report.png" alt="Cover page of a CelesteOS technical handover report: document number, generation date, the period covered, and a contents list by department." loading="lazy" width="1440" height="900">
+  <img src="/images/blog/handover-export-report.png" alt="Cover page of a CelesteOS technical handover report: document number, date, the period covered, and a contents list by department." loading="lazy" width="1440" height="900">
   <figcaption></figcaption>
 </figure>
 
@@ -344,7 +344,7 @@
 
       <div class="faq">
         <h3>What should a chief engineer handover checklist include?</h3>
-        <p>Seven connected domains: equipment condition, outstanding defects and open work orders, maintenance status, parts on order with supplier contacts, certificate expiry and the compliance timeline, vessel-specific safety procedures, and the undocumented operational notes. Critically, each item should resolve back to its underlying record rather than living as a flat line, so the incoming engineer can follow it to the fault, the work order, and the part.</p>
+        <p>Seven connected domains: equipment condition, outstanding defects and open work orders, maintenance status, parts awaited with supplier contacts, certificate expiry and the compliance timeline, vessel-specific safety procedures, and the undocumented operational notes. Critically, each item should resolve back to its underlying record rather than living as a flat line, so the incoming engineer can follow it to the fault, the work order, and the part.</p>
 
         <h3>Why do paper engineering handover notes fail?</h3>
         <p>A paper checklist records that a box was ticked, not the context behind it — which fault is still open, what was tried, why a task was deferred, which supplier actually delivers. With most handovers lasting a week or less and no industry-standard format, the format is whatever the outgoing engineer remembers to mention. The knowledge that matters most is the knowledge a flat form cannot hold.</p>

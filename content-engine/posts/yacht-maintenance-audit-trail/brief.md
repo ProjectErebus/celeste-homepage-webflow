@@ -43,7 +43,7 @@ Plus the GLOBAL gate: no AI/smart/automate/seamless/optimize/magic/revolutionary
 
 Drop the placeholder `{{asset:<id>}}` where you want each image; `publish.mjs` resolves it to a `<figure>` with the approved alt and copies the file to the served path. **One media = one focal point per section.**
 
-### {{asset:ledger}}
+### {{asset:ledger}} — RETIRED 20 Oct 2026 (image shows a purchase-order entry); do not use
 
 - **Shows:** The CelesteOS ledger drawer: a day-by-day activity timeline — a work order status change, a note added to a fault, a purchase order created — each entry attributed and time-stamped.
 - **Supports:** "Append-only activity record"; "every change attributed to a person and a time"; "reads/edits counted per day"

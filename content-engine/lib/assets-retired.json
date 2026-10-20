@@ -1,0 +1,106 @@
+[
+  {
+    "id": "search-idle",
+    "file": "assets/search-command-bar-idle.png",
+    "chapter": "search",
+    "supports": [
+      "One place to find anything",
+      "the surface shows what needs attention without being asked",
+      "light-mode free-floating search bar (CEO-preferred presentation)"
+    ],
+    "never": [
+      "Do not caption the pointer list as \"AI prioritisation\" — it is a list of open items."
+    ],
+    "alt": "CelesteOS surface in light mode: a single search bar reading \"Find anything, or tell me what to do\", above a short list of items needing attention — an open fault, an overdue service, a low-stock part, an expiring certificate.",
+    "usage": "CEO prefers this light-mode bar on landing. Do not caption the pointer list as \"AI prioritisation\" — it is a list of open items. 1440×900 full-frame.",
+    "retired": "2026-10-20",
+    "retired_reason": "Screenshot shows a Receiving expected today item, Shipment Arriving and Log HOR quick filters (receiving, hours of rest retired). Founder ruling 20 Oct 2026: do not reuse; retake the screenshot without the retired pages."
+  },
+  {
+    "id": "ledger",
+    "file": "assets/ledger-activity-drawer.png",
+    "chapter": "ledger",
+    "supports": [
+      "Append-only activity record",
+      "every change attributed to a person and a time",
+      "reads/edits counted per day"
+    ],
+    "never": [
+      "NEVER \"hop back / Chrome-history resume\" (no resume).",
+      "NEVER \"sealed PDF\"."
+    ],
+    "alt": "The CelesteOS ledger drawer: a day-by-day activity timeline — a work order status change, a note added to a fault, a purchase order created — each entry attributed and time-stamped.",
+    "usage": "NEVER \"hop back / Chrome-history resume\" (no resume). NEVER \"sealed PDF\". Append-only is the safe claim. Drawer crop ~467×900.",
+    "retired": "2026-10-20",
+    "retired_reason": "Screenshot shows a PO-2026-0087 purchase order entry in the activity timeline (purchase orders retired). Founder ruling 20 Oct 2026: do not reuse; retake the screenshot without the retired pages."
+  },
+  {
+    "id": "parts",
+    "file": "assets/parts-inventory-lens.png",
+    "chapter": "search, show related",
+    "supports": [
+      "Parts with physical location on board",
+      "stock against minimum visible at a glance",
+      "barcode + purchase order from the same record"
+    ],
+    "never": [
+      "Unit-cost figures in-image are sample part data, not product pricing (pricing stays CALL-ONLY in copy).",
+      "Don't headline \"Recommended Minimum\" as a product capability (unverified) — crop or ignore it in captions."
+    ],
+    "alt": "A part in CelesteOS: an impeller kit for the seawater cooling pump — its box and shelf in the aft mooring locker, six of twelve in stock, OEM part number and supplier, with a barcode and purchase-order button on the record.",
+    "usage": "Unit-cost figures in-image are sample part data, not product pricing (pricing stays CALL-ONLY in copy). Don't headline \"Recommended Minimum\" as a product capability (unverified) — crop or ignore it in captions.",
+    "retired": "2026-10-20",
+    "retired_reason": "Screenshot shows a Raise Purchase Order button (purchase orders retired). Founder ruling 20 Oct 2026: do not reuse; retake the screenshot without the retired pages."
+  },
+  {
+    "id": "vessel-surface",
+    "file": "assets/vessel-surface-command.png",
+    "chapter": "search, cloud-based",
+    "supports": [
+      "The whole boat behind one bar",
+      "what needs attention surfaces without being asked",
+      "keyboard-first"
+    ],
+    "never": [
+      "Dark-mode counterpart of `search-command-bar-idle.png` — pick ONE per page section (one media, one focal point)."
+    ],
+    "alt": "The CelesteOS vessel surface: one search bar over a needs-your-attention list — an oil leak open two days, a generator service five days overdue, a filter at two units, a SOLAS certificate expiring, a parts delivery due today.",
+    "usage": "Demo state-switcher buttons were hidden before capture. Dark-mode counterpart of `search-command-bar-idle.png` — pick ONE per page section (one media, one focal point).",
+    "retired": "2026-10-20",
+    "retired_reason": "Needs-attention list includes a receiving / parts delivery item (receiving retired). Founder ruling 20 Oct 2026: do not reuse; retake the screenshot without the retired pages."
+  },
+  {
+    "id": "surface-full",
+    "file": "assets/vessel-surface-full.png",
+    "chapter": "cloud-based, search",
+    "supports": [
+      "This is a real, running product (not a mockup)",
+      "the whole vessel state on one surface"
+    ],
+    "never": [
+      "NEVER crop-zoom the certificates/receiving/warranty cards where test strings become legible.",
+      "Use at reduced size only",
+      "Dense multi-card grid — use for \"the whole surface\" context, not as a one-focal-point hero."
+    ],
+    "alt": "The full CelesteOS vessel surface, live: cards for parts below minimum, open work orders, faults, the last handover, certificates, hours of rest, purchase orders and recent documents — the state of the boat on one screen.",
+    "usage": "Real app with TEST-VESSEL data: visible strings include \"Captain Test (MASTER)\", \"E2E Test Vendor\", \"(regression probe)\". Use at reduced size only; NEVER crop-zoom the certificates/receiving/warranty cards where test strings become legible. Dense multi-card grid — use for \"the whole surface\" context, not as a one-focal-point hero.",
+    "retired": "2026-10-20",
+    "retired_reason": "Dashboard grid shows hours of rest, purchase order, shopping list and receiving cards (all retired). Founder ruling 20 Oct 2026: do not reuse; retake the screenshot without the retired pages."
+  },
+  {
+    "id": "surface-sidebar",
+    "file": "assets/vessel-surface-sidebar.png",
+    "chapter": "cloud-based",
+    "supports": [
+      "The domains CelesteOS covers, in the product's own navigation",
+      "counts of open items"
+    ],
+    "never": [
+      "Counts (3 work orders, 20 faults, 12 parts) are test-vessel data; fine at a glance, don't quote them as customer numbers."
+    ],
+    "alt": "The CelesteOS sidebar: Operations, Inventory & Supply and Compliance sections — work orders, faults, equipment, handover, parts, purchase orders, certificates, documents, warranty.",
+    "usage": "Clean tall crop (306×1119) — good as a quiet \"what it covers\" strip. Counts (3 work orders, 20 faults, 12 parts) are test-vessel data; fine at a glance, don't quote them as customer numbers.",
+    "retired": "2026-10-20",
+    "retired_reason": "Navigation shows Hours of Rest, Email, Purchase Orders (all retired). Founder ruling 20 Oct 2026: do not reuse; retake the screenshot without the retired pages."
+  }
+]

@@ -24,7 +24,7 @@
 - Finds what you mean, not what you typed.
 - Results open the source record itself.
 - Results are scoped to your vessel and role — no filter to set up first.
-- Your existing manuals, PDFs, scans, exports, and emails are indexed as they are. No reformatting exercises.
+- Your existing manuals, PDFs, scans, and exports are indexed as they are. No reformatting exercises.
 - CelesteOS is the planned maintenance system.
 - Open any record and CelesteOS surfaces what's related — work orders, parts, equipment, handovers, and correspondence. (show-related, fully live — the strongest moment)
 - The audit trail is append-only. (ledger)

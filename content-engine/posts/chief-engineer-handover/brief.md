@@ -42,7 +42,7 @@ The system PROPOSES, the engineer DECIDES. Nothing writes itself.
 - The draft accumulates as the engineer works.
 - Months of context accumulate as a by-product of normal work.
 - Never asked twice if dismissed.
-- The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges: 'I have read and understood the operational state of this vessel.'
+- The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges in writing that the operational state of the vessel has been read and understood.
 - Both signatures timestamped. Locked after dual signature.
 - Every entry resolves back to a live record — one click opens the fault, the work order, the part.
 - The handover is a live index into the vessel's operational data, not a static document.
@@ -87,7 +87,7 @@ invented metrics / unsourced counters.
 ## References to carry (verified on the existing page)
 
 [1] Seahub — engineering handover survey (66% last ≤1 week; no standard format).
-[2] YATCO — warranty-claim cost band (EUR 20,000–100,000).
+[2] YATCO — warranty-claim cost band ($20,000–100,000+).
 [3] Manta Maritime — Chief Engineer's Handover Checklist (2014 paper template).
 [4] IMO — ISM Code Sections 6 & 10.
 [5] KRM Yacht — REG Yacht Code / flag-state rules.

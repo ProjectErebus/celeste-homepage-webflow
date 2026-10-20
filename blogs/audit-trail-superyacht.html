@@ -39,7 +39,7 @@
       "headline": "Every Action Has a Name and a Timestamp: Why Audit Trails Matter on Superyachts",
       "description": "Most yacht maintenance systems record task completions but not who opened a document, who reviewed a record, or who authorised an action. Immutable audit trails with timestamped, attributable records change the legal defence.",
       "datePublished": "2026-04-09T00:00:00+00:00",
-      "dateModified": "2026-04-09T00:00:00+00:00",
+      "dateModified": "2026-10-20T00:00:00+00:00",
       "image": {
         "@type": "ImageObject",
         "@id": "https://celeste7.ai/blogs/audit-trail-superyacht#primaryimage",
@@ -70,6 +70,11 @@
           "@type": "Thing",
           "name": "ISM Code",
           "sameAs": "https://www.wikidata.org/wiki/Q254568"
+        },
+        {
+          "@type": "Thing",
+          "name": "Planned Maintenance System in shipping",
+          "sameAs": "https://www.wikidata.org/wiki/Q7201337"
         },
         {
           "@type": "Thing",
@@ -180,7 +185,7 @@
     <header class="article-header blog-reveal">
       <div class="article-header__meta blog-stagger">9 April 2026 · 7 min read</div>
       <h1 class="article-header__title blog-stagger">Every Action Has a Name and a Timestamp: Why Audit Trails Matter on Superyachts</h1>
-      <p class="article-header__lede blog-stagger">A chief engineer hands over to their relief after eight months aboard. The incoming engineer asks: "How do I know the team has been following the updated enclosed space procedure since the incident in February?" The departing chief knows they have — the team was briefed on a Tuesday, every crew member read the revised SOP. But knowing is not proving. Without a record of who opened the document, when, and for how long, the incoming engineer has no way to verify. The procedure was followed. The proof does not exist.</p>
+      <p class="article-header__lede blog-stagger">A chief engineer hands over to their relief after eight months aboard. The incoming engineer asks: "How can the incoming engineer know the team has been following the updated enclosed space procedure since the incident in February?" The departing chief knows they have — the team was briefed on a Tuesday, every crew member read the revised SOP. But knowing is not proving. Without a record of who opened the document and when, the incoming engineer has no way to verify. The procedure was followed. The proof does not exist.</p>
     </header>
 
     <div class="article-body">
@@ -206,7 +211,7 @@
       <p>When an engineer opens a fault report, a work order, or an equipment record, the access is logged. When the chief engineer reviews a second engineer's fault diagnosis before authorising a repair, that review is recorded — who reviewed, when, and which record. The decision chain is preserved.</p>
 
       <span class="topic-label">Action attribution</span>
-      <p>Every action taken in the system — logging a fault, creating a work order, signing a <a href="/blogs/auto-generated-handover">handover</a>, closing a defect, ordering parts — is attributed to a named individual with a timestamp. Not "the system updated the record." A specific person, at a specific time, made a specific decision.</p>
+      <p>Every action taken in the system — logging a fault, creating a work order, signing a <a href="/blogs/auto-generated-handover">handover</a>, closing a defect — is attributed to a named individual with a timestamp. Not "the system updated the record." A specific person, at a specific time, made a specific decision.</p>
 
       <span class="topic-label">Immutability</span>
       <p>Once a record is created, it cannot be altered or deleted. The audit trail is append-only. If a record needs correction, a new entry is created that references the original — the original remains intact. This is not a software limitation. It is a design requirement. Records that can be retroactively modified cannot serve as evidence.</p>
@@ -248,15 +253,12 @@
         <div class="stat-callout__label">records that can be retroactively modified in an append-only audit trail</div>
       </div>
 
-      <p>A vessel without an audit trail relies on verbal assurances and retrospective documentation. A vessel with an immutable audit trail relies on evidence that was created in real time and cannot be disputed.</p>
+      <p>A vessel without an audit trail relies on verbal assurances and retrospective documentation. A vessel with an immutable audit trail relies on evidence that was created at the time of the work and cannot be disputed.</p>
 
-      <figure class="article-full-bleed">
-        <img src="/images/blog-usp/art9-audit-export.png" alt="Superyacht audit trail export showing timestamped immutable records for warranty claim defence — named individuals, dated maintenance actions, and append-only entries" loading="lazy" width="1600" height="900">
-      </figure>
 
       <h2>What this looks like in practice</h2>
 
-      <p>In CelesteOS, the audit trail is not a separate module the engineer navigates to. It is a layer that records interactions automatically as the engineer works.</p>
+      <p>In CelesteOS, the audit trail is not a separate module the engineer navigates to. It is a layer that records actions as the engineer works — no checkbox, no extra step.</p>
 
       <p>The engineer opens the enclosed space entry procedure. The system logs: "M. Torres opened SOP-ENG-042: Enclosed Space Entry Procedure — 14:32 UTC." The engineer spends four minutes reviewing the document. The system logs the duration. No action required from the engineer. No checkbox. No confirmation dialog. The record exists because the interaction happened.</p>
 
@@ -272,11 +274,11 @@
         <li>Most yacht maintenance systems record task completions but not the operational interactions between tasks — who opened a document, who reviewed a record, who authorised an action, and when.</li>
         <li>An audit trail captures every interaction: document access with duration, record review, action attribution, and timestamps — all tied to a named individual.</li>
         <li>Immutability is the critical distinction between a log and an audit trail. Append-only records that cannot be altered or deleted serve as evidence. Editable logs do not.</li>
-        <li>Immutable audit trails strengthen <a href="/blogs/warranty-claim-documentation">warranty claim defences</a>, support incident investigations, and provide internal accountability — by creating proof in real time that cannot be disputed.</li>
+        <li>Immutable audit trails strengthen <a href="/blogs/warranty-claim-documentation">warranty claim defences</a>, support incident investigations, and provide internal accountability — by creating proof at the time of the work that cannot be disputed.</li>
         <li>The audit trail is not a feature. It is a legal defence.</li>
       </ul>
 
-      <p><em>CelesteOS is a Maritime Technical Intelligence System for superyachts where every interaction is recorded in an immutable, append-only audit trail — timestamped, attributable, and preserved as permanent evidence. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
+      <p><em>CelesteOS is the planned maintenance system for superyachts where every interaction is recorded in an immutable, append-only audit trail — timestamped, attributable, and preserved as permanent evidence. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
 
       <!-- Sources -->
       <div class="article-sources">
