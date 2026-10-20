@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Blog — Celeste</title>
+  <title>Blog — CelesteOS</title>
   <meta name="description" content="Operational thinking for vessel management. Articles on yacht knowledge retention, engineering handovers, and superyacht maintenance intelligence.">
-  <meta property="og:title" content="Blog — Celeste">
+  <meta property="og:title" content="Blog — CelesteOS">
   <meta property="og:description" content="Operational thinking for vessel management. Articles on yacht knowledge retention, engineering handovers, and superyacht maintenance intelligence.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://celeste7.ai/blogs">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blog — Celeste">
+  <meta name="twitter:title" content="Blog — CelesteOS">
   <meta name="twitter:description" content="Operational thinking for vessel management. Articles on yacht knowledge retention, engineering handovers, and superyacht maintenance intelligence.">
   <meta property="og:image" content="https://celeste7.ai/images/blog/search-interface-full.png">
   <meta name="twitter:image" content="https://celeste7.ai/images/blog/search-interface-full.png">
-  <link rel="alternate" type="application/rss+xml" title="Celeste Blog" href="/blogs/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="CelesteOS Blog" href="/blogs/feed.xml">
   <link rel="canonical" href="https://celeste7.ai/blogs">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link href="/css/normalize.css" rel="stylesheet" type="text/css">
@@ -29,18 +29,172 @@
   <link href="/images/webclip.png" rel="apple-touch-icon">
   <!-- Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Blog — Celeste",
-    "description": "Operational thinking for vessel management. Articles on yacht knowledge retention, engineering handovers, and superyacht maintenance intelligence.",
-    "url": "https://celeste7.ai/blogs",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Celeste",
-      "url": "https://celeste7.ai"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://celeste7.ai/blogs#webpage",
+      "url": "https://celeste7.ai/blogs",
+      "name": "Blog — CelesteOS",
+      "description": "Operational thinking for vessel management. Articles on yacht knowledge retention, engineering handovers, and superyacht maintenance intelligence.",
+      "isPartOf": {
+        "@id": "https://celeste7.ai/#website"
+      },
+      "publisher": {
+        "@id": "https://celeste7.ai/#organization"
+      },
+      "inLanguage": "en",
+      "breadcrumb": {
+        "@id": "https://celeste7.ai/blogs#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://celeste7.ai/blogs#itemlist"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://celeste7.ai/blogs#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://celeste7.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://celeste7.ai/blogs"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://celeste7.ai/blogs#itemlist",
+      "name": "CelesteOS blog articles",
+      "numberOfItems": 19,
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://celeste7.ai/blogs/knowledge-crisis-superyachts",
+          "name": "When the Chief Engineer Leaves: The Knowledge Crisis on Superyachts"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://celeste7.ai/blogs/engineering-handover-superyacht",
+          "name": "What a Proper Engineering Handover Looks Like (and Why Most Yachts Don't Have One)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://celeste7.ai/blogs/warranty-claim-documentation",
+          "name": "Why Your Warranty Claim Was Denied (and What Documentation Would Have Saved It)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://celeste7.ai/blogs/siloed-maintenance-systems",
+          "name": "Why Superyacht Maintenance Systems Create the Problems They Claim to Solve"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "url": "https://celeste7.ai/blogs/fault-patterns-superyachts",
+          "name": "Three Repairs, Three Engineers, One Pattern Nobody Saw"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "url": "https://celeste7.ai/blogs/seven-connections-yacht-pms",
+          "name": "Seven Connections Every Yacht Maintenance System Should Make (and Almost None Do)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "url": "https://celeste7.ai/blogs/software-bypass-superyachts",
+          "name": "If the System Cannot Compete with WhatsApp, the System Is the Problem"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "url": "https://celeste7.ai/blogs/auto-generated-handover",
+          "name": "What an Auto-Generated Handover Actually Contains"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "url": "https://celeste7.ai/blogs/audit-trail-superyacht",
+          "name": "Every Action Has a Name and a Timestamp"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "url": "https://celeste7.ai/blogs/natural-language-search-yacht",
+          "name": "Search Like You Think"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "url": "https://celeste7.ai/blogs/cross-domain-actions-yacht",
+          "name": "Add This to Your Handover?"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "url": "https://celeste7.ai/blogs/digitize-yacht-maintenance-records",
+          "name": "From Paper Binders to Searchable History: How to Digitize Yacht Maintenance Records"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "url": "https://celeste7.ai/blogs/yacht-maintenance-log-spreadsheet-template",
+          "name": "The Free Yacht Maintenance Log Template — and the Day the Spreadsheet Breaks"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "url": "https://celeste7.ai/blogs/ism-internal-audit-checklist-yacht",
+          "name": "Pass Your ISM Internal Audit — the Yacht Checklist Where Every Line Ties to a Retrievable Record"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "url": "https://celeste7.ai/blogs/organize-yacht-manuals-onboard",
+          "name": "How to Organize Yacht Manuals Onboard"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "url": "https://celeste7.ai/blogs/engine-room-handover-checklist",
+          "name": "Engine Room Handover Checklist: What the Next Chief Needs to Inherit"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "url": "https://celeste7.ai/blogs/ism-code-yacht-requirements",
+          "name": "ISM Code Yacht Requirements: The Records You Have to Produce, Not Just Keep"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "url": "https://celeste7.ai/blogs/yacht-logbook-digital-records",
+          "name": "Yacht Maintenance Log Book: Digital Records That Hold Up"
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "url": "https://celeste7.ai/blogs/manage-maintenance-superyacht",
+          "name": "How to Manage Maintenance on a Superyacht Without Losing the Thread"
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
   <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
   <script src="/js/cookie-consent.js"></script>
@@ -178,6 +332,70 @@
         <h2 class="blog-card__title blog-stagger">Add This to Your Handover?</h2>
         <p class="blog-card__excerpt blog-stagger">As crew work, the system notices connections and offers to act. The human decides. Nothing executes without consent.</p>
         <a href="/blogs/cross-domain-actions-yacht" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 12 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">11 June 2026 · 7 min read</div>
+        <h2 class="blog-card__title blog-stagger">From Paper Binders to Searchable History: How to Digitize Yacht Maintenance Records</h2>
+        <p class="blog-card__excerpt blog-stagger">How to digitize yacht maintenance records: turn paper binders and scans into a searchable history the next engineer can actually find.</p>
+        <a href="/blogs/digitize-yacht-maintenance-records" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 13 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">11 June 2026 · 8 min read</div>
+        <h2 class="blog-card__title blog-stagger">The Free Yacht Maintenance Log Template — and the Day the Spreadsheet Breaks</h2>
+        <p class="blog-card__excerpt blog-stagger">A free yacht maintenance log spreadsheet template — five linked tabs that work on day one, and the honest day a spreadsheet stops scaling.</p>
+        <a href="/blogs/yacht-maintenance-log-spreadsheet-template" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 14 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">11 June 2026 · 9 min read</div>
+        <h2 class="blog-card__title blog-stagger">Pass Your ISM Internal Audit — the Yacht Checklist Where Every Line Ties to a Retrievable Record</h2>
+        <p class="blog-card__excerpt blog-stagger">Pass your ISM internal audit. The yacht checklist where every line ties to a retrievable, append-only record you can produce on demand.</p>
+        <a href="/blogs/ism-internal-audit-checklist-yacht" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 15 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">15 June 2026 · 9 min read</div>
+        <h2 class="blog-card__title blog-stagger">How to Organize Yacht Manuals Onboard</h2>
+        <p class="blog-card__excerpt blog-stagger">Organise yacht manuals by findability, not folders: index PDFs as they are, connect each to its equipment, and search any procedure in plain language.</p>
+        <a href="/blogs/organize-yacht-manuals-onboard" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 16 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">25 June 2026 · 9 min read</div>
+        <h2 class="blog-card__title blog-stagger">Engine Room Handover Checklist: What the Next Chief Needs to Inherit</h2>
+        <p class="blog-card__excerpt blog-stagger">The engine room handover checklist a chief engineer can actually use — what to cover, the order to run it, and how to keep it current.</p>
+        <a href="/blogs/engine-room-handover-checklist" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 17 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">2 July 2026 · 9 min read</div>
+        <h2 class="blog-card__title blog-stagger">ISM Code Yacht Requirements: The Records You Have to Produce, Not Just Keep</h2>
+        <p class="blog-card__excerpt blog-stagger">What the ISM Code requires a yacht to keep — and prove. The records behind sections 10 and 11: append-only, attributed, and retrievable on the day.</p>
+        <a href="/blogs/ism-code-yacht-requirements" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 18 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">6 July 2026 · 9 min read</div>
+        <h2 class="blog-card__title blog-stagger">Yacht Maintenance Log Book: Digital Records That Hold Up</h2>
+        <p class="blog-card__excerpt blog-stagger">Move your yacht maintenance log book to digital records: what each record must carry, and how to search your vessel's records in plain language.</p>
+        <a href="/blogs/yacht-logbook-digital-records" class="blog-card__link blog-stagger">Read &rarr;</a>
+      </article>
+
+      <!-- Article 19 -->
+      <article class="blog-card blog-reveal">
+        <div class="blog-card__meta blog-stagger">9 July 2026 · 9 min read</div>
+        <h2 class="blog-card__title blog-stagger">How to Manage Maintenance on a Superyacht Without Losing the Thread</h2>
+        <p class="blog-card__excerpt blog-stagger">Managing superyacht maintenance is a records problem: keep faults, work orders, parts, and manuals connected and searchable so context outlasts the crew.</p>
+        <a href="/blogs/manage-maintenance-superyacht" class="blog-card__link blog-stagger">Read &rarr;</a>
       </article>
 
     </div>

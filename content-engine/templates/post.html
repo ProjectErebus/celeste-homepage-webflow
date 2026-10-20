@@ -8,13 +8,13 @@
   <meta property="og:description" content="{{META_DESCRIPTION}}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="{{CANONICAL_URL}}">
-  <meta property="og:site_name" content="Celeste">
+  <meta property="og:site_name" content="CelesteOS">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{TITLE}}">
   <meta name="twitter:description" content="{{META_DESCRIPTION}}">
-  <meta property="og:image" content="https://celeste7.ai/images/blog/header-{{SLUG}}.png">
-  <meta name="twitter:image" content="https://celeste7.ai/images/blog/header-{{SLUG}}.png">
-  <link rel="alternate" type="application/rss+xml" title="Celeste Blog" href="/blogs/feed.xml">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta name="twitter:image" content="{{OG_IMAGE}}">
+  <link rel="alternate" type="application/rss+xml" title="CelesteOS Blog" href="/blogs/feed.xml">
   <link rel="canonical" href="{{CANONICAL_URL}}">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link href="/css/normalize.css" rel="stylesheet" type="text/css">
@@ -30,17 +30,6 @@
   <link href="/images/webclip.png" rel="apple-touch-icon">
   <!-- Structured Data -->
   {{ARTICLE_JSONLD}}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://celeste7.ai/"},
-      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://celeste7.ai/blogs"},
-      {"@type": "ListItem", "position": 3, "name": "{{TITLE}}", "item": "{{CANONICAL_URL}}"}
-    ]
-  }
-  </script>
   <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
   <script src="/js/cookie-consent.js"></script>
 </head>
