@@ -87,7 +87,7 @@ invented metrics / unsourced counters.
 ## References to carry (verified on the existing page)
 
 [1] Seahub — engineering handover survey (66% last ≤1 week; no standard format).
-[2] YATCO — warranty-claim cost band (EUR 20,000–100,000).
+[2] YATCO — warranty-claim cost band ($20,000–100,000+).
 [3] Manta Maritime — Chief Engineer's Handover Checklist (2014 paper template).
 [4] IMO — ISM Code Sections 6 & 10.
 [5] KRM Yacht — REG Yacht Code / flag-state rules.
