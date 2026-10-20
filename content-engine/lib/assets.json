@@ -130,5 +130,31 @@
     "never": [],
     "alt": "A work order in CelesteOS: an emergency valve replacement in progress, its 500-hour schedule and time estimates, and the official documents attached — the SOP, the ISM isolation procedure, the engine-room fire-safety class certificate.",
     "usage": "Calm evidence frame for \"the record carries its paperwork\". No banned-word risks in-image."
+  },
+  {
+    "id": "fault-record",
+    "file": "assets/fault-record-fuel-pressure.png",
+    "chapter": "show related, search",
+    "supports": [
+      "fault record: fuel pressure alarm, main engine"
+    ],
+    "never": [
+      "Do NOT claim \"every domain cited\" (gating uncertain)."
+    ],
+    "alt": "A fault record in CelesteOS: a fuel pressure alarm on the main engine, marked open, high severity and in warranty, with its location, linked equipment, system and department, and tabs for work orders, equipment, parts, notes and audit trail.",
+    "usage": "Live app capture 20 Oct 2026 (test vessel, light theme, 1440x900 frame cropped). Retaken without retired pages."
+  },
+  {
+    "id": "handover-queue",
+    "file": "assets/handover-queue.png",
+    "chapter": "handover",
+    "supports": [
+      "handover queue of open faults with Add buttons"
+    ],
+    "never": [
+      "NEVER \"writes itself\" / \"auto-generated\" / \"auto-written\"."
+    ],
+    "alt": "The handover queue in CelesteOS: a list of open faults, each with an Add button that places it into the handover draft.",
+    "usage": "Live app capture 20 Oct 2026 (test vessel, light theme, 1440x900 frame cropped). Retaken without retired pages."
   }
 ]
