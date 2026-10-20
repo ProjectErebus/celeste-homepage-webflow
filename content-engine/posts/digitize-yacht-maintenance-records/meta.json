@@ -30,12 +30,12 @@
           },
           {
             "@type": "Question",
-            "name": "Do I have to re-type or reformat everything to make it searchable?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No, and trying to is what stalls most projects. Existing manuals, PDFs, scans, exports and emails should be indexed in their current formats. Scanning paper through text recognition adds a searchable layer without discarding the originals. The reformatting exercise is the step to avoid, not the step to start with." }
+            "name": "Does everything have to be re-typed or reformatted to make it searchable?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No, and trying to is what stalls most projects. Existing manuals, PDFs, scans and exports should be indexed in their current formats. Scanning paper through text recognition adds a searchable layer without discarding the originals. The reformatting exercise is the step to avoid, not the step to start with." }
           },
           {
             "@type": "Question",
-            "name": "Can I bring my existing records with me?",
+            "name": "Can existing records be brought across?",
             "acceptedAnswer": { "@type": "Answer", "text": "Yes. CelesteOS is the planned maintenance system, and your existing manuals, PDFs, scans, and exports are imported as they are, with no reformatting. The pilot includes importing the equipment register, certificates, and work-order history, so the vessel's full history is findable in one place." }
           },
           {

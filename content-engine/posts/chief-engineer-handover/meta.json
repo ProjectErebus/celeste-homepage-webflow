@@ -36,7 +36,7 @@
             "name": "What should a chief engineer handover checklist include?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Seven connected domains: equipment condition, outstanding defects and open work orders, maintenance status, parts on order with supplier contacts, certificate expiry and the compliance timeline, vessel-specific safety procedures, and the undocumented operational notes. Each item should resolve back to its underlying record rather than living as a flat line, so the incoming engineer can follow it to the fault, the work order, and the part."
+              "text": "Seven connected domains: equipment condition, outstanding defects and open work orders, maintenance status, parts awaited with supplier contacts, certificate expiry and the compliance timeline, vessel-specific safety procedures, and the undocumented operational notes. Each item should resolve back to its underlying record rather than living as a flat line, so the incoming engineer can follow it to the fault, the work order, and the part."
             }
           },
           {

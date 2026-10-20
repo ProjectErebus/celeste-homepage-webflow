@@ -12,8 +12,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Search Like You Think: Why Natural Language Changes Everything on a Vessel">
   <meta name="twitter:description" content="Conventional yacht maintenance software requires engineers to navigate modules and learn software structure. Natural language search eliminates that — one query returns results across every operational domain.">
-  <meta property="og:image" content="https://celeste7.ai/images/blog-usp/art10-search-glow.png">
-  <meta name="twitter:image" content="https://celeste7.ai/images/blog-usp/art10-search-glow.png">
+  <meta property="og:image" content="https://celeste7.ai/images/blog/search-results-grouped.png">
+  <meta name="twitter:image" content="https://celeste7.ai/images/blog/search-results-grouped.png">
   <link rel="alternate" type="application/rss+xml" title="CelesteOS Blog" href="/blogs/feed.xml">
   <link rel="canonical" href="https://celeste7.ai/blogs/natural-language-search-yacht">
   <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -39,12 +39,12 @@
       "headline": "Search Like You Think: Why Natural Language Changes Everything on a Vessel",
       "description": "Conventional yacht maintenance software requires engineers to navigate modules and learn software structure. Natural language search eliminates that — one query returns results across every operational domain.",
       "datePublished": "2026-04-09T00:00:00+00:00",
-      "dateModified": "2026-04-09T00:00:00+00:00",
+      "dateModified": "2026-10-20T00:00:00+00:00",
       "image": {
         "@type": "ImageObject",
         "@id": "https://celeste7.ai/blogs/natural-language-search-yacht#primaryimage",
-        "url": "https://celeste7.ai/images/blog-usp/art10-search-glow.png",
-        "contentUrl": "https://celeste7.ai/images/blog-usp/art10-search-glow.png"
+        "url": "https://celeste7.ai/images/blog/search-results-grouped.png",
+        "contentUrl": "https://celeste7.ai/images/blog/search-results-grouped.png"
       },
       "author": {
         "@type": "Organization",
@@ -199,7 +199,7 @@
 
       <h2>What search-first means on a vessel</h2>
 
-      <p>Natural language search means the engineer types what they are thinking, in the language they naturally use, and the system returns results from every domain.</p>
+      <p>Natural language search means the engineer types what they are thinking, in the language they naturally use, and the system returns results from across the vessel's records.</p>
 
       <p>In CelesteOS, typing "oil filter main engine" returns results grouped by domain: faults related to oil and the main engine, inventory items matching the query, and documents containing relevant procedures. The system parses the query into understood terms — "oil filter", "main engine", "location" — and searches across faults, work orders, inventory, certificates, documents, and equipment records simultaneously.</p>
 
@@ -207,10 +207,6 @@
 
       <p>This is not a convenience feature. It is an architectural decision. Search is the interface — not a feature within the interface.</p>
 
-      <figure class="article-full-bleed">
-        <img src="/images/blog-usp/art10-search-glow.png" alt="Natural language search interface for yacht maintenance — engineer types 'port generator overheating' and receives cross-domain results from faults, work orders, parts inventory, and technical documents in a single view" loading="lazy" width="1600" height="900">
-        <figcaption>One query. Five domains. Every fault, work order, part, and procedure related to "port generator overheating" — returned in seconds.</figcaption>
-      </figure>
 
       <h2>What the system returns from a single query</h2>
 
@@ -242,17 +238,14 @@
 
       <div class="pull-quote">The software does not need an onboarding session. A chief engineer joining a vessel at 11pm types what they need and the system answers. That is the onboarding.</div>
 
-      <figure class="article-full-bleed">
-        <img src="/images/blog-usp/art10-search-minimal.png" alt="Zero-training natural language search for yacht maintenance — minimal interface where the engineer types operational queries and the system returns cross-domain results without module navigation" loading="lazy" width="1600" height="900">
-      </figure>
 
       <h2>What the idle state shows without being asked</h2>
 
       <p>When the engineer is not searching, CelesteOS does not show a dashboard. It shows a prioritised list of what needs attention right now.</p>
 
-      <p>Outstanding faults with severity and age. Overdue maintenance tasks. Certificates approaching expiry. Parts below minimum stock with reorder status. Incoming shipments with expected delivery times. Work orders pending sign-off.</p>
+      <p>Outstanding faults with severity and age. Overdue maintenance tasks. Certificates approaching expiry. Parts below minimum stock. Work orders pending sign-off.</p>
 
-      <p>This is not a dashboard — dashboards require interpretation. This is a priority surface — it shows the engineer what to deal with first, ordered by urgency, updated in real time. The engineer does not navigate to find problems. The problems surface themselves.</p>
+      <p>This is not a dashboard — dashboards require interpretation. This is a priority surface — it shows the engineer what to deal with first, ordered by urgency, drawn from the vessel's current records. The engineer does not navigate to find problems. The problems surface themselves.</p>
 
       <p>When the engineer sees something that needs investigation, they type a query. When they need to act, they click the item. The entire interaction model is: see what matters, search for context, act on evidence. No modules. No menus. No learning curve.</p>
 
@@ -262,13 +255,13 @@
 
       <ul class="summary-list">
         <li>Conventional yacht maintenance systems require engineers to navigate modules, apply filters, and learn software structure before finding information. This navigation friction is the deepest cause of <a href="/blogs/software-bypass-superyachts">PMS adoption failure</a>.</li>
-        <li>Natural language search eliminates the navigation layer. The engineer types what they are thinking — in operational language — and the system returns results from every domain: faults, work orders, inventory, documents, certificates, and equipment.</li>
+        <li>Natural language search eliminates the navigation layer. The engineer types what they are thinking — in operational language — and the system returns results from across the vessel's records: faults, work orders, inventory, documents, certificates, and equipment.</li>
         <li>A single query surfaces connected results across domains: the fault, the parts to fix it, and the procedure to follow — in one view, within seconds.</li>
         <li>Zero training means the system works on the first day of a <a href="/blogs/knowledge-crisis-superyachts">crew rotation</a>. A chief engineer joining a vessel at 11pm types what they need and the system answers.</li>
         <li>The idle state surfaces priorities without being asked — outstanding faults, overdue tasks, expiring certificates, low stock — eliminating the need to navigate to find problems.</li>
       </ul>
 
-      <p><em>CelesteOS is a Maritime Technical Intelligence System for superyachts where search is the interface — one query returns results across every operational domain, and the system surfaces what matters before the engineer asks. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
+      <p><em>CelesteOS is the planned maintenance system for superyachts where search is the interface — one query returns results across the vessel's records, and the system surfaces what matters before the engineer asks. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
 
       <!-- Sources -->
       <div class="article-sources">

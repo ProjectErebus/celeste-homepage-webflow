@@ -14,7 +14,7 @@
     "\\bmagic\\w*",
     "\\brevolutio\\w*",
     "game[- ]chang\\w*",
-    "\\bintelligent\\b"
+    "\\bintelligen(t|ce)\\b"
   ],
   "banned_overclaims": [
     "writes itself",
@@ -44,7 +44,12 @@
     "verify\\.celeste7\\.ai",
     "SOC[- ]?2 (certified|compliant)",
     "GDPR compliant",
-    "zero data retention"
+    "zero data retention",
+    "hours[- ]of[- ]rest",
+    "shopping[- ]lists?",
+    "purchase[- ]orders?",
+    "\\breceiving (page|module|workflow|screen|log)\\b",
+    "\\binbox\\b|(outlook|exchange) integration|email (integration|ingest\\w*|sync)"
   ],
   "call_only": [
     "\\$\\s?\\d",
@@ -106,7 +111,7 @@
         "The draft accumulates as the engineer works.",
         "Months of context accumulate as a by-product of normal work.",
         "Never asked twice if dismissed.",
-        "The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges: 'I have read and understood the operational state of this vessel.'",
+        "The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges in writing that the operational state of the vessel has been read and understood.",
         "Both signatures timestamped. Locked after dual signature.",
         "Every entry resolves back to a live record — one click opens the fault, the work order, the part.",
         "The handover is a live index into the vessel's operational data, not a static document.",
@@ -301,7 +306,7 @@
     },
     "show related": {
       "safe": [
-        "Open any record and CelesteOS surfaces what's related — work orders, parts, equipment, handovers, and correspondence.",
+        "Open any record and CelesteOS surfaces what's related — work orders, parts, equipment, and handovers.",
         "See what's connected. Immediately.",
         "Stay oriented without leaving the page.",
         "Show Related sits in every record's header.",
@@ -339,7 +344,7 @@
         "Browser-based. Any modern browser — desktop, tablet, mobile. No app installation.",
         "Crew on rotation can review records remotely with their existing credentials.",
         "Your data is yours. Nothing is held hostage.",
-        "Your existing manuals, PDFs, scans, exports, and emails are indexed as they are. No reformatting exercises."
+        "Your existing manuals, PDFs, scans, and exports are indexed as they are. No reformatting exercises."
       ],
       "banned": [
         {

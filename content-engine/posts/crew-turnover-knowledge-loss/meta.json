@@ -31,7 +31,7 @@
           {
             "@type": "Question",
             "name": "What should a chief engineer's handover include?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Outstanding defects, parts on order, half-finished jobs, certificate expiry dates that fall after the rotation, and the operational notes that explain why things are done a particular way. Each item should resolve back to its underlying record rather than living as a flat summary." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Outstanding defects, parts awaited, half-finished jobs, certificate expiry dates that fall after the rotation, and the operational notes that explain why things are done a particular way. Each item should resolve back to its underlying record rather than living as a flat summary." }
           },
           {
             "@type": "Question",

@@ -39,7 +39,7 @@
       "headline": "Seven Connections Every Yacht Maintenance System Should Make (and Almost None Do)",
       "description": "When evaluating yacht maintenance software, most people check a feature list. But nobody asks the question that actually determines whether the system works: when you open a fault record, what else does the system show you?",
       "datePublished": "2026-03-31T00:00:00+00:00",
-      "dateModified": "2026-03-31T00:00:00+00:00",
+      "dateModified": "2026-10-20T00:00:00+00:00",
       "image": {
         "@type": "ImageObject",
         "@id": "https://celeste7.ai/blogs/seven-connections-yacht-pms#primaryimage",
@@ -195,7 +195,7 @@
 
       <p>A system that has a maintenance module and a parts module is not necessarily a system where the maintenance module knows what is in the parts module. A system that has a fault log and a warranty tracker is not necessarily a system where logging a fault surfaces the warranty status of the affected equipment. Having both features and having them connected are two fundamentally different things.</p>
 
-      <p>The evaluation guides available to the industry — comparison articles, buyer checklists, "best PMS" roundups — ask the same questions: does it have scheduling? Does it support checklists? Can it track certificates? These questions confirm that a system has the expected feature set. They do not reveal whether the system creates operational intelligence or stores data in parallel silos behind a shared login.</p>
+      <p>The evaluation guides available to the industry — comparison articles, buyer checklists, "best PMS" roundups — ask the same questions: does it have scheduling? Does it support checklists? Can it track certificates? These questions confirm that a system has the expected feature set. They do not reveal whether the system creates operational knowledge or stores data in parallel silos behind a shared login.</p>
 
       <p>The question that matters is different: when an engineer opens a fault record, can they see the equipment's warranty status, the last three work orders on that equipment, the parts used in previous repairs, and the manufacturer's documentation for the component — without leaving the screen? If the answer requires opening another module, switching to another tab, or checking a spreadsheet, the system is siloed regardless of how many features it lists. Ask not what features it has — ask what it connects.</p>
 
@@ -203,7 +203,7 @@
 
       <h2>Seven connections every yacht maintenance system should make</h2>
 
-      <p>The value of maintenance data is not in the records. It is in the connections between them. Seven specific connections determine whether a system produces operational intelligence or stores isolated records.</p>
+      <p>The value of maintenance data is not in the records. It is in the connections between them. Seven specific connections determine whether a system produces operational knowledge or stores isolated records.</p>
 
       <div class="connection-card">
         <div class="connection-card__number">01</div>
@@ -214,7 +214,7 @@
       <div class="connection-card">
         <div class="connection-card__number">02</div>
         <div class="connection-card__title">Work order to parts used to inventory level</div>
-        <p class="connection-card__body">When a work order is completed and parts are consumed, the inventory should update automatically. If the part used was the last in stock, a reorder alert should trigger. If the part is on backorder, the next work order requiring it should reflect that. An engineer should never discover mid-repair that a critical component is out of stock because the work order system did not check.</p>
+        <p class="connection-card__body">When a work order is completed and parts are consumed, the system should propose the inventory deduction, and the engineer confirms it. If the part used was the last in stock, the system should flag low stock. If the part is unavailable, the next work order requiring it should show that. An engineer should never discover mid-repair that a critical component is out of stock because the work order system did not check.</p>
       </div>
 
       <div class="connection-card">
@@ -244,17 +244,13 @@
       <div class="connection-card">
         <div class="connection-card__number">07</div>
         <div class="connection-card__title"><a href="/blogs/engineering-handover-superyacht">Handover</a> to all active faults, open work orders, pending parts, and upcoming deadlines</div>
-        <p class="connection-card__body">The engineering handover should not be a document that the departing engineer assembles manually from memory and scattered records. It should be a compiled report generated from every domain — current equipment status, outstanding defects, parts on order, certificate expiry dates, budget status, and operational notes — automatically reflecting the actual state of the vessel at the moment of crew transition.</p>
+        <p class="connection-card__body">The engineering handover should not be a document that the departing engineer assembles manually from memory and scattered records. It should be a report compiled from connected records — current equipment status, outstanding defects, parts awaited, certificate expiry dates, budget status, and operational notes — with the system proposing each item and the engineer confirming it, so the report reflects the actual state of the vessel at the moment of crew transition.</p>
       </div>
 
-      <figure class="article-full-bleed">
-        <img src="/images/blog/art6-seven-connections.png" alt="CelesteOS seven connections view showing fault, equipment, warranty, parts, work orders, certificates, and handover linked together" loading="lazy" width="1600" height="900">
-        <figcaption>Seven connections in a single view — fault to equipment, equipment to warranty, work order to parts, fault to history, manual to equipment, certificate to compliance, and handover to every domain.</figcaption>
-      </figure>
 
       <h2>Why feature lists are misleading when comparing yacht maintenance systems</h2>
 
-      <p>Having a maintenance module and a parts module and a documents module does not mean they are connected. <a href="/blogs/siloed-maintenance-systems">Most systems store data in parallel silos with a shared login</a>. The engineer can switch between modules without logging into a different application. This is a genuine improvement over spreadsheets. It is not cross-domain intelligence.</p>
+      <p>Having a maintenance module and a parts module and a documents module does not mean they are connected. <a href="/blogs/siloed-maintenance-systems">Most systems store data in parallel silos with a shared login</a>. The engineer can switch between modules without logging into a different application. This is a genuine improvement over spreadsheets. It is not cross-domain knowledge.</p>
 
       <p>The difference is architectural. In a system with parallel modules, each module owns its own data. The maintenance module knows about maintenance. The parts module knows about parts. To connect a fault to a warranty period to a parts record to a manufacturer's manual, the engineer must perform the integration manually — opening each module, cross-referencing the records, and assembling the context in their head.</p>
 
@@ -269,26 +265,19 @@
           <img src="/images/blog/art6-part-certainty.png" alt="CelesteOS part certainty view showing stock levels, supplier history, and linked equipment for a specific marine component" loading="lazy" width="1600" height="900">
         </div>
         <div class="article-split__text">
-          <p>Part certainty — stock levels, supplier history, and linked equipment visible from a single record. The engineer knows what is aboard, what is on order, and which equipment depends on it.</p>
+          <p>Part certainty — stock levels, supplier history, and linked equipment visible from a single record. The engineer knows what is aboard, who supplied it, and which equipment depends on it.</p>
         </div>
       </div>
 
       <h2>What "search everything in one place" actually requires</h2>
 
-      <p>The phrase "one platform" appears on every yacht maintenance software website. What it typically means is that all modules are accessible from a single login. What it should mean — and rarely does — is that a single search returns results across every domain.</p>
+      <p>The phrase "one platform" appears on every yacht maintenance software website. What it typically means is that all modules are accessible from a single login. What it should mean — and rarely does — is that a single search returns results across the vessel's records.</p>
 
       <p>An engineer types "vibration port engine" into a search bar. A system that searches within the maintenance module returns matching work orders. A system that searches across domains returns the fault records, the work orders, the parts used in previous repairs, the equipment's maintenance history, the manufacturer's technical advisory, and the page of the service manual that describes the diagnostic procedure.</p>
 
-      <p>The first system answers: "Here are the maintenance tasks that mention vibration." The second system answers: "Here is everything this vessel knows about vibration in the port engine." The difference between those two answers is the difference between a record-keeping tool and operational intelligence.</p>
+      <p>The first system answers: "Here are the maintenance tasks that mention vibration." The second system answers: "Here is everything this vessel knows about vibration in the port engine." The difference between those two answers is the difference between a record-keeping tool and operational knowledge.</p>
 
-      <div class="article-split">
-        <div class="article-split__text">
-          <p>One search, every domain. A single query returning faults, work orders, parts, certificates, and manuals — the difference between searching within a module and searching across the vessel's entire operational knowledge.</p>
-        </div>
-        <div class="article-split__media">
-          <img src="/images/blog/art6-one-search.png" alt="CelesteOS single search returning results across every operational domain — faults, work orders, parts, certificates, and manuals" loading="lazy" width="1600" height="900">
-        </div>
-      </div>
+      <p>One search, across the vessel's records. A single query returning faults, work orders, parts, certificates, and manuals — the difference between searching within a module and searching across the vessel's entire operational knowledge.</p>
 
       <h2>How to evaluate any yacht maintenance system</h2>
 
@@ -304,7 +293,7 @@
         <li>Can you see whether a certificate depends on this equipment being operational?</li>
       </ul>
 
-      <p>If any of those answers require navigating to a different part of the system, the system has the features but not the connections. It is storing data, not creating intelligence.</p>
+      <p>If any of those answers require navigating to a different part of the system, the system has the features but not the connections. It is storing data, not creating knowledge.</p>
 
       <p>Do not ask what features it has. Ask what it connects. The answer will tell you more than any feature list.</p>
 
@@ -314,13 +303,13 @@
 
       <ul class="summary-list">
         <li>Yacht maintenance systems are evaluated on feature lists — maintenance, inventory, documents, defect tracking — but the critical differentiator is not what features exist but what they connect to each other.</li>
-        <li>Seven specific connections determine whether a system creates operational intelligence: fault to warranty, work order to parts, fault to history, equipment to cost, manual to equipment, certificate to compliance, and handover to every domain.</li>
+        <li>Seven specific connections determine whether a system creates operational knowledge: fault to warranty, work order to parts, fault to history, equipment to cost, manual to equipment, certificate to compliance, and handover to the connected records.</li>
         <li>Most systems store data in parallel modules with a shared login — cohabitation, not integration. Cross-domain means the system assembles context so the engineer does not have to.</li>
         <li>The evaluation test is concrete: open a fault record and see if warranty, work orders, parts, manuals, and compliance deadlines are visible without leaving the screen.</li>
         <li>The question that separates useful systems from feature-complete ones: not "what does it have?" but "what does it connect?"</li>
       </ul>
 
-      <p><em>CelesteOS is a Maritime Technical Intelligence System for superyachts where every record — faults, work orders, parts, certificates, costs, and supplier correspondence — is connected across domains and searchable in a single query. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
+      <p><em>CelesteOS is the planned maintenance system for superyachts where every record — faults, work orders, parts, certificates, costs, and suppliers — is connected across domains and searchable in a single query. Learn more at <a href="https://celeste7.ai">celeste7.ai</a>.</em></p>
 
       <!-- Sources -->
       <div class="article-sources">

@@ -42,7 +42,7 @@ The system PROPOSES, the engineer DECIDES. Nothing writes itself.
 - The draft accumulates as the engineer works.
 - Months of context accumulate as a by-product of normal work.
 - Never asked twice if dismissed.
-- The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges: 'I have read and understood the operational state of this vessel.'
+- The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges in writing that the operational state of the vessel has been read and understood.
 - Both signatures timestamped. Locked after dual signature.
 - Every entry resolves back to a live record — one click opens the fault, the work order, the part.
 - The handover is a live index into the vessel's operational data, not a static document.

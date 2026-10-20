@@ -6,7 +6,7 @@
 
 - **Keyword:** `yacht maintenance log spreadsheet template`
 - **Chapter:** `search`
-- **Format:** Tier-A (NEW) — the pre-software "we live in Excel" buyer
+- **Format:** Tier-A (NEW) — the pre-software, spreadsheet-based buyer
 - **Slug / URL:** `/blogs/yacht-maintenance-log-spreadsheet-template`
 - **Canonical:** `https://celeste7.ai/blogs/yacht-maintenance-log-spreadsheet-template`
 - **Angle:** "The Free Yacht Maintenance Log Template — and the day the spreadsheet breaks."
@@ -27,7 +27,7 @@
 - "Results are scoped to your vessel and role — no filter to set up first."
 - "Results open the source record itself."
 - "CelesteOS is the planned maintenance system." (cloud-based)
-- "Your existing manuals, PDFs, scans, exports, and emails are indexed as they are. No reformatting exercises."
+- "Your existing manuals, PDFs, scans, and exports are indexed as they are. No reformatting exercises."
 - "Your data is yours. Nothing is held hostage." (export commitment)
 - Append-only / attributed-and-timestamped (ledger), as a single supporting line only — this is a search piece.
 
@@ -42,8 +42,8 @@
 
 ## Assets (respect NEVER lines)
 
-- `{{asset:search-idle}}` — light-mode "Find anything…" bar over a needs-attention list. NEVER caption the list as "AI prioritisation" — it's a list of open items. Use for the search payoff moment.
-- `{{asset:parts}}` — a part with physical location, stock vs minimum, OEM no., barcode, raise-PO. NEVER quote the in-image unit cost as pricing; don't headline "Recommended Minimum". Use for "the spreadsheet cell that should have been a record".
+- `{{asset:search-idle}}` — RETIRED 20 Oct 2026 (image shows receiving / log-HoR items). Do not use. Light-mode "Find anything…" bar over a needs-attention list. NEVER caption the list as "AI prioritisation" — it's a list of open items. Use for the search payoff moment.
+- `{{asset:parts}}` — RETIRED 20 Oct 2026 (image shows a Raise Purchase Order button). Do not use. A part with physical location, stock vs minimum, OEM no., barcode. NEVER quote the in-image unit cost as pricing; don't headline "Recommended Minimum". Use for "the spreadsheet cell that should have been a record".
 - `{{asset:certificate}}` — STCW cert, valid + renewal-due, survey window, holder doc list. Cert-expiry is a VITAMIN — one supporting line/visual only, never a headline.
 
 ## Required structure
