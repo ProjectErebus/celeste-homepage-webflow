@@ -42,15 +42,20 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
   .c7bar-mark { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.78rem; letter-spacing: 0.16em;
     text-transform: uppercase; color: rgba(255, 255, 255, 0.55); text-decoration: none; }
-  .c7bar-nav { display: flex; gap: 2rem; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.66rem;
+  .c7bar-tag { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.62rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); border-left: 1px solid rgba(255,255,255,0.18);
+    padding-left: 12px; margin-left: 12px; margin-right: auto; white-space: nowrap; }
+  @media (max-width: 600px) { .c7bar-tag { display: none; } }
+  .c7bar-nav { display: flex; gap: 2rem; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.72rem;
     letter-spacing: 0.12em; text-transform: uppercase; }
-  .c7bar-nav a { color: rgba(255, 255, 255, 0.35); text-decoration: none; transition: color 0.2s ease; }
+  .c7bar-nav a { color: rgba(255, 255, 255, 0.55); text-decoration: none; transition: color 0.2s ease; }
   .c7bar-nav a:hover { color: #5AABCC; }
   @media (max-width: 600px) { .c7bar-nav { flex-wrap: wrap; gap: 0.7rem 1rem; justify-content: flex-end; }
     .c7bar-nav a { font-size: 0.6rem; } }
 </style>
 <header class="c7bar">
   <a class="c7bar-mark" href="/">CelesteOS</a>
+  <span class="c7bar-tag">Yacht PMS</span>
   <nav class="c7bar-nav">
     <a href="/#how">How it works</a>
     <a href="/#handover">Product</a>
