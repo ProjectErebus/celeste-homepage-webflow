@@ -35,7 +35,7 @@ the auditor?" Every line names the record it depends on.
 Cross-chapter SAFE lines I may borrow (in-truth, pre-cleared):
 - Search: "Natural-language search across your vessel's records and manuals." / "Results open the source record itself." / "Type what you'd ask a colleague."
 - Show Related: "Open any record and CelesteOS surfaces what's related." / "See what's connected. Immediately."
-- Cloud: "Runs alongside your existing PMS — nothing to replace, nothing to migrate." / "Your existing PMS keeps its class society approvals."
+- Cloud: "CelesteOS is the planned maintenance system." / "Existing manuals, PDFs, scans and exports are imported as they are."
 - Certificate (VITAMIN, line only): "Certificates tracked to expiry, with renewal dates and the source PDF attached." / "Alerts as expiry approaches."
 - Verifier: "Every record independently verifiable → verifier.celeste7.ai"
 - Security: "ISM Code — Aligned. Sections 10 and 11. Audit evidence, not class approval."
@@ -70,7 +70,7 @@ Cross-chapter SAFE lines I may borrow (in-truth, pre-cleared):
    drills & familiarisation/handover; documentation control. {{asset:work-order}} under maintenance,
    {{asset:fault-detail}} under non-conformities.
 5. "Audit prep is retrieval, not assembly" — the ledger payoff. {{asset:ledger}}.
-6. Name CelesteOS late: runs alongside the existing SMS/PMS; records captured as crew work,
+6. Name CelesteOS late: CelesteOS is the planned maintenance system; records captured as crew work,
    attributed, connected, searchable, independently verifiable.
 7. FAQ (4). Summary list. CTA → /#pilot.
 

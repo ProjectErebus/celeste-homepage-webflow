@@ -26,7 +26,7 @@
 - "Finds what you mean, not what you typed."
 - "Results are scoped to your vessel and role — no filter to set up first."
 - "Results open the source record itself."
-- "Runs alongside your existing PMS — nothing to replace, nothing to migrate." (cloud-based)
+- "CelesteOS is the planned maintenance system." (cloud-based)
 - "Your existing manuals, PDFs, scans, exports, and emails are indexed as they are. No reformatting exercises."
 - "Your data is yours. Nothing is held hostage." (export commitment)
 - Append-only / attributed-and-timestamped (ledger), as a single supporting line only — this is a search piece.
