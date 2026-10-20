@@ -26,30 +26,213 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "CelesteOS",
-    "url": "https://celeste7.ai",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "description": "Search-first engineering intelligence system for superyachts. Unified vessel knowledge, manuals, work orders, faults, parts, certificates, and handover records searchable from one interface.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CelesteOS",
-      "legalName": "CelesteOS LLC",
-      "url": "https://celeste7.ai",
-      "email": "contact@celeste7.ai",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "7901 4th St N, #36609",
-        "addressLocality": "St Petersburg",
-        "addressRegion": "FL",
-        "postalCode": "33702",
-        "addressCountry": "US"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://celeste7.ai/#organization",
+        "name": "CelesteOS",
+        "legalName": "CelesteOS LLC",
+        "url": "https://celeste7.ai/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://celeste7.ai/#logo",
+          "url": "https://celeste7.ai/images/webclip.png",
+          "contentUrl": "https://celeste7.ai/images/webclip.png",
+          "width": 320,
+          "height": 320,
+          "caption": "CelesteOS"
+        },
+        "image": {
+          "@id": "https://celeste7.ai/#logo"
+        },
+        "description": "CelesteOS is engineering and maintenance software for superyachts. It makes a vessel's manuals, work orders, faults, certificates and handover records searchable from one interface, alongside the existing planned maintenance system.",
+        "email": "contact@celeste7.ai",
+        "foundingDate": "2026-10-13",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "7901 4th St N, #36609",
+          "addressLocality": "St Petersburg",
+          "addressRegion": "FL",
+          "postalCode": "33702",
+          "addressCountry": "US"
+        },
+        "founder": {
+          "@id": "https://celeste7.ai/#founder"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "contact@celeste7.ai",
+            "availableLanguage": [
+              "en"
+            ]
+          },
+          {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "CelesteOSPilot@celeste7.ai",
+            "availableLanguage": [
+              "en"
+            ]
+          }
+        ],
+        "areaServed": "Worldwide",
+        "knowsAbout": [
+          "Superyacht engineering",
+          "Planned maintenance systems",
+          "ISM Code",
+          "Engineering handover",
+          "Marine equipment maintenance"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/company/celesteos/"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "CelesteOS plans",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "@id": "https://celeste7.ai/#pilot-offer",
+              "itemOffered": {
+                "@id": "https://celeste7.ai/#pilot"
+              }
+            }
+          ]
+        }
       },
-      "sameAs": [
-        "https://www.linkedin.com/company/celesteos/"
-      ]
-    }
+      {
+        "@type": "WebSite",
+        "@id": "https://celeste7.ai/#website",
+        "url": "https://celeste7.ai/",
+        "name": "CelesteOS",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://celeste7.ai/#organization"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://celeste7.ai/#webpage",
+        "url": "https://celeste7.ai/",
+        "name": "CelesteOS · Engineering & maintenance software for superyachts",
+        "description": "CelesteOS makes your vessel's manuals, work orders, faults, and handover records searchable from one interface. Runs alongside your existing PMS. The handover assembles from logged work.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@id": "https://celeste7.ai/#website"
+        },
+        "about": {
+          "@id": "https://celeste7.ai/#organization"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://celeste7.ai/og-hero.jpg",
+          "contentUrl": "https://celeste7.ai/og-hero.jpg",
+          "width": 1200,
+          "height": 630
+        },
+        "mainEntity": {
+          "@id": "https://celeste7.ai/#software"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://celeste7.ai/#software",
+        "name": "CelesteOS",
+        "url": "https://celeste7.ai/",
+        "description": "Search-first engineering intelligence system for superyachts. Unified vessel knowledge, manuals, work orders, faults, parts, certificates, and handover records searchable from one interface.",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Maintenance management",
+        "operatingSystem": "Web",
+        "featureList": [
+          "Work Orders",
+          "Faults",
+          "Equipment",
+          "Certificates",
+          "Documents",
+          "Warranty",
+          "Parts & Inventory",
+          "Engineering handover"
+        ],
+        "publisher": {
+          "@id": "https://celeste7.ai/#organization"
+        },
+        "provider": {
+          "@id": "https://celeste7.ai/#organization"
+        },
+        "offers": {
+          "@id": "https://celeste7.ai/#pilot-offer"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://celeste7.ai/#pilot",
+        "name": "CelesteOS Pilot Programme",
+        "serviceType": "Maintenance management software",
+        "provider": {
+          "@id": "https://celeste7.ai/#organization"
+        },
+        "audience": {
+          "@type": "BusinessAudience",
+          "audienceType": "Private and charter superyachts from 30 m"
+        },
+        "areaServed": "Worldwide",
+        "offers": {
+          "@id": "https://celeste7.ai/#pilot-offer"
+        }
+      },
+      {
+        "@type": "Offer",
+        "@id": "https://celeste7.ai/#pilot-offer",
+        "name": "Pilot rate",
+        "url": "https://celeste7.ai/#pilot",
+        "description": "Per vessel, not per user. Unlimited seats. Pilot rate locked for 12 months from go-live. Three to five vessels.",
+        "price": "995",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "995",
+          "priceCurrency": "USD",
+          "unitText": "per vessel per month",
+          "billingDuration": {
+            "@type": "QuantitativeValue",
+            "value": 1,
+            "unitCode": "MON"
+          },
+          "referenceQuantity": {
+            "@type": "QuantitativeValue",
+            "value": 1,
+            "unitText": "vessel"
+          }
+        },
+        "availability": "https://schema.org/LimitedAvailability",
+        "eligibleQuantity": {
+          "@type": "QuantitativeValue",
+          "minValue": 3,
+          "maxValue": 5,
+          "unitText": "vessels"
+        },
+        "seller": {
+          "@id": "https://celeste7.ai/#organization"
+        },
+        "itemOffered": {
+          "@id": "https://celeste7.ai/#pilot"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://celeste7.ai/#founder",
+        "name": "Alex Short",
+        "jobTitle": "Founder",
+        "description": "Former Electro-Technical Officer and Head of Department on motor yachts from 70 to 125 metres.",
+        "image": "https://celeste7.ai/founder-alex-short.jpg",
+        "worksFor": {
+          "@id": "https://celeste7.ai/#organization"
+        },
+        "url": "https://celeste7.ai/about"
+      }
+    ]
   }
   </script>
   <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
