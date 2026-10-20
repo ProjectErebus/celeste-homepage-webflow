@@ -38,8 +38,8 @@
       "@id": "https://celeste7.ai/blogs/audit-trail-superyacht#article",
       "headline": "Every Action Has a Name and a Timestamp: Why Audit Trails Matter on Superyachts",
       "description": "Most yacht maintenance systems record task completions but not who opened a document, who reviewed a record, or who authorised an action. Immutable audit trails with timestamped, attributable records change the legal defence.",
-      "datePublished": "2026-04-09",
-      "dateModified": "2026-04-09",
+      "datePublished": "2026-04-09T00:00:00+00:00",
+      "dateModified": "2026-04-09T00:00:00+00:00",
       "image": {
         "@type": "ImageObject",
         "@id": "https://celeste7.ai/blogs/audit-trail-superyacht#primaryimage",
@@ -47,10 +47,16 @@
         "contentUrl": "https://celeste7.ai/images/blog-usp/art9-audit-floating.png"
       },
       "author": {
-        "@id": "https://celeste7.ai/#organization"
+        "@type": "Organization",
+        "@id": "https://celeste7.ai/#organization",
+        "name": "CelesteOS",
+        "url": "https://celeste7.ai/"
       },
       "publisher": {
-        "@id": "https://celeste7.ai/#organization"
+        "@type": "Organization",
+        "@id": "https://celeste7.ai/#organization",
+        "name": "CelesteOS",
+        "url": "https://celeste7.ai/"
       },
       "mainEntityOfPage": {
         "@id": "https://celeste7.ai/blogs/audit-trail-superyacht#webpage"
@@ -58,7 +64,31 @@
       "isPartOf": {
         "@id": "https://celeste7.ai/#website"
       },
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "mentions": [
+        {
+          "@type": "Thing",
+          "name": "ISM Code",
+          "sameAs": "https://www.wikidata.org/wiki/Q254568"
+        },
+        {
+          "@type": "Thing",
+          "name": "Chief engineer",
+          "sameAs": "https://www.wikidata.org/wiki/Q1816148"
+        },
+        {
+          "@type": "Thing",
+          "name": "Superyacht",
+          "sameAs": "https://www.wikidata.org/wiki/Q443802"
+        }
+      ],
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "Sentini Marine, \"The Operator Error Loophole\"",
+          "url": "https://www.sentinimarine.com/blog/the-operator-error-loophole/"
+        }
+      ]
     },
     {
       "@type": "WebPage",
