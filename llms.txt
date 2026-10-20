@@ -1,37 +1,61 @@
 # CelesteOS
-> Engineering and maintenance software for superyachts (30m and above). CelesteOS is the planned maintenance system.
 
-CelesteOS is a vessel knowledge management system that connects maintenance records, fault history, parts, certificates, and compliance into a single searchable interface.
+> CelesteOS is the planned maintenance system (PMS) for private and charter superyachts of 30 metres and above. It keeps a vessel's manuals, work orders, faults, equipment, parts, certificates and handover records in one searchable record that stays with the vessel when the crew rotates. It is built by CelesteOS LLC.
 
-## Core Capabilities
-- NLP search across all vessel knowledge — manuals, faults, work orders, parts, history, handovers
-- Auto-generated engineering handover documents pulling from every operational domain
-- Signed immutable audit trail — every action recorded, attributable, append-only
-- Cross-domain actions — fault to work order to parts to warranty, all connected
-- Email integration — Microsoft Exchange correspondence searchable alongside vessel records
+Key facts:
 
-## Who Uses It
-- Chief Engineers — primary user
-- ETOs (Electronics/Technical Officers)
-- Captains
-- Fleet Technical Managers (shore-based)
+- Category: engineering and maintenance software for superyachts. It is a planned maintenance system, web-based.
+- Who uses it: chief engineers (the primary users), ETOs, captains and shore-based fleet technical managers.
+- Handover: the engineering handover assembles from work as it is logged. Every line links back to its live record, and the outgoing and incoming engineers sign and acknowledge it.
+- Ledger: every record carries an append-only audit trail showing who did what and when, with before and after values. Corrections reference the original, and nothing is overwritten. Records are sealed, can be exported as a structured PDF, and can be verified without an account.
+- Search: plain-language search across manuals, faults, work orders, parts and history. Every answer cites its source.
+- Certificates: flag, class and statutory certificates are tracked to expiry, with alerts at 30, 14 and 7 days and the source PDF attached.
+- Onboarding: existing manuals, PDFs, scans and exports are indexed as they are, with no reformatting. The equipment register, certificates and work-order history are imported for the vessel.
+- Compliance: aligned with ISM Code sections 10 and 11. CelesteOS is audit evidence, not class approval. It does not hold DNV, LR, BV or ABS Type Approval.
+- Pricing: the pilot is USD 995 per vessel per month. Pricing is per vessel, not per user, with unlimited seats and no per-module tiering. The pilot rate is locked for 12 months from go-live, and each pilot runs on three to five vessels.
+- Founder: Alex Short, formerly an Electro-Technical Officer and then Head of Department on motor yachts from 70 to 125 metres.
 
-## Target Vessels
-Private and charter superyachts, 30m and above. No upper limit.
+## Product and company
 
-## Links
-- Website: https://celeste7.ai
-- Product: https://app.celeste7.ai
-- LinkedIn: https://www.linkedin.com/company/celesteos/
-- Blog: https://celeste7.ai/blogs
+- [Home](https://celeste7.ai/): what CelesteOS does, the handover, the ledger, search, the pilot and pricing.
+- [About](https://celeste7.ai/about): why CelesteOS exists and the founder's background.
+- [Trust](https://celeste7.ai/trust): cryptographic proof, regulatory mapping (ISM Code, IMO MSC.428(98)), where data lives, and the position on class Type Approval.
+- [Sources](https://celeste7.ai/sources): citations for every statistic on the site.
+- [Sign in](https://app.celeste7.ai/login): the CelesteOS web app, for customers only.
 
-## Company and Legal
-CelesteOS is provided by CelesteOS LLC, a Florida limited liability company, 7901 4th St N, #36609, St Petersburg, FL 33702, USA.
-- Privacy Policy: https://celeste7.ai/privacy-policy
-- Terms of Use: https://celeste7.ai/terms-of-service
-- Cookie Notice: https://celeste7.ai/cookies
-- Acceptable Use Policy: https://celeste7.ai/acceptable-use
-- Sub-processors: https://celeste7.ai/subprocessors
+## Guides
+
+- [How to Manage Maintenance on a Superyacht](https://celeste7.ai/blogs/manage-maintenance-superyacht): maintenance as a records problem, and keeping faults, work orders, parts and manuals connected.
+- [ISM Code Yacht Requirements](https://celeste7.ai/blogs/ism-code-yacht-requirements): what the ISM Code requires a yacht to keep and prove, with a focus on sections 10 and 11.
+- [ISM Internal Audit Checklist for Yachts](https://celeste7.ai/blogs/ism-internal-audit-checklist-yacht): an audit checklist where every line ties to a retrievable record.
+- [Chief Engineer Handover Checklist](https://celeste7.ai/blogs/engineering-handover-superyacht): the seven domains a proper handover covers.
+- [Engine Room Handover Checklist for Yachts](https://celeste7.ai/blogs/engine-room-handover-checklist): what to cover, in what order, and how to keep it current.
+- [What an Auto-Generated Engineering Handover Contains](https://celeste7.ai/blogs/auto-generated-handover): faults, work orders, parts and certificates compiled with links back to their sources.
+- [Crew Turnover and Knowledge Loss on Superyachts](https://celeste7.ai/blogs/knowledge-crisis-superyachts): what turnover costs, and what a handover must carry.
+- [How to Digitize Yacht Maintenance Records](https://celeste7.ai/blogs/digitize-yacht-maintenance-records): turning binders and scans into searchable history.
+- [How to Organize Yacht Manuals Onboard](https://celeste7.ai/blogs/organize-yacht-manuals-onboard): organising by findability rather than by folders.
+- [Yacht Maintenance Log Book: Digital Records](https://celeste7.ai/blogs/yacht-logbook-digital-records): what each digital log record must carry.
+- [Yacht Maintenance Log Spreadsheet Template](https://celeste7.ai/blogs/yacht-maintenance-log-spreadsheet-template): a free five-tab template, and the point at which a spreadsheet stops scaling.
+- [Why Your Warranty Claim Was Denied](https://celeste7.ai/blogs/warranty-claim-documentation): the documentation manufacturers require.
+- [Why Audit Trails Matter on Superyachts](https://celeste7.ai/blogs/audit-trail-superyacht): attributable, timestamped records.
+- [Three Repairs, Three Engineers, One Pattern Nobody Saw](https://celeste7.ai/blogs/fault-patterns-superyachts): recurring faults across crew rotations.
+- [Seven Connections Every Yacht Maintenance System Should Make](https://celeste7.ai/blogs/seven-connections-yacht-pms): what opening a fault record should show you.
+- [Why Superyacht Maintenance Systems Create the Problems They Claim to Solve](https://celeste7.ai/blogs/siloed-maintenance-systems): the cost of siloed data.
+- [If the System Cannot Compete with WhatsApp, the System Is the Problem](https://celeste7.ai/blogs/software-bypass-superyachts): why crews bypass their maintenance software.
+- [Cross-Domain Actions on Superyachts](https://celeste7.ai/blogs/cross-domain-actions-yacht): connecting faults, work orders, parts and the handover.
+- [Natural Language Search on a Vessel](https://celeste7.ai/blogs/natural-language-search-yacht): one query that returns results across every domain.
+
+## Legal
+
+- [Privacy Policy](https://celeste7.ai/privacy-policy)
+- [Terms of Use](https://celeste7.ai/terms-of-service)
+- [Cookie Notice](https://celeste7.ai/cookies)
+- [Acceptable Use Policy](https://celeste7.ai/acceptable-use)
+- [Sub-processors](https://celeste7.ai/subprocessors)
 
 ## Contact
-contact@celeste7.ai
+
+- General: contact@celeste7.ai
+- Pilot enquiries: CelesteOSPilot@celeste7.ai
+- LinkedIn: https://www.linkedin.com/company/celesteos/
+- Company: CelesteOS LLC, a Florida limited liability company, 7901 4th St N, #36609, St Petersburg, FL 33702, USA.

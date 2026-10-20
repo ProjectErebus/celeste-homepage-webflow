@@ -1,10 +1,11 @@
 // lib/jsonld.mjs — builds the ONE schema.org @graph for a blog post, derived from the
 // rendered page itself (H1, FAQ, <img>) so structured data can never drift from visible text.
-// Entities (Organization, WebSite) are defined once on the homepage; we only reference them by @id.
+// Entities (Organization, WebSite) are defined once on the homepage and referenced by @id; author and
+// publisher also carry name + url, because Google's Article check does not follow @ids across pages.
 // Node stdlib only. Spec: schema01/SPEC.md.
 
 const ORIGIN = 'https://celeste7.ai';
-export const ORG = { '@id': `${ORIGIN}/#organization` };
+export const ORG = { '@type': 'Organization', '@id': `${ORIGIN}/#organization`, name: 'CelesteOS', url: `${ORIGIN}/` };
 export const WEBSITE = { '@id': `${ORIGIN}/#website` };
 export const FALLBACK_IMAGE = `${ORIGIN}/og-hero.jpg`;
 
@@ -35,6 +36,36 @@ export function extractFaq(html) {
   return out;
 }
 
+// Wikidata entities, linked from `mentions` only when the phrase is in the visible text.
+const ENTITIES = [
+  [/\bISM Code\b/i, 'ISM Code', 'Q254568'],
+  [/\bPort State Control\b/i, 'Port State Control', 'Q1567986'],
+  [/\bplanned[- ]maintenance system\b/i, 'Planned Maintenance System in shipping', 'Q7201337'],
+  [/\bchief engineer\b/i, 'Chief engineer', 'Q1816148'],
+  [/\b(ETO|electro-technical officer)\b/i, 'Electro-technical officer', 'Q10340357'],
+  [/\bsuperyachts?\b/i, 'Superyacht', 'Q443802'],
+];
+export function extractMentions(text) {
+  return ENTITIES.filter(([re]) => re.test(text))
+    .map(([, name, q]) => ({ '@type': 'Thing', name, sameAs: `https://www.wikidata.org/wiki/${q}` }));
+}
+
+// Visible numbered references: <p id="ref-N">[N] Title — <a href="...">domain</a></p>
+export function extractCitations(html) {
+  const out = [];
+  const re = /<(p|li)[^>]*id="ref-\d+"[^>]*>([\s\S]*?)<\/\1>/gi;
+  let m;
+  while ((m = re.exec(html))) {
+    const url = (m[2].match(/href="(https?:\/\/[^"]+)"/) || [])[1];
+    const name = textOf(m[2]).replace(/^\[\d+\]\s*/, '').replace(/\s+[\u2014-]\s+[\w.-]+\.[a-z]{2,}\s*$/i, '');
+    if (name) out.push(url ? { '@type': 'CreativeWork', name, url } : { '@type': 'CreativeWork', name });
+  }
+  return out;
+}
+
+// Google wants a full ISO 8601 datetime with a time zone; bare dates are flagged.
+export const isoDate = (d) => (d && /^\d{4}-\d{2}-\d{2}$/.test(d) ? `${d}T00:00:00+00:00` : d);
+
 export function absUrl(u) {
   return /^https?:\/\//.test(u) ? u : ORIGIN + (u.startsWith('/') ? '' : '/') + u;
 }
@@ -50,12 +81,16 @@ export function buildGraph({ html, canonical, datePublished, dateModified, image
   const id = (frag) => `${canonical}#${frag}`;
   const article = {
     '@type': 'BlogPosting', '@id': id('article'), headline, description,
-    datePublished, dateModified: dateModified || datePublished,
+    datePublished: isoDate(datePublished), dateModified: isoDate(dateModified || datePublished),
     image: { '@type': 'ImageObject', '@id': id('primaryimage'), url: img, contentUrl: img },
     author: ORG, publisher: ORG,
     mainEntityOfPage: { '@id': id('webpage') }, isPartOf: WEBSITE, inLanguage: 'en',
   };
   if (keyword) article.keywords = keyword;
+  const mentions = extractMentions(textOf(html.split(/<\/head>/i).pop()));
+  if (mentions.length) article.mentions = mentions;
+  const citation = extractCitations(html);
+  if (citation.length) article.citation = citation;
   const graph = [
     article,
     { '@type': 'WebPage', '@id': id('webpage'), url: canonical, name: headline, isPartOf: WEBSITE,

@@ -27,47 +27,50 @@
     <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
     <script src="/js/cookie-consent.js"></script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": "https://celeste7.ai/sources#webpage",
-        "url": "https://celeste7.ai/sources",
-        "name": "Sources · CelesteOS",
-        "description": "Citations for every statistic on celeste7.ai. Independently verifiable.",
-        "inLanguage": "en",
-        "isPartOf": {
-          "@id": "https://celeste7.ai/#website"
-        },
-        "publisher": {
-          "@id": "https://celeste7.ai/#organization"
-        },
-        "breadcrumb": {
-          "@id": "https://celeste7.ai/sources#breadcrumb"
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://celeste7.ai/sources#webpage",
+      "url": "https://celeste7.ai/sources",
+      "name": "Sources · CelesteOS",
+      "description": "Citations for every statistic on celeste7.ai. Independently verifiable.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://celeste7.ai/#website"
       },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://celeste7.ai/sources#breadcrumb",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://celeste7.ai/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Sources",
-            "item": "https://celeste7.ai/sources"
-          }
-        ]
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://celeste7.ai/#organization",
+        "name": "CelesteOS",
+        "url": "https://celeste7.ai/"
+      },
+      "breadcrumb": {
+        "@id": "https://celeste7.ai/sources#breadcrumb"
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://celeste7.ai/sources#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://celeste7.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sources",
+          "item": "https://celeste7.ai/sources"
+        }
+      ]
+    }
+  ]
+}
+</script>
   </head>
 <body>
 <!-- ═══ CelesteOS site header (canonical, self-contained) ═══ -->
