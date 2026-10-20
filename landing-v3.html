@@ -114,7 +114,7 @@
     .invoice-foot { font-size: 0.75rem; font-style: italic; color: var(--_colors---color-5); padding-top: 0.6rem; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 0.4rem; }
     .dark-mode .invoice-foot { border-top-color: rgba(255,255,255,0.05); }
 
-    /* §06 "before" — delivery note */
+    /* §06 "before" — invoice */
     .delivery { padding: 1.1rem; background: var(--_colors---surface); border: 1px solid rgba(0,0,0,0.07); border-radius: 8px; }
     .dark-mode .delivery { border-color: rgba(255,255,255,0.07); }
     .delivery-h { font-size: 0.92rem; font-weight: 500; color: var(--_colors---text-color); margin: 0.2rem 0 0.6rem; }
@@ -256,7 +256,7 @@
             <h1 class="heading">The vessel's knowledge<br><em>stays in the vessel.</em></h1>
           </div>
           <div class="hero-texr">
-            <div class="text-hero1">Manuals. Faults. Handovers. Parts. Warranties. Certificates. Hours of rest. <span class="accent">One searchable surface</span> that survives every crew change.</div>
+            <div class="text-hero1">Manuals. Faults. Handovers. Parts. Warranties. Certificates. <span class="accent">One searchable surface</span> that survives every crew change.</div>
             <div class="text-hero1">CelesteOS is the planned maintenance system. <span class="accent">Nothing to install.</span> Onboard in hours, not weeks. Per vessel, not per user.</div>
             <a data-mailto="pilot" href="#" class="hero-button w-inline-block">
               <img src="images/Frame-5_1Frame-5.png" alt="" role="presentation" class="hero-button-icon _2">
@@ -442,48 +442,12 @@
     </div>
   </section>
 
-  <!-- §06 RECEIVING OCR — before / after with £4,200 -->
-  <section id="receiving" class="v3-section">
-    <div class="v3-container">
-      <div class="v3-head">
-        <h2 class="v3-h2">Caught on the dock. <em>Not on the invoice.</em></h2>
-        <div class="v3-num">(06)</div>
-      </div>
-      <p class="v3-sub">Twelve items ordered. Ten delivered. The discrepancy used to be paid in full and forgotten.</p>
-
-      <div class="ba-row">
-        <div class="ba-panel before">
-          <div class="ba-lbl">Before</div>
-          <div class="delivery">
-            <div class="invoice-mono">Delivery note · DN-2025-1102</div>
-            <div class="delivery-h">Aquamarine Spares · Antibes</div>
-            <ul class="delivery-list">
-              <li>Watermaker membrane · qty 4</li>
-              <li>O-ring kit · qty 6</li>
-              <li>Salinity probe · qty 2</li>
-            </ul>
-            <div class="delivery-sig">Signed for · 14 boxes · purser, 09:18</div>
-            <div class="delivery-foot">Discrepancy: <strong>not noticed at the dock.</strong></div>
-          </div>
-          <p class="ba-cap">Purser counts boxes. Discrepancy hides inside a box. Invoice paid in full.</p>
-        </div>
-        <div class="ba-panel after">
-          <div class="ba-lbl">After</div>
-          <div class="iframe-product-wrap v3-after">
-            <iframe src="prototypes/receiving-ocr.html" title="Receiving OCR caught the short-shipment"></iframe>
-          </div>
-          <p class="ba-cap">OCR reads the delivery note, cross-references the PO, flags the gap before signature.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- §07 CERTIFICATES -->
   <section id="certificates" class="v3-section">
     <div class="v3-container">
       <div class="v3-head">
         <h2 class="v3-h2">No lapse. <em>No detention.</em></h2>
-        <div class="v3-num">(07)</div>
+        <div class="v3-num">(06)</div>
       </div>
 
       <div class="ba-row">
@@ -509,47 +473,12 @@
     </div>
   </section>
 
-  <!-- §08 HOURS OF REST -->
-  <section id="hor" class="v3-section">
-    <div class="v3-container">
-      <div class="v3-head">
-        <h2 class="v3-h2">MLC compliance <em>without the scramble.</em></h2>
-        <div class="v3-num">(08)</div>
-      </div>
-
-      <div class="ba-row">
-        <div class="ba-panel before">
-          <div class="ba-lbl">Before</div>
-          <div style="font-size:0.85rem;color:var(--_colors---color-5);font-style:italic;padding:0.4rem 0;">HoR · paper logs · backfilled the night before inspection</div>
-          <div class="paper-grid">
-            <span class="paper-cell"></span><span class="paper-cell w"></span><span class="paper-cell w"></span><span class="paper-cell"></span><span class="paper-cell w"></span><span class="paper-cell"></span><span class="paper-cell"></span><span class="paper-cell"></span>
-          </div>
-          <p class="ba-cap">"The inspector probably won't catch it this time." Everyone knows the logs are wrong. Nobody has a better tool.</p>
-        </div>
-        <div class="ba-panel after">
-          <div class="ba-lbl">After</div>
-          <div style="font-size:0.85rem;color:var(--_colors---color-7);font-weight:500;padding:0.4rem 0;">November 2025 · 7 of 8 crew compliant</div>
-          <div class="hor-grid">
-            <span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell warn"></span>
-            <span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span>
-            <span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span>
-            <span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span><span class="hor-cell ok"></span>
-          </div>
-          <div class="compact-row"><span class="mono">CREW</span><span></span><span class="pill green">7 signed</span></div>
-          <div class="compact-row"><span class="mono">HOD</span><span></span><span class="pill green">Signed 28 Nov</span></div>
-          <div class="compact-row"><span class="mono">MASTER</span><span></span><span class="pill green">Signed 28 Nov</span></div>
-          <p class="ba-cap">Logged daily. Violations flagged in real time, before they become findings.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- §09 SITS ALONGSIDE — adapted from existing index.html .impact-section -->
   <section id="sits-alongside" class="v3-section">
     <div class="v3-container">
       <div class="v3-head">
         <h2 class="v3-h2">Your records move in. <em>Nothing is lost.</em></h2>
-        <div class="v3-num">(09)</div>
+        <div class="v3-num">(07)</div>
       </div>
       <p class="v3-sub" style="max-width:64ch;">CelesteOS is the planned maintenance system. Records from AMOS, Seahub, IDEA and spreadsheets are imported, so equipment, work orders and history carry over, with searchable history, generated handovers and sealed proof on top.</p>
 
@@ -575,7 +504,7 @@
     <div class="v3-container">
       <div class="v3-head">
         <h2 class="v3-h2">Onboard in <em>hours.</em> Not weeks. Not months.</h2>
-        <div class="v3-num">(10)</div>
+        <div class="v3-num">(08)</div>
       </div>
 
       <div class="timeline">
@@ -597,7 +526,7 @@
           <div class="tl-marker">WK 3+</div>
           <div>
             <div class="tl-title">The system earns its keep through use.</div>
-            <p class="tl-body">Handover drafts accumulate from daily operations. Faults logged. Shopping lists flowing. Nobody sits down to "use CelesteOS" — it appears where work already happens.</p>
+            <p class="tl-body">Handover drafts accumulate from daily operations. Faults logged. Nobody sits down to "use CelesteOS" — it appears where work already happens.</p>
           </div>
         </div>
       </div>
@@ -609,7 +538,7 @@
     <div class="v3-container">
       <div class="v3-head">
         <h2 class="v3-h2">Every action recorded <em>like a scribe was watching.</em></h2>
-        <div class="v3-num">(11)</div>
+        <div class="v3-num">(09)</div>
       </div>
       <p class="v3-sub">Surveyor, insurer, management. Court-grade proof of who did what, when, and why. Every seal independently verifiable at <a href="https://verify.celeste7.ai" target="_blank" rel="noopener" style="color:var(--_colors---accent);text-decoration:none;border-bottom:1px solid rgba(43,123,163,0.3);">verify.celeste7.ai</a>.</p>
 
@@ -624,7 +553,7 @@
     <div class="v3-container">
       <div class="v3-head">
         <h2 class="v3-h2">Built by an engineer who <em>lived this.</em></h2>
-        <div class="v3-num">(12)</div>
+        <div class="v3-num">(10)</div>
       </div>
       <div class="founder-block" style="max-width:720px;margin-top:1.6rem;">
         <img src="images/alex-short.png" alt="Alex Short, founder of CelesteOS, former superyacht ETO" class="founder-portrait" width="64" height="64">
@@ -673,7 +602,7 @@
     <div class="w-layout-blockcontainer footer-container w-container">
       <div class="footer-wrapper">
         <div class="cta-close">
-          <div class="cta-label">(14) · Pilot Programme · 2026</div>
+          <div class="cta-label">(12) · Pilot Programme · 2026</div>
           <h2 class="cta-heading">If this describes your vessel, <em>the next handover writes itself.</em></h2>
           <p class="cta-body">Private and charter vessels from 30m, no upper limit. Where operational knowledge currently lives in crew minds, not the vessel.</p>
         </div>

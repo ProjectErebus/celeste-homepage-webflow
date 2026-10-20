@@ -65,7 +65,7 @@
     <div class="lp-container">
       <div class="lp-eyebrow">CelesteOS · Pilot Programme · 2026</div>
       <h1 class="lp-hero-title">The vessel's knowledge<br><em>stays in the vessel.</em></h1>
-      <p class="lp-hero-sub">Manuals. Faults. Handovers. Parts. Warranties. Certificates. Hours of rest. One searchable surface that survives every crew change.</p>
+      <p class="lp-hero-sub">Manuals. Faults. Handovers. Parts. Warranties. Certificates. One searchable surface that survives every crew change.</p>
       <div class="lp-hero-scroll-hint">Scroll <span aria-hidden="true">↓</span></div>
     </div>
   </section>
@@ -467,73 +467,12 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       §06 · RECEIVING OCR — before/after, short-shipment
-       Signature from Cloud_PMS lens-receiving.html (assumed; FRONTEND29 to confirm)
-       ═══════════════════════════════════════════════════════ -->
-  <section id="receiving" class="lp-section lp-ba-section">
-    <div class="lp-container">
-      <div class="lp-section-head">
-        <div class="lp-eyebrow">06 · Receiving</div>
-        <h2 class="lp-h2">Caught on the dock. <em>Not on the invoice.</em></h2>
-        <p class="lp-section-sub">Twelve items ordered. Ten delivered. The discrepancy used to be paid in full and forgotten.</p>
-      </div>
-
-      <div class="lp-ba">
-        <div class="lp-panel lp-panel--before">
-          <div class="lp-panel-lbl">Before</div>
-          <div class="lp-mock lp-mock--delivery">
-            <div class="lp-delivery">
-              <div class="lp-mono lp-mono--xs">DELIVERY NOTE · DN-2025-1102</div>
-              <div class="lp-delivery-vendor">Aquamarine Spares · Antibes</div>
-              <ul class="lp-delivery-list">
-                <li>Watermaker membrane · qty 4</li>
-                <li>O-ring kit · qty 6</li>
-                <li>Salinity probe · qty 2</li>
-              </ul>
-              <div class="lp-delivery-sig">Signed for · 14 boxes · purser, 09:18</div>
-              <div class="lp-delivery-foot">Discrepancy: <strong>not noticed at the dock.</strong></div>
-            </div>
-          </div>
-          <p class="lp-panel-cap">Purser counts boxes. Discrepancy hides inside a box. Invoice paid in full.</p>
-        </div>
-
-        <div class="lp-panel lp-panel--after">
-          <div class="lp-panel-lbl">After</div>
-          <div class="lp-mock lp-mock--ocr">
-            <div class="lp-ocr">
-              <div class="lp-ocr-hdr">
-                <div class="lp-mono lp-mono--xs">RCV-1102 · OCR'd 09:21</div>
-                <span class="lp-pill lp-pill--red">Discrepancy</span>
-              </div>
-              <table class="lp-ocr-table">
-                <thead>
-                  <tr><th>Item</th><th>PO</th><th>DN</th><th>Δ</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Membrane</td><td class="lp-mono">4</td><td class="lp-mono">4</td><td><span class="lp-pill lp-pill--green">OK</span></td></tr>
-                  <tr><td>O-ring kit</td><td class="lp-mono">6</td><td class="lp-mono">6</td><td><span class="lp-pill lp-pill--green">OK</span></td></tr>
-                  <tr class="lp-ocr-row-bad"><td>Salinity probe</td><td class="lp-mono">12</td><td class="lp-mono">10</td><td><span class="lp-pill lp-pill--red">−2</span></td></tr>
-                </tbody>
-              </table>
-              <div class="lp-ocr-foot">
-                <div class="lp-ocr-amt"><span class="lp-mono">£4,200</span> short-shipped · linked to PO-2026-0034</div>
-                <span class="lp-mock-btn lp-mock-btn--primary">Reject + open claim</span>
-              </div>
-            </div>
-          </div>
-          <p class="lp-panel-cap">OCR reads the delivery note, cross-references the PO, flags the gap before signature.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════
        §07 · CERTIFICATES — compact before/after
        ═══════════════════════════════════════════════════════ -->
   <section id="certificates" class="lp-section lp-ba-section">
     <div class="lp-container">
       <div class="lp-section-head">
-        <div class="lp-eyebrow">07 · Certificates</div>
+        <div class="lp-eyebrow">06 · Certificates</div>
         <h2 class="lp-h2">No lapse. <em>No detention.</em></h2>
       </div>
 
@@ -566,57 +505,12 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       §08 · HOURS OF REST — compact before/after
-       ═══════════════════════════════════════════════════════ -->
-  <section id="hor" class="lp-section lp-ba-section">
-    <div class="lp-container">
-      <div class="lp-section-head">
-        <div class="lp-eyebrow">08 · Hours of Rest</div>
-        <h2 class="lp-h2">MLC compliance <em>without the scramble.</em></h2>
-      </div>
-
-      <div class="lp-ba">
-        <div class="lp-panel lp-panel--before lp-panel--compact">
-          <div class="lp-panel-lbl">Before</div>
-          <div class="lp-mock lp-mock--paper">
-            <div class="lp-paper-stripe"></div>
-            <div class="lp-paper-h">HoR · paper logs · backfilled the night before inspection</div>
-            <div class="lp-paper-grid">
-              <span class="lp-paper-cell"></span><span class="lp-paper-cell lp-paper-cell--w"></span><span class="lp-paper-cell lp-paper-cell--w"></span><span class="lp-paper-cell"></span><span class="lp-paper-cell lp-paper-cell--w"></span><span class="lp-paper-cell"></span><span class="lp-paper-cell"></span><span class="lp-paper-cell"></span>
-            </div>
-            <div class="lp-paper-foot">"The inspector probably won't catch it this time."</div>
-          </div>
-          <p class="lp-panel-cap">Everyone knows the logs are wrong. Nobody has a better tool.</p>
-        </div>
-        <div class="lp-panel lp-panel--after lp-panel--compact">
-          <div class="lp-panel-lbl">After</div>
-          <div class="lp-mock lp-mock--hor">
-            <div class="lp-hor-month">November 2025 · 7 of 8 crew compliant</div>
-            <div class="lp-hor-grid">
-              <span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--warn"></span>
-              <span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span>
-              <span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span>
-              <span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span><span class="lp-hor-cell lp-hor-cell--ok"></span>
-            </div>
-            <div class="lp-hor-signoffs">
-              <div class="lp-hor-row"><span class="lp-mono lp-mono--xs">CREW</span><span class="lp-pill lp-pill--green">7 signed</span></div>
-              <div class="lp-hor-row"><span class="lp-mono lp-mono--xs">HOD</span><span class="lp-pill lp-pill--green">Signed 28 Nov</span></div>
-              <div class="lp-hor-row"><span class="lp-mono lp-mono--xs">MASTER</span><span class="lp-pill lp-pill--green">Signed 28 Nov</span></div>
-            </div>
-          </div>
-          <p class="lp-panel-cap">Logged daily. Violations flagged in real time, before they become findings.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════
        §09 · SITS ALONGSIDE — diagram, kills rip-and-replace objection
        ═══════════════════════════════════════════════════════ -->
   <section id="alongside" class="lp-section">
     <div class="lp-container">
       <div class="lp-section-head lp-section-head--center">
-        <div class="lp-eyebrow">09 · Your Records Move In</div>
+        <div class="lp-eyebrow">07 · Your Records Move In</div>
         <h2 class="lp-h2">Your records move in. <em>Nothing is lost.</em></h2>
         <p class="lp-section-sub">CelesteOS is the planned maintenance system. Records from AMOS, Seahub, IDEA and spreadsheets are imported, so equipment, work orders and history carry over, with searchable history, generated handovers and sealed proof on top.</p>
       </div>
@@ -646,7 +540,7 @@
   <section id="onboarding" class="lp-section">
     <div class="lp-container">
       <div class="lp-section-head">
-        <div class="lp-eyebrow">10 · Onboarding</div>
+        <div class="lp-eyebrow">08 · Onboarding</div>
         <h2 class="lp-h2">Onboard in <em>hours.</em> Not weeks. Not months.</h2>
       </div>
 
@@ -669,7 +563,7 @@
           <div class="lp-tl-marker"><div class="lp-mono lp-mono--xs">WK 3+</div></div>
           <div class="lp-tl-body">
             <div class="lp-tl-title">The system earns its keep through use.</div>
-            <p>Handover drafts accumulate from daily operations. Faults logged. Shopping lists flowing. Nobody sits down to "use CelesteOS" — it appears where work already happens.</p>
+            <p>Handover drafts accumulate from daily operations. Faults logged. Nobody sits down to "use CelesteOS" — it appears where work already happens.</p>
           </div>
         </div>
       </div>
@@ -683,7 +577,7 @@
   <section id="ledger" class="lp-section">
     <div class="lp-container">
       <div class="lp-section-head">
-        <div class="lp-eyebrow">11 · Proof</div>
+        <div class="lp-eyebrow">09 · Proof</div>
         <h2 class="lp-h2">Every action recorded <em>like a scribe was watching.</em></h2>
         <p class="lp-section-sub">Surveyor, insurer, management. Court-grade proof of who did what, when, and why. Every seal independently verifiable at <a href="https://verify.celeste7.ai" target="_blank" rel="noopener noreferrer" class="lp-link">verify.celeste7.ai</a>.</p>
       </div>
@@ -708,18 +602,6 @@
               <div class="lp-ledger-mark"><span class="lp-sealmark" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span><a href="https://verify.celeste7.ai/?receipt=R-2025-1138" target="_blank" rel="noopener noreferrer" class="lp-mono lp-mono--xs lp-link">R-2025-1138</a></div>
             </li>
             <li class="lp-ledger-row">
-              <div class="lp-ledger-ts"><span class="lp-mono lp-mono--xs">2025-11-28 09:21:44 UTC</span></div>
-              <div class="lp-ledger-who">A. Lopez</div>
-              <div class="lp-ledger-act">flagged discrepancy on receiving <span class="lp-mono">RCV-1102</span></div>
-              <div class="lp-ledger-mark"><span class="lp-sealmark" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span><a href="https://verify.celeste7.ai/?receipt=R-2025-1136" target="_blank" rel="noopener noreferrer" class="lp-mono lp-mono--xs lp-link">R-2025-1136</a></div>
-            </li>
-            <li class="lp-ledger-row">
-              <div class="lp-ledger-ts"><span class="lp-mono lp-mono--xs">2025-11-27 18:04:11 UTC</span></div>
-              <div class="lp-ledger-who">Capt. S. Hawthorne</div>
-              <div class="lp-ledger-act">signed monthly HoR pack · 8 crew</div>
-              <div class="lp-ledger-mark"><span class="lp-sealmark" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span><a href="https://verify.celeste7.ai/?receipt=R-2025-1129" target="_blank" rel="noopener noreferrer" class="lp-mono lp-mono--xs lp-link">R-2025-1129</a></div>
-            </li>
-            <li class="lp-ledger-row">
               <div class="lp-ledger-ts"><span class="lp-mono lp-mono--xs">2025-11-27 11:48:02 UTC</span></div>
               <div class="lp-ledger-who">J. Williams</div>
               <div class="lp-ledger-act">submitted warranty claim pack <span class="lp-mono">WRN-412</span> · £4,200</div>
@@ -736,7 +618,7 @@
        ═══════════════════════════════════════════════════════ -->
   <section id="founder" class="lp-section lp-founder">
     <div class="lp-container lp-container--narrow">
-      <div class="lp-eyebrow">12 · Built by</div>
+      <div class="lp-eyebrow">10 · Built by</div>
       <p class="lp-founder-body">
         <strong>Alex Short.</strong> Five years as ETO on superyachts up to 122 metres. <em>Maryah</em>, <em>Legend</em>, <em>Freedom</em>, <em>Nero</em>, <em>Whisper</em>. Built CelesteOS because the system should have existed in those engine rooms.
       </p>
@@ -748,7 +630,7 @@
        ═══════════════════════════════════════════════════════ -->
   <section id="pricing" class="lp-section lp-pricing">
     <div class="lp-container lp-container--narrow">
-      <div class="lp-eyebrow">13 · Pilot Pricing</div>
+      <div class="lp-eyebrow">11 · Pilot Pricing</div>
       <div class="lp-price-num"><span class="lp-price-currency">$</span>450</div>
       <div class="lp-price-period">per vessel · per 28 days</div>
       <p class="lp-price-terms">Unlimited seats. No per-module tiering. Onboard in hours. No migration. For teams who intend to use CelesteOS as the work surface.</p>
