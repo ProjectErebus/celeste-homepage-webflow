@@ -41,7 +41,7 @@
           {
             "@type": "Question",
             "name": "How do I move from a spreadsheet to a planned-maintenance system without losing my data?",
-            "acceptedAnswer": { "@type": "Answer", "text": "You do not have to reformat first. Existing manuals, PDFs, scans, exports, and emails are indexed as they are, and the system runs alongside an existing planned-maintenance system — nothing to replace, nothing to migrate. The aim is to keep the record with the vessel rather than the laptop, so it survives the next crew change. Your data stays yours." }
+            "acceptedAnswer": { "@type": "Answer", "text": "You do not have to reformat first. Existing manuals, PDFs, scans, exports, and emails are indexed as they are, and CelesteOS is the planned maintenance system. The aim is to keep the record with the vessel rather than the laptop, so it survives the next crew change. Your data stays yours." }
           }
         ]
       },

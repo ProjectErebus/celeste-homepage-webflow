@@ -248,7 +248,7 @@ These are brand-risk, not SEO. Ship them as one batch even for posts whose retar
 | **suggested documents** | No dedicated post (truth constraint: manual link + discovery only). Carried as lines + `suggested-docs-component.png` in the manuals refresh | NEVER propagation/cascade |
 | **certificate bundle** | VITAMIN — lines + supporting visuals only (`certificate-lens.png` in knowledge-crisis, seven-connections card 06, NEW ISM posts) | Never a hero section or dedicated post (offer canon) |
 | **show related** | Carried inside fault-patterns, siloed (the test section), seven-connections card 03, warranty-claim | Strongest fully-live moment — lead with it visually, no dedicated URL needed |
-| **cloud-based** | software-bypass (vs Excel/WhatsApp), NEW #3 spreadsheet template, NEW #6 digitize records | "Runs alongside your existing PMS"; no offline/real-time claims |
+| **cloud-based** | software-bypass (vs Excel/WhatsApp), NEW #3 spreadsheet template, NEW #6 digitize records | "CelesteOS is the planned maintenance system"; no offline/real-time claims |
 | **security** | No blog post yet. NEW #4/#8 ISM posts carry the calibrated lines (ISM "Aligned — Sections 10 and 11. Audit evidence, not class approval") | Only the full calibrated sentences from allowlist §9 |
 
 ### Sequencing

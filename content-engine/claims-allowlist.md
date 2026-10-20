@@ -197,8 +197,8 @@ Severity legend used below:
 
 ### SAFE (approved phrasings)
 - "Nothing to install."
-- "Runs alongside your existing PMS — nothing to replace, nothing to migrate."
-- "Your existing PMS keeps its class society approvals, its workflows, and its crew familiarity."
+- "CelesteOS is the planned maintenance system."
+- "Existing manuals, PDFs, scans and exports are imported as they are."
 - "Browser-based. Any modern browser — desktop, tablet, mobile. No app installation."
 - "Crew on rotation can review records remotely with their existing credentials."
 - "Your data is yours. Nothing is held hostage." (export commitment — keep as commitment, not feature depiction)
@@ -207,6 +207,7 @@ Severity legend used below:
 ### BANNED overclaims
 | Banned phrasing | Why | Safe substitute |
 |---|---|---|
+| "Runs alongside your existing PMS" / "nothing to replace, nothing to migrate" / "your existing PMS keeps its class society approvals, workflows, crew familiarity" / "a layer over your PMS" | Founder ruling 20 Oct 2026: CelesteOS is the planned maintenance system, not an add-on beside another one. | "CelesteOS is the planned maintenance system." |
 | "Works offline" / "core functions work with intermittent connectivity, and data syncs when the connection is restored" | Offline/sync NOT in the verified-shipped set. NEEDS-EVIDENCE. | "Designed for the connectivity reality of superyachts." (nothing more specific) |
 | "Onboard in hours, not weeks" as an absolute | Conflicts with the pilot's own "import takes 3–5 working days". NEEDS-EVIDENCE for "hours". | "Onboarding measured in days, not months." or omit the number. |
 | "The vessel's record becomes searchable immediately" | "Immediately" absolute vs import/indexing lead time. | "The vessel's record becomes searchable as soon as import completes." |
@@ -233,7 +234,7 @@ Severity legend used below:
 | Banned phrasing | Why | Safe substitute |
 |---|---|---|
 | "GDPR compliant" / "SOC 2 certified" / "SOC 2 compliant" | No audit commissioned; "aligned" is the honest calibrated word. | "Aligned" forms above, with the caveat sentence intact. |
-| "class approved" / anything implying class society approval of CelesteOS | CelesteOS is audit evidence, not class approval. The PMS keeps its approvals. | "Your existing PMS keeps its class society approvals." |
+| "class approved" / anything implying class society approval of CelesteOS | CelesteOS is audit evidence, not class approval. Never claim class approval. | "CelesteOS is audit evidence, not class approval." |
 | "zero data retention" / "your data never leaves" / "no third party ever sees your data" | OpenAI subprocessor: no ZDR at current tier, 30-day abuse retention. Documented in the Sub-Processor Register. | "Sub-processor register and DPA available on request." |
 | "optional two-factor" | NEEDS-EVIDENCE — not live-verified. | Omit until verified. |
 | "military-grade encryption" / "bank-level security" | Hype lexicon. | "Encrypted at rest and in transit." |

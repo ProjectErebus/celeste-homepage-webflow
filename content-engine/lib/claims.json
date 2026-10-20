@@ -334,14 +334,19 @@
     "cloud-based": {
       "safe": [
         "Nothing to install.",
-        "Runs alongside your existing PMS — nothing to replace, nothing to migrate.",
-        "Your existing PMS keeps its class society approvals, its workflows, and its crew familiarity.",
+        "CelesteOS is the planned maintenance system.",
+        "Existing manuals, PDFs, scans and exports are imported as they are.",
         "Browser-based. Any modern browser — desktop, tablet, mobile. No app installation.",
         "Crew on rotation can review records remotely with their existing credentials.",
         "Your data is yours. Nothing is held hostage.",
         "Your existing manuals, PDFs, scans, exports, and emails are indexed as they are. No reformatting exercises."
       ],
       "banned": [
+        {
+          "pattern": "\"Runs alongside your existing PMS\" / \"nothing to replace, nothing to migrate\" / \"your existing PMS keeps its class society approvals, workflows, crew familiarity\" / \"a layer over your PMS\"",
+          "why": "Founder ruling 20 Oct 2026: CelesteOS is the planned maintenance system, not an add-on beside another one.",
+          "safe": "CelesteOS is the planned maintenance system."
+        },
         {
           "pattern": "\"Works offline\" / \"core functions work with intermittent connectivity, and data syncs when the connection is restored\"",
           "why": "Offline/sync NOT in the verified-shipped set. NEEDS-EVIDENCE.",
@@ -383,8 +388,8 @@
         },
         {
           "pattern": "\"class approved\" / anything implying class society approval of CelesteOS",
-          "why": "CelesteOS is audit evidence, not class approval. The PMS keeps its approvals.",
-          "safe": "Your existing PMS keeps its class society approvals."
+          "why": "CelesteOS is audit evidence, not class approval. Never claim class approval.",
+          "safe": "CelesteOS is audit evidence, not class approval."
         },
         {
           "pattern": "\"zero data retention\" / \"your data never leaves\" / \"no third party ever sees your data\"",

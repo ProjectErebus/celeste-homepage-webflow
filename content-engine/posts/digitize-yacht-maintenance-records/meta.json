@@ -35,8 +35,8 @@
           },
           {
             "@type": "Question",
-            "name": "Can I keep my existing planned-maintenance system?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. A searchable record layer runs alongside the certified planned-maintenance system rather than replacing it, so there is nothing to migrate away from and the PMS keeps its class society approvals, workflows and crew familiarity. The aim is to make the vessel's full history findable, not to replace a system the crew already trusts." }
+            "name": "Can I bring my existing records with me?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. CelesteOS is the planned maintenance system, and your existing manuals, PDFs, scans, and exports are imported as they are, with no reformatting. The pilot includes importing the equipment register, certificates, and work-order history, so the vessel's full history is findable in one place." }
           },
           {
             "@type": "Question",
