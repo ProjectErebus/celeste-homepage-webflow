@@ -131,28 +131,28 @@
   /* ── UI ── */
   var CSS = [
     '.cc-banner,.cc-panel{position:fixed;z-index:2147483000;box-sizing:border-box;font-family:"DM Sans",system-ui,-apple-system,sans-serif;',
-    'background:var(--_colors---surface,#ffffff);border:1px solid var(--_colors---border,rgba(0,0,0,.12));box-shadow:0 10px 30px rgba(0,0,0,.16);color:#1f1f1f;}',
+    'background:var(--surface,#181614);border:1px solid var(--border-sub,rgba(255,255,255,.07));color:var(--txt,rgba(255,255,255,.92));}',
     '.cc-banner{left:50%;transform:translateX(-50%);bottom:1rem;width:min(720px,calc(100vw - 2rem));display:flex;flex-wrap:wrap;gap:.9rem 1.25rem;',
-    'align-items:center;justify-content:space-between;padding:1rem 1.15rem;border-radius:12px;}',
-    '.cc-text{margin:0;flex:1 1 320px;font-size:.86rem;line-height:1.5;color:var(--_colors---color-6,#525252);}',
-    '.cc-banner a,.cc-panel a{color:var(--_colors---accent,#2B7BA3);text-decoration:underline;font-weight:500;}',
+    'align-items:center;justify-content:space-between;padding:1rem 1.15rem;border-radius:4px;}',
+    '.cc-text{margin:0;flex:1 1 320px;font-size:.86rem;line-height:1.5;color:var(--txt2,rgba(255,255,255,.55));}',
+    '.cc-banner a,.cc-panel a{color:var(--teal,#5AABCC);text-decoration:underline;font-weight:500;}',
     '.cc-actions{display:flex;flex-wrap:wrap;gap:.6rem;flex:0 0 auto;align-items:center;}',
-    '.cc-btn{font-family:inherit;font-size:.82rem;font-weight:500;padding:.6rem 1.1rem;border-radius:8px;cursor:pointer;line-height:1;',
-    'border:1px solid var(--_colors---accent,#2B7BA3);background:var(--_colors---accent,#2B7BA3);color:#fff;min-width:7.5rem;}',
-    '.cc-btn:hover{filter:brightness(1.06);}',
-    '.cc-btn:focus-visible,.cc-link:focus-visible,.cc-panel input:focus-visible{outline:2px solid #2B7BA3;outline-offset:2px;}',
-    '.cc-link{font-family:inherit;font-size:.82rem;background:none;border:0;padding:.4rem .2rem;cursor:pointer;color:var(--_colors---accent,#2B7BA3);text-decoration:underline;}',
-    '.cc-panel{left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow:auto;padding:1.25rem 1.35rem;border-radius:14px;}',
-    '.cc-panel h2{margin:0 0 .5rem;font-size:1.05rem;font-weight:600;}',
-    '.cc-panel p{margin:0 0 .8rem;font-size:.84rem;line-height:1.5;color:#525252;}',
-    '.cc-cat{display:flex;gap:.8rem;align-items:flex-start;padding:.75rem 0;border-top:1px solid rgba(0,0,0,.08);}',
-    '.cc-cat input{margin-top:.2rem;width:1.05rem;height:1.05rem;flex:0 0 auto;}',
-    '.cc-cat label{font-size:.88rem;font-weight:600;}',
-    '.cc-cat span{display:block;font-size:.8rem;font-weight:400;color:#525252;line-height:1.45;margin-top:.15rem;}',
-    '.cc-gpc{margin:.2rem 0 0;padding:.5rem .7rem;border-radius:8px;background:rgba(43,123,163,.08);font-size:.8rem;color:#1f1f1f;}',
+    '.cc-btn{font-family:inherit;font-size:.82rem;font-weight:500;height:44px;padding:0 1.1rem;border-radius:2px;cursor:pointer;',
+    'border:0;background:var(--teal-dim,#1A3040);color:var(--teal,#5AABCC);min-width:7.5rem;}',
+    '.cc-btn:hover{border:0;background:var(--teal-bd,#2A5068);}',
+    '.cc-btn:focus-visible,.cc-link:focus-visible,.cc-panel input:focus-visible{outline:2px solid var(--teal,#5AABCC);outline-offset:2px;}',
+    '.cc-link{font-family:inherit;font-size:.82rem;background:none;border:0;padding:.4rem .2rem;cursor:pointer;color:var(--teal,#5AABCC);text-decoration:underline;}',
+    '.cc-panel{left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow:auto;padding:1.25rem 1.35rem;border-radius:4px;}',
+    '.cc-panel h2{margin:0 0 .5rem;font-size:1.05rem;font-weight:600;color:var(--txt,rgba(255,255,255,.92));}',
+    '.cc-panel p{margin:0 0 .8rem;font-size:.84rem;line-height:1.5;color:var(--txt2,rgba(255,255,255,.55));}',
+    '.cc-cat{display:flex;gap:.8rem;align-items:flex-start;padding:.75rem 0;border-top:1px solid var(--border-sub,rgba(255,255,255,.07));}',
+    '.cc-cat input{margin-top:.2rem;width:1.05rem;height:1.05rem;flex:0 0 auto;accent-color:var(--teal,#5AABCC);}',
+    '.cc-cat label{font-size:.88rem;font-weight:600;color:var(--txt,rgba(255,255,255,.92));}',
+    '.cc-cat span{display:block;font-size:.8rem;font-weight:400;color:var(--txt2,rgba(255,255,255,.55));line-height:1.45;margin-top:.15rem;}',
+    '.cc-gpc{margin:.2rem 0 0;padding:.5rem .7rem;border-radius:2px;background:var(--teal-dim,#1A3040);font-size:.8rem;color:var(--txt,rgba(255,255,255,.92));}',
     '.cc-panel .cc-actions{margin-top:.9rem;justify-content:flex-end;}',
-    '.cc-scrim{position:fixed;inset:0;z-index:2147482999;background:rgba(0,0,0,.35);}',
-    '@media(max-width:560px){.cc-banner{flex-direction:column;align-items:stretch;}.cc-actions{justify-content:stretch;}.cc-actions .cc-btn{flex:1 1 0;}}'
+    '.cc-scrim{position:fixed;inset:0;z-index:2147482999;background:var(--bg-deep,#080807);opacity:.7;}',
+    '@media(max-width:560px){.cc-banner{flex-direction:column;align-items:stretch;}.cc-actions{justify-content:stretch;}.cc-actions .cc-btn{flex:1 1 0;}.cc-text{flex:0 1 auto;}}'
   ].join('');
 
   var styled = false, bannerEl = null, panelEl = null, scrimEl = null, lastFocus = null;
@@ -193,8 +193,8 @@
     bannerEl.setAttribute('role', 'region');
     bannerEl.setAttribute('aria-label', 'Cookie consent');
     bannerEl.innerHTML =
-      '<p class="cc-text">We use optional cookies to measure how the site is used (analytics) and how our ads perform (advertising). ' +
-      'Strictly necessary cookies are always on. Optional cookies stay off unless you accept them. ' +
+      '<p class="cc-text">CelesteOS uses optional cookies to measure how the site is used and how its advertising performs. ' +
+      'Strictly necessary cookies are always on. Optional cookies stay off unless accepted. ' +
       '<a href="' + POLICY_URL + '">Cookie details</a>.' +
       (gpc ? ' Your browser’s Global Privacy Control signal is honored: advertising cookies stay off.' : '') + '</p>' +
       '<div class="cc-actions">' +
@@ -241,17 +241,17 @@
     panelEl.setAttribute('aria-labelledby', 'cc-title');
     panelEl.innerHTML =
       '<h2 id="cc-title">Your Privacy Choices</h2>' +
-      '<p>Choose which optional cookies we may use. You can change or withdraw your choice at any time from the ' +
-      '“Your Privacy Choices” link in the footer. Withdrawing deletes our analytics and advertising cookies from this browser. ' +
+      '<p>Choose which optional cookies CelesteOS may use. You can change or withdraw your choice at any time from the ' +
+      '“Your Privacy Choices” link in the footer. Withdrawing deletes the analytics and advertising cookies from this browser. ' +
       'California residents: turning off advertising opts you out of the “sale” or “sharing” of personal information for targeted advertising. ' +
       '<a href="' + POLICY_URL + '">Cookie details</a>.</p>' +
       '<div class="cc-cat"><input type="checkbox" id="cc-necessary" checked disabled>' +
       '<label for="cc-necessary">Strictly necessary<span>Required for the site to work (security, routing, remembering this choice). Always on.</span></label></div>' +
       '<div class="cc-cat"><input type="checkbox" id="cc-analytics"' + (cur.analytics ? ' checked' : '') + '>' +
-      '<label for="cc-analytics">Analytics<span>Google Analytics 4 and Contentsquare (Hotjar) help us understand how the site is used.</span></label></div>' +
+      '<label for="cc-analytics">Analytics<span>Google Analytics 4 and Contentsquare (Hotjar) measure how the site is used.</span></label></div>' +
       '<div class="cc-cat"><input type="checkbox" id="cc-ads"' + (cur.ads && !gpc ? ' checked' : '') + (gpc ? ' disabled aria-describedby="cc-gpc"' : '') + '>' +
-      '<label for="cc-ads">Advertising<span>Google Ads measures how our advertising performs (conversion and advertising cookies).</span>' +
-      (gpc ? '<span class="cc-gpc" id="cc-gpc" data-cc="gpc-note">Global Privacy Control signal honored: your browser asked us not to sell or share your data, so advertising stays off.</span>' : '') +
+      '<label for="cc-ads">Advertising<span>Google Ads measures how CelesteOS advertising performs (conversion and advertising cookies).</span>' +
+      (gpc ? '<span class="cc-gpc" id="cc-gpc" data-cc="gpc-note">Global Privacy Control signal honored: your browser asked that your data not be sold or shared, so advertising stays off.</span>' : '') +
       '</label></div>' +
       '<div class="cc-actions">' +
       '<button type="button" class="cc-btn" data-cc="reject">Reject all</button>' +
