@@ -13,9 +13,7 @@ import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '../..');
 const ROUTES = ['/privacy-policy', '/terms-of-service', '/cookies', '/acceptable-use', '/subprocessors'];
-const FORBIDDEN = /Celeste7 LTD|Celeste7 Ltd|16617331|Drafting note|«/i;
-// The Acceptable Use Policy credits its predecessor by name; that provenance sentence is the only allowed mention.
-const PROVENANCE = 'adapted from the prior Acceptable Use Policy of Celeste7 LTD';
+const FORBIDDEN = /Celeste7 LTD|Celeste7 Ltd|16617331|Drafting note|«|in progress\)|not yet appointed|General Legal|vendor confirmation/i;
 const DRAFTING = /Drafting note|Pre-issue|Status note|UI alignment|Counsel note|Confirmed fix|Supabase/;
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.json': 'application/json', '.xml': 'application/xml' };
 
@@ -48,7 +46,7 @@ test.describe('Legal pages (CelesteOS LLC)', () => {
       const body = await res.text();
       expect(body).toContain('CelesteOS LLC');
       expect(body).toContain('Last updated: October 15, 2026');
-      expect(body.replace(PROVENANCE, '')).not.toMatch(FORBIDDEN);
+      expect(body).not.toMatch(FORBIDDEN);
       expect(body).not.toMatch(DRAFTING);
       expect(body).not.toContain('Template — to be reviewed');
       expect(body).toContain('<script src="/js/cookie-consent.js"></script>');
@@ -84,7 +82,7 @@ test.describe('Legal pages (CelesteOS LLC)', () => {
       const res = await request.get(base + loc);
       expect(res.status(), loc).toBe(200);
       const body = await res.text();
-      expect(body.replace(PROVENANCE, ''), loc).not.toMatch(FORBIDDEN);
+      expect(body, loc).not.toMatch(FORBIDDEN);
       expect(body, loc).toContain('CelesteOS LLC');
     }
   });
