@@ -11,12 +11,16 @@
  *     targeted advertising: Google Ads is never loaded and ad_storage / ad_user_data /
  *     ad_personalization stay denied whatever the banner says. Analytics stays a separate opt-in.
  *  4. Categories: strictly necessary (always on), analytics (GA4 + Contentsquare/Hotjar),
- *     advertising (Google Ads). First layer has equal-prominence "Reject all" / "Accept all".
+ *     advertising (Google Ads + Meta Pixel). First layer has equal-prominence "Reject all" / "Accept all".
+ *     Meta Pixel (dataset 1845508213271128): injected only after advertising consent (never under GPC), advanced
+ *     matching off (no user data passed to init, autoConfig off). Conversions: celeste-attribution.js dispatches
+ *     'celeste:conversion' {event, event_id}; lead_submit -> Lead, booking_click -> Schedule, eventID = the event id
+ *     the first-party collector receives, so Meta deduplicates the Pixel and server (Conversions API) copies.
  *  5. The choice is stored with CONSENT_VERSION; bump it when the Privacy Policy / Cookie Notice
  *     changes materially and every visitor is asked again.
  *  6. Withdrawal (via any [data-privacy-choices] link, e.g. the footer "Your Privacy Choices", or
- *     window.celesteCookieSettings()) deletes the _ga / _gcl / Hotjar / Contentsquare cookies we can
- *     reach and reloads, so scripts already in memory stop; nothing is loaded again until opt-in.
+ *     window.celesteCookieSettings()) revokes the Pixel, deletes the _ga / _gcl / _fbp / _fbc / Hotjar /
+ *     Contentsquare cookies we can reach and reloads, so scripts already in memory stop; nothing is loaded again until opt-in.
  *
  * Public API: window.celesteCookieSettings()  opens the preferences panel
  *             window.celesteConsent.get()     current { analytics, ads, gpc, version } or null
@@ -24,13 +28,20 @@
 (function () {
   'use strict';
 
-  var CONSENT_VERSION = '2026-10-15';            // bump on material policy change → re-prompt
+  var CONSENT_VERSION = '2026-10-30';            // 2026-10-30: Meta Pixel added to Advertising            // bump on material policy change → re-prompt
   var KEY = 'celeste_consent';                    // JSON { v, analytics, ads, ts }
   var LEGACY_KEYS = ['celeste_cookie_consent_v1'];
   var GA4_ID = 'G-230QN4JY4P';
   var ADS_ID = 'AW-17947526022';
   var GTAG_SRC = 'https://www.googletagmanager.com/gtag/js?id=';
   var CS_SRC = 'https://t.contentsquare.net/uxa/9a0fb681c240a.js';
+  var META_PIXEL_ID = '1845508213271128';
+  var FB_SRC = 'https://connect.facebook.net/en_US/fbevents.js';
+  var META_EVENTS = { lead_submit: 'Lead', booking_click: 'Schedule' };
+  /* Google Ads web conversion label (AW-.../<label>) for lead_submit. None exists: the qualified-lead conversion is
+     uploaded server-side (click conversion) once a lead is verified. Set a label here only if a website conversion
+     action is created in Google Ads. */
+  var ADS_LEAD_LABEL = '';
   var POLICY_URL = '/cookies';
 
   var gpc = (function () { try { return navigator.globalPrivacyControl === true; } catch (e) { return false; } })();
@@ -67,7 +78,7 @@
   try { if (!localStorage.getItem(KEY)) for (var l = 0; l < LEGACY_KEYS.length; l++) localStorage.removeItem(LEGACY_KEYS[l]); } catch (e) {}
 
   /* ── Loaders (each runs at most once per page) ── */
-  var loaded = { gtag: false, ga4: false, ads: false, cs: false };
+  var loaded = { gtag: false, ga4: false, ads: false, cs: false, fb: false };
   function inject(src) {
     var s = document.createElement('script');
     s.async = true; s.src = src;
@@ -83,6 +94,31 @@
     if (c.analytics && !loaded.ga4) { loaded.ga4 = true; gtag('config', GA4_ID); }
     if (c.ads && !gpc && !loaded.ads) { loaded.ads = true; gtag('config', ADS_ID); }
   }
+  /* Meta Pixel base code (standard fbq stub), injected through the same loader. No user data on init. */
+  function loadMeta() {
+    if (loaded.fb) return;
+    loaded.fb = true;
+    if (!window.fbq) {
+      var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!window._fbq) window._fbq = n;
+      n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+    }
+    window.fbq('set', 'autoConfig', false, META_PIXEL_ID);
+    window.fbq('init', META_PIXEL_ID);
+    window.fbq('track', 'PageView');
+    inject(FB_SRC);
+  }
+  function adsGranted() { var c = read(); return !!(c && c.ads && !gpc); }
+  /* Conversion from celeste-attribution.js: only with advertising consent and only once the tags are loaded. */
+  document.addEventListener('celeste:conversion', function (e) {
+    var d = (e && e.detail) || {};
+    var name = META_EVENTS[d.event];
+    if (!name || !d.event_id || !adsGranted()) return;
+    if (loaded.fb && window.fbq) window.fbq('track', name, {}, { eventID: String(d.event_id) });
+    if (d.event === 'lead_submit' && ADS_LEAD_LABEL && loaded.ads) {
+      gtag('event', 'conversion', { send_to: ADS_ID + '/' + ADS_LEAD_LABEL, transaction_id: String(d.event_id) });
+    }
+  });
   function loadContentsquare() {
     if (loaded.cs) return;
     loaded.cs = true;
@@ -99,11 +135,12 @@
     });
     gtag('set', 'ads_data_redaction', !ads);
     loadGoogle({ analytics: c.analytics, ads: ads });
+    if (ads) loadMeta();
     if (c.analytics) loadContentsquare();
   }
 
   /* ── Withdrawal: delete what we can reach, then reload so in-memory scripts stop ── */
-  var COOKIE_RE = /^(_ga|_ga_.*|_gid|_gat.*|_gcl_.*|_gac_.*|__gads|__gpi|_hj.*|_cs_.*|_uetsid|_uetvid)$/;
+  var COOKIE_RE = /^(_ga|_ga_.*|_gid|_gat.*|_gcl_.*|_gac_.*|__gads|__gpi|_fbp|_fbc|_hj.*|_cs_.*|_uetsid|_uetvid)$/;
   function clearTrackingCookies() {
     var names = document.cookie.split(';').map(function (p) { return p.split('=')[0].trim(); })
       .filter(function (n) { return COOKIE_RE.test(n); });
@@ -173,8 +210,9 @@
     remove(bannerEl); bannerEl = null;
     closePanel();
     var withdrew = before && ((before.analytics && !next.analytics) || (before.ads && !next.ads));
-    var anyLoaded = loaded.gtag || loaded.cs;
+    var anyLoaded = loaded.gtag || loaded.cs || loaded.fb;
     if (withdrew) {
+      if (loaded.fb && !next.ads && window.fbq) { try { window.fbq('consent', 'revoke'); } catch (e) {} }
       gtag('consent', 'update', {
         analytics_storage: next.analytics ? 'granted' : 'denied',
         ad_storage: next.ads ? 'granted' : 'denied',
@@ -252,7 +290,7 @@
       '<div class="cc-cat"><input type="checkbox" id="cc-analytics"' + (cur.analytics ? ' checked' : '') + '>' +
       '<label for="cc-analytics">Analytics<span>Google Analytics 4 and Contentsquare (Hotjar) measure how the site is used.</span></label></div>' +
       '<div class="cc-cat"><input type="checkbox" id="cc-ads"' + (cur.ads && !gpc ? ' checked' : '') + (gpc ? ' disabled aria-describedby="cc-gpc"' : '') + '>' +
-      '<label for="cc-ads">Advertising<span>Google Ads measures how CelesteOS advertising performs (conversion and advertising cookies).</span>' +
+      '<label for="cc-ads">Advertising<span>Google Ads and the Meta Pixel measure how CelesteOS advertising performs (conversion and advertising cookies).</span>' +
       (gpc ? '<span class="cc-gpc" id="cc-gpc" data-cc="gpc-note">Global Privacy Control signal honored: your browser asked that your data not be sold or shared, so advertising stays off.</span>' : '') +
       '</label></div>' +
       '<div class="cc-actions">' +

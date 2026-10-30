@@ -1,6 +1,8 @@
 /* CelesteOS first-party attribution (ADR-014 in celeste-business-control).
  * Sends landing / booking_click / lead_submit to the CelesteOS control plane ledger, ONLY after the visitor
  * opted in to analytics in /js/cookie-consent.js. Before consent: nothing stored, nothing sent.
+ * With advertising consent, lead_submit / booking_click also dispatch 'celeste:conversion' {event, event_id} (the Meta
+ * Pixel fires there, same event id) and the collector event carries _fbp / _fbc for the server-side copy.
  *
  *  - anon_id: random id in localStorage (celeste_anon), created only after consent. Never linked to a person
  *    unless that person submits a form (lead_submit carries the email they typed).
@@ -68,18 +70,31 @@
     if (isTouch || !get(K.lt)) set(K.lt, JSON.stringify(t));
   }
 
+  function cookie(n) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  /* One event id per conversion: the Pixel (advertising consent, via cookie-consent.js) and the collector (analytics
+     consent) carry the same id, so Meta deduplicates the browser and server copies. */
   function send(name, extra) {
     var c = consent();
-    if (!c || !c.analytics) return false;
+    if (!c || (!c.analytics && !c.ads)) return false;
+    var id = uuid();
+    if (c.ads && (name === 'lead_submit' || name === 'booking_click')) {
+      try { document.dispatchEvent(new CustomEvent('celeste:conversion', { detail: { event: name, event_id: id } })); } catch (e) {}
+    }
+    if (!c.analytics) return true;
     var p = currentParams();
     var ev = {
-      event_id: uuid(), event: name, anon_id: anonId(), ts: Date.now(),
+      event_id: id, event: name, anon_id: anonId(), ts: Date.now(),
       page: location.origin + location.pathname, referrer: document.referrer || '',
       first_touch: parse(get(K.ft)) || undefined, last_touch: parse(get(K.lt)) || undefined,
       consent: { analytics: true, ads: !!c.ads }
     };
     for (var k in p) ev[k] = p[k];
     for (var x in (extra || {})) ev[x] = extra[x];
+    if (c.ads) { var fbp = cookie('_fbp'), fbc = cookie('_fbc'); if (fbp) ev.fbp = fbp; if (fbc) ev.fbc = fbc; }
     var body = JSON.stringify(ev);
     try {
       /* text/plain = CORS "simple" request: no preflight, survives navigation. */

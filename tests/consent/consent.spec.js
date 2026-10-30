@@ -12,7 +12,7 @@ import path from 'node:path';
  */
 
 const ROOT = path.resolve(__dirname, '../..');
-const TRACKER = /googletagmanager\.com|google-analytics\.com|googleadservices\.com|doubleclick\.net|contentsquare\.net|hotjar\.(com|io)/i;
+const TRACKER = /googletagmanager\.com|google-analytics\.com|googleadservices\.com|doubleclick\.net|contentsquare\.net|hotjar\.(com|io)|connect\.facebook\.net|facebook\.com\/tr/i;
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.json': 'application/json' };
 
 // Every public page that carries the consent manager + footer link.
@@ -111,6 +111,7 @@ test.describe('Consent manager', () => {
     expect(hits.some((u) => /googletagmanager\.com\/gtag\/js\?id=G-230QN4JY4P/.test(u))).toBe(true);
     expect(hits.some((u) => /contentsquare\.net/.test(u))).toBe(true);
     expect(hits.filter((u) => /AW-17947526022/.test(u))).toEqual([]);
+    expect(hits.filter((u) => /facebook/.test(u))).toEqual([]);
     expect(await configs(page)).toEqual(['G-230QN4JY4P']);
     expect(await lastUpdate(page)).toMatchObject({ analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     // consent update is queued BEFORE gtag.js is injected
@@ -134,7 +135,7 @@ test.describe('Consent manager', () => {
     await page.click('.cc-banner [data-cc="accept"]');
     await settle(page);
     await page.reload(); await settle(page);
-    expect(hits.filter((u) => /AW-17947526022|googleadservices|doubleclick/.test(u))).toEqual([]);
+    expect(hits.filter((u) => /AW-17947526022|googleadservices|doubleclick|facebook/.test(u))).toEqual([]);
     expect(await configs(page)).toEqual(['G-230QN4JY4P']);
     expect(await lastUpdate(page)).toMatchObject({ analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     await page.locator('[data-privacy-choices]').first().click();
