@@ -11,6 +11,7 @@ import path from 'node:path';
  */
 
 const ROOT = path.resolve(__dirname, '../..');
+const BOOKING_SEL = 'a[href^="https://outlook.office.com/book/"], a[href^="https://bookings.cloud.microsoft/book/"]';
 const COLLECTOR = 'https://control.celeste7.ai/api/collect/web';
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.json': 'application/json' };
 
@@ -52,7 +53,7 @@ test.describe('First-party attribution', () => {
     await page.goto(base + LANDING); await settle(page);
     expect(await store(page)).toEqual({ anon: null, ft: null, lt: null });
     await page.click('.cc-banner [data-cc="reject"]'); await settle(page);
-    await page.locator('a[href^="https://outlook.office.com/book/"]').first().dispatchEvent('click');
+    await page.locator(BOOKING_SEL).first().dispatchEvent('click');
     await settle(page);
     expect(sent).toEqual([]);
     expect(await store(page)).toEqual({ anon: null, ft: null, lt: null });
@@ -68,12 +69,12 @@ test.describe('First-party attribution', () => {
     expect(landing.first_touch).toMatchObject({ utm_source: 'google', gclid: 'TESTGCLID' });
     expect(landing.email).toBeUndefined();
 
-    await page.locator('a[href^="https://outlook.office.com/book/"]').first().evaluate((a) => { a.target = ''; a.addEventListener('click', (e) => e.preventDefault()); });
-    await page.locator('a[href^="https://outlook.office.com/book/"]').first().click(); await settle(page);
+    await page.locator(BOOKING_SEL).first().evaluate((a) => { a.target = ''; a.addEventListener('click', (e) => e.preventDefault()); });
+    await page.locator(BOOKING_SEL).first().click(); await settle(page);
     const click = sent.find((e) => e.event === 'booking_click');
     expect(click).toMatchObject({ anon_id: landing.anon_id, first_touch: { utm_campaign: 'pilot-q4' } });
     // Bookings link is not rewritten (Bookings does not carry custom params into the appointment).
-    expect(await page.locator('a[href^="https://outlook.office.com/book/"]').first().getAttribute('href')).toBe('https://outlook.office.com/book/CelesteOSPilot@celeste7.ai/');
+    expect(await page.locator(BOOKING_SEL).first().getAttribute('href')).not.toMatch(/[?&](anon_id|utm_|gclid)/);
   });
 
   test('lead magnet submit sends lead_submit with the typed email and anon_id', async ({ page }) => {

@@ -17,7 +17,8 @@
   'use strict';
 
   var ENDPOINT = 'https://control.celeste7.ai/api/collect/web';
-  var BOOKING_RE = /^https:\/\/outlook\.office\.com\/book\//i;
+  /* Any Microsoft Bookings page (shared booking page URL changes with the tenant / mailbox name). */
+  var BOOKING_RE = /^https:\/\/(?:outlook\.office\.com|bookings\.cloud\.microsoft)\/book\//i;
   var PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'li_fat_id'];
   var K = { anon: 'celeste_anon', ft: 'celeste_ft', lt: 'celeste_lt', sent: 'celeste_landing_sent' };
 
