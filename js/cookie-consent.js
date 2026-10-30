@@ -168,6 +168,8 @@
     var before = read();
     var next = { analytics: !!c.analytics, ads: !!c.ads && !gpc };
     write(next);
+    // First-party attribution (/js/celeste-attribution.js) listens: starts on analytics opt-in, forgets on withdrawal.
+    try { document.dispatchEvent(new CustomEvent('celeste:consent', { detail: { analytics: next.analytics, ads: next.ads } })); } catch (e) {}
     remove(bannerEl); bannerEl = null;
     closePanel();
     var withdrew = before && ((before.analytics && !next.analytics) || (before.ads && !next.ads));

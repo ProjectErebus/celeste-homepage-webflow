@@ -255,6 +255,7 @@
 </script>
   <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
   <script src="/js/cookie-consent.js"></script>
+  <script src="/js/celeste-attribution.js" defer></script>
   <link rel="stylesheet" href="landing-v12.css?v=mom1">
 </head>
 <body>
@@ -1608,7 +1609,9 @@
     document.body.classList.add('js');
 
     /* ═══ Config · wire at deploy ═══ */
-    var EVENTS_ENDPOINT = null;   // e.g. 'https://api.celeste7.ai/events'
+    /* First-party attribution ledger. Sending is done by /js/celeste-attribution.js and only after analytics consent;
+       it accepts landing / booking_click / lead_submit only (not the GA event taxonomy below). */
+    var EVENTS_ENDPOINT = 'https://control.celeste7.ai/api/collect/web';
     var MAGNET_ENDPOINT = '/api/magnet';   // Vercel Function (api/magnet.js) → Resend; harmless 404 in the local prototype (client .catch swallows it)
 
     /* ═══ Instrumentation ═══ */
@@ -1620,9 +1623,6 @@
          manager's dataLayer queue (/js/cookie-consent.js); nothing leaves the browser unless the
          visitor opts in to analytics, which is when gtag.js is first fetched. */
       try { if (typeof gtag === 'function') { gtag('event', name, props || {}); } } catch (err) {}
-      if (EVENTS_ENDPOINT && navigator.sendBeacon) {
-        try { navigator.sendBeacon(EVENTS_ENDPOINT, JSON.stringify(ev)); } catch (err) {}
-      }
     }
     /* attribution: capture inbound UTMs/referrer once per session; stamped onto leads */
     (function () {
@@ -2065,6 +2065,8 @@
         if (inp.value.trim()) { jobs.push(inp.value.trim()); }
       });
       track('magnet_submit', { entries: jobs.length });
+      /* lead_submit to the first-party ledger: consent-gated inside celesteAttribution (no-op without analytics opt-in) */
+      try { if (EVENTS_ENDPOINT && email && window.celesteAttribution) { window.celesteAttribution.lead(email); } } catch (err) {}
       if (MAGNET_ENDPOINT) {
         try {
           fetch(MAGNET_ENDPOINT, {
