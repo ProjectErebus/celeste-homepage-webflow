@@ -45,7 +45,9 @@ test.describe('Legal pages (CelesteOS LLC)', () => {
       expect(res.status()).toBe(200);
       const body = await res.text();
       expect(body).toContain('CelesteOS LLC');
-      expect(body).toContain('Last updated: October 15, 2026');
+      // v1.1 (31 Oct 2026) of the Cookie Notice and Privacy Policy discloses the Meta Pixel; the others stay v1.0.
+      const updated = ['/cookies', '/privacy-policy'].includes(route) ? 'October 31, 2026' : 'October 15, 2026';
+      expect(body).toContain(`Last updated: ${updated}`);
       expect(body).not.toMatch(FORBIDDEN);
       expect(body).not.toMatch(DRAFTING);
       expect(body).not.toContain('Template — to be reviewed');

@@ -10,6 +10,14 @@
  *  - Microsoft Bookings does not carry custom query params into the appointment, so booking links are NOT
  *    rewritten; a booking_click event with the anon_id is recorded instead.
  *
+ *  - Ad conversions (advertising consent only, never with GPC): booking_click and lead_submit also fire the Meta
+ *    Pixel standard event "Lead" and a Google Ads conversion, both carrying THE SAME event_id that the collector
+ *    receives (Meta eventID / Google transaction_id), so a server-side copy (Meta Conversions API, Google offline
+ *    upload) of the same event is de-duplicated against the browser one. With advertising consent the collector
+ *    payload also carries fbp / fbc (Meta browser + click ids) and gclid (from the URL or Google's _gcl_aw cookie).
+ *    Analytics and advertising are separate choices: without analytics consent nothing goes to the collector; without
+ *    advertising consent no pixel / conversion fires and no fbp / fbc is read.
+ *
  * Load after cookie-consent.js:  <script src="/js/celeste-attribution.js" defer></script>
  * API: window.celesteAttribution.lead(email)  call after a successful form submit
  */
@@ -21,11 +29,54 @@
   var BOOKING_RE = /^https:\/\/(?:outlook\.office\.com|bookings\.cloud\.microsoft)\/book\//i;
   var PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'li_fat_id'];
   var K = { anon: 'celeste_anon', ft: 'celeste_ft', lt: 'celeste_lt', sent: 'celeste_landing_sent' };
+  /* Collector event -> ad conversions. Meta: standard event on dataset 1845508213271128 ("CelesteOS Website").
+     Google Ads customer 8326890666: "Submit lead form" (7497044767) and "Lead / demo booking" (7883612794). */
+  var ADS_CONVERSIONS = {
+    lead_submit:   { meta: 'Lead', content: 'lead_form',    gads: 'AW-17947526022/yLTgCJ-m7_YbEIaHhu5C' },
+    booking_click: { meta: 'Lead', content: 'demo_booking', gads: 'AW-17947526022/DpOzCPrEma8dEIaHhu5C' }
+  };
 
   function consent() {
     try { return window.celesteConsent && window.celesteConsent.get ? window.celesteConsent.get() : null; } catch (e) { return null; }
   }
   function allowed() { var c = consent(); return !!(c && c.analytics); }
+  function adsAllowed(c) { return !!(c && c.ads && !c.gpc); }
+
+  function cookie(name) {
+    try {
+      var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    } catch (e) { return ''; }
+  }
+  /* Meta browser id (_fbp, set by the pixel) and click id (_fbc, or built from ?fbclid= in Meta's format). */
+  function metaIds() {
+    var out = {}, fbp = cookie('_fbp'), fbc = cookie('_fbc');
+    if (/^fb\.\d\.\d+\.\d+$/.test(fbp)) out.fbp = fbp;
+    if (!fbc) { var id = currentParams().fbclid; if (id) fbc = 'fb.1.' + Date.now() + '.' + id; }
+    if (fbc && fbc.length <= 256) out.fbc = fbc;
+    return out;
+  }
+  /* gclid stored by Google's conversion linker (_gcl_aw = GCL.<ts>.<gclid>) after advertising consent. */
+  function gclAw() {
+    var v = cookie('_gcl_aw'), parts = v ? v.split('.') : [];
+    return parts.length >= 3 && parts[0] === 'GCL' ? parts.slice(2).join('.').slice(0, 120) : '';
+  }
+
+  /* Browser-side ad conversions for a lead/booking event, de-duplicated with the server by event_id. */
+  function fireAdConversions(name, eventId) {
+    var conv = ADS_CONVERSIONS[name];
+    if (!conv) return;
+    try {
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', conv.meta, { content_name: conv.content, content_category: 'demo' }, { eventID: eventId });
+      }
+    } catch (e) {}
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', { send_to: conv.gads, value: 1.0, currency: 'USD', transaction_id: eventId });
+      }
+    } catch (e) {}
+  }
 
   function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -70,13 +121,23 @@
 
   function send(name, extra) {
     var c = consent();
-    if (!c || !c.analytics) return false;
+    if (!c) return false;
+    var eventId = uuid();
+    var ads = adsAllowed(c);
+    if (ads) fireAdConversions(name, eventId);
+    if (!c.analytics) return ads;
     var p = currentParams();
+    if (ads) {
+      var m = metaIds();
+      if (m.fbp) p.fbp = m.fbp;
+      if (m.fbc) p.fbc = m.fbc;
+      if (!p.gclid) { var g = gclAw(); if (g) p.gclid = g; }
+    }
     var ev = {
-      event_id: uuid(), event: name, anon_id: anonId(), ts: Date.now(),
+      event_id: eventId, event: name, anon_id: anonId(), ts: Date.now(),
       page: location.origin + location.pathname, referrer: document.referrer || '',
       first_touch: parse(get(K.ft)) || undefined, last_touch: parse(get(K.lt)) || undefined,
-      consent: { analytics: true, ads: !!c.ads }
+      consent: { analytics: true, ads: ads }
     };
     for (var k in p) ev[k] = p[k];
     for (var x in (extra || {})) ev[x] = extra[x];

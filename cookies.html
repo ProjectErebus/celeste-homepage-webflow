@@ -147,10 +147,10 @@
 
 <main class="legal">
 <h1>Cookie Notice</h1>
-<div class="effective">Last updated: October 15, 2026</div>
+<div class="effective">Last updated: October 31, 2026</div>
 <dl class="doc-meta">
-<div><dt>Version</dt><dd>1.0</dd></div>
-<div><dt>Effective date</dt><dd>October 15, 2026</dd></div>
+<div><dt>Version</dt><dd>1.1</dd></div>
+<div><dt>Effective date</dt><dd>October 31, 2026</dd></div>
 </dl>
 
 <nav class="toc" aria-label="Contents">
@@ -190,7 +190,7 @@
 <p>3.1 <strong>How consent works.</strong></p>
 <ul>
 <li>Analytics, advertising and session-analytics technologies are <strong>off by default</strong>. They run only after you accept them in our consent banner.</li>
-<li>We use Google Consent Mode. <strong>No Google, Contentsquare or other third-party measurement script is loaded until you opt in</strong> to the relevant category. Google Consent Mode signals are set to "denied" before any Google script loads and are updated only for the categories you accept.</li>
+<li>We use Google Consent Mode. <strong>No Google, Meta, Contentsquare or other third-party measurement script is loaded until you opt in</strong> to the relevant category. Google Consent Mode signals are set to "denied" before any Google script loads and are updated only for the categories you accept.</li>
 <li>You can change or withdraw your choice at any time at the "Your Privacy Choices" link in the footer of every page.</li>
 </ul>
 <p>3.2 <strong>What we use.</strong></p>
@@ -200,10 +200,12 @@
 <tr><td data-label="Category">Strictly necessary</td><td data-label="Provider">Company (first party)</td><td data-label="Name(s) (typical)"><code>celeste_consent</code> (local storage)</td><td data-label="Purpose">Remembers your consent choice so the banner is not shown on every page</td><td data-label="Duration (typical)">Until cleared; we ask again after 12 months</td><td data-label="Needs consent?">No</td></tr>
 <tr><td data-label="Category">Analytics</td><td data-label="Provider">Google (Google Analytics 4)</td><td data-label="Name(s) (typical)"><code>_ga</code>, <code>_ga_&lt;ID&gt;</code></td><td data-label="Purpose">Counts visits and measures how visitors use pages, in aggregate</td><td data-label="Duration (typical)">Up to 2 years</td><td data-label="Needs consent?">Yes</td></tr>
 <tr><td data-label="Category">Analytics</td><td data-label="Provider">Company (first party)</td><td data-label="Name(s) (typical)"><code>celeste_anon</code>, <code>celeste_ft</code>, <code>celeste_lt</code> (local storage)</td><td data-label="Purpose">A random identifier plus the campaign and referring site of your first and latest visit, sent only to our own systems so we can tell which campaigns lead to demo bookings and enquiries. Not linked to you unless you submit a form</td><td data-label="Duration (typical)">Until cleared; deleted when you withdraw analytics consent</td><td data-label="Needs consent?">Yes</td></tr>
-<tr><td data-label="Category">Advertising</td><td data-label="Provider">Google (Google Ads conversion measurement)</td><td data-label="Name(s) (typical)"><code>_gcl_au</code> and Google advertising cookies</td><td data-label="Purpose">Measures whether our ads lead to visits or enquiries. Google may use this information for its own advertising purposes (see Section 7)</td><td data-label="Duration (typical)">Up to 90 days (<code>_gcl_au</code>); varies for Google domains</td><td data-label="Needs consent?">Yes</td></tr>
+<tr><td data-label="Category">Advertising</td><td data-label="Provider">Google (Google Ads conversion measurement)</td><td data-label="Name(s) (typical)"><code>_gcl_au</code> and Google advertising cookies</td><td data-label="Purpose">Measures whether our ads lead to visits or enquiries. Google may use this information for its own advertising purposes (see Section 7)</td><td data-label="Duration (typical)">Up to 90 days (<code>_gcl_au</code>, <code>_gcl_aw</code>); varies for Google domains</td><td data-label="Needs consent?">Yes</td></tr>
+<tr><td data-label="Category">Advertising</td><td data-label="Provider">Meta (Meta Pixel, for Facebook and Instagram ads)</td><td data-label="Name(s) (typical)"><code>_fbp</code>, <code>_fbc</code> and Meta cookies on facebook.com</td><td data-label="Purpose">Measures whether our Facebook and Instagram ads lead to visits, demo-booking clicks or enquiries. It records page views and, when you click to book a demo or submit an enquiry form, a "Lead" event (never the contents of the form). Meta may use this information for its own advertising purposes (see Section 3.4)</td><td data-label="Duration (typical)">Up to 90 days (<code>_fbp</code>, <code>_fbc</code>); varies for Meta domains</td><td data-label="Needs consent?">Yes</td></tr>
 <tr><td data-label="Category">Session analytics</td><td data-label="Provider">Contentsquare (Contentsquare / Hotjar)</td><td data-label="Name(s) (typical)"><code>_hjSessionUser_&lt;ID&gt;</code>, <code>_hjSession_&lt;ID&gt;</code> or <code>_cs_id</code>, <code>_cs_s</code></td><td data-label="Purpose">Records page interactions (clicks, scrolls, mouse movement and page structure) so we can see where pages are confusing. The tool is configured to mask text typed into form fields</td><td data-label="Duration (typical)">Up to 13 months (user ID); 30 minutes (session)</td><td data-label="Needs consent?">Yes</td></tr>
 </tbody></table></div>
-<p>3.3 <strong>Social media.</strong> We do not use social-media advertising pixels on the Websites.</p>
+<p>3.3 <strong>Social media.</strong> The only social-media advertising technology on the Websites is the Meta Pixel listed above. It is part of the advertising category, so it loads only if you accept advertising, and never while your browser sends a Global Privacy Control signal (Section 7.2).</p>
+<p>3.4 <strong>Advertising conversions sent from our servers.</strong> If you accept both analytics and advertising, and you click to book a demo or submit an enquiry form, our own systems may also report that same event directly to Meta (Meta Conversions API) and Google (Google Ads conversion import), with the same event identifier as the browser report so it is counted once. That report can include the advertising identifiers above (<code>_fbp</code>, <code>_fbc</code>, the Google click identifier), the page, the time and, for an enquiry, your email address in one-way hashed (SHA-256) form. Nothing is sent this way if you rejected advertising. For visitors in the UK and EEA, CelesteOS LLC and Meta Platforms Ireland Limited are joint controllers for collecting this information on our Websites and transmitting it to Meta; Meta is responsible for its own later use of it under its Privacy Policy (facebook.com/privacy/policy).</p>
 </section>
 <section id="section-4">
 <h2>4. The App</h2>
@@ -237,7 +239,7 @@
 <p>7.1 <strong>Consent banner and settings.</strong> Accept, reject or adjust analytics, advertising and session-analytics technologies at any time at the "Your Privacy Choices" link in the footer of every page. Rejecting them does not affect your use of the Websites.</p>
 <p>7.2 <strong>Global Privacy Control.</strong> If your browser sends a Global Privacy Control ("GPC") signal, we treat it as a request to opt out of the "sale" or "sharing" of your personal information and of targeted advertising. We will not enable advertising technologies for that browser. If you had previously accepted them, GPC overrides that choice for as long as your browser sends the signal.</p>
 <p>7.3 <strong>"Your Privacy Choices".</strong> US residents can also opt out at the "Your Privacy Choices" link in the footer of our Websites or by emailing <a href="mailto:contact@celeste7.ai">contact@celeste7.ai</a>.</p>
-<p>7.4 <strong>Google controls.</strong> You can manage Google ad personalization at adssettings.google.com. You can also block Google Analytics with Google's opt-out browser add-on (tools.google.com/dlpage/gaoptout).</p>
+<p>7.4 <strong>Google and Meta controls.</strong> You can manage Google ad personalization at adssettings.google.com. You can also block Google Analytics with Google's opt-out browser add-on (tools.google.com/dlpage/gaoptout). If you use Facebook or Instagram, you can manage how Meta uses activity from other websites in its Ad Preferences and "Your activity off Meta technologies" settings.</p>
 <p>7.5 <strong>Browser controls.</strong> Most browsers let you block or delete cookies and clear site data. Clearing site data for app.celeste7.ai signs you out of the App and removes its offline cache. Signing out of the App also removes the offline cache. Clearing site data for collective.celeste7.ai signs you out of the Collective Site.</p>
 <p>7.6 <strong>Do Not Track.</strong> There is no common standard for "Do Not Track" browser signals, so we do not respond to them. We do honor GPC (Section 7.2).</p>
 <p>7.7 <strong>Scope of choices.</strong> Choices made through the banner, GPC or browser settings apply only to the browser and device on which you make them.</p>
@@ -252,7 +254,7 @@
 </section>
 
 <div class="doc-foot">
-<p><em>Version 1.0 — effective October 15, 2026.</em></p>
+<p><em>Version 1.1 — effective October 31, 2026. Version 1.1 adds the Meta Pixel and server-side advertising conversions (Sections 3.2–3.4).</em></p>
 </div>
 </main>
 

@@ -3,19 +3,21 @@
  * snippet: this file is the only place any third-party measurement script is ever requested.
  *
  * Guarantees
- *  1. Nothing third-party is fetched before opt-in. gtag.js (googletagmanager.com) and Contentsquare/
- *     Hotjar are injected dynamically, and only for the categories the visitor granted.
+ *  1. Nothing third-party is fetched before opt-in. gtag.js (googletagmanager.com), the Meta Pixel
+ *     (connect.facebook.net) and Contentsquare/Hotjar are injected dynamically, and only for the
+ *     categories the visitor granted.
  *  2. Google Consent Mode v2 signals are set BEFORE any Google script loads: 'default' all denied,
  *     then an 'update' carrying exactly the granted categories.
  *  3. Global Privacy Control (navigator.globalPrivacyControl === true) is an opt-out of sale/sharing/
- *     targeted advertising: Google Ads is never loaded and ad_storage / ad_user_data /
- *     ad_personalization stay denied whatever the banner says. Analytics stays a separate opt-in.
+ *     targeted advertising: Google Ads and the Meta Pixel are never loaded and ad_storage /
+ *     ad_user_data / ad_personalization stay denied whatever the banner says. Analytics stays a
+ *     separate opt-in.
  *  4. Categories: strictly necessary (always on), analytics (GA4 + Contentsquare/Hotjar),
- *     advertising (Google Ads). First layer has equal-prominence "Reject all" / "Accept all".
+ *     advertising (Google Ads + Meta Pixel, dataset "CelesteOS Website"). First layer has equal-prominence "Reject all" / "Accept all".
  *  5. The choice is stored with CONSENT_VERSION; bump it when the Privacy Policy / Cookie Notice
  *     changes materially and every visitor is asked again.
  *  6. Withdrawal (via any [data-privacy-choices] link, e.g. the footer "Your Privacy Choices", or
- *     window.celesteCookieSettings()) deletes the _ga / _gcl / Hotjar / Contentsquare cookies we can
+ *     window.celesteCookieSettings()) deletes the _ga / _gcl / _fbp / _fbc / Hotjar / Contentsquare cookies we can
  *     reach and reloads, so scripts already in memory stop; nothing is loaded again until opt-in.
  *
  * Public API: window.celesteCookieSettings()  opens the preferences panel
@@ -24,13 +26,15 @@
 (function () {
   'use strict';
 
-  var CONSENT_VERSION = '2026-10-15';            // bump on material policy change → re-prompt
+  var CONSENT_VERSION = '2026-10-31';            // bump on material policy change → re-prompt (2026-10-31: Meta Pixel added)
   var KEY = 'celeste_consent';                    // JSON { v, analytics, ads, ts }
   var LEGACY_KEYS = ['celeste_cookie_consent_v1'];
   var GA4_ID = 'G-230QN4JY4P';
   var ADS_ID = 'AW-17947526022';
   var GTAG_SRC = 'https://www.googletagmanager.com/gtag/js?id=';
   var CS_SRC = 'https://t.contentsquare.net/uxa/9a0fb681c240a.js';
+  var META_PIXEL_ID = '1845508213271128';          // Meta dataset "CelesteOS Website" (business "Celesteos")
+  var META_SRC = 'https://connect.facebook.net/en_US/fbevents.js';
   var POLICY_URL = '/cookies';
 
   var gpc = (function () { try { return navigator.globalPrivacyControl === true; } catch (e) { return false; } })();
@@ -67,7 +71,7 @@
   try { if (!localStorage.getItem(KEY)) for (var l = 0; l < LEGACY_KEYS.length; l++) localStorage.removeItem(LEGACY_KEYS[l]); } catch (e) {}
 
   /* ── Loaders (each runs at most once per page) ── */
-  var loaded = { gtag: false, ga4: false, ads: false, cs: false };
+  var loaded = { gtag: false, ga4: false, ads: false, cs: false, meta: false };
   function inject(src) {
     var s = document.createElement('script');
     s.async = true; s.src = src;
@@ -82,6 +86,23 @@
     }
     if (c.analytics && !loaded.ga4) { loaded.ga4 = true; gtag('config', GA4_ID); }
     if (c.ads && !gpc && !loaded.ads) { loaded.ads = true; gtag('config', ADS_ID); }
+  }
+  /* Meta Pixel, advertising consent only. autoConfig off: no automatic button-click / form-field
+     events and no automatic advanced matching; only PageView here and the Lead events that
+     /js/celeste-attribution.js sends (with the same event_id as the first-party collector, so the
+     server-side Conversions API copy is de-duplicated). */
+  function loadMeta() {
+    if (loaded.meta) return;
+    loaded.meta = true;
+    if (!window.fbq) {
+      var n = window.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!window._fbq) window._fbq = n;
+      n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+    }
+    window.fbq('set', 'autoConfig', false, META_PIXEL_ID);
+    window.fbq('init', META_PIXEL_ID);
+    window.fbq('track', 'PageView');
+    inject(META_SRC);
   }
   function loadContentsquare() {
     if (loaded.cs) return;
@@ -99,11 +120,12 @@
     });
     gtag('set', 'ads_data_redaction', !ads);
     loadGoogle({ analytics: c.analytics, ads: ads });
+    if (ads) loadMeta();
     if (c.analytics) loadContentsquare();
   }
 
   /* ── Withdrawal: delete what we can reach, then reload so in-memory scripts stop ── */
-  var COOKIE_RE = /^(_ga|_ga_.*|_gid|_gat.*|_gcl_.*|_gac_.*|__gads|__gpi|_hj.*|_cs_.*|_uetsid|_uetvid)$/;
+  var COOKIE_RE = /^(_ga|_ga_.*|_gid|_gat.*|_gcl_.*|_gac_.*|__gads|__gpi|_fbp|_fbc|_hj.*|_cs_.*|_uetsid|_uetvid)$/;
   function clearTrackingCookies() {
     var names = document.cookie.split(';').map(function (p) { return p.split('=')[0].trim(); })
       .filter(function (n) { return COOKIE_RE.test(n); });
@@ -173,7 +195,7 @@
     remove(bannerEl); bannerEl = null;
     closePanel();
     var withdrew = before && ((before.analytics && !next.analytics) || (before.ads && !next.ads));
-    var anyLoaded = loaded.gtag || loaded.cs;
+    var anyLoaded = loaded.gtag || loaded.cs || loaded.meta;
     if (withdrew) {
       gtag('consent', 'update', {
         analytics_storage: next.analytics ? 'granted' : 'denied',
@@ -252,7 +274,7 @@
       '<div class="cc-cat"><input type="checkbox" id="cc-analytics"' + (cur.analytics ? ' checked' : '') + '>' +
       '<label for="cc-analytics">Analytics<span>Google Analytics 4 and Contentsquare (Hotjar) measure how the site is used.</span></label></div>' +
       '<div class="cc-cat"><input type="checkbox" id="cc-ads"' + (cur.ads && !gpc ? ' checked' : '') + (gpc ? ' disabled aria-describedby="cc-gpc"' : '') + '>' +
-      '<label for="cc-ads">Advertising<span>Google Ads measures how CelesteOS advertising performs (conversion and advertising cookies).</span>' +
+      '<label for="cc-ads">Advertising<span>Google Ads and the Meta (Facebook/Instagram) Pixel measure how CelesteOS advertising performs (conversion and advertising cookies).</span>' +
       (gpc ? '<span class="cc-gpc" id="cc-gpc" data-cc="gpc-note">Global Privacy Control signal honored: your browser asked that your data not be sold or shared, so advertising stays off.</span>' : '') +
       '</label></div>' +
       '<div class="cc-actions">' +
