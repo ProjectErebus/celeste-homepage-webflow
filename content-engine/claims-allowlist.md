@@ -392,7 +392,7 @@ U03 /\brevolutio\w*/
 U03 /game ?chang\w*/
 U03 /\bintelligen(t|ce)\b/ editorial
 U03 /\blearns? from\b/
-U03 /entity extraction|semantic search|\bvector\b|\bembedd\w*|cosine similarity|\d+ dimension/
+U03 /entity extraction|semantic search|\bvectors?\b|\bembeddings?\b|\bembedded (using|with|by|via|as)\b|cosine similarity|\d+ dimension/
 U04 /\bhallucinat\w*/
 U36 /cutting ?edge/
 U36 /\bnext ?gen(eration)?\b/
@@ -423,7 +423,9 @@ U05 /\b\d+ ?(ms|milliseconds?)\b/
 U05 /always current/
 U06 /knowledge graph/
 U06 /walks the [a-z ]{0,30}graph/
-U06 /root cause/
+U06 /\b(map|maps|mapped|mapping|finds?|found|identif(y|ies|ied)|pinpoint\w*|surfac\w*|reveal\w*|shows?|showing|detect\w*|uncover\w*|expos\w*)( (to|you|for you|the|its|their|a|an|any|every|recurring|systemic|underlying|hidden|real|true|likely|probable))* root causes?\b/
+U06 /\bget(s|ting)? (you )?(straight )?to the root cause/
+U06 /\broot causes? (is |are )?(visible|surfaced|identified|found|mapped|revealed|shown|for you|automatically|instantly|in seconds|at a glance|in 1 view|in a single view)/
 U07 /sealed pdf/
 U07 /structured pdf/
 U07 /(export|download)\w* [a-z ]{0,30}\bpdf\b/
@@ -435,7 +437,7 @@ U09 /offline (mode|first|access)/
 U09 /syncs? when (the )?connection/
 U10 /onboard(ed|ing)? in (hours|minutes|a single|an afternoon|\d+)/
 U10 /(searchable|live|onboarded|running|ready) on day 1\b/
-U10 /within 2 weeks/
+U10 /\b(live|running|onboarded|ready|set up|deployed|operational|in use|use)\b[a-z ]{0,30}within 2 weeks/
 U10 /up and running in/
 U10 /in (a single|1) afternoon/
 U11 /(alongside|beside|next to|on top of|over) (your|the) [a-z' ]{0,30}pms\b/
@@ -501,11 +503,11 @@ U26 /processed in the (united states|us)\b/
 U27 /no lock ?in/
 U27 /cancel any ?time/
 U27 /no contract/
-U28 /\b\d{4,} to \d{4,}\b/
+U28 /\b(?!(19|20)\d\d to (19|20)\d\d\b)\d{4,} to \d{4,}\b/
 U28 /\b(cost|costs|runs|worth|saves?)\b (¤ ?)?\d{4,}/
 U29 /\b1% of\b/
 U29 /running costs?|costs? to run/
-U30 /\b\d+(\+| \+)/
+U30 /\b\d+ ?\+(?! ?(years?|yrs?|months?|weeks?|days?|hours?|hrs?|minutes?|metres?|meters?|m|ft|feet|knots?|kts?|nm|%)\b)/
 U30 /\bover \d+ (engineers|crew|yachts|vessels|captains|people)/
 U30 /follow the build/
 U31 /saved \d+ (hours?|minutes?|days?)/
@@ -514,7 +516,7 @@ U31 /\d+x (faster|quicker|more)/
 U31 /trusted by/
 U31 /customers (report|say|save)/
 U31 /\bour customers\b/
-U31 /\b[ms]\/y\b/
+U31 /\b[ms]\/y [a-z' ]{0,40}\b(saved|cuts?|reduced|reports?|says|said|swears|loves|recovered)\b/
 U31 /"[^"]{3,200}" ?- ?(captain|chief|owner|engineer|eto|manager)/
 U31 /bitcoin/
 U32 /browser('s)? history/

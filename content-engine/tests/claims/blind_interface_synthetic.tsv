@@ -1,0 +1,9 @@
+case_id	rule_id	family	channel	expect	text
+SYN-01	U01	handover_autowrite	blog	fail	Your next handover drafts <b>itself</b> while you sleep.
+SYN-02	U20	support_speed	linkedin	fail	Our team replies within hours, every time.
+SYN-03	U01	handover_autowrite	blog	warn	Nothing in CelesteOS claims to write itself.
+SYN-04	-	approved	page_meta	pass	Captured as you work.
+SYN-05	K01	call_only	google_ads	fail	From US$995 a month
+SYN-06	-	approved	email	pass	Proof, when proof matters.
+SYN-07	U03	ai_lexicon	meta	fail	The&nbsp;SMART way to run\nmaintenance
+SYN-08	U01	handover_autowrite	linkedin	fail	Nothing to do: the handover writes itself.

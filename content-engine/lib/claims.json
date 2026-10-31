@@ -2014,7 +2014,7 @@
     "pack_id": "celeste-brand-pack",
     "schema": "claims/2.0.0",
     "source_path": "content-engine/claims-allowlist.md",
-    "source_sha256": "a647ededbc1a23b8f8c0018403708fb04629cc285be07ca6d431deabb6cd7482",
+    "source_sha256": "f8abfbf5d9d798c49f47a30394ef98a0af0d4e585ec7f1adf38b64e51fd2a98c",
     "version": "1.0.0"
   },
   "rules": [
@@ -2165,7 +2165,7 @@
       "family": "AI / SaaS lexicon",
       "flags": "",
       "id": "U03",
-      "regex": "entity extraction|semantic search|\\bvector\\b|\\bembedd\\w*|cosine similarity|\\d+ dimension",
+      "regex": "entity extraction|semantic search|\\bvectors?\\b|\\bembeddings?\\b|\\bembedded (using|with|by|via|as)\\b|cosine similarity|\\d+ dimension",
       "safe": "Finds what you mean, not what you typed.",
       "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
     },
@@ -2435,7 +2435,25 @@
       "family": "graph / causal",
       "flags": "",
       "id": "U06",
-      "regex": "root cause",
+      "regex": "\\b(map|maps|mapped|mapping|finds?|found|identif(y|ies|ied)|pinpoint\\w*|surfac\\w*|reveal\\w*|shows?|showing|detect\\w*|uncover\\w*|expos\\w*)( (to|you|for you|the|its|their|a|an|any|every|recurring|systemic|underlying|hidden|real|true|likely|probable))* root causes?\\b",
+      "safe": "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
+      "why": "Show Related is similarity-based; nothing maps root cause."
+    },
+    {
+      "check": "CC02",
+      "family": "graph / causal",
+      "flags": "",
+      "id": "U06",
+      "regex": "\\bget(s|ting)? (you )?(straight )?to the root cause",
+      "safe": "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
+      "why": "Show Related is similarity-based; nothing maps root cause."
+    },
+    {
+      "check": "CC02",
+      "family": "graph / causal",
+      "flags": "",
+      "id": "U06",
+      "regex": "\\broot causes? (is |are )?(visible|surfaced|identified|found|mapped|revealed|shown|for you|automatically|instantly|in seconds|at a glance|in 1 view|in a single view)",
       "safe": "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
       "why": "Show Related is similarity-based; nothing maps root cause."
     },
@@ -2543,7 +2561,7 @@
       "family": "onboarding speed",
       "flags": "",
       "id": "U10",
-      "regex": "within 2 weeks",
+      "regex": "\\b(live|running|onboarded|ready|set up|deployed|operational|in use|use)\\b[a-z ]{0,30}within 2 weeks",
       "safe": "omit the number",
       "why": "Onboarding durations NEED-EVIDENCE."
     },
@@ -3137,7 +3155,7 @@
       "family": "unsourced money",
       "flags": "",
       "id": "U28",
-      "regex": "\\b\\d{4,} to \\d{4,}\\b",
+      "regex": "\\b(?!(19|20)\\d\\d to (19|20)\\d\\d\\b)\\d{4,} to \\d{4,}\\b",
       "safe": "omit",
       "why": "Money figures need a citable source (FD5)."
     },
@@ -3173,7 +3191,7 @@
       "family": "unsourced counts",
       "flags": "",
       "id": "U30",
-      "regex": "\\b\\d+(\\+| \\+)",
+      "regex": "\\b\\d+ ?\\+(?! ?(years?|yrs?|months?|weeks?|days?|hours?|hrs?|minutes?|metres?|meters?|m|ft|feet|knots?|kts?|nm|%)\\b)",
       "safe": "omit",
       "why": "Audience / customer counts need a citable source (FD5)."
     },
@@ -3254,7 +3272,7 @@
       "family": "testimonials / ROI",
       "flags": "",
       "id": "U31",
-      "regex": "\\b[ms]\\/y\\b",
+      "regex": "\\b[ms]\\/y [a-z' ]{0,40}\\b(saved|cuts?|reduced|reports?|says|said|swears|loves|recovered)\\b",
       "safe": "omit",
       "why": "No consented customer quote or measured result exists (CP §6.5)."
     },

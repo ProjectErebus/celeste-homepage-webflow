@@ -49,19 +49,25 @@ const NUMW = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eig
   twenty: 20, thirty: 30, forty: 40, fifty: 50 };
 const NUMW_RE = Object.keys(NUMW).sort((a, b) => b.length - a.length).join('|');
 
-// One mapped replace pass. `fn(match, ...groups)` returns the replacement string.
-// Replacement character j maps to original offset of match char min(j, len-1).
+// One mapped replace pass. `fn(match, ...groups)` returns the replacement: a string, or
+// an array of pieces [text, relOffset] where relOffset is the piece's position inside the
+// match (so kept attribute values and script strings map back to their exact columns).
+// A plain-string replacement maps char j to match char min(j, len-1).
 function sub(st, re, fn) {
   if (!re.global) throw new Error('sub() needs a global regex');
   let out = '', last = 0;
   const map = [];
+  const at = (i, rel, len) => st.map[i + Math.min(rel, Math.max(0, len - 1))] ?? st.map[st.map.length - 1] ?? 0;
   for (const m of st.s.matchAll(re)) {
     const i = m.index, len = m[0].length;
     out += st.s.slice(last, i);
     for (let k = last; k < i; k++) map.push(st.map[k]);
     const r = fn(...m);
-    out += r;
-    for (let j = 0; j < r.length; j++) map.push(st.map[i + Math.min(j, Math.max(0, len - 1))] ?? st.map[st.map.length - 1] ?? 0);
+    const pieces = typeof r === 'string' ? [[r, 0, true]] : r;
+    for (const [text, rel, spread] of pieces) {
+      out += text;
+      for (let j = 0; j < text.length; j++) map.push(at(i, spread ? j : rel + j, spread ? len : len));
+    }
     last = i + len;
   }
   out += st.s.slice(last);
@@ -73,18 +79,19 @@ function sub(st, re, fn) {
 const KEEP_ATTRS = /\s(?:content|alt|title|aria-label|placeholder)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
 const BLOCK = /^(?:p|br|li|ul|ol|h[1-6]|div|td|th|tr|table|section|article|header|footer|nav|main|aside|blockquote|figure|figcaption|dt|dd|dl|button|label|option|title|summary|details|hr|pre)$/i;
 
-// JS/JSON string literal contents (one per line). Keys of JSON objects are skipped.
-function scriptStrings(body, isJson) {
-  const out = [];
+// JS/JSON string literal contents as mapped pieces (one per line). JSON object keys are skipped.
+function scriptPieces(body, bodyRel, isJson) {
+  const out = [['\n', 0]];
   const re = isJson ? /"((?:[^"\\\n]|\\.)*)"(\s*:)?/g : /"((?:[^"\\\n]|\\.)*)"|'((?:[^'\\\n]|\\.)*)'|`((?:[^`\\]|\\.)*)`/g;
   let m;
   while ((m = re.exec(body))) {
     if (isJson && m[2]) continue;                       // a key
-    let v = m[1] ?? m[2] ?? m[3] ?? '';
-    try { v = JSON.parse('"' + v.replace(/\\'/g, "'").replace(/\\`/g, '`').replace(/\n/g, '\\n') + '"'); } catch { /* keep raw */ }
-    if (/[a-z]{2,}[^\n]*\s[a-z]/i.test(v) || /[$€£]\s?\d/.test(v)) out.push(v);   // prose-like or a price
+    const rawV = m[1] ?? m[2] ?? m[3] ?? '';
+    let v = rawV;
+    if (/\\/.test(v)) { try { v = JSON.parse('"' + v.replace(/\\'/g, "'").replace(/\\`/g, '`').replace(/\n/g, '\\n') + '"'); } catch { /* keep raw */ } }
+    if (/[a-z]{2,}[^\n]*\s[a-z]/i.test(v) || /[$€£]\s?\d/.test(v)) out.push([v, bodyRel + m.index + 1], ['\n', bodyRel + m.index]);
   }
-  return out.join('\n');
+  return out;
 }
 
 export function normalise(input, opts = {}) {
@@ -99,15 +106,21 @@ export function normalise(input, opts = {}) {
       if (/\bsrc\s*=/.test(attrs)) return '\n';
       const isJson = /application\/(ld\+)?json/i.test(attrs);
       if (!isJson && /type\s*=\s*["']?(?!text\/javascript|module|application\/javascript)/i.test(attrs)) return '\n';
-      return '\n' + scriptStrings(body, isJson) + '\n';
+      return scriptPieces(body, m.indexOf('>') + 1, isJson);
     });
     sub(st, /<\/?([a-z][a-z0-9-]*)\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi, (m, tag, attrs) => {
-      const kept = [];
-      for (const a of (attrs || '').matchAll(KEEP_ATTRS)) kept.push(a[1] ?? a[2]);
-      const nl = BLOCK.test(tag) || kept.length ? '\n' : '';
-      return kept.length ? `${nl}${kept.join('\n')}${nl}` : (nl || '');
+      const pieces = [];
+      const base = 1 + (m[1] === '/' ? 1 : 0) + tag.length;
+      for (const a of (attrs || '').matchAll(KEEP_ATTRS)) {
+        const v = a[1] ?? a[2];
+        pieces.push(['\n', base + a.index], [v, base + a.index + a[0].length - 1 - v.length], ['\n', base + a.index + a[0].length - 1]);
+      }
+      const nl = BLOCK.test(tag) ? '\n' : '';
+      return pieces.length ? pieces : nl;
     });
   }
+  // URLs are addresses, not copy (dead hosts are caught on raw text by the engine)
+  sub(st, /\b(?:https?:\/\/|www\.)[^\s"'<>]+/gi, () => ' ');
   // 2. entities
   sub(st, /&(#\d+|#x[0-9a-f]+|[a-z][a-z0-9]*);/gi, m => decodeEntities(m));
   // 3. NFKC per character (keeps the map aligned); soft hyphen / zero-width removed
@@ -122,15 +135,15 @@ export function normalise(input, opts = {}) {
   sub(st, /\s+/g, () => ' ');
   // 6. spacing variants
   sub(st, /\ba\. ?i\.(?=\s|$)/g, () => 'ai');
-  sub(st, /([a-z0-9])-(?=[a-z])|([a-z])-(?=[0-9])/g, (m, a, b) => (a || b) + ' ');
+  sub(st, /([a-z0-9])-(?=[a-z])|(?<=[a-z]{2})-(?=[0-9])/g, (m, a) => (a || '') + ' ');   // auto-generated, soc-2, 30-minute (not single-letter IDs like r-2024)
   // 7. currency
-  sub(st, /\b(?:us\$|usd|eur|gbp)\s?(?=\d)|[$€£]\s?/g, () => ' ¤ ');
+  sub(st, /\b(?:us\$|usd|eur|gbp)\s?(?=\d)|[$€£]\s?/g, () => [[' ', 0], ['¤', 0], [' ', 0]]);
   // 8. numbers
   sub(st, /\b(\d{1,3})((?:,\d{3})+|(?: \d{3})+)\b/g, (m, a, b) => a + b.replace(/[ ,]/g, ''));
   sub(st, new RegExp(`\\b(${NUMW_RE}|hundred) thousand\\b`, 'g'), (m, w) => String((w === 'hundred' ? 100 : NUMW[w]) * 1000));
   sub(st, new RegExp(`\\b(${NUMW_RE})\\b`, 'g'), w => String(NUMW[w]));
   sub(st, /\b(\d+(?:\.\d+)?)\s?k\b/g, (m, n) => String(Math.round(parseFloat(n) * 1000)));
-  sub(st, /(\d)\s*(?:-|to)\s*(?:¤\s*)?(?=\d)/g, (m, a) => `${a} to `);
+  sub(st, /(?<![\w.\/-])(\d+(?:\.\d+)?)\s*(?:-|to)\s*(?:¤\s*)?(\d+(?:\.\d+)?)(?![\w\/-])/g, (m, a, b) => `${a} to ${b}`);   // ranges; not IDs/dates (R-2024-0147, 2026-10-31)
   sub(st, /\b24\s*(?:\/|x| to )\s*7\b/g, () => '24/7');
   sub(st, /\b(\d+)\s*[\/,]\s*(\d+)\s*(?:[\/,]|,? and)\s*(\d+)\b/g, (m, a, b, c) => `${a}/${b}/${c}`);
   sub(st, /(\d) plus\b/g, (m, a) => `${a}+`);

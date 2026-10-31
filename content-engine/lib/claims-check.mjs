@@ -139,6 +139,15 @@ export function scanText(raw, opts) {
       if (m[0] === '') re.lastIndex++;
     }
   }
+  // dead hosts on raw text too (URLs are dropped from normalised text) (CC04 / U15)
+  for (const host of pack.hosts.dead || []) {
+    const re = new RegExp(host.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'); let m;
+    while ((m = re.exec(raw)) !== null) {
+      const r = pack.rules.find(x => x.id === 'U15');
+      hits.push({ check: 'CC04', rule_id: 'U15', family: r?.family || 'dead host', severity: 'fail', start: m.index, end: m.index + m[0].length, match: m[0], normalised: m[0].toLowerCase(), safe: r?.safe || null, why: r?.why || null, negated: false, regex: re.source });
+    }
+  }
+  { const seen = new Set(); for (let k = hits.length - 1; k >= 0; k--) { const key = `${hits[k].rule_id}@${hits[k].start}`; if (seen.has(key)) hits.splice(k, 1); else seen.add(key); } }
   hits.sort((a, b) => a.start - b.start || (a.rule_id < b.rule_id ? -1 : a.rule_id > b.rule_id ? 1 : 0));
   return { hits, normalised: n, map };
 }
@@ -267,6 +276,18 @@ function defaultAssetIds() {
   return ASSET_IDS;
 }
 
+function exactCommercialSpans(nt, pack, channel) {
+  const spans = [];
+  for (const a of pack.approved.values()) {
+    if (!/^commercial\.C\d\d$/.test(a.id) || !a.channelSet.has(channel)) continue;
+    for (const form of new Set([...a.forms, ...a.units])) {
+      let at = -1, from = 0;
+      while (form && (at = nt.indexOf(form, from)) >= 0) { spans.push({ start: at, end: at + form.length }); from = at + 1; }
+    }
+  }
+  return spans;
+}
+
 // ─── checkArtifact ──────────────────────────────────────────────────────────
 // input: { channel, fields: {name: string|string[]}, claim_provenance?: {claims: []}, evidence?, links?, basis?, platform?, brand_pack? }
 // opts:  { pack?, legacy?: boolean (blog CLI: CC05/CC06 not_applicable), skip?: string[] (check ids → not_applicable) }
@@ -352,8 +373,10 @@ export function checkArtifact(input, opts = {}) {
       const html = /html/.test(f) ? true : undefined;
       const fullPage = /<html[\s>]|<head[\s>]/i.test(raw);
       const priceSpans = fullPage || /data-pricing/.test(raw) ? pricingSpans(raw, pack) : [];
+      // llms.txt (page_meta, plain text): an approved commercial.C* line allowed on page_meta, used verbatim, is its own provenance
+      const llmsSpans = channel === 'page_meta' && f === 'llms_txt' ? exactCommercialSpans(fieldNorm[f][idx].text, pack, channel) : [];
       const { hits } = scanText(raw, { channel, pack, html, json: /json/.test(f), normed: fieldNorm[f][idx],
-        exempt: (s, e, r) => (kExemptBasis && cov.some(c => c.isC && c.result === 'supported' && s >= c.start && e <= c.end)) });
+        exempt: (s, e, r) => (kExemptBasis && cov.some(c => c.isC && c.result === 'supported' && s >= c.start && e <= c.end)) || llmsSpans.some(c => s >= c.start && e <= c.end) });
       for (const h of hits) {
         if (h.check === 'CC03' && priceSpans.some(p => h.start >= p.start && h.end <= p.end) && (channel === 'page_meta' || channel === 'blog')) continue;
         const fld = Array.isArray(v) ? `/${f}/${idx}` : `/${f}`;
