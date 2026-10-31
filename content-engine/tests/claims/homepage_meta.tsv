@@ -1,0 +1,8 @@
+case_id	source	field	expect	text
+HP-title	index.html:5	page_meta.title	pass	CelesteOS · Engineering & maintenance software for superyachts
+HP-description	index.html:7	page_meta.description	block	CelesteOS makes your vessel's manuals, work orders, faults, and handover records searchable from one interface. CelesteOS is the planned maintenance system. The handover assembles from logged work.
+HP-og-title	index.html:8	page_meta.og_title	pass	CelesteOS · The vessel's knowledge stays in the vessel
+HP-og-description	index.html:9	page_meta.og_description	block	The handover assembles from logged work. Every answer cites its source. Every action is sealed and independently verifiable. Your records imported as they are: searchable on day one, live for daily use within two weeks.
+HP-twitter-title	index.html:13	page_meta.twitter_title	pass	CelesteOS · The vessel's knowledge stays in the vessel
+HP-twitter-description	index.html:14	page_meta.twitter_description	block	The handover assembles from logged work. Every answer cites its source. Every action is sealed.
+HP-llms-11	llms.txt:11	page_meta.llms_txt	block	Search: plain-language search across manuals, faults, work orders, parts and history. Every answer cites its source.

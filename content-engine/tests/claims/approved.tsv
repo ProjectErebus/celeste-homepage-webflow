@@ -1,0 +1,300 @@
+case_id	claim_id	set	channel	expect	text
+global.P01@blog	global.P01	pack10	blog	pass	CelesteOS is the planned maintenance system.
+global.P01@page_meta	global.P01	pack10	page_meta	pass	CelesteOS is the planned maintenance system.
+global.P01@email	global.P01	pack10	email	pass	CelesteOS is the planned maintenance system.
+global.P01@linkedin	global.P01	pack10	linkedin	pass	CelesteOS is the planned maintenance system.
+global.P01@meta	global.P01	pack10	meta	pass	CelesteOS is the planned maintenance system.
+global.P01@google_ads	global.P01	pack10	google_ads	pass	CelesteOS is the planned maintenance system.
+search.P02@blog	search.P02	pack10	blog	pass	Natural-language search across your vessel's records and manuals.
+search.P02@page_meta	search.P02	pack10	page_meta	pass	Natural-language search across your vessel's records and manuals.
+search.P02@email	search.P02	pack10	email	pass	Natural-language search across your vessel's records and manuals.
+search.P02@linkedin	search.P02	pack10	linkedin	pass	Natural-language search across your vessel's records and manuals.
+search.P02@meta	search.P02	pack10	meta	pass	Natural-language search across your vessel's records and manuals.
+search.P02@google_ads	search.P02	pack10	google_ads	pass	Natural-language search across your vessel's records and manuals.
+search.P03@blog	search.P03	pack10	blog	pass	Type what you'd ask a colleague.
+search.P03@page_meta	search.P03	pack10	page_meta	pass	Type what you'd ask a colleague.
+search.P03@email	search.P03	pack10	email	pass	Type what you'd ask a colleague.
+search.P03@linkedin	search.P03	pack10	linkedin	pass	Type what you'd ask a colleague.
+search.P03@meta	search.P03	pack10	meta	pass	Type what you'd ask a colleague.
+search.P03@google_ads	search.P03	pack10	google_ads	pass	Type what you'd ask a colleague.
+search.P04@blog	search.P04	pack10	blog	pass	Search returns the record, not a snippet. Results open the source record itself.
+search.P04@page_meta	search.P04	pack10	page_meta	pass	Search returns the record, not a snippet. Results open the source record itself.
+search.P04@email	search.P04	pack10	email	pass	Search returns the record, not a snippet. Results open the source record itself.
+search.P04@linkedin	search.P04	pack10	linkedin	pass	Search returns the record, not a snippet. Results open the source record itself.
+search.P04@meta	search.P04	pack10	meta	pass	Search returns the record, not a snippet. Results open the source record itself.
+search.P05@blog	search.P05	pack10	blog	pass	Finds what you mean, not what you typed.
+search.P05@page_meta	search.P05	pack10	page_meta	pass	Finds what you mean, not what you typed.
+search.P05@email	search.P05	pack10	email	pass	Finds what you mean, not what you typed.
+search.P05@linkedin	search.P05	pack10	linkedin	pass	Finds what you mean, not what you typed.
+search.P05@meta	search.P05	pack10	meta	pass	Finds what you mean, not what you typed.
+search.P05@google_ads	search.P05	pack10	google_ads	pass	Finds what you mean, not what you typed.
+handover.P06@blog	handover.P06	pack10	blog	pass	Captured as you work.
+handover.P06@page_meta	handover.P06	pack10	page_meta	pass	Captured as you work.
+handover.P06@email	handover.P06	pack10	email	pass	Captured as you work.
+handover.P06@linkedin	handover.P06	pack10	linkedin	pass	Captured as you work.
+handover.P06@meta	handover.P06	pack10	meta	pass	Captured as you work.
+handover.P06@google_ads	handover.P06	pack10	google_ads	pass	Captured as you work.
+handover.P07@blog	handover.P07	pack10	blog	pass	The outgoing engineer reviews the draft, then signs; the incoming engineer acknowledges. Both signatures timestamped.
+handover.P07@page_meta	handover.P07	pack10	page_meta	pass	The outgoing engineer reviews the draft, then signs; the incoming engineer acknowledges. Both signatures timestamped.
+handover.P07@email	handover.P07	pack10	email	pass	The outgoing engineer reviews the draft, then signs; the incoming engineer acknowledges. Both signatures timestamped.
+handover.P07@linkedin	handover.P07	pack10	linkedin	pass	The outgoing engineer reviews the draft, then signs; the incoming engineer acknowledges. Both signatures timestamped.
+handover.P08@blog	handover.P08	pack10	blog	pass	Every handover entry resolves back to a live record.
+handover.P08@page_meta	handover.P08	pack10	page_meta	pass	Every handover entry resolves back to a live record.
+handover.P08@email	handover.P08	pack10	email	pass	Every handover entry resolves back to a live record.
+handover.P08@linkedin	handover.P08	pack10	linkedin	pass	Every handover entry resolves back to a live record.
+handover.P08@meta	handover.P08	pack10	meta	pass	Every handover entry resolves back to a live record.
+handover.P09@blog	handover.P09	pack10	blog	pass	The incoming engineer inherits context, not chaos.
+handover.P09@page_meta	handover.P09	pack10	page_meta	pass	The incoming engineer inherits context, not chaos.
+handover.P09@email	handover.P09	pack10	email	pass	The incoming engineer inherits context, not chaos.
+handover.P09@linkedin	handover.P09	pack10	linkedin	pass	The incoming engineer inherits context, not chaos.
+handover.P09@meta	handover.P09	pack10	meta	pass	The incoming engineer inherits context, not chaos.
+handover.P09@google_ads	handover.P09	pack10	google_ads	pass	The incoming engineer inherits context, not chaos.
+ledger.P10@blog	ledger.P10	pack10	blog	pass	The ledger is append-only. Nothing is ever overwritten.
+ledger.P10@page_meta	ledger.P10	pack10	page_meta	pass	The ledger is append-only. Nothing is ever overwritten.
+ledger.P10@email	ledger.P10	pack10	email	pass	The ledger is append-only. Nothing is ever overwritten.
+ledger.P10@linkedin	ledger.P10	pack10	linkedin	pass	The ledger is append-only. Nothing is ever overwritten.
+ledger.P10@meta	ledger.P10	pack10	meta	pass	The ledger is append-only. Nothing is ever overwritten.
+ledger.P10@google_ads	ledger.P10	pack10	google_ads	pass	The ledger is append-only. Nothing is ever overwritten.
+ledger.P11@blog	ledger.P11	pack10	blog	pass	Every action is attributed and timestamped: who acted, what, when, which record.
+ledger.P11@page_meta	ledger.P11	pack10	page_meta	pass	Every action is attributed and timestamped: who acted, what, when, which record.
+ledger.P11@email	ledger.P11	pack10	email	pass	Every action is attributed and timestamped: who acted, what, when, which record.
+ledger.P11@linkedin	ledger.P11	pack10	linkedin	pass	Every action is attributed and timestamped: who acted, what, when, which record.
+ledger.P11@meta	ledger.P11	pack10	meta	pass	Every action is attributed and timestamped: who acted, what, when, which record.
+ledger.P12@blog	ledger.P12	pack10	blog	pass	Audit prep becomes retrieval, not assembly.
+ledger.P12@page_meta	ledger.P12	pack10	page_meta	pass	Audit prep becomes retrieval, not assembly.
+ledger.P12@email	ledger.P12	pack10	email	pass	Audit prep becomes retrieval, not assembly.
+ledger.P12@linkedin	ledger.P12	pack10	linkedin	pass	Audit prep becomes retrieval, not assembly.
+ledger.P12@meta	ledger.P12	pack10	meta	pass	Audit prep becomes retrieval, not assembly.
+ledger.P12@google_ads	ledger.P12	pack10	google_ads	pass	Audit prep becomes retrieval, not assembly.
+verifier.P13@blog	verifier.P13	pack10	blog	pass	Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai.
+verifier.P13@page_meta	verifier.P13	pack10	page_meta	pass	Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai.
+verifier.P13@email	verifier.P13	pack10	email	pass	Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai.
+verifier.P13@linkedin	verifier.P13	pack10	linkedin	pass	Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai.
+verifier.P13@meta	verifier.P13	pack10	meta	pass	Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai.
+show_related.P14@blog	show_related.P14	pack10	blog	pass	Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.
+show_related.P14@page_meta	show_related.P14	pack10	page_meta	pass	Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.
+show_related.P14@email	show_related.P14	pack10	email	pass	Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.
+show_related.P14@linkedin	show_related.P14	pack10	linkedin	pass	Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.
+show_related.P14@meta	show_related.P14	pack10	meta	pass	Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.
+show_related.P14@google_ads	show_related.P14	pack10	google_ads	pass	Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.
+suggested_docs.P15@blog	suggested_docs.P15	pack10	blog	pass	Suggested documents appear with a match score; the engineer accepts or denies with one tap.
+suggested_docs.P15@page_meta	suggested_docs.P15	pack10	page_meta	pass	Suggested documents appear with a match score; the engineer accepts or denies with one tap.
+suggested_docs.P15@email	suggested_docs.P15	pack10	email	pass	Suggested documents appear with a match score; the engineer accepts or denies with one tap.
+suggested_docs.P15@linkedin	suggested_docs.P15	pack10	linkedin	pass	Suggested documents appear with a match score; the engineer accepts or denies with one tap.
+suggested_docs.P16@blog	suggested_docs.P16	pack10	blog	pass	Finds the manual even when nobody remembers the filename.
+suggested_docs.P16@page_meta	suggested_docs.P16	pack10	page_meta	pass	Finds the manual even when nobody remembers the filename.
+suggested_docs.P16@email	suggested_docs.P16	pack10	email	pass	Finds the manual even when nobody remembers the filename.
+suggested_docs.P16@linkedin	suggested_docs.P16	pack10	linkedin	pass	Finds the manual even when nobody remembers the filename.
+suggested_docs.P16@meta	suggested_docs.P16	pack10	meta	pass	Finds the manual even when nobody remembers the filename.
+suggested_docs.P16@google_ads	suggested_docs.P16	pack10	google_ads	pass	Finds the manual even when nobody remembers the filename.
+certificates.P17@blog	certificates.P17	pack10	blog	pass	Certificates tracked to expiry, source PDF attached; alerts as expiry approaches.
+certificates.P17@page_meta	certificates.P17	pack10	page_meta	pass	Certificates tracked to expiry, source PDF attached; alerts as expiry approaches.
+certificates.P17@email	certificates.P17	pack10	email	pass	Certificates tracked to expiry, source PDF attached; alerts as expiry approaches.
+certificates.P17@linkedin	certificates.P17	pack10	linkedin	pass	Certificates tracked to expiry, source PDF attached; alerts as expiry approaches.
+cloud.P18@blog	cloud.P18	pack10	blog	pass	Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.
+cloud.P18@page_meta	cloud.P18	pack10	page_meta	pass	Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.
+cloud.P18@email	cloud.P18	pack10	email	pass	Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.
+cloud.P18@linkedin	cloud.P18	pack10	linkedin	pass	Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.
+cloud.P18@meta	cloud.P18	pack10	meta	pass	Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.
+cloud.P18@google_ads	cloud.P18	pack10	google_ads	pass	Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.
+cloud.P19@blog	cloud.P19	pack10	blog	pass	Works in any modern browser: desktop, tablet, mobile.
+cloud.P19@page_meta	cloud.P19	pack10	page_meta	pass	Works in any modern browser: desktop, tablet, mobile.
+cloud.P19@email	cloud.P19	pack10	email	pass	Works in any modern browser: desktop, tablet, mobile.
+cloud.P19@linkedin	cloud.P19	pack10	linkedin	pass	Works in any modern browser: desktop, tablet, mobile.
+cloud.P19@meta	cloud.P19	pack10	meta	pass	Works in any modern browser: desktop, tablet, mobile.
+cloud.P19@google_ads	cloud.P19	pack10	google_ads	pass	Works in any modern browser: desktop, tablet, mobile.
+cloud.P20@blog	cloud.P20	pack10	blog	pass	Your data is yours. Download it free for 30 days after any ending.
+cloud.P20@page_meta	cloud.P20	pack10	page_meta	pass	Your data is yours. Download it free for 30 days after any ending.
+cloud.P20@email	cloud.P20	pack10	email	pass	Your data is yours. Download it free for 30 days after any ending.
+cloud.P20@linkedin	cloud.P20	pack10	linkedin	pass	Your data is yours. Download it free for 30 days after any ending.
+global.P21@blog	global.P21	pack10	blog	pass	The system proposes; the engineer decides. Nothing executes without explicit consent.
+global.P21@page_meta	global.P21	pack10	page_meta	pass	The system proposes; the engineer decides. Nothing executes without explicit consent.
+global.P21@email	global.P21	pack10	email	pass	The system proposes; the engineer decides. Nothing executes without explicit consent.
+global.P21@linkedin	global.P21	pack10	linkedin	pass	The system proposes; the engineer decides. Nothing executes without explicit consent.
+global.P21@meta	global.P21	pack10	meta	pass	The system proposes; the engineer decides. Nothing executes without explicit consent.
+global.P21@google_ads	global.P21	pack10	google_ads	pass	The system proposes; the engineer decides. Nothing executes without explicit consent.
+security.S01@blog	security.S01	pack10	blog	pass	Each vessel's data is isolated. Role-based access throughout.
+security.S01@page_meta	security.S01	pack10	page_meta	pass	Each vessel's data is isolated. Role-based access throughout.
+security.S01@email	security.S01	pack10	email	pass	Each vessel's data is isolated. Role-based access throughout.
+security.S01@linkedin	security.S01	pack10	linkedin	pass	Each vessel's data is isolated. Role-based access throughout.
+security.S02@blog	security.S02	pack10	blog	pass	Encrypted at rest and in transit.
+security.S02@page_meta	security.S02	pack10	page_meta	pass	Encrypted at rest and in transit.
+security.S02@email	security.S02	pack10	email	pass	Encrypted at rest and in transit.
+security.S02@linkedin	security.S02	pack10	linkedin	pass	Encrypted at rest and in transit.
+security.S02@meta	security.S02	pack10	meta	pass	Encrypted at rest and in transit.
+security.S02@google_ads	security.S02	pack10	google_ads	pass	Encrypted at rest and in transit.
+security.S03@blog	security.S03	pack10	blog	pass	Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses. DPA and sub-processor list available.
+security.S03@page_meta	security.S03	pack10	page_meta	pass	Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses. DPA and sub-processor list available.
+security.S03@email	security.S03	pack10	email	pass	Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses. DPA and sub-processor list available.
+security.S04@blog	security.S04	pack10	blog	pass	ISM Code: aligned with sections 10 and 11. Audit evidence, not class approval.
+security.S04@page_meta	security.S04	pack10	page_meta	pass	ISM Code: aligned with sections 10 and 11. Audit evidence, not class approval.
+security.S04@email	security.S04	pack10	email	pass	ISM Code: aligned with sections 10 and 11. Audit evidence, not class approval.
+security.S04@linkedin	security.S04	pack10	linkedin	pass	ISM Code: aligned with sections 10 and 11. Audit evidence, not class approval.
+security.S05@blog	security.S05	pack10	blog	pass	SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.
+security.S05@page_meta	security.S05	pack10	page_meta	pass	SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.
+security.S05@email	security.S05	pack10	email	pass	SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.
+commercial.C01@page_meta	commercial.C01	pack10	page_meta	pass	USD 995 per vessel per month.
+commercial.C01@email	commercial.C01	pack10	email	pass	USD 995 per vessel per month.
+commercial.C02@blog	commercial.C02	pack10	blog	pass	Per vessel, not per user. Unlimited seats. No per-module tiering.
+commercial.C02@page_meta	commercial.C02	pack10	page_meta	pass	Per vessel, not per user. Unlimited seats. No per-module tiering.
+commercial.C02@email	commercial.C02	pack10	email	pass	Per vessel, not per user. Unlimited seats. No per-module tiering.
+commercial.C02@linkedin	commercial.C02	pack10	linkedin	pass	Per vessel, not per user. Unlimited seats. No per-module tiering.
+commercial.C02@meta	commercial.C02	pack10	meta	pass	Per vessel, not per user. Unlimited seats. No per-module tiering.
+commercial.C02@google_ads	commercial.C02	pack10	google_ads	pass	Per vessel, not per user. Unlimited seats. No per-module tiering.
+commercial.C03@page_meta	commercial.C03	pack10	page_meta	pass	Price fixed for 12 months from your first subscription start.
+commercial.C03@email	commercial.C03	pack10	email	pass	Price fixed for 12 months from your first subscription start.
+commercial.C04@page_meta	commercial.C04	pack10	page_meta	pass	Monthly billing; cancel or remove a vessel with 30 days' written notice.
+commercial.C04@email	commercial.C04	pack10	email	pass	Monthly billing; cancel or remove a vessel with 30 days' written notice.
+commercial.C05@email	commercial.C05	pack10	email	pass	30-day free trial, then USD 995 per vessel per month unless you tell us before it ends; reminder at least 7 days before.
+commercial.C06@email	commercial.C06	pack10	email	pass	No set-up fee. Remote account set-up and crew training included.
+commercial.C07@page_meta	commercial.C07	pack10	page_meta	pass	Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.
+commercial.C07@email	commercial.C07	pack10	email	pass	Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.
+commercial.C08@email	commercial.C08	pack10	email	pass	Pay by card, ACH or US bank transfer from the emailed invoice; due within 30 days.
+commercial.C09@email	commercial.C09	pack10	email	pass	Joining the Collective is optional and never affects price or access.
+market.M01@blog	market.M01	pack10	blog	pass	Annual crew turnover reaches 50%+ in some superyacht roles.
+market.M01@page_meta	market.M01	pack10	page_meta	pass	Annual crew turnover reaches 50%+ in some superyacht roles.
+market.M01@email	market.M01	pack10	email	pass	Annual crew turnover reaches 50%+ in some superyacht roles.
+market.M01@linkedin	market.M01	pack10	linkedin	pass	Annual crew turnover reaches 50%+ in some superyacht roles.
+market.M01@meta	market.M01	pack10	meta	pass	Annual crew turnover reaches 50%+ in some superyacht roles.
+market.M02@blog	market.M02	pack10	blog	pass	ISM-related deficiencies lead as a cause of PSC detentions.
+market.M02@page_meta	market.M02	pack10	page_meta	pass	ISM-related deficiencies lead as a cause of PSC detentions.
+market.M02@email	market.M02	pack10	email	pass	ISM-related deficiencies lead as a cause of PSC detentions.
+market.M02@linkedin	market.M02	pack10	linkedin	pass	ISM-related deficiencies lead as a cause of PSC detentions.
+market.M03@blog	market.M03	pack10	blog	pass	IMO MSC.428(98) requires cyber risk to be addressed in the SMS (USCG enforcing since Jan 2021).
+market.M03@page_meta	market.M03	pack10	page_meta	pass	IMO MSC.428(98) requires cyber risk to be addressed in the SMS (USCG enforcing since Jan 2021).
+market.M03@email	market.M03	pack10	email	pass	IMO MSC.428(98) requires cyber risk to be addressed in the SMS (USCG enforcing since Jan 2021).
+market.M03@linkedin	market.M03	pack10	linkedin	pass	IMO MSC.428(98) requires cyber risk to be addressed in the SMS (USCG enforcing since Jan 2021).
+search.P22@blog	search.P22	allowlist_safe	blog	pass	Search lives at the top of every screen — phone, tablet, laptop.
+search.P22@page_meta	search.P22	allowlist_safe	page_meta	pass	Search lives at the top of every screen — phone, tablet, laptop.
+search.P22@email	search.P22	allowlist_safe	email	pass	Search lives at the top of every screen — phone, tablet, laptop.
+search.P22@linkedin	search.P22	allowlist_safe	linkedin	pass	Search lives at the top of every screen — phone, tablet, laptop.
+search.P23@blog	search.P23	allowlist_safe	blog	pass	Every result is a live record. One click lands on the actual work order — status, history, parts.
+search.P23@page_meta	search.P23	allowlist_safe	page_meta	pass	Every result is a live record. One click lands on the actual work order — status, history, parts.
+search.P23@email	search.P23	allowlist_safe	email	pass	Every result is a live record. One click lands on the actual work order — status, history, parts.
+search.P23@linkedin	search.P23	allowlist_safe	linkedin	pass	Every result is a live record. One click lands on the actual work order — status, history, parts.
+search.P24@blog	search.P24	allowlist_safe	blog	pass	There is nothing to learn. The engineer types what they need.
+search.P24@page_meta	search.P24	allowlist_safe	page_meta	pass	There is nothing to learn. The engineer types what they need.
+search.P24@email	search.P24	allowlist_safe	email	pass	There is nothing to learn. The engineer types what they need.
+search.P24@linkedin	search.P24	allowlist_safe	linkedin	pass	There is nothing to learn. The engineer types what they need.
+search.P25@blog	search.P25	allowlist_safe	blog	pass	Results are scoped to your vessel and role — no filter to set up first.
+search.P25@page_meta	search.P25	allowlist_safe	page_meta	pass	Results are scoped to your vessel and role — no filter to set up first.
+search.P25@email	search.P25	allowlist_safe	email	pass	Results are scoped to your vessel and role — no filter to set up first.
+search.P25@linkedin	search.P25	allowlist_safe	linkedin	pass	Results are scoped to your vessel and role — no filter to set up first.
+handover.P26@blog	handover.P26	allowlist_safe	blog	pass	Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft.
+handover.P26@page_meta	handover.P26	allowlist_safe	page_meta	pass	Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft.
+handover.P26@email	handover.P26	allowlist_safe	email	pass	Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft.
+handover.P26@linkedin	handover.P26	allowlist_safe	linkedin	pass	Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft.
+handover.P27@blog	handover.P27	allowlist_safe	blog	pass	The draft accumulates as the engineer works.
+handover.P27@page_meta	handover.P27	allowlist_safe	page_meta	pass	The draft accumulates as the engineer works.
+handover.P27@email	handover.P27	allowlist_safe	email	pass	The draft accumulates as the engineer works.
+handover.P27@linkedin	handover.P27	allowlist_safe	linkedin	pass	The draft accumulates as the engineer works.
+handover.P28@blog	handover.P28	allowlist_safe	blog	pass	Months of context accumulate as a by-product of normal work.
+handover.P28@page_meta	handover.P28	allowlist_safe	page_meta	pass	Months of context accumulate as a by-product of normal work.
+handover.P28@email	handover.P28	allowlist_safe	email	pass	Months of context accumulate as a by-product of normal work.
+handover.P28@linkedin	handover.P28	allowlist_safe	linkedin	pass	Months of context accumulate as a by-product of normal work.
+handover.P29@blog	handover.P29	allowlist_safe	blog	pass	Never asked twice if dismissed.
+handover.P29@page_meta	handover.P29	allowlist_safe	page_meta	pass	Never asked twice if dismissed.
+handover.P29@email	handover.P29	allowlist_safe	email	pass	Never asked twice if dismissed.
+handover.P29@linkedin	handover.P29	allowlist_safe	linkedin	pass	Never asked twice if dismissed.
+handover.P30@blog	handover.P30	allowlist_safe	blog	pass	Both signatures timestamped. Locked after dual signature.
+handover.P30@page_meta	handover.P30	allowlist_safe	page_meta	pass	Both signatures timestamped. Locked after dual signature.
+handover.P30@email	handover.P30	allowlist_safe	email	pass	Both signatures timestamped. Locked after dual signature.
+handover.P30@linkedin	handover.P30	allowlist_safe	linkedin	pass	Both signatures timestamped. Locked after dual signature.
+handover.P31@blog	handover.P31	allowlist_safe	blog	pass	The handover is a live index into the vessel's operational data, not a static document.
+handover.P31@page_meta	handover.P31	allowlist_safe	page_meta	pass	The handover is a live index into the vessel's operational data, not a static document.
+handover.P31@email	handover.P31	allowlist_safe	email	pass	The handover is a live index into the vessel's operational data, not a static document.
+handover.P31@linkedin	handover.P31	allowlist_safe	linkedin	pass	The handover is a live index into the vessel's operational data, not a static document.
+handover.P32@blog	handover.P32	allowlist_safe	blog	pass	Built from one-tap captures as the engineer works — reviewed, then signed by both parties.
+handover.P32@page_meta	handover.P32	allowlist_safe	page_meta	pass	Built from one-tap captures as the engineer works — reviewed, then signed by both parties.
+handover.P32@email	handover.P32	allowlist_safe	email	pass	Built from one-tap captures as the engineer works — reviewed, then signed by both parties.
+handover.P32@linkedin	handover.P32	allowlist_safe	linkedin	pass	Built from one-tap captures as the engineer works — reviewed, then signed by both parties.
+ledger.P33@blog	ledger.P33	allowlist_safe	blog	pass	Corrections are recorded as new entries referencing the original. The original remains intact.
+ledger.P33@page_meta	ledger.P33	allowlist_safe	page_meta	pass	Corrections are recorded as new entries referencing the original. The original remains intact.
+ledger.P33@email	ledger.P33	allowlist_safe	email	pass	Corrections are recorded as new entries referencing the original. The original remains intact.
+ledger.P33@linkedin	ledger.P33	allowlist_safe	linkedin	pass	Corrections are recorded as new entries referencing the original. The original remains intact.
+ledger.P34@blog	ledger.P34	allowlist_safe	blog	pass	Open any record and read its full audit trail.
+ledger.P34@page_meta	ledger.P34	allowlist_safe	page_meta	pass	Open any record and read its full audit trail.
+ledger.P34@email	ledger.P34	allowlist_safe	email	pass	Open any record and read its full audit trail.
+ledger.P34@linkedin	ledger.P34	allowlist_safe	linkedin	pass	Open any record and read its full audit trail.
+ledger.P35@blog	ledger.P35	allowlist_safe	blog	pass	Deleted rows are struck through, never purged — the trail is the trail.
+ledger.P35@page_meta	ledger.P35	allowlist_safe	page_meta	pass	Deleted rows are struck through, never purged — the trail is the trail.
+ledger.P35@email	ledger.P35	allowlist_safe	email	pass	Deleted rows are struck through, never purged — the trail is the trail.
+ledger.P35@linkedin	ledger.P35	allowlist_safe	linkedin	pass	Deleted rows are struck through, never purged — the trail is the trail.
+ledger.P36@blog	ledger.P36	allowlist_safe	blog	pass	The audit trail is not a feature. It is a legal defence.
+ledger.P36@page_meta	ledger.P36	allowlist_safe	page_meta	pass	The audit trail is not a feature. It is a legal defence.
+ledger.P36@email	ledger.P36	allowlist_safe	email	pass	The audit trail is not a feature. It is a legal defence.
+ledger.P36@linkedin	ledger.P36	allowlist_safe	linkedin	pass	The audit trail is not a feature. It is a legal defence.
+ledger.P37@blog	ledger.P37	allowlist_safe	blog	pass	Records that can be retroactively modified cannot serve as evidence.
+ledger.P37@page_meta	ledger.P37	allowlist_safe	page_meta	pass	Records that can be retroactively modified cannot serve as evidence.
+ledger.P37@email	ledger.P37	allowlist_safe	email	pass	Records that can be retroactively modified cannot serve as evidence.
+ledger.P37@linkedin	ledger.P37	allowlist_safe	linkedin	pass	Records that can be retroactively modified cannot serve as evidence.
+verifier.P38@blog	verifier.P38	allowlist_safe	blog	pass	Every record independently verifiable → verifier.celeste7.ai
+verifier.P38@page_meta	verifier.P38	allowlist_safe	page_meta	pass	Every record independently verifiable → verifier.celeste7.ai
+verifier.P38@email	verifier.P38	allowlist_safe	email	pass	Every record independently verifiable → verifier.celeste7.ai
+verifier.P38@linkedin	verifier.P38	allowlist_safe	linkedin	pass	Every record independently verifiable → verifier.celeste7.ai
+verifier.P39@blog	verifier.P39	allowlist_safe	blog	pass	Verify a sample receipt.
+verifier.P39@page_meta	verifier.P39	allowlist_safe	page_meta	pass	Verify a sample receipt.
+verifier.P39@email	verifier.P39	allowlist_safe	email	pass	Verify a sample receipt.
+verifier.P39@linkedin	verifier.P39	allowlist_safe	linkedin	pass	Verify a sample receipt.
+verifier.P40@blog	verifier.P40	allowlist_safe	blog	pass	Proof, when proof matters.
+verifier.P40@page_meta	verifier.P40	allowlist_safe	page_meta	pass	Proof, when proof matters.
+verifier.P40@email	verifier.P40	allowlist_safe	email	pass	Proof, when proof matters.
+verifier.P40@linkedin	verifier.P40	allowlist_safe	linkedin	pass	Proof, when proof matters.
+verifier.P40@meta	verifier.P40	allowlist_safe	meta	pass	Proof, when proof matters.
+verifier.P40@google_ads	verifier.P40	allowlist_safe	google_ads	pass	Proof, when proof matters.
+verifier.P41@blog	verifier.P41	allowlist_safe	blog	pass	Few systems produce proof. CelesteOS seals its records.
+verifier.P41@page_meta	verifier.P41	allowlist_safe	page_meta	pass	Few systems produce proof. CelesteOS seals its records.
+verifier.P41@email	verifier.P41	allowlist_safe	email	pass	Few systems produce proof. CelesteOS seals its records.
+verifier.P41@linkedin	verifier.P41	allowlist_safe	linkedin	pass	Few systems produce proof. CelesteOS seals its records.
+suggested_docs.P42@blog	suggested_docs.P42	allowlist_safe	blog	pass	Accept links the document to the record in front of you.
+suggested_docs.P42@page_meta	suggested_docs.P42	allowlist_safe	page_meta	pass	Accept links the document to the record in front of you.
+suggested_docs.P42@email	suggested_docs.P42	allowlist_safe	email	pass	Accept links the document to the record in front of you.
+suggested_docs.P42@linkedin	suggested_docs.P42	allowlist_safe	linkedin	pass	Accept links the document to the record in front of you.
+suggested_docs.P43@blog	suggested_docs.P43	allowlist_safe	blog	pass	Deny is per-record. Every accept and deny is recorded in the ledger.
+suggested_docs.P43@page_meta	suggested_docs.P43	allowlist_safe	page_meta	pass	Deny is per-record. Every accept and deny is recorded in the ledger.
+suggested_docs.P43@email	suggested_docs.P43	allowlist_safe	email	pass	Deny is per-record. Every accept and deny is recorded in the ledger.
+suggested_docs.P43@linkedin	suggested_docs.P43	allowlist_safe	linkedin	pass	Deny is per-record. Every accept and deny is recorded in the ledger.
+suggested_docs.P44@blog	suggested_docs.P44	allowlist_safe	blog	pass	Documents connected to the work they describe.
+suggested_docs.P44@page_meta	suggested_docs.P44	allowlist_safe	page_meta	pass	Documents connected to the work they describe.
+suggested_docs.P44@email	suggested_docs.P44	allowlist_safe	email	pass	Documents connected to the work they describe.
+suggested_docs.P44@linkedin	suggested_docs.P44	allowlist_safe	linkedin	pass	Documents connected to the work they describe.
+certificates.P45@blog	certificates.P45	allowlist_safe	blog	pass	Cross-linked to the equipment it certifies.
+certificates.P45@page_meta	certificates.P45	allowlist_safe	page_meta	pass	Cross-linked to the equipment it certifies.
+certificates.P45@email	certificates.P45	allowlist_safe	email	pass	Cross-linked to the equipment it certifies.
+certificates.P45@linkedin	certificates.P45	allowlist_safe	linkedin	pass	Cross-linked to the equipment it certifies.
+certificates.P46@blog	certificates.P46	allowlist_safe	blog	pass	Certificates current and findable on inspection day.
+certificates.P46@page_meta	certificates.P46	allowlist_safe	page_meta	pass	Certificates current and findable on inspection day.
+certificates.P46@email	certificates.P46	allowlist_safe	email	pass	Certificates current and findable on inspection day.
+certificates.P46@linkedin	certificates.P46	allowlist_safe	linkedin	pass	Certificates current and findable on inspection day.
+show_related.P47@blog	show_related.P47	allowlist_safe	blog	pass	See what's connected. Immediately.
+show_related.P47@page_meta	show_related.P47	allowlist_safe	page_meta	pass	See what's connected. Immediately.
+show_related.P47@email	show_related.P47	allowlist_safe	email	pass	See what's connected. Immediately.
+show_related.P47@linkedin	show_related.P47	allowlist_safe	linkedin	pass	See what's connected. Immediately.
+show_related.P47@meta	show_related.P47	allowlist_safe	meta	pass	See what's connected. Immediately.
+show_related.P47@google_ads	show_related.P47	allowlist_safe	google_ads	pass	See what's connected. Immediately.
+show_related.P48@blog	show_related.P48	allowlist_safe	blog	pass	Stay oriented without leaving the page.
+show_related.P48@page_meta	show_related.P48	allowlist_safe	page_meta	pass	Stay oriented without leaving the page.
+show_related.P48@email	show_related.P48	allowlist_safe	email	pass	Stay oriented without leaving the page.
+show_related.P48@linkedin	show_related.P48	allowlist_safe	linkedin	pass	Stay oriented without leaving the page.
+show_related.P49@blog	show_related.P49	allowlist_safe	blog	pass	Show Related sits in every record's header.
+show_related.P49@page_meta	show_related.P49	allowlist_safe	page_meta	pass	Show Related sits in every record's header.
+show_related.P49@email	show_related.P49	allowlist_safe	email	pass	Show Related sits in every record's header.
+show_related.P49@linkedin	show_related.P49	allowlist_safe	linkedin	pass	Show Related sits in every record's header.
+show_related.P50@blog	show_related.P50	allowlist_safe	blog	pass	Following one record leads to every connected record.
+show_related.P50@page_meta	show_related.P50	allowlist_safe	page_meta	pass	Following one record leads to every connected record.
+show_related.P50@email	show_related.P50	allowlist_safe	email	pass	Following one record leads to every connected record.
+show_related.P50@linkedin	show_related.P50	allowlist_safe	linkedin	pass	Following one record leads to every connected record.
+show_related.P51@blog	show_related.P51	allowlist_safe	blog	pass	Documents that should have been linked. Faults the previous chief logged but never closed.
+show_related.P51@page_meta	show_related.P51	allowlist_safe	page_meta	pass	Documents that should have been linked. Faults the previous chief logged but never closed.
+show_related.P51@email	show_related.P51	allowlist_safe	email	pass	Documents that should have been linked. Faults the previous chief logged but never closed.
+show_related.P51@linkedin	show_related.P51	allowlist_safe	linkedin	pass	Documents that should have been linked. Faults the previous chief logged but never closed.
+cloud.P52@blog	cloud.P52	allowlist_safe	blog	pass	Crew on rotation can review records remotely with their existing credentials.
+cloud.P52@page_meta	cloud.P52	allowlist_safe	page_meta	pass	Crew on rotation can review records remotely with their existing credentials.
+cloud.P52@email	cloud.P52	allowlist_safe	email	pass	Crew on rotation can review records remotely with their existing credentials.
+cloud.P52@linkedin	cloud.P52	allowlist_safe	linkedin	pass	Crew on rotation can review records remotely with their existing credentials.
+security.S06@blog	security.S06	allowlist_safe	blog	pass	Row-level security isolates each vessel's data.
+security.S06@page_meta	security.S06	allowlist_safe	page_meta	pass	Row-level security isolates each vessel's data.
+security.S06@email	security.S06	allowlist_safe	email	pass	Row-level security isolates each vessel's data.
+security.S07@blog	security.S07	allowlist_safe	blog	pass	Captain handovers visible only to the back-to-back and fleet manager. Role-based throughout.
+security.S07@page_meta	security.S07	allowlist_safe	page_meta	pass	Captain handovers visible only to the back-to-back and fleet manager. Role-based throughout.
+security.S07@email	security.S07	allowlist_safe	email	pass	Captain handovers visible only to the back-to-back and fleet manager. Role-based throughout.

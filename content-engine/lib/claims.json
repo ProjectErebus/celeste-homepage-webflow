@@ -1,4 +1,1333 @@
 {
+  "approved": [
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "global",
+      "ev": null,
+      "id": "global.P01",
+      "short": [
+        "The planned maintenance system"
+      ],
+      "text": "CelesteOS is the planned maintenance system.",
+      "units": [
+        "CelesteOS is the planned maintenance system."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "global",
+      "ev": null,
+      "id": "global.P21",
+      "short": [],
+      "text": "The system proposes; the engineer decides. Nothing executes without explicit consent.",
+      "units": [
+        "The system proposes;",
+        "the engineer decides.",
+        "Nothing executes without explicit consent."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P02",
+      "short": [
+        "Natural-language vessel search"
+      ],
+      "text": "Natural-language search across your vessel's records and manuals.",
+      "units": [
+        "Natural-language search across your vessel's records and manuals."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P03",
+      "short": [],
+      "text": "Type what you'd ask a colleague.",
+      "units": [
+        "Type what you'd ask a colleague."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "social_generic"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P04",
+      "short": [],
+      "text": "Search returns the record, not a snippet. Results open the source record itself.",
+      "units": [
+        "Search returns the record, not a snippet.",
+        "Results open the source record itself."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P05",
+      "short": [
+        "Finds what you mean"
+      ],
+      "text": "Finds what you mean, not what you typed.",
+      "units": [
+        "Finds what you mean, not what you typed."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P22",
+      "short": [],
+      "text": "Search lives at the top of every screen — phone, tablet, laptop.",
+      "units": [
+        "Search lives at the top of every screen — phone, tablet, laptop."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P23",
+      "short": [],
+      "text": "Every result is a live record. One click lands on the actual work order — status, history, parts.",
+      "units": [
+        "Every result is a live record.",
+        "One click lands on the actual work order — status, history, parts."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P24",
+      "short": [],
+      "text": "There is nothing to learn. The engineer types what they need.",
+      "units": [
+        "There is nothing to learn.",
+        "The engineer types what they need."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "search",
+      "ev": null,
+      "id": "search.P25",
+      "short": [],
+      "text": "Results are scoped to your vessel and role — no filter to set up first.",
+      "units": [
+        "Results are scoped to your vessel and role — no filter to set up first."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P06",
+      "short": [],
+      "text": "Captured as you work.",
+      "units": [
+        "Captured as you work."
+      ],
+      "variants": [
+        "Captured as the engineer works."
+      ]
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P07",
+      "short": [],
+      "text": "The outgoing engineer reviews the draft, then signs; the incoming engineer acknowledges. Both signatures timestamped.",
+      "units": [
+        "The outgoing engineer reviews the draft, then signs;",
+        "the incoming engineer acknowledges.",
+        "Both signatures timestamped."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "social_generic"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P08",
+      "short": [],
+      "text": "Every handover entry resolves back to a live record.",
+      "units": [
+        "Every handover entry resolves back to a live record."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P09",
+      "short": [
+        "Context, not chaos"
+      ],
+      "text": "The incoming engineer inherits context, not chaos.",
+      "units": [
+        "The incoming engineer inherits context, not chaos."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P26",
+      "short": [],
+      "text": "Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft.",
+      "units": [
+        "Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P27",
+      "short": [],
+      "text": "The draft accumulates as the engineer works.",
+      "units": [
+        "The draft accumulates as the engineer works."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P28",
+      "short": [],
+      "text": "Months of context accumulate as a by-product of normal work.",
+      "units": [
+        "Months of context accumulate as a by-product of normal work."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P29",
+      "short": [],
+      "text": "Never asked twice if dismissed.",
+      "units": [
+        "Never asked twice if dismissed."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P30",
+      "short": [],
+      "text": "Both signatures timestamped. Locked after dual signature.",
+      "units": [
+        "Both signatures timestamped.",
+        "Locked after dual signature."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P31",
+      "short": [],
+      "text": "The handover is a live index into the vessel's operational data, not a static document.",
+      "units": [
+        "The handover is a live index into the vessel's operational data, not a static document."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "handover",
+      "ev": null,
+      "id": "handover.P32",
+      "short": [],
+      "text": "Built from one-tap captures as the engineer works — reviewed, then signed by both parties.",
+      "units": [
+        "Built from one-tap captures as the engineer works — reviewed, then signed by both parties."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P10",
+      "short": [
+        "Append-only audit trail"
+      ],
+      "text": "The ledger is append-only. Nothing is ever overwritten.",
+      "units": [
+        "The ledger is append-only.",
+        "Nothing is ever overwritten."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "social_generic"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P11",
+      "short": [],
+      "text": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "units": [
+        "Every action is attributed and timestamped: who acted, what, when, which record."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P12",
+      "short": [],
+      "text": "Audit prep becomes retrieval, not assembly.",
+      "units": [
+        "Audit prep becomes retrieval, not assembly."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P33",
+      "short": [],
+      "text": "Corrections are recorded as new entries referencing the original. The original remains intact.",
+      "units": [
+        "Corrections are recorded as new entries referencing the original.",
+        "The original remains intact."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P34",
+      "short": [],
+      "text": "Open any record and read its full audit trail.",
+      "units": [
+        "Open any record and read its full audit trail."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P35",
+      "short": [],
+      "text": "Deleted rows are struck through, never purged — the trail is the trail.",
+      "units": [
+        "Deleted rows are struck through, never purged — the trail is the trail."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P36",
+      "short": [],
+      "text": "The audit trail is not a feature. It is a legal defence.",
+      "units": [
+        "The audit trail is not a feature.",
+        "It is a legal defence."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "ledger",
+      "ev": null,
+      "id": "ledger.P37",
+      "short": [],
+      "text": "Records that can be retroactively modified cannot serve as evidence.",
+      "units": [
+        "Records that can be retroactively modified cannot serve as evidence."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "social_generic"
+      ],
+      "chapter": "verifier",
+      "ev": null,
+      "id": "verifier.P13",
+      "short": [],
+      "text": "Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai.",
+      "units": [
+        "Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "verifier",
+      "ev": null,
+      "id": "verifier.P38",
+      "short": [],
+      "text": "Every record independently verifiable → verifier.celeste7.ai",
+      "units": [
+        "Every record independently verifiable → verifier.celeste7.ai"
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "verifier",
+      "ev": null,
+      "id": "verifier.P39",
+      "short": [],
+      "text": "Verify a sample receipt.",
+      "units": [
+        "Verify a sample receipt."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "verifier",
+      "ev": null,
+      "id": "verifier.P40",
+      "short": [],
+      "text": "Proof, when proof matters.",
+      "units": [
+        "Proof, when proof matters."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "verifier",
+      "ev": null,
+      "id": "verifier.P41",
+      "short": [],
+      "text": "Few systems produce proof. CelesteOS seals its records.",
+      "units": [
+        "Few systems produce proof.",
+        "CelesteOS seals its records."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "suggested_docs",
+      "ev": null,
+      "id": "suggested_docs.P15",
+      "short": [],
+      "text": "Suggested documents appear with a match score; the engineer accepts or denies with one tap.",
+      "units": [
+        "Suggested documents appear with a match score;",
+        "the engineer accepts or denies with one tap."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "suggested_docs",
+      "ev": null,
+      "id": "suggested_docs.P16",
+      "short": [],
+      "text": "Finds the manual even when nobody remembers the filename.",
+      "units": [
+        "Finds the manual even when nobody remembers the filename."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "suggested_docs",
+      "ev": null,
+      "id": "suggested_docs.P42",
+      "short": [],
+      "text": "Accept links the document to the record in front of you.",
+      "units": [
+        "Accept links the document to the record in front of you."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "suggested_docs",
+      "ev": null,
+      "id": "suggested_docs.P43",
+      "short": [],
+      "text": "Deny is per-record. Every accept and deny is recorded in the ledger.",
+      "units": [
+        "Deny is per-record.",
+        "Every accept and deny is recorded in the ledger."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "suggested_docs",
+      "ev": null,
+      "id": "suggested_docs.P44",
+      "short": [],
+      "text": "Documents connected to the work they describe.",
+      "units": [
+        "Documents connected to the work they describe."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "certificates",
+      "ev": null,
+      "id": "certificates.P17",
+      "short": [],
+      "text": "Certificates tracked to expiry, source PDF attached; alerts as expiry approaches.",
+      "units": [
+        "Certificates tracked to expiry, source PDF attached;",
+        "alerts as expiry approaches."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "certificates",
+      "ev": null,
+      "id": "certificates.P45",
+      "short": [],
+      "text": "Cross-linked to the equipment it certifies.",
+      "units": [
+        "Cross-linked to the equipment it certifies."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "certificates",
+      "ev": null,
+      "id": "certificates.P46",
+      "short": [],
+      "text": "Certificates current and findable on inspection day.",
+      "units": [
+        "Certificates current and findable on inspection day."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "show_related",
+      "ev": null,
+      "id": "show_related.P14",
+      "short": [],
+      "text": "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
+      "units": [
+        "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "show_related",
+      "ev": null,
+      "id": "show_related.P47",
+      "short": [],
+      "text": "See what's connected. Immediately.",
+      "units": [
+        "See what's connected.",
+        "Immediately."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "show_related",
+      "ev": null,
+      "id": "show_related.P48",
+      "short": [],
+      "text": "Stay oriented without leaving the page.",
+      "units": [
+        "Stay oriented without leaving the page."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "show_related",
+      "ev": null,
+      "id": "show_related.P49",
+      "short": [],
+      "text": "Show Related sits in every record's header.",
+      "units": [
+        "Show Related sits in every record's header."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "show_related",
+      "ev": null,
+      "id": "show_related.P50",
+      "short": [],
+      "text": "Following one record leads to every connected record.",
+      "units": [
+        "Following one record leads to every connected record."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "show_related",
+      "ev": null,
+      "id": "show_related.P51",
+      "short": [],
+      "text": "Documents that should have been linked. Faults the previous chief logged but never closed.",
+      "units": [
+        "Documents that should have been linked.",
+        "Faults the previous chief logged but never closed."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "cloud",
+      "ev": null,
+      "id": "cloud.P18",
+      "short": [],
+      "text": "Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.",
+      "units": [
+        "Existing manuals, PDFs, scans and exports are imported as they are.",
+        "No reformatting."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "cloud",
+      "ev": null,
+      "id": "cloud.P19",
+      "short": [],
+      "text": "Works in any modern browser: desktop, tablet, mobile.",
+      "units": [
+        "Works in any modern browser: desktop, tablet, mobile."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "cloud",
+      "ev": null,
+      "id": "cloud.P20",
+      "short": [],
+      "text": "Your data is yours. Download it free for 30 days after any ending.",
+      "units": [
+        "Your data is yours.",
+        "Download it free for 30 days after any ending."
+      ],
+      "variants": [
+        "Your data is yours. Nothing is held hostage."
+      ]
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "cloud",
+      "ev": null,
+      "id": "cloud.P52",
+      "short": [],
+      "text": "Crew on rotation can review records remotely with their existing credentials.",
+      "units": [
+        "Crew on rotation can review records remotely with their existing credentials."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S01",
+      "short": [],
+      "text": "Each vessel's data is isolated. Role-based access throughout.",
+      "units": [
+        "Each vessel's data is isolated.",
+        "Role-based access throughout."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S02",
+      "short": [],
+      "text": "Encrypted at rest and in transit.",
+      "units": [
+        "Encrypted at rest and in transit."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S03",
+      "short": [],
+      "text": "Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses. DPA and sub-processor list available.",
+      "units": [
+        "Customer data is stored in Germany (EU);",
+        "some services run in the US under Standard Contractual Clauses.",
+        "DPA and sub-processor list available."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S04",
+      "short": [],
+      "text": "ISM Code: aligned with sections 10 and 11. Audit evidence, not class approval.",
+      "units": [
+        "ISM Code: aligned with sections 10 and 11.",
+        "Audit evidence, not class approval."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S05",
+      "short": [],
+      "text": "SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.",
+      "units": [
+        "SOC 2: controls built against the AICPA Trust Services Criteria.",
+        "Audit not yet commissioned."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S06",
+      "short": [],
+      "text": "Row-level security isolates each vessel's data.",
+      "units": [
+        "Row-level security isolates each vessel's data."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S07",
+      "short": [],
+      "text": "Captain handovers visible only to the back-to-back and fleet manager. Role-based throughout.",
+      "units": [
+        "Captain handovers visible only to the back-to-back and fleet manager.",
+        "Role-based throughout."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S08",
+      "short": [],
+      "text": "Fleet view aggregates statistics without exposing cross-vessel records.",
+      "units": [
+        "Fleet view aggregates statistics without exposing cross-vessel records."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email"
+      ],
+      "chapter": "security",
+      "ev": null,
+      "id": "security.S09",
+      "short": [],
+      "text": "GDPR: aligned. Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses. DPA available on request.",
+      "units": [
+        "GDPR: aligned.",
+        "Customer data is stored in Germany (EU);",
+        "some services run in the US under Standard Contractual Clauses.",
+        "DPA available on request."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "page_meta",
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C01",
+      "short": [],
+      "text": "USD 995 per vessel per month.",
+      "units": [
+        "USD 995 per vessel per month."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "google_ads",
+        "social_generic"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C02",
+      "short": [
+        "Per vessel, not per user"
+      ],
+      "text": "Per vessel, not per user. Unlimited seats. No per-module tiering.",
+      "units": [
+        "Per vessel, not per user.",
+        "Unlimited seats.",
+        "No per-module tiering."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "page_meta",
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C03",
+      "short": [],
+      "text": "Price fixed for 12 months from your first subscription start.",
+      "units": [
+        "Price fixed for 12 months from your first subscription start."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "page_meta",
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C04",
+      "short": [],
+      "text": "Monthly billing; cancel or remove a vessel with 30 days' written notice.",
+      "units": [
+        "Monthly billing;",
+        "cancel or remove a vessel with 30 days' written notice."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C05",
+      "short": [],
+      "text": "30-day free trial, then USD 995 per vessel per month unless you tell us before it ends; reminder at least 7 days before.",
+      "units": [
+        "30-day free trial, then USD 995 per vessel per month unless you tell us before it ends;",
+        "reminder at least 7 days before."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C06",
+      "short": [],
+      "text": "No set-up fee. Remote account set-up and crew training included.",
+      "units": [
+        "No set-up fee.",
+        "Remote account set-up and crew training included."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "page_meta",
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C07",
+      "short": [],
+      "text": "Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.",
+      "units": [
+        "Email support 09:00-17:00 US Eastern, Mon-Fri;",
+        "reply within one business day."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C08",
+      "short": [],
+      "text": "Pay by card, ACH or US bank transfer from the emailed invoice; due within 30 days.",
+      "units": [
+        "Pay by card, ACH or US bank transfer from the emailed invoice;",
+        "due within 30 days."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "email"
+      ],
+      "chapter": "commercial",
+      "ev": null,
+      "id": "commercial.C09",
+      "short": [],
+      "text": "Joining the Collective is optional and never affects price or access.",
+      "units": [
+        "Joining the Collective is optional and never affects price or access."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin",
+        "meta",
+        "social_generic"
+      ],
+      "chapter": "market",
+      "ev": null,
+      "id": "market.M01",
+      "short": [],
+      "text": "Annual crew turnover reaches 50%+ in some superyacht roles.",
+      "units": [
+        "Annual crew turnover reaches 50%+ in some superyacht roles."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "market",
+      "ev": null,
+      "id": "market.M02",
+      "short": [],
+      "text": "ISM-related deficiencies lead as a cause of PSC detentions.",
+      "units": [
+        "ISM-related deficiencies lead as a cause of PSC detentions."
+      ],
+      "variants": []
+    },
+    {
+      "channels": [
+        "blog",
+        "page_meta",
+        "email",
+        "linkedin"
+      ],
+      "chapter": "market",
+      "ev": null,
+      "id": "market.M03",
+      "short": [],
+      "text": "IMO MSC.428(98) requires cyber risk to be addressed in the SMS (USCG enforcing since Jan 2021).",
+      "units": [
+        "IMO MSC.428(98) requires cyber risk to be addressed in the SMS (USCG enforcing since Jan 2021)."
+      ],
+      "variants": []
+    }
+  ],
   "banned_lexicon": [
     "\\bAI\\b",
     "artificial intelligence",
@@ -33,7 +1362,7 @@
     "cascad\\w*",
     "propagat\\w*",
     "knowledge graph",
-    "walks the .*graph",
+    "walks the [a-z ]{0,30}graph",
     "sub[- ]?second",
     "real[- ]?time",
     "works? offline",
@@ -54,369 +1383,2139 @@
   "call_only": [
     "\\$\\s?\\d",
     "(EUR|€|£|GBP|USD)\\s?\\d",
-    "per (month|28 days|vessel)\\b",
+    "per (month|28 days|year)\\b",
     "pilot pricing",
     "locked for 12 months"
   ],
-  "chapters": {
-    "search": {
-      "safe": [
-        "Natural-language search across your vessel's records and manuals.",
-        "Type what you'd ask a colleague.",
-        "Search lives at the top of every screen — phone, tablet, laptop.",
-        "Every result is a live record. One click lands on the actual work order — status, history, parts.",
-        "Search returns the record, not a snippet.",
-        "Finds what you mean, not what you typed.",
-        "There is nothing to learn. The engineer types what they need.",
-        "Results open the source record itself.",
-        "Results are scoped to your vessel and role — no filter to set up first."
+  "channels": {
+    "blog": {
+      "fields": [
+        "draft_html",
+        "meta_json",
+        "page_html"
       ],
+      "limits": {}
+    },
+    "email": {
+      "fields": [
+        "subject",
+        "preheader",
+        "body"
+      ],
+      "limits": {
+        "body": {
+          "when_basis": "relationship",
+          "words_max": 150
+        },
+        "preheader": {
+          "max": 90
+        },
+        "subject": {
+          "max": 60,
+          "no_caps_word": true,
+          "no_exclamation": true
+        }
+      }
+    },
+    "google_ads": {
+      "fields": [
+        "headlines",
+        "descriptions",
+        "path1",
+        "path2",
+        "final_url"
+      ],
+      "limits": {
+        "descriptions": {
+          "count": [
+            2,
+            4
+          ],
+          "max": 90,
+          "no_phone": true
+        },
+        "headlines": {
+          "count": [
+            3,
+            15
+          ],
+          "max": 30,
+          "no_exclamation": true,
+          "no_phone": true
+        },
+        "path1": {
+          "max": 15
+        },
+        "path2": {
+          "max": 15
+        }
+      }
+    },
+    "linkedin": {
+      "fields": [
+        "post_text",
+        "hashtags",
+        "link",
+        "intro_text",
+        "headline",
+        "description"
+      ],
+      "limits": {
+        "description": {
+          "max": 100
+        },
+        "hashtags": {
+          "max_items": 3
+        },
+        "headline": {
+          "max": 70
+        },
+        "intro_text": {
+          "max": 150
+        },
+        "post_text": {
+          "max": 3000
+        }
+      }
+    },
+    "meta": {
+      "fields": [
+        "primary_text",
+        "headline",
+        "description"
+      ],
+      "limits": {
+        "description": {
+          "max": 27
+        },
+        "headline": {
+          "max": 27
+        },
+        "primary_text": {
+          "max": 150,
+          "min": 50
+        }
+      }
+    },
+    "page_meta": {
+      "equal_titles": true,
+      "fields": [
+        "title",
+        "description",
+        "og_title",
+        "og_description",
+        "twitter_title",
+        "twitter_description",
+        "og_url",
+        "canonical",
+        "llms_txt",
+        "page_html"
+      ],
+      "limits": {
+        "description": {
+          "max": 155
+        },
+        "og_description": {
+          "max": 155
+        },
+        "title": {
+          "max": 65,
+          "min": 30
+        },
+        "twitter_description": {
+          "max": 155
+        }
+      }
+    },
+    "social_generic": {
+      "fields": [
+        "text",
+        "hashtags",
+        "platform"
+      ],
+      "limits": {
+        "hashtags": {
+          "max_items": 5
+        },
+        "text": {
+          "max": 2200
+        }
+      }
+    }
+  },
+  "chapters": {
+    "certificate bundle": {
       "banned": [
         {
-          "pattern": "\"Every answer cites its source\" / \"every domain cited\"",
-          "why": "Domain-cited gating uncertain in live code (F1 gating vs SEARCH8888 — unconfirmed).",
-          "safe": "Results open the source record itself."
+          "id": "U03",
+          "pattern": "\"Auto-alerts\"",
+          "safe": "\"Alerts as expiry approaches.\"",
+          "why": "Auto-stem."
         },
         {
-          "pattern": "\"No hallucinated content\" / any \"hallucinat*\"",
-          "why": "Invokes AI-magic framing; banned lexicon territory.",
-          "safe": "If CelesteOS cannot find a record, it says so. (only if live-confirmed; until then omit)"
+          "id": "U08",
+          "pattern": "\"Auto-alerts at 30 / 14 / 7 days\" (the schedule, in any spelling)",
+          "safe": "\"Alerts as expiry approaches.\"",
+          "why": "Specific schedule NEEDS-EVIDENCE (not live-verified)."
         },
         {
-          "pattern": "\"All 12 domains simultaneously\" / \"All 14 domains\" / \"every domain\"",
-          "why": "Exhaustive-coverage guarantee not live-verified for all domains (faults/certs coverage was historically gated).",
-          "safe": "Across work orders, documents, and the vessel's records. Name only domains you can demo."
+          "id": "U37",
+          "pattern": "Featuring a certificate-bundle hero section / dedicated chapter page",
+          "safe": "One line inside a painkiller chapter.",
+          "why": "Vitamin rule — lines only."
         },
         {
-          "pattern": "\"Sub-second\" / any latency number",
-          "why": "NEEDS-EVIDENCE — no published measurement.",
-          "safe": "Fast enough to use at 2am. (no number)"
-        },
-        {
-          "pattern": "\"Mapped to root cause\"",
-          "why": "Similarity surfacing, not causal mapping. Nothing maps root cause.",
-          "safe": "Fault history, with prior occurrences surfaced alongside."
-        },
-        {
-          "pattern": "\"Entity extraction + semantic search\" as buyer copy",
-          "why": "Mechanism talk drifts toward ML claims.",
-          "safe": "Finds what you mean, not what you typed."
+          "id": "U07",
+          "pattern": "\"One-click inspection bundle\" / \"bundle export\"",
+          "safe": "\"Certificates current and findable on inspection day.\"",
+          "why": "Bundle export not in the verified-shipped set."
         }
+      ],
+      "safe": [
+        "Certificates tracked to expiry, source PDF attached; alerts as expiry approaches.",
+        "Cross-linked to the equipment it certifies.",
+        "Certificates current and findable on inspection day."
+      ]
+    },
+    "cloud-based": {
+      "banned": [
+        {
+          "id": "U11",
+          "pattern": "\"Runs alongside your existing PMS\" / \"nothing to replace, nothing to migrate\" / \"your existing PMS keeps its class society approvals, workflows, crew familiarity\" / \"a layer over your PMS\"",
+          "safe": "\"CelesteOS is the planned maintenance system.\"",
+          "why": "Founder ruling 20 Oct 2026: CelesteOS is the planned maintenance system, not an add-on beside another one."
+        },
+        {
+          "id": "U09",
+          "pattern": "\"Works offline\" / \"core functions work with intermittent connectivity, and data syncs when the connection is restored\"",
+          "safe": "\"Designed for the connectivity reality of superyachts.\" (nothing more specific)",
+          "why": "Offline/sync NOT in the verified-shipped set. NEEDS-EVIDENCE."
+        },
+        {
+          "id": "U10",
+          "pattern": "\"Onboard in hours, not weeks\" as an absolute / \"searchable on day one\" / \"live within two weeks\"",
+          "safe": "Omit the number.",
+          "why": "Conflicts with the pilot's own \"import takes 3–5 working days\". NEEDS-EVIDENCE for \"hours\"."
+        },
+        {
+          "id": "U33",
+          "pattern": "\"The vessel's record becomes searchable immediately\"",
+          "safe": "\"The vessel's record becomes searchable as soon as import completes.\"",
+          "why": "\"Immediately\" absolute vs import/indexing lead time."
+        },
+        {
+          "id": "U05",
+          "pattern": "\"real-time\" (any) / \"always current\" / \"live data, always current\"",
+          "safe": "\"Live data from the vessel's records.\"",
+          "why": "Real-time absolutes not guaranteed by worker-driven pipeline."
+        },
+        {
+          "id": "U24",
+          "pattern": "\"Nothing to install\" / \"No app installation\" / \"zero install\"",
+          "safe": "\"Works in any modern browser: desktop, tablet, mobile.\"",
+          "why": "Contract (FD4): onboarding uses a sync-agent installer."
+        },
+        {
+          "id": "U22",
+          "pattern": "\"We import all your data\" / \"migration included\"",
+          "safe": "\"Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.\"",
+          "why": "Contract: data migration not included."
+        }
+      ],
+      "safe": [
+        "Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.",
+        "Works in any modern browser: desktop, tablet, mobile.",
+        "Your data is yours. Download it free for 30 days after any ending.",
+        "Crew on rotation can review records remotely with their existing credentials."
       ]
     },
     "handover": {
+      "banned": [
+        {
+          "id": "U01",
+          "pattern": "\"The handover writes itself\" / \"writes itself\" (any subject) / \"already written\" / \"watch it assemble\"",
+          "safe": "\"Captured as you work.\"",
+          "why": "Reality = 1-tap capture from a queue into a draft. Nothing writes itself."
+        },
+        {
+          "id": "U03",
+          "pattern": "\"auto-generated\" / \"auto-generates\" / \"generated automatically\"",
+          "safe": "\"Built from one-tap captures, reviewed before signing.\"",
+          "why": "Same."
+        },
+        {
+          "id": "U01",
+          "pattern": "\"assembled automatically\" / \"compiled automatically\" / \"assembles itself\" / \"not assembled manually\" / \"assembles from logged work\"",
+          "safe": "\"The draft accumulates as the engineer works.\"",
+          "why": "Same."
+        },
+        {
+          "id": "U01",
+          "pattern": "\"The departing engineer does not need to remember what to include. The system already has it.\"",
+          "safe": "\"Each tap while working is one less thing to remember at rotation.\"",
+          "why": "Implies full auto-assembly; capture requires the engineer's tap."
+        },
+        {
+          "id": "U01",
+          "pattern": "\"Rough notes become a structured handover\"",
+          "safe": "\"One-tap captures become the handover draft.\"",
+          "why": "Implies transformation without the capture step."
+        },
+        {
+          "id": "U01",
+          "pattern": "\"You review, we create\"",
+          "safe": "\"You capture as you work. You review. Both sides sign.\"",
+          "why": "\"We create\" = auto-write framing."
+        },
+        {
+          "id": "U01",
+          "pattern": "\"Generated from operational data — not memory\"",
+          "safe": "\"Compiled from the entries the engineer captured — not from memory.\"",
+          "why": "\"Generated\" framing."
+        }
+      ],
       "safe": [
         "Captured as you work.",
+        "The outgoing engineer reviews the draft, then signs; the incoming engineer acknowledges. Both signatures timestamped.",
+        "Every handover entry resolves back to a live record.",
+        "The incoming engineer inherits context, not chaos.",
         "Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft.",
         "The draft accumulates as the engineer works.",
         "Months of context accumulate as a by-product of normal work.",
         "Never asked twice if dismissed.",
-        "The outgoing engineer reviews the draft, then signs. The incoming engineer acknowledges in writing that the operational state of the vessel has been read and understood.",
         "Both signatures timestamped. Locked after dual signature.",
-        "Every entry resolves back to a live record — one click opens the fault, the work order, the part.",
         "The handover is a live index into the vessel's operational data, not a static document.",
-        "The incoming engineer inherits context, not chaos.",
         "Built from one-tap captures as the engineer works — reviewed, then signed by both parties."
-      ],
-      "banned": [
-        {
-          "pattern": "\"The handover writes itself\" / \"writes itself\" (any subject)",
-          "why": "Reality = 1-tap capture from a queue into a draft. Nothing writes itself.",
-          "safe": "Captured as you work."
-        },
-        {
-          "pattern": "\"auto-generated\" / \"auto-generates\" / \"generated automatically\"",
-          "why": "Same.",
-          "safe": "Built from one-tap captures, reviewed before signing."
-        },
-        {
-          "pattern": "\"assembled automatically\" / \"compiled automatically\" / \"assembles itself\" / \"not assembled manually\"",
-          "why": "Same.",
-          "safe": "The draft accumulates as the engineer works."
-        },
-        {
-          "pattern": "\"The departing engineer does not need to remember what to include. The system already has it.\"",
-          "why": "Implies full auto-assembly; capture requires the engineer's tap.",
-          "safe": "Each tap while working is one less thing to remember at rotation."
-        },
-        {
-          "pattern": "\"Rough notes become a structured handover\"",
-          "why": "Implies transformation without the capture step.",
-          "safe": "One-tap captures become the handover draft."
-        },
-        {
-          "pattern": "\"You review, we create\"",
-          "why": "\"We create\" = auto-write framing.",
-          "safe": "You capture as you work. You review. Both sides sign."
-        },
-        {
-          "pattern": "\"Generated from operational data — not memory\"",
-          "why": "\"Generated\" framing.",
-          "safe": "Compiled from the entries the engineer captured — not from memory."
-        }
       ]
     },
     "ledger": {
+      "banned": [
+        {
+          "id": "U32",
+          "pattern": "\"Hop back into anyone's work\" / \"pick a record back up days later\" / \"browser history\" / any Chrome-history / resume framing",
+          "safe": "\"Open any record and read its full audit trail — who touched what, when.\"",
+          "why": "No resume capability is shipped."
+        },
+        {
+          "id": "U07",
+          "pattern": "\"Sealed PDF\" / \"audit trail exportable as a structured PDF\"",
+          "safe": "\"Every record's history is available on demand, and independently verifiable at verifier.celeste7.ai.\"",
+          "why": "Planned (v1.0), not live."
+        },
+        {
+          "id": "U16",
+          "pattern": "\"The system records who opened it, when, and for how long\" / \"measured duration\" / \"whether they read it in full\"",
+          "safe": "\"Actions on records are logged — created, updated, signed, linked.\" (NEEDS-EVIDENCE before any read-event claim)",
+          "why": "Read-duration / read-completion tracking is NOT in the verified-shipped set."
+        },
+        {
+          "id": "U16",
+          "pattern": "\"Read events logged — evidence of awareness\"",
+          "safe": "Omit, or scope to actions.",
+          "why": "Same — NEEDS-EVIDENCE."
+        },
+        {
+          "id": "U03",
+          "pattern": "\"records interactions automatically\"",
+          "safe": "\"Actions are recorded as the crew works — no checkbox, no extra step.\"",
+          "why": "Auto-stem; also implies passive read-tracking."
+        },
+        {
+          "id": "U34",
+          "pattern": "\"One click on Generate warranty claim pack\" / \"audit-grade pack in seconds\"",
+          "safe": "\"Warranty history and its evidence live on the record.\" (roadmap tease only, clearly labelled)",
+          "why": "Money-finder/claim-pack territory — pull-on-open, not buyer-visible; do not depict."
+        },
+        {
+          "id": "U37",
+          "pattern": "\"named individual\" as a universal claim",
+          "safe": "\"attributed — by signed-in user and role — and timestamped\"",
+          "why": "Live attribution defaults to role (Captain/Chief); personal-name display is gated."
+        }
+      ],
       "safe": [
         "The ledger is append-only. Nothing is ever overwritten.",
+        "Every action is attributed and timestamped: who acted, what, when, which record.",
+        "Audit prep becomes retrieval, not assembly.",
         "Corrections are recorded as new entries referencing the original. The original remains intact.",
-        "Every action — logging a fault, creating a work order, signing a handover — is attributed and timestamped.",
-        "Who acted, what they did, when, and which record was affected.",
         "Open any record and read its full audit trail.",
         "Deleted rows are struck through, never purged — the trail is the trail.",
         "The audit trail is not a feature. It is a legal defence.",
-        "Records that can be retroactively modified cannot serve as evidence.",
-        "Audit prep becomes retrieval, not assembly."
-      ],
-      "banned": [
-        {
-          "pattern": "\"Hop back into anyone's work\" / \"pick a record back up days later\" / any Chrome-history / resume framing",
-          "why": "No resume capability is shipped.",
-          "safe": "Open any record and read its full audit trail — who touched what, when."
-        },
-        {
-          "pattern": "\"Sealed PDF\" / \"audit trail exportable as a structured PDF\"",
-          "why": "Planned (v1.0), not live.",
-          "safe": "Every record's history is available on demand, and independently verifiable at verifier.celeste7.ai."
-        },
-        {
-          "pattern": "\"The system records who opened it, when, and for how long\" / \"measured duration\" / \"whether they read it in full\"",
-          "why": "Read-duration / read-completion tracking is NOT in the verified-shipped set.",
-          "safe": "Actions on records are logged — created, updated, signed, linked. (NEEDS-EVIDENCE before any read-event claim)"
-        },
-        {
-          "pattern": "\"Read events logged — evidence of awareness\"",
-          "why": "Same — NEEDS-EVIDENCE.",
-          "safe": "Omit, or scope to actions."
-        },
-        {
-          "pattern": "\"records interactions automatically\"",
-          "why": "Auto-stem; also implies passive read-tracking.",
-          "safe": "Actions are recorded as the crew works — no checkbox, no extra step."
-        },
-        {
-          "pattern": "\"One click on Generate warranty claim pack\" / \"audit-grade pack in seconds\"",
-          "why": "Money-finder/claim-pack territory — pull-on-open, not buyer-visible; do not depict.",
-          "safe": "Warranty history and its evidence live on the record. (roadmap tease only, clearly labelled)"
-        },
-        {
-          "pattern": "\"named individual\" as a universal claim",
-          "why": "Live attribution defaults to role (Captain/Chief); personal-name display is gated.",
-          "safe": "attributed — by signed-in user and role — and timestamped"
-        }
+        "Records that can be retroactively modified cannot serve as evidence."
       ]
     },
-    "verifier.celeste7.ai": {
-      "safe": [
-        "Every record independently verifiable → verifier.celeste7.ai",
-        "CelesteOS seals actions — faults, work orders, handovers, signatures — into a cryptographic receipt that anyone can independently verify.",
-        "Verify a sample receipt.",
-        "Proof, when proof matters.",
-        "Few systems produce proof. CelesteOS seals its records."
-      ],
+    "search": {
       "banned": [
         {
-          "pattern": "\"verify.celeste7.ai\" (any reference)",
-          "why": "NXDOMAIN. The live host is verifier.celeste7.ai.",
-          "safe": "verifier.celeste7.ai"
+          "id": "U02",
+          "pattern": "\"Every answer cites its source\" / \"every domain cited\"",
+          "safe": "\"Results open the source record itself.\"",
+          "why": "Domain-cited gating uncertain in live code (F1 gating vs SEARCH8888 — unconfirmed)."
         },
         {
-          "pattern": "\"Sealed PDF\" / \"download the sealed PDF\"",
-          "why": "Planned, not live.",
-          "safe": "Verify the receipt online at verifier.celeste7.ai."
+          "id": "U04",
+          "pattern": "\"No hallucinated content\" / any \"hallucinat*\"",
+          "safe": "\"If CelesteOS cannot find a record, it says so.\" (only if live-confirmed; until then omit)",
+          "why": "Invokes AI-magic framing; banned lexicon territory."
         },
         {
-          "pattern": "\"seals every action\" (absolute)",
-          "why": "Sweeping absolute; seal coverage is per-flow.",
-          "safe": "seals key actions — faults, work orders, handovers, signatures"
+          "id": "U02",
+          "pattern": "\"All 12 domains simultaneously\" / \"All 14 domains\" / \"every domain\"",
+          "safe": "\"Across work orders, documents, and the vessel's records.\" Name only domains you can demo.",
+          "why": "Exhaustive-coverage guarantee not live-verified for all domains (faults/certs coverage was historically gated)."
+        },
+        {
+          "id": "U05",
+          "pattern": "\"Sub-second\" / any latency number",
+          "safe": "\"Fast enough to use at 2am.\" (no number)",
+          "why": "NEEDS-EVIDENCE — no published measurement."
+        },
+        {
+          "id": "U06",
+          "pattern": "\"Mapped to root cause\"",
+          "safe": "\"Fault history, with prior occurrences surfaced alongside.\"",
+          "why": "Similarity surfacing, not causal mapping. Nothing maps root cause."
+        },
+        {
+          "id": "U03",
+          "pattern": "\"Entity extraction + semantic search\" as buyer copy",
+          "safe": "\"Finds what you mean, not what you typed.\"",
+          "why": "Mechanism talk drifts toward ML claims."
         }
+      ],
+      "safe": [
+        "Natural-language search across your vessel's records and manuals.",
+        "Type what you'd ask a colleague.",
+        "Search returns the record, not a snippet. Results open the source record itself.",
+        "Finds what you mean, not what you typed.",
+        "Search lives at the top of every screen — phone, tablet, laptop.",
+        "Every result is a live record. One click lands on the actual work order — status, history, parts.",
+        "There is nothing to learn. The engineer types what they need.",
+        "Results are scoped to your vessel and role — no filter to set up first."
       ]
     },
-    "suggested documents": {
-      "safe": [
-        "The right manual surfaces on the entity card.",
-        "Suggested documents appear with a match score. The engineer accepts or denies — one tap.",
-        "Accept links the document to the record in front of you.",
-        "Deny is per-record. Every accept and deny is recorded in the ledger.",
-        "Finds the manual even when nobody remembers the filename.",
-        "Documents connected to the work they describe."
-      ],
+    "security": {
       "banned": [
         {
-          "pattern": "\"Accept once on the equipment. It propagates everywhere.\"",
-          "why": "AUTO-propagation is NOT shipped. Only manual linking + discovery exist.",
-          "safe": "Accept links the document to the record in front of you."
+          "id": "U12",
+          "pattern": "\"GDPR compliant\" / \"SOC 2 certified\" / \"SOC 2 compliant\"",
+          "safe": "\"Aligned\" forms above, with the caveat sentence intact.",
+          "why": "No audit commissioned; \"aligned\" is the honest calibrated word."
         },
         {
-          "pattern": "\"cascade\" / \"cascades to every fault, WO, part\" / \"cascaded to every entity\" / \"walks the equipment graph\"",
-          "why": "Same — cascade not shipped; also graph framing is false (similarity, not graph).",
-          "safe": "Linked documents are discoverable from related records via Show Related."
+          "id": "U12",
+          "pattern": "\"class approved\" / anything implying class society approval of CelesteOS",
+          "safe": "\"CelesteOS is audit evidence, not class approval.\"",
+          "why": "CelesteOS is audit evidence, not class approval. Never claim class approval."
         },
         {
-          "pattern": "\"every fault, every work order opens with its manuals already attached\"",
-          "why": "Depends on the unshipped cascade.",
-          "safe": "Suggestions surface on faults, work orders, parts, and equipment; the engineer links with one tap."
+          "id": "U13",
+          "pattern": "\"zero data retention\" / \"your data never leaves\" / \"no third party ever sees your data\"",
+          "safe": "\"Sub-processor register and DPA available on request.\"",
+          "why": "OpenAI subprocessor: no ZDR at current tier, 30-day abuse retention. Documented in the Sub-Processor Register."
         },
         {
-          "pattern": "\"1536-dimension vector\" / \"cosine similarity\" / \"embedded using the same model\" in buyer copy",
-          "why": "Mechanism talk = ML claim drift.",
-          "safe": "Matched by content and metadata."
+          "id": "U37",
+          "pattern": "\"optional two-factor\"",
+          "safe": "Omit until verified.",
+          "why": "NEEDS-EVIDENCE — not live-verified."
         },
         {
-          "pattern": "\"it learns from the corpus\"",
-          "why": "\"Learns\" = ML/AI product-magic claim.",
-          "safe": "Matched by content and metadata."
+          "id": "U14",
+          "pattern": "\"military-grade encryption\" / \"bank-level security\"",
+          "safe": "\"Encrypted at rest and in transit.\"",
+          "why": "Hype lexicon."
         },
         {
-          "pattern": "\"auto-link\" (any form)",
-          "why": "Auto-stem + propagation implication.",
-          "safe": "one tap links"
+          "id": "U26",
+          "pattern": "\"EU data processed in the United States\"",
+          "safe": "`security.S03`",
+          "why": "Contract (FD4): customer data is stored in Germany."
+        },
+        {
+          "id": "—",
+          "pattern": "Caveat-stripping (publishing \"SOC-2\" without \"audit not yet commissioned\", or \"GDPR\" without the data-location sentence)",
+          "safe": "Always ship the full calibrated sentence.",
+          "why": "The caveat IS the claim."
         }
-      ]
-    },
-    "certificate bundle": {
-      "safe": [
-        "Certificates tracked to expiry, with renewal dates and the source PDF attached.",
-        "Alerts as expiry approaches.",
-        "Cross-linked to the equipment it certifies.",
-        "Certificates current and findable on inspection day."
       ],
-      "banned": [
-        {
-          "pattern": "\"Auto-alerts\"",
-          "why": "Auto-stem.",
-          "safe": "Alerts as expiry approaches."
-        },
-        {
-          "pattern": "\"Auto-alerts at 30 / 14 / 7 days\" (the schedule)",
-          "why": "Specific schedule NEEDS-EVIDENCE (not live-verified).",
-          "safe": "Alerts as expiry approaches."
-        },
-        {
-          "pattern": "Featuring a certificate-bundle hero section / dedicated chapter page",
-          "why": "Vitamin rule — lines only.",
-          "safe": "One line inside a painkiller chapter."
-        },
-        {
-          "pattern": "\"One-click inspection bundle\" / \"bundle export\"",
-          "why": "Bundle export not in the verified-shipped set.",
-          "safe": "Certificates current and findable on inspection day."
-        }
+      "safe": [
+        "Each vessel's data is isolated. Role-based access throughout.",
+        "Encrypted at rest and in transit.",
+        "Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses. DPA and sub-processor list available.",
+        "ISM Code: aligned with sections 10 and 11. Audit evidence, not class approval.",
+        "SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.",
+        "Row-level security isolates each vessel's data.",
+        "Captain handovers visible only to the back-to-back and fleet manager. Role-based throughout.",
+        "Fleet view aggregates statistics without exposing cross-vessel records.",
+        "GDPR: aligned. Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses. DPA available on request."
       ]
     },
     "show related": {
+      "banned": [
+        {
+          "id": "U06",
+          "pattern": "\"graph\" / \"knowledge graph\" / \"walks the graph\" / \"enters the graph\"",
+          "safe": "\"surfaces related records\"",
+          "why": "Show Related is similarity-based; the graph system is built-but-dead code."
+        },
+        {
+          "id": "U33",
+          "pattern": "\"indexed the moment it's written\" / \"the instant\" / \"searchable immediately\"",
+          "safe": "\"becomes findable as you work\"",
+          "why": "Absolute-latency claim; indexing is worker-driven, not instantaneous-guaranteed."
+        },
+        {
+          "id": "U06",
+          "pattern": "\"Mapped to root cause\"",
+          "safe": "\"Prior occurrences surfaced alongside.\"",
+          "why": "See Search — no causal mapping."
+        },
+        {
+          "id": "U37",
+          "pattern": "\"Everything you do becomes findable\" + enumerating every CRUD type as guaranteed",
+          "safe": "\"Notes, photos, handovers, and records become findable as you work.\"",
+          "why": "Coverage absolutes; keep to what's demonstrable."
+        }
+      ],
       "safe": [
-        "Open any record and CelesteOS surfaces what's related — work orders, parts, equipment, and handovers.",
+        "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
         "See what's connected. Immediately.",
         "Stay oriented without leaving the page.",
         "Show Related sits in every record's header.",
         "Following one record leads to every connected record.",
         "Documents that should have been linked. Faults the previous chief logged but never closed."
-      ],
-      "banned": [
-        {
-          "pattern": "\"graph\" / \"knowledge graph\" / \"walks the graph\" / \"enters the graph\"",
-          "why": "Show Related is similarity-based; the graph system is built-but-dead code.",
-          "safe": "surfaces related records"
-        },
-        {
-          "pattern": "\"indexed the moment it's written\" / \"the instant\"",
-          "why": "Absolute-latency claim; indexing is worker-driven, not instantaneous-guaranteed.",
-          "safe": "becomes findable as you work"
-        },
-        {
-          "pattern": "\"Mapped to root cause\"",
-          "why": "See Search — no causal mapping.",
-          "safe": "Prior occurrences surfaced alongside."
-        },
-        {
-          "pattern": "\"Everything you do becomes findable\" + enumerating every CRUD type as guaranteed",
-          "why": "Coverage absolutes; keep to what's demonstrable.",
-          "safe": "Notes, photos, handovers, and records become findable as you work."
-        }
       ]
     },
-    "cloud-based": {
-      "safe": [
-        "Nothing to install.",
-        "CelesteOS is the planned maintenance system.",
-        "Existing manuals, PDFs, scans and exports are imported as they are.",
-        "Browser-based. Any modern browser — desktop, tablet, mobile. No app installation.",
-        "Crew on rotation can review records remotely with their existing credentials.",
-        "Your data is yours. Nothing is held hostage.",
-        "Your existing manuals, PDFs, scans, and exports are indexed as they are. No reformatting exercises."
-      ],
+    "suggested documents": {
       "banned": [
         {
-          "pattern": "\"Runs alongside your existing PMS\" / \"nothing to replace, nothing to migrate\" / \"your existing PMS keeps its class society approvals, workflows, crew familiarity\" / \"a layer over your PMS\"",
-          "why": "Founder ruling 20 Oct 2026: CelesteOS is the planned maintenance system, not an add-on beside another one.",
-          "safe": "CelesteOS is the planned maintenance system."
+          "id": "U18",
+          "pattern": "\"Accept once on the equipment. It propagates everywhere.\"",
+          "safe": "\"Accept links the document to the record in front of you.\"",
+          "why": "AUTO-propagation is NOT shipped. Only manual linking + discovery exist."
         },
         {
-          "pattern": "\"Works offline\" / \"core functions work with intermittent connectivity, and data syncs when the connection is restored\"",
-          "why": "Offline/sync NOT in the verified-shipped set. NEEDS-EVIDENCE.",
-          "safe": "Designed for the connectivity reality of superyachts. (nothing more specific)"
+          "id": "U18",
+          "pattern": "\"cascade\" / \"cascades to every fault, WO, part\" / \"cascaded to every entity\" / \"walks the equipment graph\"",
+          "safe": "\"Linked documents are discoverable from related records via Show Related.\"",
+          "why": "Same — cascade not shipped; also graph framing is false (similarity, not graph)."
         },
         {
-          "pattern": "\"Onboard in hours, not weeks\" as an absolute",
-          "why": "Conflicts with the pilot's own \"import takes 3–5 working days\". NEEDS-EVIDENCE for \"hours\".",
-          "safe": "Onboarding measured in days, not months. or omit the number."
+          "id": "U18",
+          "pattern": "\"every fault, every work order opens with its manuals already attached\"",
+          "safe": "\"Suggestions surface on faults, work orders, parts, and equipment; the engineer links with one tap.\"",
+          "why": "Depends on the unshipped cascade."
         },
         {
-          "pattern": "\"The vessel's record becomes searchable immediately\"",
-          "why": "\"Immediately\" absolute vs import/indexing lead time.",
-          "safe": "The vessel's record becomes searchable as soon as import completes."
+          "id": "U03",
+          "pattern": "\"1536-dimension vector\" / \"cosine similarity\" / \"embedded using the same model\" in buyer copy",
+          "safe": "\"Matched by content and metadata.\"",
+          "why": "Mechanism talk = ML claim drift."
         },
         {
-          "pattern": "\"real-time\" (any) / \"always current\" / \"live data, always current\"",
-          "why": "Real-time absolutes not guaranteed by worker-driven pipeline.",
-          "safe": "Live data from the vessel's records."
+          "id": "U03",
+          "pattern": "\"it learns from the corpus\"",
+          "safe": "\"Matched by content and metadata.\"",
+          "why": "\"Learns\" = ML/AI product-magic claim."
+        },
+        {
+          "id": "U03",
+          "pattern": "\"auto-link\" (any form)",
+          "safe": "\"one tap links\"",
+          "why": "Auto-stem + propagation implication."
         }
+      ],
+      "safe": [
+        "Suggested documents appear with a match score; the engineer accepts or denies with one tap.",
+        "Finds the manual even when nobody remembers the filename.",
+        "Accept links the document to the record in front of you.",
+        "Deny is per-record. Every accept and deny is recorded in the ledger.",
+        "Documents connected to the work they describe."
       ]
     },
-    "security": {
-      "safe": [
-        "GDPR — Aligned. EU data processed in the United States under SCCs and UK IDTA. DPA available on request.",
-        "SOC 2 — Aligned with TSC. Controls built against AICPA Trust Services Criteria. Audit not yet commissioned.",
-        "ISM Code — Aligned. Sections 10 and 11. Audit evidence, not class approval.",
-        "Each vessel's data is isolated. Role-based access throughout.",
-        "Row-level security isolates each vessel's data.",
-        "Encrypted at rest and in transit.",
-        "Fleet view aggregates statistics without exposing cross-vessel records.",
-        "Captain handovers visible only to the back-to-back and fleet manager. Role-based throughout."
-      ],
+    "verifier.celeste7.ai": {
       "banned": [
         {
-          "pattern": "\"GDPR compliant\" / \"SOC 2 certified\" / \"SOC 2 compliant\"",
-          "why": "No audit commissioned; \"aligned\" is the honest calibrated word.",
-          "safe": "\"Aligned\" forms above, with the caveat sentence intact."
+          "id": "U15",
+          "pattern": "\"verify.celeste7.ai\" (any reference)",
+          "safe": "\"verifier.celeste7.ai\"",
+          "why": "NXDOMAIN. The live host is **verifier.celeste7.ai**."
         },
         {
-          "pattern": "\"class approved\" / anything implying class society approval of CelesteOS",
-          "why": "CelesteOS is audit evidence, not class approval. Never claim class approval.",
-          "safe": "CelesteOS is audit evidence, not class approval."
+          "id": "U07",
+          "pattern": "\"Sealed PDF\" / \"download the sealed PDF\"",
+          "safe": "\"Verify the receipt online at verifier.celeste7.ai.\"",
+          "why": "Planned, not live."
         },
         {
-          "pattern": "\"zero data retention\" / \"your data never leaves\" / \"no third party ever sees your data\"",
-          "why": "OpenAI subprocessor: no ZDR at current tier, 30-day abuse retention. Documented in the Sub-Processor Register.",
-          "safe": "Sub-processor register and DPA available on request."
-        },
-        {
-          "pattern": "\"optional two-factor\"",
-          "why": "NEEDS-EVIDENCE — not live-verified.",
-          "safe": "Omit until verified."
-        },
-        {
-          "pattern": "\"military-grade encryption\" / \"bank-level security\"",
-          "why": "Hype lexicon.",
-          "safe": "Encrypted at rest and in transit."
-        },
-        {
-          "pattern": "Caveat-stripping (publishing \"SOC-2\" without \"audit not yet commissioned\", or \"GDPR\" without the SCC/IDTA sentence)",
-          "why": "The caveat IS the claim.",
-          "safe": "Always ship the full calibrated sentence."
+          "id": "U02",
+          "pattern": "\"seals every action\" / \"every action is sealed\" (absolute)",
+          "safe": "\"seals key actions — faults, work orders, handovers, signatures\"",
+          "why": "Sweeping absolute; seal coverage is per-flow."
         }
+      ],
+      "safe": [
+        "Key actions (faults, work orders, handovers, signatures) are sealed into a receipt anyone can verify at verifier.celeste7.ai.",
+        "Every record independently verifiable → verifier.celeste7.ai",
+        "Verify a sample receipt.",
+        "Proof, when proof matters.",
+        "Few systems produce proof. CelesteOS seals its records."
       ]
     }
+  },
+  "claim_triggers": [
+    "\\b(?:celesteos|the system|we|it)\\b (?:[a-z]+ )?(?:[a-z]+s|can|will|never|always)\\b",
+    "\\d|¤|%",
+    "\\b(?:gdpr|soc|ism|class|certif\\w*|encrypt\\w*|iso)\\b",
+    "\\b(?:every|all|never|always|guarantee\\w*|instantly|only)\\b",
+    "\\b(?:faster|better|best|leading)\\b|(?:^|\\s)#1\\b"
+  ],
+  "footers": {
+    "promotional": {
+      "require": [
+        "unsubscribe",
+        "7901 4th st n"
+      ]
+    },
+    "relationship": {
+      "require": [
+        "celesteos",
+        "reply .stop."
+      ]
+    },
+    "transactional": {
+      "require": [
+        "celesteos llc"
+      ]
+    }
+  },
+  "hosts": {
+    "allowed": [
+      "celeste7.ai",
+      "www.celeste7.ai",
+      "verifier.celeste7.ai"
+    ],
+    "dead": [
+      "verify.celeste7.ai"
+    ]
+  },
+  "internal_names": [
+    "HandoverDraftPanel",
+    "ConfirmExportModal",
+    "executeAction\\s*\\(",
+    "\\b\\w+\\.tsx\\b",
+    "POST\\s+\\/v1\\/",
+    "combined_service",
+    "f1_search_cards"
+  ],
+  "meta": {
+    "generator_sha256": "775c472fa5faf62d3de8a689fdaead8df47accd2b5d452671704de48a931a3ba",
+    "pack_id": "celeste-brand-pack",
+    "schema": "claims/2.0.0",
+    "source_path": "content-engine/claims-allowlist.md",
+    "source_sha256": "a647ededbc1a23b8f8c0018403708fb04629cc285be07ca6d431deabb6cd7482",
+    "version": "1.0.0"
+  },
+  "rules": [
+    {
+      "check": "CC01",
+      "domain_guard": true,
+      "editorial": true,
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bai\\b",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "editorial": true,
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "artificial intelligence",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "editorial": true,
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "machine ?learning",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "domain_guard": true,
+      "editorial": true,
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bml\\b",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bsmart\\b",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bautomat\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bauto ?(generat|add|populat|link|propagat|alert|execut|assembl|compil|writ)\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bseamless\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\boptimi[sz]\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\beffortless\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bmagic\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\brevolutio\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "game ?chang\\w*",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "editorial": true,
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\bintelligen(t|ce)\\b",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "\\blearns? from\\b",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "AI / SaaS lexicon",
+      "flags": "",
+      "id": "U03",
+      "regex": "entity extraction|semantic search|\\bvector\\b|\\bembedd\\w*|cosine similarity|\\d+ dimension",
+      "safe": "Finds what you mean, not what you typed.",
+      "why": "Product-magic words and ML mechanism talk are off-brand and imply what is not shipped."
+    },
+    {
+      "check": "CC01",
+      "family": "hallucination",
+      "flags": "",
+      "id": "U04",
+      "regex": "\\bhallucinat\\w*",
+      "safe": "omit",
+      "why": "AI-magic framing."
+    },
+    {
+      "check": "CC01",
+      "family": "voice refusals",
+      "flags": "",
+      "id": "U36",
+      "regex": "cutting ?edge",
+      "safe": "say it plainly",
+      "why": "Off-voice hype and hedging (brand voice)."
+    },
+    {
+      "check": "CC01",
+      "family": "voice refusals",
+      "flags": "",
+      "id": "U36",
+      "regex": "\\bnext ?gen(eration)?\\b",
+      "safe": "say it plainly",
+      "why": "Off-voice hype and hedging (brand voice)."
+    },
+    {
+      "check": "CC01",
+      "family": "voice refusals",
+      "flags": "",
+      "id": "U36",
+      "regex": "\\bleverag\\w*",
+      "safe": "say it plainly",
+      "why": "Off-voice hype and hedging (brand voice)."
+    },
+    {
+      "check": "CC01",
+      "family": "voice refusals",
+      "flags": "",
+      "id": "U36",
+      "regex": "\\bdon'?t worry\\b",
+      "safe": "say it plainly",
+      "why": "Off-voice hype and hedging (brand voice)."
+    },
+    {
+      "check": "CC01",
+      "family": "voice refusals",
+      "flags": "",
+      "id": "U36",
+      "regex": "\\bhang tight\\b",
+      "safe": "say it plainly",
+      "why": "Off-voice hype and hedging (brand voice)."
+    },
+    {
+      "check": "CC01",
+      "family": "voice refusals",
+      "flags": "",
+      "id": "U36",
+      "regex": "\\bi (think|believe)\\b",
+      "safe": "say it plainly",
+      "why": "Off-voice hype and hedging (brand voice)."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "\\b(write|draft|build|create|assemble|compile|generate|fill|populate|complete)s? itself\\b",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "(assembled|compiled|generated) automatically",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "not assembled manually",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "already written",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "watch it assemble",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "\\bassembled? from\\b|\\bassembles from\\b",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "\\bput together for you\\b|(assembled|written|compiled|put together|built) [a-z ]{0,20}(on its own|by itself)",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "notes become (a|the) [a-z ]{0,20}handover",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "\\bwe create\\b",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "\\bgenerated from\\b",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "handover auto-write",
+      "flags": "",
+      "id": "U01",
+      "regex": "\\bsystem already (has|knows)\\b",
+      "safe": "Captured as you work.",
+      "why": "Reality = 1-tap capture into a draft, then review and two signatures. Nothing writes, assembles or generates itself."
+    },
+    {
+      "check": "CC02",
+      "family": "coverage absolutes",
+      "flags": "",
+      "id": "U02",
+      "regex": "every (answer|result) (cites|is cited)",
+      "safe": "Results open the source record itself.",
+      "why": "Exhaustive coverage (every answer, every domain, every action) is not live-verified."
+    },
+    {
+      "check": "CC02",
+      "family": "coverage absolutes",
+      "flags": "",
+      "id": "U02",
+      "regex": "every domain",
+      "safe": "Results open the source record itself.",
+      "why": "Exhaustive coverage (every answer, every domain, every action) is not live-verified."
+    },
+    {
+      "check": "CC02",
+      "family": "coverage absolutes",
+      "flags": "",
+      "id": "U02",
+      "regex": "all \\d+ domains",
+      "safe": "Results open the source record itself.",
+      "why": "Exhaustive coverage (every answer, every domain, every action) is not live-verified."
+    },
+    {
+      "check": "CC02",
+      "family": "coverage absolutes",
+      "flags": "",
+      "id": "U02",
+      "regex": "\\bsearch(es)? every (manual|document|record|domain)",
+      "safe": "Results open the source record itself.",
+      "why": "Exhaustive coverage (every answer, every domain, every action) is not live-verified."
+    },
+    {
+      "check": "CC02",
+      "family": "coverage absolutes",
+      "flags": "",
+      "id": "U02",
+      "regex": "every action (is|gets) (sealed|signed|verified)|seals every action",
+      "safe": "Results open the source record itself.",
+      "why": "Exhaustive coverage (every answer, every domain, every action) is not live-verified."
+    },
+    {
+      "check": "CC02",
+      "family": "latency",
+      "flags": "",
+      "id": "U05",
+      "regex": "real ?time",
+      "safe": "Live data from the vessel's records.",
+      "why": "Real-time and latency numbers NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "latency",
+      "flags": "",
+      "id": "U05",
+      "regex": "sub ?second",
+      "safe": "Live data from the vessel's records.",
+      "why": "Real-time and latency numbers NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "latency",
+      "flags": "",
+      "id": "U05",
+      "regex": "\\b\\d+ ?(ms|milliseconds?)\\b",
+      "safe": "Live data from the vessel's records.",
+      "why": "Real-time and latency numbers NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "latency",
+      "flags": "",
+      "id": "U05",
+      "regex": "always current",
+      "safe": "Live data from the vessel's records.",
+      "why": "Real-time and latency numbers NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "graph / causal",
+      "flags": "",
+      "id": "U06",
+      "regex": "knowledge graph",
+      "safe": "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
+      "why": "Show Related is similarity-based; nothing maps root cause."
+    },
+    {
+      "check": "CC02",
+      "family": "graph / causal",
+      "flags": "",
+      "id": "U06",
+      "regex": "walks the [a-z ]{0,30}graph",
+      "safe": "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
+      "why": "Show Related is similarity-based; nothing maps root cause."
+    },
+    {
+      "check": "CC02",
+      "family": "graph / causal",
+      "flags": "",
+      "id": "U06",
+      "regex": "root cause",
+      "safe": "Open any record and CelesteOS surfaces what's related: work orders, parts, equipment, handovers.",
+      "why": "Show Related is similarity-based; nothing maps root cause."
+    },
+    {
+      "check": "CC02",
+      "family": "sealed PDF / bundle export",
+      "flags": "",
+      "id": "U07",
+      "regex": "sealed pdf",
+      "safe": "Key actions are sealed into a receipt anyone can verify at verifier.celeste7.ai.",
+      "why": "Sealed PDF and bundle export are planned, not live."
+    },
+    {
+      "check": "CC02",
+      "family": "sealed PDF / bundle export",
+      "flags": "",
+      "id": "U07",
+      "regex": "structured pdf",
+      "safe": "Key actions are sealed into a receipt anyone can verify at verifier.celeste7.ai.",
+      "why": "Sealed PDF and bundle export are planned, not live."
+    },
+    {
+      "check": "CC02",
+      "family": "sealed PDF / bundle export",
+      "flags": "",
+      "id": "U07",
+      "regex": "(export|download)\\w* [a-z ]{0,30}\\bpdf\\b",
+      "safe": "Key actions are sealed into a receipt anyone can verify at verifier.celeste7.ai.",
+      "why": "Sealed PDF and bundle export are planned, not live."
+    },
+    {
+      "check": "CC02",
+      "family": "sealed PDF / bundle export",
+      "flags": "",
+      "id": "U07",
+      "regex": "\\b(one|1) ?click [a-z ]{0,30}(bundle|pack|report|export)",
+      "safe": "Key actions are sealed into a receipt anyone can verify at verifier.celeste7.ai.",
+      "why": "Sealed PDF and bundle export are planned, not live."
+    },
+    {
+      "check": "CC02",
+      "family": "sealed PDF / bundle export",
+      "flags": "",
+      "id": "U07",
+      "regex": "inspection bundle|bundle export",
+      "safe": "Key actions are sealed into a receipt anyone can verify at verifier.celeste7.ai.",
+      "why": "Sealed PDF and bundle export are planned, not live."
+    },
+    {
+      "check": "CC02",
+      "family": "certificate alert schedule",
+      "flags": "",
+      "id": "U08",
+      "regex": "\\b30\\/14\\/7\\b",
+      "safe": "Certificates tracked to expiry, source PDF attached; alerts as expiry approaches.",
+      "why": "The 30/14/7 schedule is not live-verified."
+    },
+    {
+      "check": "CC02",
+      "family": "offline",
+      "flags": "",
+      "id": "U09",
+      "regex": "works? offline",
+      "safe": "Designed for the connectivity reality of superyachts.",
+      "why": "Offline/sync is not in the verified-shipped set."
+    },
+    {
+      "check": "CC02",
+      "family": "offline",
+      "flags": "",
+      "id": "U09",
+      "regex": "offline (mode|first|access)",
+      "safe": "Designed for the connectivity reality of superyachts.",
+      "why": "Offline/sync is not in the verified-shipped set."
+    },
+    {
+      "check": "CC02",
+      "family": "offline",
+      "flags": "",
+      "id": "U09",
+      "regex": "syncs? when (the )?connection",
+      "safe": "Designed for the connectivity reality of superyachts.",
+      "why": "Offline/sync is not in the verified-shipped set."
+    },
+    {
+      "check": "CC02",
+      "family": "onboarding speed",
+      "flags": "",
+      "id": "U10",
+      "regex": "onboard(ed|ing)? in (hours|minutes|a single|an afternoon|\\d+)",
+      "safe": "omit the number",
+      "why": "Onboarding durations NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "onboarding speed",
+      "flags": "",
+      "id": "U10",
+      "regex": "(searchable|live|onboarded|running|ready) on day 1\\b",
+      "safe": "omit the number",
+      "why": "Onboarding durations NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "onboarding speed",
+      "flags": "",
+      "id": "U10",
+      "regex": "within 2 weeks",
+      "safe": "omit the number",
+      "why": "Onboarding durations NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "onboarding speed",
+      "flags": "",
+      "id": "U10",
+      "regex": "up and running in",
+      "safe": "omit the number",
+      "why": "Onboarding durations NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "onboarding speed",
+      "flags": "",
+      "id": "U10",
+      "regex": "in (a single|1) afternoon",
+      "safe": "omit the number",
+      "why": "Onboarding durations NEED-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "(alongside|beside|next to|on top of|over) (your|the) [a-z' ]{0,30}pms\\b",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "layer over",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "nothing to (replace|migrate)",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "keep amos",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "you already run",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "class society approvals",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "technical intelligence system",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "rip out",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "sits alongside",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "certified pms",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "beside-PMS + retired positioning",
+      "flags": "",
+      "id": "U11",
+      "regex": "what does this replace",
+      "safe": "CelesteOS is the planned maintenance system.",
+      "why": "CelesteOS is the planned maintenance system, not an add-on (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "certification",
+      "flags": "",
+      "id": "U12",
+      "regex": "gdpr compliant",
+      "safe": "SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.",
+      "why": "No audit commissioned; never claim class approval."
+    },
+    {
+      "check": "CC02",
+      "family": "certification",
+      "flags": "",
+      "id": "U12",
+      "regex": "soc ?(2|ii) (certified|compliant|certification)",
+      "safe": "SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.",
+      "why": "No audit commissioned; never claim class approval."
+    },
+    {
+      "check": "CC02",
+      "family": "certification",
+      "flags": "",
+      "id": "U12",
+      "regex": "\\b(class|type) approved",
+      "safe": "SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.",
+      "why": "No audit commissioned; never claim class approval."
+    },
+    {
+      "check": "CC02",
+      "family": "certification",
+      "flags": "",
+      "id": "U12",
+      "regex": "approved by class",
+      "safe": "SOC 2: controls built against the AICPA Trust Services Criteria. Audit not yet commissioned.",
+      "why": "No audit commissioned; never claim class approval."
+    },
+    {
+      "check": "CC02",
+      "family": "data retention",
+      "flags": "",
+      "id": "U13",
+      "regex": "zero data retention",
+      "safe": "Sub-processor register and DPA available on request.",
+      "why": "Sub-processors retain data (see the register)."
+    },
+    {
+      "check": "CC02",
+      "family": "data retention",
+      "flags": "",
+      "id": "U13",
+      "regex": "never leaves",
+      "safe": "Sub-processor register and DPA available on request.",
+      "why": "Sub-processors retain data (see the register)."
+    },
+    {
+      "check": "CC02",
+      "family": "data retention",
+      "flags": "",
+      "id": "U13",
+      "regex": "no third party (ever )?sees",
+      "safe": "Sub-processor register and DPA available on request.",
+      "why": "Sub-processors retain data (see the register)."
+    },
+    {
+      "check": "CC02",
+      "family": "hype security",
+      "flags": "",
+      "id": "U14",
+      "regex": "\\b(military|bank) ?(grade|level)\\b",
+      "safe": "Encrypted at rest and in transit.",
+      "why": "Hype lexicon."
+    },
+    {
+      "check": "CC04",
+      "family": "dead host",
+      "flags": "",
+      "id": "U15",
+      "regex": "verify\\.celeste7\\.ai",
+      "safe": "verifier.celeste7.ai",
+      "why": "verify.celeste7.ai is NXDOMAIN."
+    },
+    {
+      "check": "CC02",
+      "family": "read tracking",
+      "flags": "",
+      "id": "U16",
+      "regex": "read tracking",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Read-duration / read-completion tracking is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "read tracking",
+      "flags": "",
+      "id": "U16",
+      "regex": "for how long",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Read-duration / read-completion tracking is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "read tracking",
+      "flags": "",
+      "id": "U16",
+      "regex": "read (it )?in full",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Read-duration / read-completion tracking is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "read tracking",
+      "flags": "",
+      "id": "U16",
+      "regex": "measured duration",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Read-duration / read-completion tracking is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "read tracking",
+      "flags": "",
+      "id": "U16",
+      "regex": "read events?",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Read-duration / read-completion tracking is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "read tracking",
+      "flags": "",
+      "id": "U16",
+      "regex": "evidence of awareness",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Read-duration / read-completion tracking is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "hours of rest",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "shopping lists?",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "purchase orders?",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "\\breceiving (page|module|workflow|screen|log|ocr)\\b",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "\\binbox\\b|(outlook|exchange) integration|email (integration|ingest\\w*|sync)",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "\\bhor\\b",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "\\bpo \\d",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "delivery note",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "retired features",
+      "flags": "",
+      "id": "U17",
+      "regex": "connects? your (email|inbox)",
+      "safe": "omit",
+      "why": "Hours of rest, shopping list, purchase orders, receiving and email ingestion are retired (founder ruling 20 Oct 2026)."
+    },
+    {
+      "check": "CC02",
+      "family": "propagation",
+      "flags": "",
+      "id": "U18",
+      "regex": "cascad\\w*",
+      "safe": "Accept links the document to the record in front of you.",
+      "why": "Auto-propagation / cascade is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "propagation",
+      "flags": "",
+      "id": "U18",
+      "regex": "propagat\\w*",
+      "safe": "Accept links the document to the record in front of you.",
+      "why": "Auto-propagation / cascade is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "propagation",
+      "flags": "",
+      "id": "U18",
+      "regex": "already attached",
+      "safe": "Accept links the document to the record in front of you.",
+      "why": "Auto-propagation / cascade is not shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "support speed",
+      "flags": "",
+      "id": "U20",
+      "regex": "hours,? not days",
+      "safe": "Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.",
+      "why": "Contract: email support 09:00–17:00 US Eastern, reply within one business day."
+    },
+    {
+      "check": "CC02",
+      "family": "support speed",
+      "flags": "",
+      "id": "U20",
+      "regex": "24\\/7",
+      "safe": "Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.",
+      "why": "Contract: email support 09:00–17:00 US Eastern, reply within one business day."
+    },
+    {
+      "check": "CC02",
+      "family": "support speed",
+      "flags": "",
+      "id": "U20",
+      "regex": "round the clock",
+      "safe": "Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.",
+      "why": "Contract: email support 09:00–17:00 US Eastern, reply within one business day."
+    },
+    {
+      "check": "CC02",
+      "family": "support speed",
+      "flags": "",
+      "id": "U20",
+      "regex": "(reply|replies|response|respond)\\w* within (an? )?hours?",
+      "safe": "Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.",
+      "why": "Contract: email support 09:00–17:00 US Eastern, reply within one business day."
+    },
+    {
+      "check": "CC02",
+      "family": "uptime / SLA",
+      "flags": "",
+      "id": "U21",
+      "regex": "uptime guarantee",
+      "safe": "omit",
+      "why": "99.5% is a target, not a guarantee; no SLA or service credits."
+    },
+    {
+      "check": "CC02",
+      "family": "uptime / SLA",
+      "flags": "",
+      "id": "U21",
+      "regex": "guaranteed (uptime|sla|availability)",
+      "safe": "omit",
+      "why": "99.5% is a target, not a guarantee; no SLA or service credits."
+    },
+    {
+      "check": "CC02",
+      "family": "uptime / SLA",
+      "flags": "",
+      "id": "U21",
+      "regex": "uptime (is )?guaranteed",
+      "safe": "omit",
+      "why": "99.5% is a target, not a guarantee; no SLA or service credits."
+    },
+    {
+      "check": "CC02",
+      "family": "uptime / SLA",
+      "flags": "",
+      "id": "U21",
+      "regex": "\\bsla\\b",
+      "safe": "omit",
+      "why": "99.5% is a target, not a guarantee; no SLA or service credits."
+    },
+    {
+      "check": "CC02",
+      "family": "uptime / SLA",
+      "flags": "",
+      "id": "U21",
+      "regex": "service credits?",
+      "safe": "omit",
+      "why": "99.5% is a target, not a guarantee; no SLA or service credits."
+    },
+    {
+      "check": "CC02",
+      "family": "migration included",
+      "flags": "",
+      "id": "U22",
+      "regex": "\\b(we|our team) (migrate|import)\\w*",
+      "safe": "Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.",
+      "why": "Contract: data migration is not included."
+    },
+    {
+      "check": "CC02",
+      "family": "migration included",
+      "flags": "",
+      "id": "U22",
+      "regex": "migration (is )?included",
+      "safe": "Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.",
+      "why": "Contract: data migration is not included."
+    },
+    {
+      "check": "CC02",
+      "family": "fee waived",
+      "flags": "",
+      "id": "U23",
+      "regex": "\\bwaive[sd]?\\b",
+      "safe": "No set-up fee. Remote account set-up and crew training included. (email only)",
+      "why": "Contract: there is no set-up fee to waive."
+    },
+    {
+      "check": "CC02",
+      "family": "fee waived",
+      "flags": "",
+      "id": "U23",
+      "regex": "onboarding fee",
+      "safe": "No set-up fee. Remote account set-up and crew training included. (email only)",
+      "why": "Contract: there is no set-up fee to waive."
+    },
+    {
+      "check": "CC02",
+      "family": "no install",
+      "flags": "",
+      "id": "U24",
+      "regex": "nothing to install",
+      "safe": "Works in any modern browser: desktop, tablet, mobile.",
+      "why": "Contract: onboarding uses a sync-agent installer."
+    },
+    {
+      "check": "CC02",
+      "family": "no install",
+      "flags": "",
+      "id": "U24",
+      "regex": "no (app )?installation",
+      "safe": "Works in any modern browser: desktop, tablet, mobile.",
+      "why": "Contract: onboarding uses a sync-agent installer."
+    },
+    {
+      "check": "CC02",
+      "family": "no install",
+      "flags": "",
+      "id": "U24",
+      "regex": "zero install",
+      "safe": "Works in any modern browser: desktop, tablet, mobile.",
+      "why": "Contract: onboarding uses a sync-agent installer."
+    },
+    {
+      "check": "CC02",
+      "family": "discount / urgency",
+      "flags": "",
+      "id": "U25",
+      "regex": "standard rate is higher",
+      "safe": "omit",
+      "why": "Contract: one list fee; no discounts, no urgency theatre."
+    },
+    {
+      "check": "CC02",
+      "family": "discount / urgency",
+      "flags": "",
+      "id": "U25",
+      "regex": "\\bdiscount\\w*",
+      "safe": "omit",
+      "why": "Contract: one list fee; no discounts, no urgency theatre."
+    },
+    {
+      "check": "CC02",
+      "family": "discount / urgency",
+      "flags": "",
+      "id": "U25",
+      "regex": "\\d+% off",
+      "safe": "omit",
+      "why": "Contract: one list fee; no discounts, no urgency theatre."
+    },
+    {
+      "check": "CC02",
+      "family": "discount / urgency",
+      "flags": "",
+      "id": "U25",
+      "regex": "limited time",
+      "safe": "omit",
+      "why": "Contract: one list fee; no discounts, no urgency theatre."
+    },
+    {
+      "check": "CC02",
+      "family": "discount / urgency",
+      "flags": "",
+      "id": "U25",
+      "regex": "\\d+ (pilot )?(spots|places) left",
+      "safe": "omit",
+      "why": "Contract: one list fee; no discounts, no urgency theatre."
+    },
+    {
+      "check": "CC02",
+      "family": "stale data location",
+      "flags": "",
+      "id": "U26",
+      "regex": "processed in the (united states|us)\\b",
+      "safe": "Customer data is stored in Germany (EU); some services run in the US under Standard Contractual Clauses.",
+      "why": "Contract: customer data is stored in Germany (EU)."
+    },
+    {
+      "check": "CC02",
+      "family": "no lock-in",
+      "flags": "",
+      "id": "U27",
+      "regex": "no lock ?in",
+      "safe": "Monthly billing; cancel or remove a vessel with 30 days' written notice.",
+      "why": "Contract: 30 days' written notice."
+    },
+    {
+      "check": "CC02",
+      "family": "no lock-in",
+      "flags": "",
+      "id": "U27",
+      "regex": "cancel any ?time",
+      "safe": "Monthly billing; cancel or remove a vessel with 30 days' written notice.",
+      "why": "Contract: 30 days' written notice."
+    },
+    {
+      "check": "CC02",
+      "family": "no lock-in",
+      "flags": "",
+      "id": "U27",
+      "regex": "no contract",
+      "safe": "Monthly billing; cancel or remove a vessel with 30 days' written notice.",
+      "why": "Contract: 30 days' written notice."
+    },
+    {
+      "check": "CC02",
+      "family": "unsourced money",
+      "flags": "",
+      "id": "U28",
+      "regex": "\\b\\d{4,} to \\d{4,}\\b",
+      "safe": "omit",
+      "why": "Money figures need a citable source (FD5)."
+    },
+    {
+      "check": "CC02",
+      "family": "unsourced money",
+      "flags": "",
+      "id": "U28",
+      "regex": "\\b(cost|costs|runs|worth|saves?)\\b (¤ ?)?\\d{4,}",
+      "safe": "omit",
+      "why": "Money figures need a citable source (FD5)."
+    },
+    {
+      "check": "CC02",
+      "family": "unsourced ratio",
+      "flags": "",
+      "id": "U29",
+      "regex": "\\b1% of\\b",
+      "safe": "omit",
+      "why": "Ratios of running cost need a citable source (FD5)."
+    },
+    {
+      "check": "CC02",
+      "family": "unsourced ratio",
+      "flags": "",
+      "id": "U29",
+      "regex": "running costs?|costs? to run",
+      "safe": "omit",
+      "why": "Ratios of running cost need a citable source (FD5)."
+    },
+    {
+      "check": "CC02",
+      "family": "unsourced counts",
+      "flags": "",
+      "id": "U30",
+      "regex": "\\b\\d+(\\+| \\+)",
+      "safe": "omit",
+      "why": "Audience / customer counts need a citable source (FD5)."
+    },
+    {
+      "check": "CC02",
+      "family": "unsourced counts",
+      "flags": "",
+      "id": "U30",
+      "regex": "\\bover \\d+ (engineers|crew|yachts|vessels|captains|people)",
+      "safe": "omit",
+      "why": "Audience / customer counts need a citable source (FD5)."
+    },
+    {
+      "check": "CC02",
+      "family": "unsourced counts",
+      "flags": "",
+      "id": "U30",
+      "regex": "follow the build",
+      "safe": "omit",
+      "why": "Audience / customer counts need a citable source (FD5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "saved \\d+ (hours?|minutes?|days?)",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "\\bcut [a-z ]{0,30}by \\d+%",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "\\d+x (faster|quicker|more)",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "trusted by",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "customers (report|say|save)",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "\\bour customers\\b",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "\\b[ms]\\/y\\b",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "\"[^\"]{3,200}\" ?- ?(captain|chief|owner|engineer|eto|manager)",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "testimonials / ROI",
+      "flags": "",
+      "id": "U31",
+      "regex": "bitcoin",
+      "safe": "omit",
+      "why": "No consented customer quote or measured result exists (CP §6.5)."
+    },
+    {
+      "check": "CC02",
+      "family": "ledger resume",
+      "flags": "",
+      "id": "U32",
+      "regex": "browser('s)? history",
+      "safe": "Open any record and read its full audit trail.",
+      "why": "No resume / browser-history capability is shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "ledger resume",
+      "flags": "",
+      "id": "U32",
+      "regex": "chrome ?history",
+      "safe": "Open any record and read its full audit trail.",
+      "why": "No resume / browser-history capability is shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "ledger resume",
+      "flags": "",
+      "id": "U32",
+      "regex": "hop back",
+      "safe": "Open any record and read its full audit trail.",
+      "why": "No resume / browser-history capability is shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "ledger resume",
+      "flags": "",
+      "id": "U32",
+      "regex": "pick (up )?where you left off",
+      "safe": "Open any record and read its full audit trail.",
+      "why": "No resume / browser-history capability is shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "ledger resume",
+      "flags": "",
+      "id": "U32",
+      "regex": "pick (a|the) record back up",
+      "safe": "Open any record and read its full audit trail.",
+      "why": "No resume / browser-history capability is shipped."
+    },
+    {
+      "check": "CC02",
+      "family": "absolute latency",
+      "flags": "",
+      "id": "U33",
+      "regex": "the moment it'?s (written|saved|logged)",
+      "safe": "becomes findable as you work",
+      "why": "Indexing is worker-driven; nothing is instant."
+    },
+    {
+      "check": "CC02",
+      "family": "absolute latency",
+      "flags": "",
+      "id": "U33",
+      "regex": "(searchable|findable|indexed|available|visible) (instantly|immediately|in real time)",
+      "safe": "becomes findable as you work",
+      "why": "Indexing is worker-driven; nothing is instant."
+    },
+    {
+      "check": "CC02",
+      "family": "absolute latency",
+      "flags": "",
+      "id": "U33",
+      "regex": "\\binstant(ly|aneously)\\b",
+      "safe": "becomes findable as you work",
+      "why": "Indexing is worker-driven; nothing is instant."
+    },
+    {
+      "check": "CC02",
+      "family": "money / warranty finder",
+      "flags": "",
+      "id": "U34",
+      "regex": "money ?finder",
+      "safe": "roadmap label only",
+      "why": "Roadmap only; never depicted as live."
+    },
+    {
+      "check": "CC02",
+      "family": "money / warranty finder",
+      "flags": "",
+      "id": "U34",
+      "regex": "warranty (finder|claim pack)",
+      "safe": "roadmap label only",
+      "why": "Roadmap only; never depicted as live."
+    },
+    {
+      "check": "CC02",
+      "family": "money / warranty finder",
+      "flags": "",
+      "id": "U34",
+      "regex": "claim pack",
+      "safe": "roadmap label only",
+      "why": "Roadmap only; never depicted as live."
+    },
+    {
+      "check": "CC02",
+      "family": "money / warranty finder",
+      "flags": "",
+      "id": "U34",
+      "regex": "audit grade pack",
+      "safe": "roadmap label only",
+      "why": "Roadmap only; never depicted as live."
+    },
+    {
+      "check": "CC02",
+      "family": "money / warranty finder",
+      "flags": "",
+      "id": "U34",
+      "regex": "(pack|bundle|report|claim)[a-z ]{0,20}in seconds",
+      "safe": "roadmap label only",
+      "why": "Roadmap only; never depicted as live."
+    },
+    {
+      "check": "CC02",
+      "family": "demo duration",
+      "flags": "",
+      "id": "U35",
+      "regex": "\\b\\d+ ?(minute|min)s? demo\\b",
+      "safe": "Book a demo",
+      "why": "Demo length NEEDS-EVIDENCE."
+    },
+    {
+      "check": "CC02",
+      "family": "allowlist leftovers",
+      "flags": "",
+      "id": "U37",
+      "regex": "named individual",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Named individuals, optional 2FA, everything-you-do, certificate-bundle hero, [VERIFY] markers."
+    },
+    {
+      "check": "CC02",
+      "family": "allowlist leftovers",
+      "flags": "",
+      "id": "U37",
+      "regex": "\\b(two|2) ?factor|\\b2fa\\b",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Named individuals, optional 2FA, everything-you-do, certificate-bundle hero, [VERIFY] markers."
+    },
+    {
+      "check": "CC02",
+      "family": "allowlist leftovers",
+      "flags": "",
+      "id": "U37",
+      "regex": "everything you do",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Named individuals, optional 2FA, everything-you-do, certificate-bundle hero, [VERIFY] markers."
+    },
+    {
+      "check": "CC02",
+      "family": "allowlist leftovers",
+      "flags": "",
+      "id": "U37",
+      "regex": "certificate bundle",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Named individuals, optional 2FA, everything-you-do, certificate-bundle hero, [VERIFY] markers."
+    },
+    {
+      "check": "CC02",
+      "family": "allowlist leftovers",
+      "flags": "",
+      "id": "U37",
+      "regex": "\\[verify\\]",
+      "safe": "Every action is attributed and timestamped: who acted, what, when, which record.",
+      "why": "Named individuals, optional 2FA, everything-you-do, certificate-bundle hero, [VERIFY] markers."
+    },
+    {
+      "check": "CC03",
+      "family": "call-only: currency figure",
+      "flags": "",
+      "id": "K01",
+      "regex": "¤ ?\\d",
+      "safe": "remove — or use the exact commercial.C01 line where allowed",
+      "why": "Pricing is CALL-ONLY except an approved commercial line on its channel."
+    },
+    {
+      "check": "CC03",
+      "family": "call-only: currency words",
+      "flags": "",
+      "id": "K02",
+      "regex": "\\b\\d[\\d.]* ?(dollars?|euros?|pounds)\\b",
+      "safe": "remove",
+      "why": "Pricing is CALL-ONLY."
+    },
+    {
+      "check": "CC03",
+      "family": "call-only: pricing period",
+      "flags": "",
+      "id": "K03",
+      "regex": "per (month|28 days|year)\\b",
+      "safe": "remove — or use the exact commercial.C01 line where allowed",
+      "why": "Pricing is CALL-ONLY (\"per vessel, not per user\" alone is fine: commercial.C02)."
+    },
+    {
+      "check": "CC03",
+      "family": "call-only: pricing period",
+      "flags": "",
+      "id": "K03",
+      "regex": "per vessel (per|a|each) (month|year)",
+      "safe": "remove — or use the exact commercial.C01 line where allowed",
+      "why": "Pricing is CALL-ONLY (\"per vessel, not per user\" alone is fine: commercial.C02)."
+    },
+    {
+      "check": "CC03",
+      "family": "call-only: pilot pricing",
+      "flags": "",
+      "id": "K04",
+      "regex": "pilot pricing",
+      "safe": "remove",
+      "why": "Pricing is CALL-ONLY."
+    },
+    {
+      "check": "CC03",
+      "family": "call-only: locked price",
+      "flags": "",
+      "id": "K05",
+      "regex": "locked for 12 months",
+      "safe": "Price fixed for 12 months from your first subscription start. (L, E)",
+      "why": "Contract wording is commercial.C03."
+    },
+    {
+      "check": "CC03",
+      "family": "call-only: public trial",
+      "flags": "",
+      "id": "K07",
+      "regex": "free trial|\\b\\d+ day trial\\b",
+      "safe": "remove — commercial.C05 on email only",
+      "why": "The trial is offered 1:1 by email only (FD3)."
+    }
+  ],
+  "synonyms": {
+    "automagically": "automatically",
+    "instantaneously": "instantly",
+    "optimize": "optimise",
+    "round the clock": "24/7",
+    "straight away": "instantly"
   }
 }
