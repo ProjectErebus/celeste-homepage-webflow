@@ -5,13 +5,13 @@
   <title>Why Audit Trails Matter on Superyachts — CelesteOS</title>
   <meta name="description" content="Most yacht maintenance systems record task completions, not who authorised an action. Why timestamped, attributable audit trails change the legal defence.">
   <meta property="og:title" content="Every Action Has a Name and a Timestamp: Why Audit Trails Matter on Superyachts">
-  <meta property="og:description" content="Most yacht maintenance systems record task completions but not who opened a document, who reviewed a record, or who authorised an action. Immutable audit trails with timestamped, attributable records change the legal defence.">
+  <meta property="og:description" content="Most yacht maintenance systems record task completions, not who authorised an action. Why timestamped, attributable audit trails change the legal defence.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://celeste7.ai/blogs/audit-trail-superyacht">
   <meta property="og:site_name" content="CelesteOS">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Every Action Has a Name and a Timestamp: Why Audit Trails Matter on Superyachts">
-  <meta name="twitter:description" content="Most yacht maintenance systems record task completions but not who opened a document, who reviewed a record, or who authorised an action. Immutable audit trails with timestamped, attributable records change the legal defence.">
+  <meta name="twitter:description" content="Most yacht maintenance systems record task completions, not who authorised an action. Why timestamped, attributable audit trails change the legal defence.">
   <meta property="og:image" content="https://celeste7.ai/images/blog-usp/art9-audit-floating.png">
   <meta name="twitter:image" content="https://celeste7.ai/images/blog-usp/art9-audit-floating.png">
   <link rel="alternate" type="application/rss+xml" title="CelesteOS Blog" href="/blogs/feed.xml">
@@ -205,8 +205,8 @@
 
       <p>An audit trail in CelesteOS records every interaction between a user and a record. Not task completions — interactions.</p>
 
-      <span class="topic-label">Document access</span>
-      <p>When a crew member opens an SOP, a technical manual, or a manufacturer's advisory, the system records who opened it, when, and the duration of access. This creates a verifiable record that the document was reviewed — not a checkbox claiming it was read, but a timestamped log showing it was opened by a signed-in user for a specific period.</p>
+      <span class="topic-label">Documents and actions</span>
+      <p>Documents are linked to the records they support, and every action on those records — a review, a sign-off, a correction — is attributed and timestamped: who acted, what, when, which record. This creates a verifiable record that the work was done — not a checkbox, but a timestamped entry attributed to a signed-in user and role.</p>
 
       <span class="topic-label">Record review</span>
       <p>When an engineer opens a fault report, a work order, or an equipment record, the access is logged. When the chief engineer reviews a second engineer's fault diagnosis before authorising a repair, that review is recorded — who reviewed, when, and which record. The decision chain is preserved.</p>
@@ -241,7 +241,7 @@
       <p>When an equipment failure causes operational disruption, the investigation traces the chain of events: who was aware of the condition, what actions were taken, when decisions were made. Mutable records allow this chain to be altered after the fact — intentionally or accidentally. Immutable records preserve the chain as it existed at the time.</p>
 
       <span class="topic-label">Internal accountability</span>
-      <p>When a chief engineer manages a team across rotations, they need to know who read the updated procedure, who reviewed the fault report, and who signed off the work order. An append-only audit trail provides that visibility — not for external inspection, but for the internal discipline that keeps operations consistent between crew changes.</p>
+      <p>When a chief engineer manages a team across rotations, they need to know who reviewed the fault report and who signed off the work order. An append-only audit trail provides that visibility — not for external inspection, but for the internal discipline that keeps operations consistent between crew changes.</p>
 
       <h2>The economic argument</h2>
 
@@ -273,7 +273,7 @@
 
       <ul class="summary-list">
         <li>Most yacht maintenance systems record task completions but not the operational interactions between tasks — who opened a document, who reviewed a record, who authorised an action, and when.</li>
-        <li>An audit trail captures every interaction: document access with duration, record review, action attribution, and timestamps — all tied to a signed-in user and role.</li>
+        <li>An audit trail captures the actions on each record: reviews, sign-offs, corrections, attribution and timestamps — all tied to a signed-in user and role.</li>
         <li>Immutability is the critical distinction between a log and an audit trail. Append-only records that cannot be altered or deleted serve as evidence. Editable logs do not.</li>
         <li>Immutable audit trails strengthen <a href="/blogs/warranty-claim-documentation">warranty claim defences</a>, support incident investigations, and provide internal accountability — by creating proof at the time of the work that cannot be disputed.</li>
         <li>The audit trail is not a feature. It is a legal defence.</li>

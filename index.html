@@ -585,7 +585,7 @@
       <div class="reveal" style="max-width: 720px;">
         <div class="eyebrow">Ledger</div>
         <h2 class="display">Open any record and read its <span class="accent">full audit trail.</span></h2>
-        <p class="lead">You left WO-1042 half-finished on Tuesday. Open it Friday and the trail shows exactly where you stopped, what you touched, and what moved while you were ashore. <strong>Who acted, what, when, which record.</strong></p>
+        <p class="lead">You left WO-1042 half-finished on Tuesday. Open it Friday and the trail shows what was done, by whom, and what moved while you were ashore. <strong>Who acted, what, when, which record.</strong></p>
         <div class="how-block">
           <span class="how-k">How</span>
           <span class="how-v">The ledger isn't a separate place. Every record carries two tabs, <strong>Audit Trail</strong> and <strong>Notes</strong>, sealed and queryable. Append-only: corrections reference the original, deleted rows strike through. <strong>Nothing is ever overwritten.</strong></span>
@@ -598,13 +598,13 @@
       <div class="datum-stage" id="lg-stage" data-state="1" style="background: var(--bg-deep);">
         <div class="ds-body">
           <div class="ds-frame">
-          <p class="big">Every action you take is timestamped and sealed. <em>Pick up exactly where you stopped.</em></p>
+          <p class="big">Every action is attributed and timestamped. <em>Open any record and read its full audit trail.</em></p>
         </div>
         <div class="datum-inner">
           <div class="ds-context"><span class="bm">CelesteOS</span><span>·</span><span>Work orders</span><span>·</span><span>WO-1042</span></div>
           <div class="crop">
             <div class="pp-tabs"><span class="pp-tab on">Audit Trail</span><span class="pp-tab">Notes</span></div>
-            <div class="pp-bucket">Tuesday · where you stopped</div>
+            <div class="pp-bucket">Tuesday · last action</div>
             <div class="pp-row mine"><span class="pp-time">Tue · 16:48</span><span class="pp-role chief">You</span><span class="pp-what">Status · Open → <span class="pp-main">In progress</span></span></div>
             <div class="pp-row mine"><span class="pp-time">Tue · 16:51</span><span class="pp-role chief">You</span><span class="pp-what">Note added · <em>"head pressure normal after restart, leaving overnight to confirm"</em></span></div>
             <div class="pp-row mine"><span class="pp-time">Tue · 16:52</span><span class="pp-role chief">You</span><span class="pp-what">Part <a class="pp-link">P-774B</a> reserved · qty 1 · pending fit</span></div>
@@ -796,7 +796,7 @@
         <div class="spine-item">
           <div class="sn">Spine · 03</div>
           <div class="st">Search</div>
-          <div class="sx">All of it findable in seconds, asked the way you'd ask a colleague.</div>
+          <div class="sx">All of it findable, asked the way you'd ask a colleague.</div>
         </div>
       </div>
       <p class="surveyor-line reveal">When the surveyor asks, you don't assemble the answer. <em>You open it.</em></p>
@@ -1021,7 +1021,7 @@
       <div class="datum-stage light" id="sd-stage" data-state="1">
         <div class="ds-body">
           <div class="ds-frame">
-          <p class="big">Accept once. <em>Everyone after you inherits it.</em></p>
+          <p class="big">Accept links the document <em>to the record in front of you.</em></p>
         </div>
         <div class="datum-inner inner-wide">
           <div class="ds-context"><span class="bm">CelesteOS</span><span>·</span><span>Equipment</span><span>·</span><span>Stbd Chiller</span></div>
@@ -1054,10 +1054,10 @@
               <span class="sd-toast"><span class="ck">✓</span><span>Linked to this equipment record</span></span>
             </div>
             <div class="cascade">
-              <div class="cascade-row"><span class="n">1</span><span><strong>Accept once</strong> on the equipment, one click</span></div>
-              <div class="cascade-row"><span class="n">2</span><span>Every <strong>fault</strong> that references it: a persistent link, not "suggested"</span></div>
-              <div class="cascade-row"><span class="n">3</span><span>Every <strong>work order</strong>: same</span></div>
-              <div class="cascade-row"><span class="n">4</span><span>Every <strong>part</strong> in its bill of materials: same. For every crew that follows.</span></div>
+              <div class="cascade-row"><span class="n">1</span><span><strong>Accept</strong> on the equipment, one tap</span></div>
+              <div class="cascade-row"><span class="n">2</span><span>The document is <strong>linked</strong> to that record</span></div>
+              <div class="cascade-row"><span class="n">3</span><span>Linked documents are discoverable from related records via <strong>Show Related</strong></span></div>
+              <div class="cascade-row"><span class="n">4</span><span>Every accept and deny is recorded in the <strong>ledger</strong></span></div>
             </div>
           </div>
 
@@ -1218,7 +1218,7 @@
     <div class="reveal" style="max-width: 720px;">
       <div class="eyebrow">Onboarding</div>
       <h2 class="display">Your records, <span class="accent">imported as they are.</span></h2>
-      <p class="lead">Your existing manuals, PDFs, scans, and exports are indexed <strong>as they are.</strong> No migration projects. No reformatting exercises. The vessel's record is searchable from day one.</p>
+      <p class="lead">Your existing manuals, PDFs, scans, and exports are indexed <strong>as they are.</strong> No reformatting exercises. The vessel's record is searchable from day one.</p>
       <div class="how-block">
         <span class="how-k">How</span>
         <span class="how-v">Three steps: register at <strong>registration.celeste7.ai</strong>, export your PMS and drop the files as they are, and the cloud ingest does the rest: <strong>encrypted in transit.</strong></span>
@@ -1380,7 +1380,7 @@
       </div>
     </div>
     <p class="cov-plus reveal">Plus the four things you wouldn't: <em>handover generation, immutable audit trails, cross-domain search, fleet view</em>, built into the same record, not bolted on.</p>
-    <div class="reveal" style="margin-top: 2.5rem;"><a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">See the full coverage →</a></div>
+    <div class="reveal" style="margin-top: 2.5rem;"><a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">See what's covered →</a></div>
   </section>
 
   <!-- ═══ SECTION 09b · FOUNDER NOTE · the human voice before the ask ═══ -->
@@ -1437,7 +1437,7 @@
     <div class="reveal" style="max-width: 720px;">
       <div class="eyebrow">The pilot</div>
       <h2 class="display">Three to five vessels. <span class="accent">Not open access.</span></h2>
-      <p class="lead">A controlled pilot programme: dedicated setup, data import, and a direct line to the engineering team. <strong>You don't start from zero</strong>: the CelesteOS team imports your equipment register, certificates, and work-order history. CelesteOS <strong>is the planned maintenance system</strong>: scheduled maintenance, faults, certificates and handover in one record, built from what the vessel already holds.</p>
+      <p class="lead">A controlled pilot programme: dedicated setup, data import, and a direct line to the engineering team. <strong>You don't start from zero</strong>: your equipment register, certificates and work-order history are imported as they are. CelesteOS <strong>is the planned maintenance system</strong>: scheduled maintenance, faults, certificates and handover in one record, built from what the vessel already holds.</p>
     </div>
     <div class="adj-wrap reveal" id="beside-pms">
       <div class="adj-blocks">
@@ -1491,7 +1491,7 @@
       <div class="tl-step">
         <div class="td">Day 1–7</div>
         <div class="tt">Import &amp; configure</div>
-        <div class="tx">The CelesteOS team imports the data, configures the vessel structure and sets up accounts.</div>
+        <div class="tx">Records imported as they are; vessel structure configured and accounts set up.</div>
       </div>
       <div class="tl-step">
         <div class="td">Day 7–14</div>
