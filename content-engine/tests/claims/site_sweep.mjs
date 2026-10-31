@@ -8,8 +8,8 @@
 // cookies, acceptable-use, subprocessors).
 //   - /blogs/<slug> posts: the full blog gate (claims CC01–CC04 + structure CC08 + assets CC09),
 //     exactly what `node content-engine/gate.mjs blogs/<slug>.html` reports.
-//   - other pages (/, /about, /trust, /sources, /blogs): claims CC01–CC04 on channel blog
-//     (site body; negated phrases WARN per FD-29d). Page-level SEO structure is out of scope here.
+//   - other pages (/, /about, /trust, /sources, /blogs): the same full blog gate (site body;
+//     negated phrases WARN per FD-29d; an exact commercial.C* line inside data-pricing is allowed).
 //   - llms.txt: claims CC01–CC04 on channel page_meta.
 // Exit 0 when no page has a FAIL; 1 otherwise.
 import { readFileSync, existsSync } from 'node:fs';
@@ -40,11 +40,11 @@ for (const pg of pages) {
   const raw = readFileSync(join(ROOT, pg.file), 'utf8');
   const res = pg.llms
     ? checkArtifact({ channel: 'page_meta', fields: { llms_txt: raw }, claim_provenance: { claims: [] } }, { pack, skip: CONTENT_ONLY })
-    : checkArtifact({ channel: 'blog', fields: { page_html: raw } }, { pack, legacy: true, skip: pg.post ? [] : CONTENT_ONLY });
+    : checkArtifact({ channel: 'blog', fields: { page_html: raw } }, { pack, legacy: true });
   const v = legacyView(res, pack);
   const fails = v.filter(x => x.sev === 'FAIL'), warns = v.filter(x => x.sev === 'WARN');
   if (fails.length) failing++;
-  rows.push({ file: pg.file, scope: pg.llms ? 'page_meta CC01-04' : pg.post ? 'blog post: full gate' : 'site page: CC01-04', verdict: fails.length ? 'fail' : warns.length ? 'warn' : 'pass',
+  rows.push({ file: pg.file, scope: pg.llms ? 'llms.txt: page_meta CC01-04' : pg.post ? 'blog post: full gate' : 'site page: full gate', verdict: fails.length ? 'fail' : warns.length ? 'warn' : 'pass',
     fails: fails.map(x => ({ line: x.line, rule: x.rule, quote: x.quote })), warns: warns.map(x => ({ line: x.line, rule: x.rule, quote: x.quote })) });
 }
 if (process.argv.includes('--json')) console.log(JSON.stringify({ pack: { id: pack.id, sha256: pack.sha256 }, pages: rows.length, failing, rows }, null, 1));

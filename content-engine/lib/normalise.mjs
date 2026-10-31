@@ -115,7 +115,7 @@ export function normalise(input, opts = {}) {
         const v = a[1] ?? a[2];
         pieces.push(['\n', base + a.index], [v, base + a.index + a[0].length - 1 - v.length], ['\n', base + a.index + a[0].length - 1]);
       }
-      const nl = BLOCK.test(tag) ? '\n' : '';
+      const nl = BLOCK.test(tag) ? '\n' : ' ';   // inline tags separate text too (CSS-adjacent spans are separate words)
       return pieces.length ? pieces : nl;
     });
   }

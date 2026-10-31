@@ -21,7 +21,7 @@ idea → target → BRIEF → (Claude drafts) → GATE → founder review → PU
 | File | Shape | Source of truth |
 |---|---|---|
 | `lib/assets.json` | `[{id, file, chapter, supports[], never[], alt, usage}]` | parsed from `ASSET-REGISTRY.md` |
-| `lib/claims.json` | `{banned_lexicon[], banned_overclaims[], call_only[], chapters{<ch>:{safe[], banned[{pattern,why,safe}]}}}` | parsed from `claims-allowlist.md` |
+| `lib/claims.json` (+ `.sha256`) | `claims/2.0.0`: `meta`, `approved[]`, `rules[]`, `channels{}`, `synonyms{}`, `claim_triggers[]`, `hosts{}`, `internal_names[]`, `footers{}` + legacy `banned_lexicon[]`, `banned_overclaims[]`, `call_only[]`, `chapters{}` | **generated** from `claims-allowlist.md` by `gen-claims.mjs` — never hand-edit |
 | `posts/<slug>/draft.html` | BODY html only, with `{{asset:id}}` placeholders | **Claude writes this** |
 | `posts/<slug>/meta.json` | `{title, description, canonical, slug, keyword, chapter, jsonld?, updated}` | `brief.mjs` seeds it, Claude fills it |
 
@@ -62,7 +62,19 @@ that this brand exists to refuse. See `PIPELINE.md` → *Claude vs Ollama*.
 ```sh
 node run.mjs gate <slug>            # gates posts/<slug> (draft.html + meta.json)
 node gate.mjs --self-test           # PASS/FAIL fixtures prove the gate itself
+node gen-claims.mjs --check         # claims.json is in sync with claims-allowlist.md
+node tests/claims/run_corpus.mjs    # acceptance corpus: 211/211 banned blocked, 0/299 approved blocked, 7/7 homepage meta
+node tests/claims/site_sweep.mjs    # every live page + llms.txt through the gate
 ```
+
+The same checks run for every channel (blog, page_meta, email, linkedin, meta,
+google_ads, social_generic): `node gate.mjs <file> --channel <c> [--json]`, or
+`node gate.mjs --artifact <input.json>` for a full ClaimsCheckInput (JSON result in
+the ReviewRecord check shape; exit 0 pass|warn, 1 fail, 3 abstain). Import
+`lib/claims-check.mjs` (`checkArtifact`, `loadPack`) to call it in-process. Rules run on
+normalised text (tags, entities, curly quotes, hyphens, numbers and currency folded).
+To change a claim or rule, edit `claims-allowlist.md` and run `node gen-claims.mjs`;
+the gate refuses to run if the two files drift.
 
 The gate fails (exit 1) on any banned-lexicon / banned-overclaim / call-only
 (pricing) match, the dead host `verify.celeste7.ai`, internal code/file names,
@@ -115,12 +127,17 @@ pipeline. Reads the JARVIS GSC OAuth token; override with `GSC_OAUTH_TOKEN`.
 content-engine/
   run.mjs              orchestrator (new / gate / ship / score)
   brief.mjs            step 1 — writes the brief Claude drafts against
-  gate.mjs             step 3 — the truth + brand firewall (+ --self-test)
+  gate.mjs             step 3 — the truth + brand firewall CLI (+ --self-test, --channel, --json, --artifact, --blind)
+  gen-claims.mjs       claims-allowlist.md → lib/claims.json + .sha256 (--check)
+  lib/claims-check.mjs the claims check library (every channel; pure, importable)
+  lib/normalise.mjs    text normaliser with offset map
+  lib/check.mjs        blog-gate view (legacy checkText)
+  tests/claims/        acceptance corpus + run_corpus.mjs + site_sweep.mjs
   publish.mjs          step 4 — gate-guarded render → ../blogs + ../images + sitemap
   scorecard.mjs        step 5 — GSC feedback loop → scorecard-latest.json
   templates/post.html  the page shell publish.mjs injects into
   lib/assets.json      parsed asset registry (the {{asset:}} resolver)
-  lib/claims.json      parsed truth gate (lexicon / overclaims / call-only / chapters)
+  lib/claims.json      GENERATED truth gate (approved ids, rules, channels; legacy keys kept)
   assets/              the 15 QA'd product screenshots
   posts/<slug>/        brief.md (generated) · draft.html (Claude) · meta.json
   ASSET-REGISTRY.md    human source for lib/assets.json
