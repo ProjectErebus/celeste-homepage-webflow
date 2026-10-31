@@ -116,8 +116,8 @@ export function parse(md) {
       const r = m && m[2].match(RX);
       if (!m || !r) { errors.push(`L${n}: bad rule line: ${l}`); continue; }
       const flagsWords = m[2].slice(r[0].length).trim().split(/\s+/).filter(Boolean);
-      for (const w of flagsWords) if (!['editorial', 'domain_guard'].includes(w)) errors.push(`L${n}: unknown rule option ${w}`);
-      out.rules.push({ id: m[1], regex: r[1], flags: r[2], editorial: flagsWords.includes('editorial'), domain_guard: flagsWords.includes('domain_guard'), line: n });
+      for (const w of flagsWords) if (!['editorial', 'domain_guard', 'selfneg'].includes(w)) errors.push(`L${n}: unknown rule option ${w}`);
+      out.rules.push({ id: m[1], regex: r[1], flags: r[2], editorial: flagsWords.includes('editorial'), domain_guard: flagsWords.includes('domain_guard'), selfneg: flagsWords.includes('selfneg'), line: n });
     } else if (['lexicon', 'overclaims', 'call_only', 'triggers', 'internal_names'].includes(kind)) for (const [l, n] of rows) {
       const r = l.trim().match(RX);
       if (!r) { errors.push(`L${n}: bad ${kind} line: ${l}`); continue; }
@@ -160,7 +160,7 @@ export function build(mdBytes, genBytes) {
     try { new RegExp(r.regex, r.flags); } catch (e) { errors.push(`rule ${r.id} L${r.line}: regex does not compile: ${e.message}`); }
     if (/\.\*|\.\+/.test(r.regex)) errors.push(`rule ${r.id} L${r.line}: unbounded .* / .+ (use [a-z ]{0,30})`);
     rules.push({ id: r.id, check: reg.check, family: reg.family, regex: r.regex, flags: r.flags, why: reg.why, safe: reg.safe,
-      ...(r.editorial ? { editorial: true } : {}), ...(r.domain_guard ? { domain_guard: true } : {}) });
+      ...(r.editorial ? { editorial: true } : {}), ...(r.domain_guard ? { domain_guard: true } : {}), ...(r.selfneg ? { selfneg: true } : {}) });
   }
   for (const id of Object.keys(out.rule_register)) if (!out.rules.some(r => r.id === id)) errors.push(`rule register id ${id} has no regex`);
   for (const k of ['lexicon', 'overclaims', 'call_only']) for (const x of out.legacy[k]) { try { new RegExp(x); } catch (e) { errors.push(`legacy ${k} /${x}/: ${e.message}`); } }

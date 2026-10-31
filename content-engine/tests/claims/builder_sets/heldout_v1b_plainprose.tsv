@@ -1,0 +1,41 @@
+case_id	rule_id	family	channel	expect	text
+HP01	-	plain_prose	blog	pass	For how long has the alarm been sounding on the port generator?
+HP02	-	plain_prose	blog	pass	Clear your inbox before the guests board.
+HP03	-	plain_prose	blog	pass	We create a shared folder for each refit.
+HP04	-	plain_prose	blog	pass	Spend real time with the crew before you change procedures.
+HP05	-	plain_prose	blog	pass	The crack propagated along the weld seam.
+HP06	-	plain_prose	blog	pass	A cascading failure took out both chillers.
+HP07	-	plain_prose	blog	pass	Raise a purchase order once the chief approves the quote.
+HP08	-	plain_prose	blog	pass	The engineer reads the manual in full before the first service.
+HP09	-	plain_prose	blog	pass	Smart owners budget for the yard period early.
+HP10	-	plain_prose	blog	pass	Optimise the watch rota around the charter schedule.
+HP11	-	plain_prose	blog	pass	The yard offered a discount on haul-out.
+HP12	-	plain_prose	blog	pass	The class surveyor waived the inspection after reviewing photos.
+HP13	-	plain_prose	blog	pass	Running costs for a 50m yacht vary widely by itinerary.
+HP14	-	plain_prose	blog	pass	The pump failed again within two weeks of the overhaul.
+HP15	-	plain_prose	blog	pass	Port State Control inspectors focus on ISM documentation.
+HP16	-	plain_prose	blog	pass	Engineers sometimes keep a personal notebook alongside the logbook.
+HP17	-	plain_prose	blog	pass	Every engineer on board signs the safety induction.
+HP18	-	plain_prose	blog	pass	All crew attend the monthly drill.
+HP19	-	plain_prose	blog	pass	The fault was logged and the chief engineer reviewed it the same day.
+HP20	-	plain_prose	blog	pass	The manufacturer replied within a week.
+HP21	-	plain_prose	blog	pass	Rest periods are recorded under MLC rules by the captain.
+HP22	-	plain_prose	blog	pass	Satellite connectivity is expensive at sea.
+HP23	-	plain_prose	blog	pass	The captain said the new chief got up to speed quickly.
+HP24	-	plain_prose	blog	pass	The watermaker is offline until the membrane arrives.
+HP25	-	plain_prose	blog	pass	Uptime of the stabilisers matters most on charter.
+HP26	-	plain_prose	blog	pass	The previous chief left the yacht in May.
+HP27	-	plain_prose	blog	pass	Ask the yard for the warranty terms in writing.
+HP28	-	plain_prose	blog	pass	The engine room runs 24 hours a day on passage.
+HP29	-	plain_prose	blog	pass	A handover written the night before departure misses context.
+HP30	-	plain_prose	blog	pass	Many yachts still track certificates in a spreadsheet.
+HP31	-	plain_prose	blog	pass	The incoming engineer often finds faults the previous chief never closed.
+HP32	-	plain_prose	blog	pass	Cutting corners on maintenance shows up at survey.
+HP33	-	plain_prose	blog	pass	The insurer asked for evidence of the last service.
+HP34	-	plain_prose	blog	pass	Our chief engineer believes in checking the strainers weekly.
+HP35	-	plain_prose	blog	pass	The parts list was copied to every work order by hand.
+HP36	-	plain_prose	blog	pass	Downtime during charter season costs goodwill.
+HP37	-	plain_prose	blog	pass	The engineer migrated the old logs into a new spreadsheet.
+HP38	-	plain_prose	blog	pass	The guest Wi-Fi went down during the crossing.
+HP39	-	plain_prose	blog	pass	Records that can be retroactively modified cannot serve as evidence.
+HP40	-	plain_prose	blog	pass	Proof, when proof matters.

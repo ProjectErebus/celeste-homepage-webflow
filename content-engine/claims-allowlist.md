@@ -376,32 +376,41 @@ Check ids: **CC01** banned lexicon · **CC02** banned overclaim · **CC03** call
 | K07 | CC03 | call-only: public trial | The trial is offered 1:1 by email only (FD3). | remove — commercial.C05 on email only |
 
 ```rules
+# ── Concept patterns (v3). Text is normalised first: lowercase, NFKC + confusables, quotes/dashes folded,
+# ── hyphens between words → space, & → and, ! ? ; : → comma, numbers/currency folded.
+# ── Gaps are bounded word runs ([a-z0-9' ]{0,N}) so a match never crosses a comma or a sentence.
 # U03/U36/U04 — lexicon (CC01)
 U03 /\bai\b/ editorial domain_guard
 U03 /artificial intelligence/ editorial
-U03 /machine ?learning/ editorial
+U03 /machine ?learning|deep learning|neural (net\w*|search|engine)|\bllms?\b|large language models?|\bgpt\w*\b|chat ?gpt|\bco ?pilot\b|predictive analytics|cognitive (search|engine)/ editorial
 U03 /\bml\b/ editorial domain_guard
-U03 /\bsmart\b/
+U03 /\bsmart\b[a-z ]{0,8}\b(pms|systems?|software|platform|search|maintenance|alerts?|handovers?|tools?|apps?|engines?|assistants?|features?|links?|linking|suggestions?|records?|logbook|way)\b/
 U03 /\bautomat\w*/
-U03 /\bauto ?(generat|add|populat|link|propagat|alert|execut|assembl|compil|writ)\w*/
+U03 /\bauto ?(generat|add|populat|link|propagat|alert|execut|assembl|compil|writ|fill|draft|sync|import|tag|categori|classif|attach)\w*/
 U03 /\bseamless\w*/
-U03 /\boptimi[sz]\w*/
+U03 /\boptimi[sz]\w*\b[a-z' ]{0,12}\b(maintenance|pms|handovers?|operations|vessels?|fleets?|records|workflows?|uptime|performance|engine rooms?|everything)\b/
 U03 /\beffortless\w*/
 U03 /\bmagic\w*/
 U03 /\brevolutio\w*/
 U03 /game ?chang\w*/
 U03 /\bintelligen(t|ce)\b/ editorial
-U03 /\blearns? from\b/
+U03 /\blearns? from\b|\b(self ?learning|self ?improving|gets smarter)\b/
+U03 /\b(it|celesteos|the system|the software|the platform)\b[a-z' ]{0,10}\b(understands?|thinks?|reasons?|knows?)\b[a-z' ]{0,10}\b(your|the) (vessel|boat|yacht|engine room|systems?|crew|equipment)\b/
 U03 /entity extraction|semantic search|\bvectors?\b|\bembeddings?\b|\bembedded (using|with|by|via|as)\b|cosine similarity|\d+ dimension/
 U04 /\bhallucinat\w*/
+U04 /\b(never|doesn'?t|does not|won'?t|will not|cannot|can'?t) (make|makes|invent|invents|guess|guesses) (things|anything|stuff|answers|it) up\b|\bnever (invents|guesses)\b|\bmade ?up (answers|results|facts)\b/ selfneg
 U36 /cutting ?edge/
 U36 /\bnext ?gen(eration)?\b/
 U36 /\bleverag\w*/
-U36 /\bdon'?t worry\b/
+U36 /\bdon'?t worry\b/ selfneg
 U36 /\bhang tight\b/
 U36 /\bi (think|believe)\b/
-# overclaims (CC02)
-U01 /\b(write|draft|build|create|assemble|compile|generate|fill|populate|complete)s? itself\b/
+U36 /\b(world ?class|best in class|state of the art|industry leading|market leading|ground ?breaking|best of breed|unparalleled|unrivall?ed|supercharg\w*|disruptive (technology|platform|software|solution)|disrupts? the (industry|market)|next level)\b/
+# U01 — handover auto-write
+U01 /\b(write|draft|build|create|assemble|compile|generate|fill|populate|complete|prepare|produce|finish|organi[sz]e|update)s? (itself|themselves)\b/
+U01 /\b(puts?|put) (itself|themselves) together\b|\b(it|they) (self|it) ?(writes?|drafts?|builds?)/
+U01 /\bhandovers?\b[a-z0-9' ,]{0,40}\b(on its own|by itself|for you|automatically|without (you|lifting|typing|writing|any effort|effort)|so you don'?t have to|while you (sleep|work|rest)|already (written|drafted|done|prepared|complete|completed|finished|there|waiting|ready)|ready and waiting|done for you|zero effort|no effort|(you )?never (had|have|need) to write|(finished|done|written|drafted|ready) before you)\b/
+U01 /\b(already (written|drafted|done|prepared|complete|finished)|ready and waiting|zero effort|no effort|effortless|done for you|written for you|drafted for you|prepared for you|produced for you|generated for you|(we|we'll|we will) (write|draft|prepare|produce|compile|generate|build|create|do)|(the system|celesteos|the software|the platform|the app|it) (writes?|drafts?|prepares?|produces?|generates?|compiles?|builds?|creates?|assembles?|does)( up)?)\b[a-z0-9' ]{0,40}\bhandovers?\b/
 U01 /(assembled|compiled|generated) automatically/
 U01 /not assembled manually/
 U01 /already written/
@@ -409,148 +418,177 @@ U01 /watch it assemble/
 U01 /\bassembled? from\b|\bassembles from\b/
 U01 /\bput together for you\b|(assembled|written|compiled|put together|built) [a-z ]{0,20}(on its own|by itself)/
 U01 /notes become (a|the) [a-z ]{0,20}handover/
-U01 /\bwe create\b/
-U01 /\bgenerated from\b/
+U01 /\byou review,? we create\b|\bwe create\b[a-z ]{0,15}\bhandovers?\b/
+U01 /\bgenerated from (operational|your|the vessel|logged|work)/
 U01 /\bsystem already (has|knows)\b/
-U02 /every (answer|result) (cites|is cited)/
-U02 /every domain/
-U02 /all \d+ domains/
-U02 /\bsearch(es)? every (manual|document|record|domain)/
-U02 /every action (is|gets) (sealed|signed|verified)|seals every action/
-U05 /real ?time/
-U05 /sub ?second/
-U05 /\b\d+ ?(ms|milliseconds?)\b/
-U05 /always current/
-U06 /knowledge graph/
-U06 /walks the [a-z ]{0,30}graph/
-U06 /\b(map|maps|mapped|mapping|finds?|found|identif(y|ies|ied)|pinpoint\w*|surfac\w*|reveal\w*|shows?|showing|detect\w*|uncover\w*|expos\w*)( (to|you|for you|the|its|their|a|an|any|every|recurring|systemic|underlying|hidden|real|true|likely|probable))* root causes?\b/
+# U02 — coverage absolutes
+U02 /every (answer|result|response)[a-z' ]{0,15}\b(cites?|cited|comes with|has|shows|links? to|with|backed by|includes) (to |with )?(its |a |the )?(source|sources|citation|reference)/
+U02 /\bevery domain|all \d+ domains|\b(every|all) (systems?|domains?|data sources?)\b/
+U02 /\b(search\w*|finds?|query|queries|index\w*|covers?|connects?|unif\w*|reads?)\b[a-z' ]{0,20}\b(every|all)( of)?( your| the)?( [a-z]+)? (manuals?|documents?|records?|files?|logs?|drawings?|data|systems?|departments?|sources?)\b/
+U02 /\b(nothing|no (record|document|file|detail|fault|entry|item))\b[a-z' ]{0,15}\b(is |gets |will be )?(ever )?(missed|lost|overlooked|slips|falls through|left behind|forgotten)\b/ selfneg
+U02 /\b(complete|full|total|100%|entire|end to end|360) (coverage|visibility)\b/
+U02 /\b(seals?|sealed|signs?|verif(y|ies)|hash(es)?|proves?)\b (every|all|each)( single)? (actions?|changes?|edits?|events?|entr(y|ies)|clicks?|keystrokes?)\b|every action\b[a-z' ]{0,15}\b(is|are|gets) [a-z ]{0,20}\b(sealed|signed|verified)\b/
+U02 /\b(all|every)( of)?( your| the)? (vessel |ship |boat )?(data|information|knowledge)\b[a-z ]{0,12}\b(in (one|1)|unified|searchable|in a single|connected)\b|\b(every|all)( the| your)? (documents?|manuals?|records?|files?|drawings?) (on board|aboard|in one place)\b|\beverything (on board|aboard)\b/
+# U05 — latency
+U05 /\breal ?time\b[a-z ]{0,12}\b(data|sync\w*|updates?|search|monitoring|views?|visibility|tracking|alerts?|status|feeds?|indexing|information|answers|results)\b|\bin real ?time\b/
+U05 /sub ?seconds?/
+U05 /\b\d+ ?(ms|milliseconds?)\b|\bmilliseconds?\b/
+U05 /\balways (current|up to date|in sync|fresh)\b/
+U05 /\b(in|under|less than|within|below) (a|1) (second|sec)\b|\b(fraction|split) of a second\b|\bsplit second\b/
+U05 /\b(lightning|blazing|blisteringly|insanely|super|ultra) ?(fast|quick|speed)\b/
+U05 /\b(zero|no|without) (lag|latency|delays?|waiting|spinning wheel|load(ing)? times?)\b/ selfneg
+U05 /\blive (sync|updates?|data feed)\b|\binstant (search|results|answers|sync|updates?|lookups?|access)\b/
+U05 /\bfaster than (you can|the speed)/
+# U33 — absolute latency
+U33 /\b(searchable|findable|indexed|index\w*|available|visible|in search|in results|retrievable|synced|shared|live)\b[a-z' ]{0,30}\bthe (moment|instant|second) (it'?s|it is|you|they|anything|something|a record|an entry|the entry|a note)\b[a-z' ]{0,10}\b(saved|logged|written|typed|entered|uploaded|created|recorded|hit|press|click|tap|upload|save|log|write|type|enter)\b|\bthe (moment|instant|second) (it'?s|it is|you|they|anything|something|a record|an entry|the entry|a note)\b[a-z' ]{0,10}\b(saved|logged|written|typed|entered|uploaded|created|recorded|hit|press|click|tap|upload|save|log|write|type|enter)\b[a-z' ]{0,20}\b(it'?s |it is |they'?re |they are )?(searchable|findable|indexed|available|visible|in search|retrievable|synced|shared|live)\b|\bthe moment it'?s (written|saved|logged)\b/
+U33 /\b(searchable|findable|indexed|available|visible|appears?|show(s)? up|in search|in results|retrievable|shared|synced)\b[a-z' ]{0,15}\b(instantly|immediately|straight away|right away|at once|in no time|without delay|with no delay|in seconds|in real time)\b/
+U33 /\b(instantly|immediately|straight away|right away) (searchable|findable|indexed|available|visible|retrievable|shared|synced)\b/
+U33 /\b(no|zero|without) (indexing|processing|upload|sync) (delay|lag|wait|time)\b/ selfneg
+U33 /\b(searchable|findable|indexed|available|visible|in search)\b[a-z' ]{0,10}\b(as soon as|the moment|the second|once|when|right after|straight after|just after|immediately after|directly after) (you|it'?s|it is|they)\b[a-z' ]{0,8}\b(hit|press\w*|click\w*|tap\w*|sav\w*|log\w*|typ\w*|enter\w*|upload\w*|writ\w*)/
+U33 /\btype it,? find it\b/
+U33 /\binstant(ly|aneously)?\b[a-z ]{0,10}\b(search\w*|find\w*|findable|available|answers?|results?|access|sync\w*|updat\w*|index\w*|visible)\b|\b(search\w*|findable|available|answers?|results?|index\w*|visible|appears?)\b[a-z ]{0,10}\binstant(ly|aneously)\b/
+# U06 — graph / causal
+U06 /knowledge graph|\b(vessel|equipment|data|entity|relationship) graph\b/
+U06 /\b(walks?|travers\w*|navigat\w*|explor\w*) (the |your |a )?[a-z ]{0,15}graph/
+U06 /\b(map|maps|mapped|mapping|finds?|found|identif(y|ies|ied)|pinpoint\w*|surfac\w*|reveal\w*|shows?|showing|detect\w*|uncover\w*|expos\w*|diagnos(e|es|ed) automatically)( (to|you|for you|the|its|their|a|an|any|every|recurring|systemic|underlying|hidden|real|true|likely|probable))* root causes?\b/
+U06 /\b(maps?|mapped|mapping|links?|linked|ties|traces?|traced)\b[a-z ]{0,25}\bto (its |the |a |their )?root causes?\b/
 U06 /\bget(s|ting)? (you )?(straight )?to the root cause/
 U06 /\broot causes? (is |are )?(visible|surfaced|identified|found|mapped|revealed|shown|for you|automatically|instantly|in seconds|at a glance|in 1 view|in a single view)/
-U07 /sealed pdf/
-U07 /structured pdf/
-U07 /(export|download)\w* [a-z ]{0,30}\bpdf\b/
-U07 /\b(one|1) ?click [a-z ]{0,30}(bundle|pack|report|export)/
-U07 /inspection bundle|bundle export/
-U08 /\b30\/14\/7\b/
-U09 /works? offline/
-U09 /offline (mode|first|access)/
-U09 /syncs? when (the )?connection/
-U10 /onboard(ed|ing)? in (hours|minutes|a single|an afternoon|\d+)/
-U10 /(searchable|live|onboarded|running|ready) on day 1\b/
-U10 /\b(live|running|onboarded|ready|set up|deployed|operational|in use|use)\b[a-z ]{0,30}within 2 weeks/
-U10 /up and running in/
-U10 /in (a single|1) afternoon/
-U11 /(alongside|beside|next to|on top of|over) (your|the) [a-z' ]{0,30}pms\b/
-U11 /layer over/
-U11 /nothing to (replace|migrate)/
-U11 /keep amos/
-U11 /you already run/
-U11 /class society approvals/
-U11 /technical intelligence system/
-U11 /rip out/
-U11 /sits alongside/
-U11 /certified pms/
-U11 /what does this replace/
-U12 /gdpr compliant/
-U12 /soc ?(2|ii) (certified|compliant|certification)/
-U12 /\b(class|type) approved/
-U12 /approved by class/
-U13 /zero data retention/
-U13 /never leaves/
-U13 /no third party (ever )?sees/
-U14 /\b(military|bank) ?(grade|level)\b/
+# U07 — sealed PDF / bundle export
+U07 /sealed pdf|structured pdf/
+U07 /(export|download)\w* [a-z ]{0,30}\b(pdfs?|bundles?|binders?|dossiers?)\b/
+U07 /\b(one|1|single) ?(click|tap)\b[a-z ]{0,30}\b(bundles?|packs?|reports?|exports?|pdfs?|binders?)\b/
+U07 /\b(inspection|audit|survey|class|psc|surveyor) ?(ready )?(bundles?|packs?|binders?|dossiers?)\b|\bbundle export\b|\b(inspection|audit|survey) ready (pdf|export|report)/
+# U08 — certificate alert schedule
+U08 /\b30\/14\/7\b|\b\d+\/\d+\/\d+ ?(days?|weeks?|months?)\b|\b(alerts?|notif\w*|warnings?|reminders?)\b[a-z ]{0,12}\d+\/\d+\/\d+\b/
+U08 /\b(alerts?|notif\w*|warnings?|reminders?)\b(?! at least)[a-z ]{0,10}\b(at |from |starting )?\d+ (days?|weeks?|months?) (before|ahead|prior|out|in advance)\b/
+# U09 — offline
+U09 /works? offline|\boffline\b[a-z ]{0,12}\b(mode|first|access|capab\w*|ready|support\w*|use|too|as well)\b|\b(works?|use|usable|available|accessible|capab\w*|ready|functional|runs?|full)\b[a-z ]{0,12}\boffline\b/
+U09 /\b(works?|working|keeps? (working|running|going)|runs?|running|functional|operat\w*|usable|use it|no problem|carry on|continue\w*|designed to work|need(ed)?|required|fine)\b[a-z0-9' ]{0,40}\b(no|without|zero|lose|lost|loses|losing|no need for|even with no|with no|without any)\b[a-z' ]{0,12}\b(internet|connection|connectivity|signal|network|wi ?fi|satellite|vsat|starlink|bandwidth|data link|coverage)\b/
+U09 /\b(no|without|zero|lose|lost|loses|losing|no need for|with no|without any)\b[a-z' ]{0,12}\b(internet|connection|connectivity|signal|network|wi ?fi|satellite|vsat|starlink|bandwidth|data link|coverage)\b[a-z0-9' ,]{0,30}\b(works?|working|keeps? (working|running|going)|runs?|functional|operat\w*|usable|no problem|carry on|continue\w*|needed|required|fine)\b/ selfneg
+U09 /\b(internet|connection|connectivity|signal|network|wi ?fi|satellite( link)?|vsat|starlink|link)\b[a-z' ]{0,12}\b(is |goes )?(down|drops?|dropped|fails?|lost|out|outage|cuts? out)\b[a-z0-9' ,]{0,40}\b(works?|working|keeps? (working|running|going)|runs?|functional|operat\w*|usable|no problem|carry on|continue\w*|still)\b|\b(works?|working|keeps? (working|running|going)|runs?|functional|operat\w*|usable|carry on|continue\w*)\b[a-z0-9' ]{0,40}\b(internet|connection|connectivity|signal|network|wi ?fi|satellite( link)?|vsat|starlink|link)\b[a-z' ]{0,12}\b(is |goes )?(down|drops?|dropped|fails?|lost|outage|cuts? out)\b/
+U09 /\b(sync\w*|upload\w*|catch\w* up|updat\w*)\b[a-z ]{0,30}\b(when|once|as soon as|after)\b[a-z' ]{0,20}\b(connection|signal|internet|back online|reconnect\w*|online again|restored)\b/
+# U10 — onboarding speed
+U10 /\b(onboard\w*|on board(ed|ing)|set ?up|setup|install\w*|deploy\w*|implement\w*|roll ?out|rolled out|go(es|ing)? live|went live|live|up and running|operational|ready|get started|started|start using|in use|configured|activated)\b[a-z' ]{0,20}\b(in|within|under|by|on|over) (\d+ (hours?|minutes?|mins?|hrs?|days?|weeks?)|hours|minutes|(a|an|1|one|a single|single) (hour|day|week|morning|afternoon|weekend|evening)|day 1|the same day|same day|today|tomorrow|overnight|no time|monday|tuesday|wednesday|thursday|friday|a few (hours|days|minutes))\b/
+U10 /\b(ready|live|onboarded|running|set up|setup|operational|deployed)\b[a-z ]{0,5}\b(same day|today|tomorrow|overnight)\b/
+U10 /\b(same|next) day (onboarding|setup|set up|go live|deployment|implementation|activation)\b|\b(fast|quick|rapid|speedy|instant|express|zero|easy|painless|effortless) (onboarding|setup|set up|deployment|implementation|rollout|go live)\b/
+U10 /(searchable|live|onboarded|running|ready) on day 1\b|\bup and running in\b|\bin (a single|1) afternoon\b/
+U10 /\b(onboarding|setup|set up|implementation|deployment)\b[a-z ]{0,10}\b(takes|in|under) (minutes|hours|\d+ (minutes|hours|mins|hrs))\b/
+# U11 — beside-PMS / no migration
+U11 /\b(keep|keeping|retain|stay with|stick with|continue (using|with)|still use|carry on using)\b[a-z' ]{0,20}\b((your |the )?(existing|current|old|legacy|present)[a-z' ]{0,10}\b(pms|systems?|software|tools?)|pms|amos|idea|voly|shipnet)\b/
+U11 /\b(on top of|alongside|beside|next to|over|plugs? (in|into|straight into)|bolts? on( to)?|integrat\w* with|works? (with|alongside)|connects? (to|with)|layer(ed)? (on|over)|sits? (beside|on top|alongside|next to))\b[a-z' ]{0,20}\b((your|the|any) (existing|current|old|legacy|present)[a-z' ]{0,10}\b(pms|systems?|software|tools?)|(pms|systems?|software) you (already )?(use|have|run|know)|amos|idea|voly|shipnet|(your|the) [a-z' ]{0,20}pms)\b/
+U11 /\b(add ?on|addon|companion|plug ?in|plugin|extension|overlay|layer)\b[a-z ]{0,15}\b(to|for|over)( your| the)?( existing| current| old| legacy)?[a-z ]{0,10}\b(pms|amos|idea|maintenance (system|software))\b/
+U11 /\bno (need (to|for) )?(migrat\w*|switch\w*|replac\w*|rip and replace|changeover|change ?over|data migration)\b|\bnothing to (replace|migrate|switch|change)\b|\bwithout (migrating|switching|replacing)( from| away from)?( your| the)? [a-z ]{0,15}\b(pms|systems?|software|amos|idea)\b/ selfneg
+U11 /\b(don'?t|do not|never|no) (have|need|needs) to (switch|replace|migrate|change|abandon|give up|leave)\b/ selfneg
+U11 /layer over|keep amos|you already run|class society approvals|technical intelligence system|rip out|certified pms|what does this replace/
+# U12 — certification
+U12 /(?<!not )(?<!not a )\b(dnv( gl)?|lloyd'?s( register)?|lr|abs|american bureau of shipping|bureau veritas|bv|rina|class ?nk|nippon kaiji|korean register|ccs|irs|mca|uscg|flag state|class|classification society|class societ(y|ies)|iso ?\d*|soc ?(2|ii)( type (1|2|i|ii))?|gdpr|cyber ?essentials|hipaa|pci( dss)?)\b[a-z0-9' ]{0,12}\b(approved|certified|accredited|endorsed|recogni[sz]ed|validated|type approved|compliant)\b/
+U12 /\b(achieved|holds?|has|have|granted|awarded|received|obtained|earned|with)\b[a-z0-9' ]{0,25}\b(dnv|lloyd'?s|abs|bureau veritas|rina|classnk|class|iso ?\d*|soc ?(2|ii)|gdpr)\b[a-z0-9' ]{0,12}\b(type approval|approval|certification|accreditation|compliance)\b/
+U12 /\b(approved|certified|accredited|endorsed|recogni[sz]ed|validated|compliant|complies)\b( for [a-z ]{0,20})? (by|with|under|to) [a-z' ]{0,12}\b(dnv|lloyd'?s|abs|bureau veritas|bv|rina|class|classnk|mca|uscg|flag|iso|imo|gdpr|soc ?(2|ii)|hipaa)\b/
+U12 /\b(class|type) approved\b|\bapproved by class\b/
+# U13 — data retention
+U13 /zero data retention|\bno (data )?(retention|logging)\b/
+U13 /\b(your )?(data|records|information)\b[a-z' ]{0,20}\b(never|doesn'?t|does not|won'?t|will not|can'?t)\b[a-z' ]{0,10}\b(leaves?|leave|shared|sold|seen|accessed|touched)\b/ selfneg
+U13 /\bnever leaves\b|\bno (one|third part(y|ies)|other company|vendor|outsider)\b[a-z' ]{0,20}\b(ever )?(sees?|access\w*|reads?|touch\w*|can see)\b/ selfneg
+# U14 — hype security
+U14 /\b(military|bank|government|enterprise|nsa|defen[cs]e)[ -]?(grade|level|class|strength)\b|\b(unhackable|hack ?proof|unbreakable)\b|\bbullet ?proof (security|encryption)\b/
 U15 /verify\.celeste7\.ai/
-U16 /read tracking/
-U16 /for how long/
-U16 /read (it )?in full/
-U16 /measured duration/
-U16 /read events?/
-U16 /evidence of awareness/
-U17 /hours of rest/
-U17 /shopping lists?/
-U17 /purchase orders?/
-U17 /\breceiving (page|module|workflow|screen|log|ocr)\b/
-U17 /\binbox\b|(outlook|exchange) integration|email (integration|ingest\w*|sync)/
-U17 /\bhor\b/
-U17 /\bpo \d/
-U17 /delivery note/
-U17 /connects? your (email|inbox)/
-U18 /cascad\w*/
-U18 /propagat\w*/
-U18 /already attached/
+# U16 — read tracking
+U16 /\bread (tracking|receipts?|confirmations?|status)\b|\bread events?\b|\bmeasured duration\b|\bevidence of awareness\b/
+U16 /\b(track\w*|log\w*|record\w*|knows?|captur\w*|measur\w*|proves?|shows?|see|tells? you)\b[a-z' ,]{0,20}\b(who|whether|if)\b[a-z' ]{0,15}\b(read|opened|viewed|seen|looked at)\b/
+U16 /\b(open\w*|read\w*|view\w*|access\w*|look\w*)\b[a-z' ,]{0,25}\bfor how long\b|\b(duration|how long|time spent)\b[a-z' ]{0,20}\b(reading|viewing|on (the|each|a) (document|page|manual|sop)|of access|they (read|spent))\b|\b(access|views?|opens?|reads?)\b[a-z ]{0,10}\b(with|and) (its |their )?duration\b/
+U16 /\b(whether|if|who|track\w*|log\w*|record\w*|know\w*|shows?|proof)\b[a-z' ]{0,25}\bread (it )?in full\b/
+# U17 — retired features
+U17 /\b(track\w*|log\w*|manag\w*|raise\w*|creat\w*|generat\w*|handl\w*|record\w*|built in|includes?)\b[a-z ]{0,15}\b(hours of rest|rest hours|work and rest hours|purchase orders|receiving|delivery notes?|procurement)\b|\b(hours of rest|rest hours|purchase orders?|receiving|procurement)\b[a-z ]{0,6}\b(module|tracking|tracker|workflow|feature|page|screen|log)\b|\bshopping lists?\b|\bhor\b|\bpo \d/
+U17 /\b(read|reads|ingest\w*|import\w*|pull\w*|sync\w*|connect\w*|scan\w*|files?|sorts?|forward\w*|parses?)\b[a-z ]{0,10}\b(your |the |crew |all )?(inbox|e ?mails?|mailbox|outlook|gmail)\b|\b(outlook|exchange|gmail|inbox|e ?mail) (integration|ingest\w*|sync)\b/
+# U18 — propagation
+U18 /\bcascad\w*\b[a-z ]{0,20}\b(to|across|through|into)\b[a-z ]{0,15}\b(every|all|records?|faults?|work orders?|entit\w*|linked|related)|\b(links?|linked|documents?|manuals?|accept\w*)\b[a-z ]{0,20}\bcascad\w*|\bpropagat\w*\b[a-z ]{0,15}\b(everywhere|to every|to all|across|through)\b|\b(documents?|manuals?|links?|it)\b[a-z ]{0,10}\bpropagat\w*/
+U18 /\balready attached\b/
+U18 /\b(flows?|spread(s|ing)?|ripples?|carri(es|ed)|carry|push(es|ed)?|appl(y|ies|ied)|cop(y|ies|ied)|attach(es|ed)?|link(s|ed)?|sync\w*|updat(e|es|ed)|reflect\w*|replicat\w*|mirror\w*|shows? up|appears?|inherit\w*)\b[a-z' ]{0,25}\b((to|across|on|in|through|throughout|onto) )?(every|all|each|the whole|the entire)( of)?( the| your)?( linked| related| connected| other)?[a-z ]{0,12}\b(records?|faults?|work orders?|parts?|equipment|crews?|pumps?|places?|vessel|linked|related|connected)\b(?! ?(by hand|manually|one by one))/
+U18 /\b(appl(y|ies|ied)|spreads?|propagates?|shows? up|flows?|available) everywhere\b|\baccept(ed|ing)? once\b|\b(approve|confirm|link|attach|accept)\w*( it| the [a-z]+)? once\b[a-z ,]{0,30}\b(everywhere|every|all|everyone|for good|forever)\b/
+U18 /\b(one|1|single) (click|tap|approval|accept)\b[a-z ]{0,10}\b(links?|applies|updates?|attaches|pushes|spreads|copies|syncs)\b[a-z ]{0,15}\b(across|everywhere|every|all)\b/
+U18 /\b(everyone|every crew|the next crew|all future crews?|every engineer)\b[a-z ]{0,25}\binherits? (it|the link|the links|that|this|the document|the manual|them)\b/
+# U20 — support speed
 U20 /hours,? not days/
-U20 /24\/7/
-U20 /round the clock/
-U20 /(reply|replies|response|respond)\w* within (an? )?hours?/
-U21 /uptime guarantee/
-U21 /guaranteed (uptime|sla|availability)/
-U21 /uptime (is )?guaranteed/
-U21 /\bsla\b/
-U21 /service credits?/
-U22 /\b(we|our team) (migrate|import)\w*/
-U22 /migration (is )?included/
-U23 /\bwaive[sd]?\b/
-U23 /onboarding fee/
-U24 /nothing to install/
-U24 /no (app )?installation/
-U24 /zero install/
+U20 /\b(support|help|engineers?|team|us|we|available|on call|responses?|replies)\b[a-z' ]{0,20}\b(24\/7|24 hours a day|7 days a week|day and night|night and day|round the clock|any hour|every hour)\b|\b(24\/7|round the clock|24 hours a day)\b[a-z' ]{0,20}\b(support|help|engineers?|team|response|cover|service)\b/
+U20 /\b(reply|replies|replied|response|responds?|respond\w*|answer\w*|get(s)? back|support)\b[a-z' ]{0,15}\b(within|in|under) (minutes|\d+ (minutes?|mins?|hours?|hrs?)|an? (hour|few hours|couple of hours)|(the|1) hour|hours|the same day|same day)\b/
+U20 /\b(same|next) (day|hour) (response|reply|replies|support|answers?)\b|\b(instant|immediate|rapid|lightning|priority) (support|responses?|replies)\b/
+# U21 — uptime / SLA
+U21 /\b(guarantee\w*|promise\w*|commit\w*|assur\w*|warrants?|warranted|pledge\w*)\b[a-z0-9.' %]{0,30}\b(\d+(\.\d+)? ?(%|percent)|uptime|availability|up time|downtime)|(\d+(\.\d+)? ?(%|percent)|\buptime|\bavailability)\b[a-z0-9.' %]{0,30}\b(guarantee\w*|promise\w*|commit\w*|assur\w*|warranted|pledge\w*)\b/
+U21 /\d+(\.\d+)? ?(%|percent) (uptime|availability|up time|available|reliab\w*|online)\b|\b(uptime|availability) (of|at|is|above) \d/
+U21 /\balways (on|up|online|available)\b|\bnever (goes )?(down|offline)\b|\b(zero|no) (downtime|outages?)\b|\b(5|4|3) nines\b|\bservice credits?\b|\bslas?\b/ selfneg
+# U22 — migration included
+U22 /\b(we|we'll|we will|we'd|our (team|engineers|specialists|staff|people|onboarding team)|the celesteos team|celesteos)\b[a-z' ]{0,15}\b(migrat\w*|import\w*|mov(e|es|ing)|transfer\w*|bring(s|ing)?|load(s|ing)?|port(s|ing)?|convert\w*|carr(y|ies)|handl\w*|tak(e|es) care of|upload\w*|digiti[sz]\w*|key(s|ing)? in)\b[a-z' ]{0,30}\b(data|history|records?|archive|pms|amos|everything|it all|import|migration|across|over|spreadsheets?|register|logs?|manuals?)\b/
+U22 /\b(migration|data import|data transfer|data migration|imports?|data entry)\b[a-z ]{0,15}\b(is |are )?(included|free|on us|at no (extra )?cost|done for you|handled for you|taken care of|complimentary|part of the (package|price|service))\b/
+U22 /\bdone ?for ?you\b|\bwhite ?glove\b|\bfree (data )?(migration|import|transfer|data entry)\b|\bhands ?off (migration|onboarding|import)\b/
+# U23 — fee waived
+U23 /\b(fees?|charges?|costs?|onboarding|setup|set up)\b[a-z ]{0,15}\bwaive[sd]?\b|\bwaive[sd]?\b[a-z ]{0,10}\b(fees?|charges?|onboarding|setup|set up)\b|\bonboarding fee\b/
+U23 /\b(free|complimentary|on us|at no (extra )?cost)\b[a-z ]{0,6}\b(onboarding|setup|set up|implementation|installation|activation)\b|\b(onboarding|setup|set up|implementation|installation)\b[a-z ]{0,10}\b(is |are )?(free|on us|complimentary)\b/
+# U24 — no install
+U24 /\bno (app |software |client |plugin )?(installation|install|download)s? (required|needed|necessary)\b|\bno (app |software |client |plugin )?installation\b|\bno (apps?|software|clients?|plugins?) to (install|download)\b|\b(nothing|zero) to (install|download)\b|\bzero install\w*\b|\bwithout (installing|downloading) (anything|software|an app)\b|\bnever (install|download) (anything|software)\b/ selfneg
+# U25 — discount / urgency
 U25 /standard rate is higher/
-U25 /\bdiscount\w*/
-U25 /\d+% off/
-U25 /limited time/
-U25 /\d+ (pilot )?(spots|places) left/
-U26 /processed in the (united states|us)\b/
-U27 /no lock ?in/
-U27 /cancel any ?time/
-U27 /no contract/
-U28 /\b(?!(19|20)\d\d to (19|20)\d\d\b)\d{4,} to \d{4,}\b/
-U28 /\b(cost|costs|runs|worth|saves?)\b (¤ ?)?\d{4,}/
-U29 /\b1% of\b/
-U29 /running costs?|costs? to run/
+U25 /\b(pilot|early|launch|founding|special|introductory|exclusive|first|loyalty|fleet|volume|\d+ ?%)\b[a-z ]{0,10}\bdiscount\w*|\bdiscount\w*\b[a-z ]{0,10}\b(for|on) (early|pilot|founding|new|the first|your first)\b|\bdiscounted (rate|price|pricing|plan)\b/
+U25 /\b\d+ ?(%|percent) (off|discount|saving|savings|less|cheaper|reduction)\b|\b(save|saving|saves) \d+ ?(%|percent)|\bhalf (price|off|the price)\b|\d+% off/
+U25 /\b(early ?(adopter|bird|access|mover)|founding ?(member|customer|vessel|partner|fleet)s?|introductory|launch|intro|special|promo\w*|exclusive|charter member)\b[a-z ]{0,10}\b(pric\w*|rates?|offers?|deals?|terms|fees?|tiers?|plans?)\b/
+U25 /\b(offer|deal|pricing|price|rate|discount|promotion)s?\b[a-z ]{0,20}\b(ends?|expires?|closes?|valid (until|till|through)|only until|runs out)\b/
+U25 /\b(prices?|rates?|fees?|pricing)\b[a-z ]{0,10}\b(go(es)? up|going up|rises?|rising|will rise|increas\w*|double|jumps?)\b|\bbefore (prices?|rates?|fees?) (rise|go up|increase|change)\b/
+U25 /\b(only|just|last) \d+[a-z ]{0,10}\b(slots?|spots?|places?|seats?|openings?|vessels?|pilots?)\b[a-z ]{0,5}\b(left|remain\w*|available|open)\b|\b\d+ (pilot )?(slots?|spots?|places?|openings?) (left|remain\w*)\b/
+U25 /\bact (now|fast|today|quickly)\b|\block in (today'?s|this|the current|your|our) (price|rate|pricing)\b|\b(don'?t|do not) miss (out|this)\b|\blimited (time|availability|spots|places|slots|offer)\b|\bwhile (it|they|stocks?|places|spots) lasts?\b|\bhurry\b/ selfneg
+# U26 — stale data location
+U26 /\b(processed|stored|hosted|held|kept|resides?|lives?|sits?)\b[a-z ]{0,6}\b(in|on) (the )?(us|usa|united states|america|american (servers|data centres|data centers))\b/
+# U27 — no-notice cancel
+U27 /\bno lock ?ins?\b|\bcancel any ?time\b|\bno contracts?\b/ selfneg
+U27 /\b(cancel\w*|leave|quit|stop|walk away|end it|terminate|exit|opt out|unsubscribe)\b[a-z' ,]{0,20}\b(any ?time|whenever|at any (time|point|moment)|instantly|immediately|with (a|1|one) (click|tap)|no questions( asked)?|without (notice|penalty|questions|warning)|no notice|no penalty|freely|on a whim)\b/
+U27 /\bno (notice( period)?|commitment|minimum (term|period|contract|commitment)|strings( attached)?|tie ?ins?|long ?term (contracts?|commitments?)|obligation|fixed term|exit fees?)\b|\b(zero|without (any )?)(commitment|notice|lock ?in|tie ?in|obligation)\b|\bcommitment ?free\b/ selfneg
+# U28 — unsourced money
+U28 /\b(?!(19|20)\d\d to (19|20)\d\d\b)\d{4,} to (?!0\d)\d{4,}\b/
+U28 /\b(cost|costs|runs|worth|saves?|saving|loses?|losing|lost|wastes?)\b (¤ ?)?\d{4,}/
+U28 /\b(costs?|saves?|saving|worth|loses?|losing|wastes?)\b[a-z ]{0,10}\b(tens of thousands|hundreds of thousands|thousands|millions)\b/
+# U29 — unsourced ratio
+U29 /\b1% of\b|\b(\d+ ?%|percent|fraction|tiny|small part|sliver|less than)\b[a-z' ]{0,25}\b(running costs?|costs? to run|operating costs?|annual budget|what (a|one|1) [a-z ]{0,15}costs?)\b|\b(costs? less than|less than the cost of) (a|1|one) (single )?[a-z ]{0,15}\b(repair|claim|charter|day|crew|engineer|failure|service)\b/
+# U30 — unsourced counts
 U30 /\b\d+ ?\+(?! ?(years?|yrs?|months?|weeks?|days?|hours?|hrs?|minutes?|metres?|meters?|m|ft|feet|knots?|kts?|nm|%)\b)/
-U30 /\bover \d+ (engineers|crew|yachts|vessels|captains|people)/
-U30 /follow the build/
-U31 /saved \d+ (hours?|minutes?|days?)/
-U31 /\bcut [a-z ]{0,30}by \d+%/
-U31 /\d+x (faster|quicker|more)/
-U31 /trusted by/
-U31 /customers (report|say|save)/
-U31 /\bour customers\b/
-U31 /\b[ms]\/y [a-z' ]{0,40}\b(saved|cuts?|reduced|reports?|says|said|swears|loves|recovered)\b/
-U31 /"[^"]{3,200}" ?- ?(captain|chief|owner|engineer|eto|manager)/
-U31 /bitcoin/
-U32 /browser('s)? history/
-U32 /chrome ?history/
-U32 /hop back/
-U32 /pick (up )?where you left off/
-U32 /pick (a|the) record back up/
-U33 /the moment it'?s (written|saved|logged)/
-U33 /(searchable|findable|indexed|available|visible) (instantly|immediately|in real time)/
-U33 /\binstant(ly|aneously)\b/
-U34 /money ?finder/
-U34 /warranty (finder|claim pack)/
-U34 /claim pack/
-U34 /audit grade pack/
-U34 /(pack|bundle|report|claim)[a-z ]{0,20}in seconds/
-U35 /\b\d+ ?(minute|min)s? demo\b/
-U37 /named individual/
-U37 /\b(two|2) ?factor|\b2fa\b/
-U37 /everything you do/
-U37 /certificate bundle/
-U37 /\[verify\]/
+U30 /\bover \d+ (engineers|crew|yachts|vessels|captains|people)|follow the build/
+U30 /\b(join\w*|used by|trusted by|chosen by|loved by|relied on by|follow\w*|already (on|using)|signed up|running on)\b[a-z ]{0,15}\b(\d+|over|more than|hundreds|thousands|dozens|many)\b[a-z ]{0,10}\b(vessels|yachts|superyachts|engineers|crew|captains|fleets|users|customers|members|followers|owners|boats)\b|\b(\d+|hundreds|thousands|dozens)\b[a-z+ ]{0,10}\b(vessels|yachts|superyachts|engineers|crew|captains|fleets|users|customers|owners)\b[a-z ]{0,15}\b(use|using|trust|rely|run|chose|choose|switched|already|follow|signed)\b/
+# U31 — testimonials / ROI
+U31 /saved \d+ (hours?|minutes?|days?)|\bsav(e|es|ing) \d+ (hours?|minutes?|days?)\b/
+U31 /\b(cut|cuts|reduced?|reduces|slashe[sd]?|halved?|halves|freed? up|frees up)\b[a-z ]{0,30}\b(by )?\d+ ?(%|percent|hours?|days?|minutes?|weeks?)(?![a-z])|\b(cut|slash|halve)\w*[a-z ]{0,20}\b(in half|by half)\b/
+U31 /\d+ ?(x|times) (faster|quicker|more|less|better|fewer)\b/
+U31 /trusted by|customers (report|say|save)|\bour customers\b|\b(engineers|captains|crews?|users|owners) (report|say)\b|bitcoin/
+U31 /\b[ms]\/y [a-z' ]{0,40}\b(saved|cuts?|reduced|reports?|says|said|swears|loves|recovered)\b|"[^"]{3,200}[^" ]" ?- ?(captain|chief|owner|engineer|eto|manager|bosun|purser)\b/
+# U32 — ledger resume
+U32 /browser('s)? history|chrome ?history|hop back|\b(like|as) a browser\b|reopen(ing)? a tab/
+U32 /\b(pick|picks|picking) (it |them |a record |the record |things )?(back )?up (exactly )?where (you|they|we|i) (left|stopped)|\bwhere (you|they) (left off|stopped)\b|\bpick (a|the) record back up\b/
+U32 /\b(resume|jump back|go back|get back|return|hop|dive back)\w*\b[a-z ]{0,10}\b(into|to) (any|your|anyone'?s|the) (job|work|task|record|work order)s?\b/
+# U34 — money / warranty finder
+U34 /money ?finder|warranty (finder|claim pack)|claim pack|audit grade pack|(pack|bundle|report|claim)[a-z ]{0,20}in seconds/
+U34 /\b(recover\w*|reclaim\w*|claw\w* back|recoup\w*|find\w*|uncover\w*|unlock\w*|captur\w*|win\w* back|turn\w*|surfac\w*|spot\w*|catch\w*)\b[a-z0-9' ¤]{0,25}\b(money|cash|thousands|millions|value|revenue|dollars|funds|refunds?|payouts?|credits?|¤ ?\d+|\d{4,})\b[a-z ']{0,25}\b(warrant\w*|claims?|manufacturers?|oems?)\b/
+U34 /\b(warrant\w*|claims?)\b[a-z' ]{0,25}\b(money|cash|revenue|payouts?|refunds?|recovery|recoveries|income)\b|\b(unclaimed|missed|lost|forgotten|hidden|untapped|expired)\b[a-z ]{0,10}\bwarrant\w*\b[a-z ]{0,20}\b(money|cash|value|revenue|claims?|recover\w*|into)\b/
+U34 /\bpays? for itself\b|\bmoney (on the table|back|you'?re (leaving|losing|missing))|\bleaving money\b|\bget\w* (your )?(money|cash|value) back\b|\b(turn|convert)\w*\b[a-z ]{0,20}\bwarrant\w*\b[a-z ]{0,10}\binto (cash|money|revenue)/
+# U35 — demo duration
+U35 /\b\d+ ?(minute|min|hour)s? (demo|call|walkthrough|walk through|tour|meeting|session|chat)\b/
+# U37 — allowlist leftovers
+U37 /named individual|everything you do|certificate bundle|\[verify\]/
+U37 /\b(two|2) ?(factor|step) (auth\w*|login|log in|sign in|verification)|\b2fa\b|\boptional (two|2|multi) ?(factor|step)|\b(supports?|offers?|includes?|built in|enables?) (mfa|multi ?factor)\b/
 # call-only (CC03) — exempt only inside an approved commercial.C* line on a channel it lists
-K01 /¤ ?\d/
-K02 /\b\d[\d.]* ?(dollars?|euros?|pounds)\b/
-K03 /per (month|28 days|year)\b/
-K03 /per vessel (per|a|each) (month|year)/
+K01 /¤ ?\d|\d ?¤/
+K02 /\b\d[\d.]* ?(dollars?|euros?|pounds|bucks)\b/
+K03 /per (month|28 days|year|annum)\b|per vessel (per|a|each) (month|year)/
+K03 /\b\d{3,}(\.\d+)? ?(\/|per|a|an|each) ?(month|mo|year|yr|annum|vessel|hull|boat|yacht|seat|user)\b|\b\d{3,}(\.\d+)? (monthly|annually|yearly)\b/
+K03 /\b(priced|pricing|price|fee|subscription|rate)\b[a-z ]{0,12}\b(at|of|is|from)? ?\d{3,}\b|\b\d{3,}[a-z ,]{0,15}\b(billed|charged|invoiced|paid) (monthly|annually|yearly|per)\b|\b(monthly|annual|yearly) (fee|price|subscription|cost|rate) of \d/
 K04 /pilot pricing/
 K05 /locked for 12 months/
-K07 /free trial|\b\d+ day trial\b/
+K07 /free trial|\b\d+ (day|week|month) (free )?trial\b|\btrial period\b|\btry (it |us |celesteos )?(free|for free)\b|\bfree for (a|1|\d+) (days?|weeks?|months?)\b(?! after)|\b(first|1st) (month|week|\d+ days) free\b|\bfree (month|pilot)\b/
 ```
 
 ### Synonyms (folded before matching; longest first)
 ```synonyms
 round the clock => 24/7
+around the clock => 24/7
+it self => itself
+them selves => themselves
+your self => yourself
 instantaneously => instantly
 straight away => instantly
 automagically => automatically

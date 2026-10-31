@@ -9,7 +9,7 @@
 //   - /blogs/<slug> posts: the full blog gate (claims CC01–CC04 + structure CC08 + assets CC09),
 //     exactly what `node content-engine/gate.mjs blogs/<slug>.html` reports.
 //   - other pages (/, /about, /trust, /sources, /blogs): the same full blog gate (site body;
-//     negated phrases WARN per FD-29d; an exact commercial.C* line inside data-pricing is allowed).
+//     negated phrases WARN per FD-29d; site pages only: an exact commercial.C* line inside data-pricing is allowed, FD2).
 //   - llms.txt: claims CC01–CC04 on channel page_meta.
 // Exit 0 when no page has a FAIL; 1 otherwise.
 import { readFileSync, existsSync } from 'node:fs';
@@ -40,7 +40,7 @@ for (const pg of pages) {
   const raw = readFileSync(join(ROOT, pg.file), 'utf8');
   const res = pg.llms
     ? checkArtifact({ channel: 'page_meta', fields: { llms_txt: raw }, claim_provenance: { claims: [] } }, { pack, skip: CONTENT_ONLY })
-    : checkArtifact({ channel: 'blog', fields: { page_html: raw } }, { pack, legacy: true });
+    : checkArtifact({ channel: 'blog', fields: { page_html: raw } }, { pack, legacy: true, site: !pg.post });
   const v = legacyView(res, pack);
   const fails = v.filter(x => x.sev === 'FAIL'), warns = v.filter(x => x.sev === 'WARN');
   if (fails.length) failing++;

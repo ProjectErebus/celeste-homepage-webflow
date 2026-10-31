@@ -1,0 +1,31 @@
+case_id	rule_id	family	channel	expect	text
+R01	-	reviewer	linkedin	block	SOC 2 Type II certified
+R02	-	reviewer	meta	block	Compliant with GDPR
+R03	-	reviewer	email	block	GDPR-certified
+R04	-	reviewer	google_ads	block	Cancel at any time
+R05	-	reviewer	page_meta	block	No long-term contract
+R06	-	reviewer	linkedin	block	99.9% uptime
+R07	-	reviewer	meta	block	Guaranteed 99.9% availability
+R08	-	reviewer	email	block	Instant answers
+R09	-	reviewer	google_ads	block	Results in milliseconds
+R10	-	reviewer	page_meta	block	A.I.-powered
+R11	-	reviewer	linkedin	block	Handovers that write themselves
+R12	-	reviewer	meta	block	Every answer comes with its source
+R13	-	reviewer	email	block	Support 24 hours a day, 7 days a week
+R14	-	reviewer	google_ads	block	replies within the hour
+R15	-	reviewer	page_meta	block	995 USD per vessel
+R16	-	reviewer	linkedin	block	995 € monthly
+R17	-	reviewer	meta	block	995 EUR a month
+R18	-	reviewer	email	block	Priced at 995/month per vessel
+R19	-	reviewer	google_ads	block	995 per vessel, billed monthly
+R20	-	reviewer	page_meta	block	Free for 30 days
+R21	-	reviewer	linkedin	block	Try it free for a month
+R22	-	reviewer	meta	block	The handover writes <span>it</span>self.
+R23	-	reviewer	email	block	The handover writes it-self.
+R24	-	reviewer	google_ads	block	The handover writеs itsеlf.
+R25	-	reviewer	page_meta	block	There's no doubt the handover writes itself.
+RL1	-	reviewer_ok	blog	pass	For how long has the fault been recurring?
+RL2	-	reviewer_ok	blog	pass	Clear your inbox
+RL3	-	reviewer_ok	blog	pass	We create a shared folder
+RL4	-	reviewer_ok	blog	pass	Spend real time with the crew
+RL5	-	reviewer_ok	blog	warn	We don't claim the handover writes itself.

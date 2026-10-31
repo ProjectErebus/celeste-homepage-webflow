@@ -44,6 +44,10 @@ export function decodeEntities(s) {
   });
 }
 
+const CONFUSABLE = Object.fromEntries([...'аАвВеЕкКмМнНоОрРсСтТуУхХіІјЈѕЅԁӏΑΒΕΖΗΙΚΜΝΟΡΤΥΧαεικνοτυχρ'].map((c, i) => [c, 'aAbBeEkKmMhHoOpPcCtTyYxXiIjJsSdlABEZHIKMNOPTYXaeiknotyxp'[i]]));
+// Block boundary marker: HTML block tags, attribute values and script strings are separate
+// sentences. (A raw newline inside a sentence is NOT a boundary: "writes\nitself" still matches.)
+const BR = '\u0001';
 const NUMW = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11,
   twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19,
   twenty: 20, thirty: 30, forty: 40, fifty: 50 };
@@ -62,7 +66,7 @@ function sub(st, re, fn) {
     const i = m.index, len = m[0].length;
     out += st.s.slice(last, i);
     for (let k = last; k < i; k++) map.push(st.map[k]);
-    const r = fn(...m);
+    const r = fn(...m, i, st.s);
     const pieces = typeof r === 'string' ? [[r, 0, true]] : r;
     for (const [text, rel, spread] of pieces) {
       out += text;
@@ -81,7 +85,7 @@ const BLOCK = /^(?:p|br|li|ul|ol|h[1-6]|div|td|th|tr|table|section|article|heade
 
 // JS/JSON string literal contents as mapped pieces (one per line). JSON object keys are skipped.
 function scriptPieces(body, bodyRel, isJson) {
-  const out = [['\n', 0]];
+  const out = [[BR, 0]];
   const re = isJson ? /"((?:[^"\\\n]|\\.)*)"(\s*:)?/g : /"((?:[^"\\\n]|\\.)*)"|'((?:[^'\\\n]|\\.)*)'|`((?:[^`\\]|\\.)*)`/g;
   let m;
   while ((m = re.exec(body))) {
@@ -89,7 +93,7 @@ function scriptPieces(body, bodyRel, isJson) {
     const rawV = m[1] ?? m[2] ?? m[3] ?? '';
     let v = rawV;
     if (/\\/.test(v)) { try { v = JSON.parse('"' + v.replace(/\\'/g, "'").replace(/\\`/g, '`').replace(/\n/g, '\\n') + '"'); } catch { /* keep raw */ } }
-    if (/[a-z]{2,}[^\n]*\s[a-z]/i.test(v) || /[$€£]\s?\d/.test(v)) out.push([v, bodyRel + m.index + 1], ['\n', bodyRel + m.index]);
+    if (/[a-z]{2,}[^\n]*\s[a-z]/i.test(v) || /[$€£]\s?\d/.test(v)) out.push([v, bodyRel + m.index + 1], [BR, bodyRel + m.index]);
   }
   return out;
 }
@@ -100,22 +104,25 @@ export function normalise(input, opts = {}) {
 
   // 1. HTML
   if (html) {
-    sub(st, /<!--[\s\S]*?-->/g, () => '\n');
-    sub(st, /<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, () => '\n');
+    sub(st, /<!--[\s\S]*?-->/g, () => BR);
+    sub(st, /<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, () => BR);
     sub(st, /<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi, (m, attrs, body) => {
-      if (/\bsrc\s*=/.test(attrs)) return '\n';
+      if (/\bsrc\s*=/.test(attrs)) return BR;
       const isJson = /application\/(ld\+)?json/i.test(attrs);
-      if (!isJson && /type\s*=\s*["']?(?!text\/javascript|module|application\/javascript)/i.test(attrs)) return '\n';
+      if (!isJson && /type\s*=\s*["']?(?!text\/javascript|module|application\/javascript)/i.test(attrs)) return BR;
       return scriptPieces(body, m.indexOf('>') + 1, isJson);
     });
-    sub(st, /<\/?([a-z][a-z0-9-]*)\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi, (m, tag, attrs) => {
+    sub(st, /<\/?([a-z][a-z0-9-]*)\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi, (m, tag, attrs, at, src) => {
       const pieces = [];
       const base = 1 + (m[1] === '/' ? 1 : 0) + tag.length;
       for (const a of (attrs || '').matchAll(KEEP_ATTRS)) {
         const v = a[1] ?? a[2];
-        pieces.push(['\n', base + a.index], [v, base + a.index + a[0].length - 1 - v.length], ['\n', base + a.index + a[0].length - 1]);
+        pieces.push([BR, base + a.index], [v, base + a.index + a[0].length - 1 - v.length], [BR, base + a.index + a[0].length - 1]);
       }
-      const nl = BLOCK.test(tag) ? '\n' : ' ';   // inline tags separate text too (CSS-adjacent spans are separate words)
+      // an inline tag inside a word (writes <span>it</span>self) is removed; between elements it separates words
+      const prev = src[at - 1] || '', next = src[at + m.length] || '';
+      const intraWord = /[A-Za-z0-9]/.test(prev) && /[A-Za-z0-9]/.test(next);
+      const nl = BLOCK.test(tag) ? BR : intraWord ? '' : ' ';
       return pieces.length ? pieces : nl;
     });
   }
@@ -126,18 +133,21 @@ export function normalise(input, opts = {}) {
   // 3. NFKC per character (keeps the map aligned); soft hyphen / zero-width removed
   sub(st, /[^\x00-\x7f]/g, ch => ch.normalize('NFKC'));
   sub(st, /[­​-‍⁠﻿]/g, () => '');
+  // confusables: Cyrillic / Greek letters that look Latin
+  sub(st, /[\u0391-\u03c9\u0400-\u04ff]/g, ch => CONFUSABLE[ch] ?? ch);
   // 4. quotes and dashes
   sub(st, /[‘’ʼ‚′`´]/g, () => "'");
   sub(st, /[“”„″«»]/g, () => '"');
   sub(st, /[‐-―−]/g, () => '-');
   // 5. lowercase (per char, so the map stays aligned) + whitespace
   sub(st, /[A-ZÀ-￿]/g, ch => { const l = ch.toLowerCase(); return l.length === 1 ? l : ch; });
-  sub(st, /\s+/g, () => ' ');
-  // 6. spacing variants
-  sub(st, /\ba\. ?i\.(?=\s|$)/g, () => 'ai');
+  sub(st, /[^\S\u0001]+/g, () => ' ');
+  // 6. spacing variants (it-self → it self → itself via synonyms)
+  sub(st, /\ba\.\s?i\.?(?![a-z])/g, () => 'ai');
   sub(st, /([a-z0-9])-(?=[a-z])|(?<=[a-z]{2})-(?=[0-9])/g, (m, a) => (a || '') + ' ');   // auto-generated, soc-2, 30-minute (not single-letter IDs like r-2024)
   // 7. currency
   sub(st, /\b(?:us\$|usd|eur|gbp)\s?(?=\d)|[$€£]\s?/g, () => [[' ', 0], ['¤', 0], [' ', 0]]);
+  sub(st, /(?<=\d)\s?(?:us dollars?|usd|eur|euros?|gbp|dollars?|pounds sterling)\b/g, () => [[' ', 0], ['¤', 0]]);
   // 8. numbers
   sub(st, /\b(\d{1,3})((?:,\d{3})+|(?: \d{3})+)\b/g, (m, a, b) => a + b.replace(/[ ,]/g, ''));
   sub(st, new RegExp(`\\b(${NUMW_RE}|hundred) thousand\\b`, 'g'), (m, w) => String((w === 'hundred' ? 100 : NUMW[w]) * 1000));
@@ -147,12 +157,19 @@ export function normalise(input, opts = {}) {
   sub(st, /\b24\s*(?:\/|x| to )\s*7\b/g, () => '24/7');
   sub(st, /\b(\d+)\s*[\/,]\s*(\d+)\s*(?:[\/,]|,? and)\s*(\d+)\b/g, (m, a, b, c) => `${a}/${b}/${c}`);
   sub(st, /(\d) plus\b/g, (m, a) => `${a}+`);
+  // punctuation that never carries meaning for a claim: ! ? ; : ( ) [ ] { } * _ ~ | · • … → space; & → and
+  sub(st, /\s*&\s*/g, () => ' and ');
+  sub(st, /\s*[!?;:]+(?!\d)/g, () => ',');   // clause boundary: rule gaps never cross a comma
+  sub(st, /[()\[\]{}*_~|·•…]+/g, () => ' ');
+  sub(st, /,{2,}/g, () => ',');
+  sub(st, / {2,}/g, () => ' ');
   // 9. synonyms (longest first, word-bounded)
   const syn = opts.synonyms || {};
   for (const from of Object.keys(syn).sort((a, b) => b.length - a.length || (a < b ? -1 : 1))) {
     const esc = from.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     sub(st, new RegExp(`(?<![a-z0-9])${esc}(?![a-z0-9])`, 'g'), () => syn[from]);
   }
+  sub(st, /[ \u0001]*\u0001[ \u0001]*/g, () => ' . ');
   sub(st, / {2,}/g, () => ' ');
   // trim
   const lead = st.s.length - st.s.trimStart().length, trail = st.s.length - st.s.trimEnd().length;

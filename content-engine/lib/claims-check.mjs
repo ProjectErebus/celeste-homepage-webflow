@@ -89,7 +89,10 @@ function lineText(text, index) {
   const s = text.lastIndexOf('\n', index - 1) + 1, e = text.indexOf('\n', index);
   return text.slice(s, e < 0 ? text.length : e);
 }
-const NEGATION = /\b(not|never|nothing|no)\b[a-z' ]{0,25}$/;
+const NEGATION = /(?:\b(?:not|never|nothing|no|none|nobody|neither|nor|without|cannot)\b|n't\b)[a-z' ]{0,40}$/;
+// idioms that contain a negator but do not negate the claim ("there's no doubt the handover writes itself")
+const NEG_IDIOM = /\b(no doubt|no question|no wonder|no surprise|no secret|not only|not just|nothing short of|nothing less than|never been (easier|faster|simpler)|no matter|no more)\b/g;
+const NEG_INSIDE = /(?:\b(?:not|never|cannot)\b|n't\b)/;
 function jcs(v) {
   if (Array.isArray(v)) return '[' + v.map(jcs).join(',') + ']';
   if (v && typeof v === 'object') return '{' + Object.keys(v).sort().filter(k => v[k] !== undefined).map(k => JSON.stringify(k) + ':' + jcs(v[k])).join(',') + '}';
@@ -123,7 +126,7 @@ export function scanText(raw, opts) {
       if (r.domain_guard && n[m.index - 1] === '.') continue;                 // celeste7.ai, foo.ml
       if (r.check === 'CC03' && opts.exempt && opts.exempt(m.index, m.index + m[0].length, r, n)) continue;
       let severity = 'fail', negated = false;
-      if (r.check !== 'CC03' && r.check !== 'CC04' && NEGATION.test(n.slice(Math.max(0, m.index - 40), m.index))) negated = true;
+      if (r.check !== 'CC03' && r.check !== 'CC04' && (NEGATION.test(n.slice(Math.max(0, m.index - 60), m.index).replace(NEG_IDIOM, ',')) || (!r.selfneg && NEG_INSIDE.test(m[0].replace(NEG_IDIOM, ','))))) negated = true;
       if (channel === 'blog') {
         if (negated) severity = 'warn';
         if (r.editorial && isEditorial(raw, start)) severity = 'warn';
@@ -295,7 +298,8 @@ function exactCommercialSpans(nt, pack, channel) {
 
 // ─── checkArtifact ──────────────────────────────────────────────────────────
 // input: { channel, fields: {name: string|string[]}, claim_provenance?: {claims: []}, evidence?, links?, basis?, platform?, brand_pack? }
-// opts:  { pack?, legacy?: boolean (blog CLI: CC05/CC06 not_applicable), skip?: string[] (check ids → not_applicable) }
+// opts:  { pack?, legacy?: boolean (blog CLI: CC05/CC06 not_applicable), skip?: string[] (check ids → not_applicable),
+//          site?: boolean (a site page, not a blog post: allows the data-pricing exemption, FD2) }
 export function checkArtifact(input, opts = {}) {
   const skip = new Set(opts.skip || []);
   const checks = Object.fromEntries(CHECK_IDS.map(id => [id, { id, result: 'pass', details: '' }]));
@@ -377,13 +381,15 @@ export function checkArtifact(input, opts = {}) {
       const cov = covered[`${f}#${idx}`] || [];
       const html = /html/.test(f) ? true : undefined;
       const fullPage = /<html[\s>]|<head[\s>]/i.test(raw);
-      const priceSpans = fullPage || /data-pricing/.test(raw) ? pricingSpans(raw, pack) : [];
+      // data-pricing (FD2) applies only to site pages (opts.site, the page CLI / sweep) and page_meta / email — never to blog posts or drafts
+      const pricingAllowed = channel === 'page_meta' || channel === 'email' || opts.site === true;
+      const priceSpans = pricingAllowed && /data-pricing/.test(raw) ? pricingSpans(raw, pack) : [];
       // llms.txt (page_meta, plain text): an approved commercial.C* line allowed on page_meta, used verbatim, is its own provenance
       const llmsSpans = channel === 'page_meta' && f === 'llms_txt' ? exactCommercialSpans(fieldNorm[f][idx].text, pack, channel) : [];
       const { hits } = scanText(raw, { channel, pack, html, json: /json/.test(f), normed: fieldNorm[f][idx],
         exempt: (s, e, r) => (kExemptBasis && cov.some(c => c.isC && c.result === 'supported' && s >= c.start && e <= c.end)) || llmsSpans.some(c => s >= c.start && e <= c.end) });
       for (const h of hits) {
-        if (h.check === 'CC03' && priceSpans.some(p => h.start >= p.start && h.end <= p.end) && (channel === 'page_meta' || channel === 'blog')) continue;
+        if (h.check === 'CC03' && priceSpans.some(p => h.start >= p.start && h.end <= p.end)) continue;
         const fld = Array.isArray(v) ? `/${f}/${idx}` : `/${f}`;
         violations.push({ id: h.check, rule_id: h.rule_id, severity: h.severity, field: fld, line: lineOf(raw, h.start), start: h.start, end: h.end,
           match: h.match.slice(0, 120), normalised: h.normalised, safe: h.safe, ...(h.negated ? { negated: true } : {}) });

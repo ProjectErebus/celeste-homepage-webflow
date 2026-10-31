@@ -35,23 +35,30 @@ if (args.blind) {
   const r = spawnSync(process.execPath, [gate, '--blind', resolve(args.blind)], { encoding: 'utf8', maxBuffer: 64 << 20 });
   if (r.status !== 0) { console.error(r.stderr || `gate --blind exited ${r.status}`); process.exit(2); }
   const got = Object.fromEntries(r.stdout.trim().split('\n').filter(Boolean).map(l => JSON.parse(l)).map(o => [o.case_id, o]));
-  const [h, ...rows] = readFileSync(resolve(args.blind), 'utf8').replace(/\r/g, '').trimEnd().split('\n');
-  const cols = h.split('\t');
+  if (r.stderr.trim()) console.error(r.stderr.trim());
+  const [h, ...rows] = readFileSync(resolve(args.blind), 'utf8').replace(/^\uFEFF/, '').replace(/\r/g, '').trimEnd().split('\n').filter(l => l.trim());
+  const cols = h.split('\t').map(c => c.trim().toLowerCase());
   const cases = rows.map(x => Object.fromEntries(x.split('\t').map((v, i) => [cols[i], v])));
-  const want = c => { const e = String(c.expect || '').toLowerCase(); return e === 'pass' ? 'pass' : e === 'warn' ? 'warn' : 'block'; };
+  const WANT = { block: 'block', blocked: 'block', fail: 'block', banned: 'block', deny: 'block', pass: 'pass', allow: 'pass', allowed: 'pass', ok: 'pass', clean: 'pass', approved: 'pass', warn: 'warn', warning: 'warn' };
+  const bad = cases.filter(c => !WANT[String(c.expect || '').trim().toLowerCase()]);
+  if (bad.length) { console.error(`run_corpus --blind: unknown expect value(s): ${[...new Set(bad.map(c => c.expect))].join(', ')} (use block|pass|warn)`); process.exit(2); }
+  const want = c => WANT[String(c.expect).trim().toLowerCase()];
   const blk = cases.filter(c => want(c) === 'block'), pas = cases.filter(c => want(c) === 'pass'), wrn = cases.filter(c => want(c) === 'warn');
   const blocked = blk.filter(c => got[c.case_id]?.verdict === 'fail');
   const falseBlocks = pas.filter(c => got[c.case_id]?.verdict === 'fail');
   const warnOk = wrn.filter(c => got[c.case_id]?.verdict === 'warn');
+  const missing = cases.filter(c => !got[c.case_id]);
   const rate = blk.length ? blocked.length / blk.length : 1;
-  const summary = { blind: { total: cases.length, expect_block: blk.length, blocked: blocked.length, rate: Math.round(rate * 10000) / 100,
-    expect_pass: pas.length, false_blocks: falseBlocks.length, expect_warn: wrn.length, warn_ok: warnOk.length,
+  const ok = rate >= 0.95 && falseBlocks.length === 0 && warnOk.length === wrn.length && missing.length === 0;
+  const summary = { blind: { pass_bar: ok, total: cases.length, expect_block: blk.length, blocked: blocked.length, rate: Math.round(rate * 10000) / 100,
+    expect_pass: pas.length, false_blocks: falseBlocks.length, expect_warn: wrn.length, warn_ok: warnOk.length, missing: missing.map(c => c.case_id),
     missed: blk.filter(c => got[c.case_id]?.verdict !== 'fail').map(c => ({ case_id: c.case_id, rule_id: c.rule_id, verdict: got[c.case_id]?.verdict ?? 'missing' })),
     false_blocked: falseBlocks.map(c => ({ case_id: c.case_id, rule_ids: got[c.case_id].rule_ids })),
     warn_mismatch: wrn.filter(c => got[c.case_id]?.verdict !== 'warn').map(c => ({ case_id: c.case_id, verdict: got[c.case_id]?.verdict ?? 'missing' })) } };
   console.log(JSON.stringify(summary, null, 1));
   if (args.out) writeFileSync(resolve(args.out), JSON.stringify({ summary, cases: Object.values(got) }, null, 1));
-  process.exit(rate >= 0.95 && falseBlocks.length === 0 ? 0 : 1);
+  // exit 0 only when every bar is met: >= 95% blocked, 0 false blocks, every warn row warns, no missing case
+  process.exit(ok ? 0 : 1);
 }
 
 if (!args.gate && !args.lib) args.lib = join(HERE, '..', '..', 'lib', 'claims-check.mjs');

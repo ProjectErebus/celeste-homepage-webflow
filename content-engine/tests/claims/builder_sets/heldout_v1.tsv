@@ -1,0 +1,261 @@
+case_id	rule_id	family	channel	expect	text
+H001	U01	U01	meta	block	Rotation day? Your handover is already drafted.
+H002	U01	U01	google_ads	block	Handovers that practically write themselves.
+H003	U01	U01	email	block	Let the software do the handover writing for you.
+H004	U01	U01	page_meta	block	The handover report puts itself together while you work.
+H005	U01	U01	social_generic	block	No more late nights writing handover notes: CelesteOS produces them for you.
+H006	U01	U01	blog	block	Your next handover is ready and waiting before you even sit down.
+H007	U01	U01	linkedin	block	Handover documents generated without lifting a pen.
+H008	U01	U01	meta	block	The system writes up the handover for the incoming chief.
+H009	U01	U01	google_ads	block	Walk off the boat with a finished handover you never had to write.
+H010	U01	U01	email	block	Handover notes, done for you.
+H011	U05	U05	page_meta	block	Search results in under a second.
+H012	U05	U05	social_generic	block	Answers in milliseconds, even over VSAT.
+H013	U05	U05	blog	block	Zero lag between the engine room and the bridge.
+H014	U05	U05	linkedin	block	Lightning-fast search across every manual.
+H015	U05	U05	meta	block	Query response time: a fraction of a second.
+H016	U05	U05	google_ads	block	Live sync, always up to date.
+H017	U05	U05	email	block	No waiting for results, ever.
+H018	U05	U05	page_meta	block	Blazing fast lookups on any device.
+H019	U05	U05	social_generic	block	Data that is always in sync with the vessel.
+H020	U05	U05	blog	block	Sub second answers to plain-English questions.
+H021	U33	U33	linkedin	block	Searchable the second it's logged.
+H022	U33	U33	meta	block	Hit save and it's findable straight away.
+H023	U33	U33	google_ads	block	Your notes show up in search right away.
+H024	U33	U33	email	block	Every entry is indexed instantly.
+H025	U33	U33	page_meta	block	Records become visible immediately after upload.
+H026	U33	U33	social_generic	block	No indexing delay: type it, find it.
+H027	U33	U33	blog	block	Available to the whole crew the moment you press enter.
+H028	U33	U33	linkedin	block	Logged at 09:00, searchable at 09:00.
+H029	U33	U33	meta	block	Uploads appear in results at once.
+H030	U33	U33	google_ads	block	Findable as soon as you hit save.
+H031	U02	U02	email	block	One search across every system on board.
+H032	U02	U02	page_meta	block	Connects all your data sources in one place.
+H033	U02	U02	social_generic	block	Nothing on board is ever missed.
+H034	U02	U02	blog	block	Complete coverage of every record on the vessel.
+H035	U02	U02	linkedin	block	Searches all of your manuals, drawings and logs at once.
+H036	U02	U02	meta	block	Total visibility across the entire vessel.
+H037	U02	U02	google_ads	block	Every answer comes with its source.
+H038	U02	U02	email	block	All your vessel data, unified and searchable.
+H039	U02	U02	page_meta	block	We seal every change anyone makes.
+H040	U02	U02	social_generic	block	Covers every department, every system, every file.
+H041	U09	U09	blog	block	No internet? No problem.
+H042	U09	U09	linkedin	block	Keeps working when the satellite link drops.
+H043	U09	U09	meta	block	Fully functional without a connection.
+H044	U09	U09	google_ads	block	Use it mid-Atlantic with zero connectivity.
+H045	U09	U09	email	block	Runs even when the VSAT is down.
+H046	U09	U09	page_meta	block	Offline-capable on every device.
+H047	U09	U09	social_generic	block	Designed to work with no signal at all.
+H048	U09	U09	blog	block	Your data syncs automatically once you're back online.
+H049	U09	U09	linkedin	block	Works without Wi-Fi or Starlink.
+H050	U09	U09	meta	block	Carry on logging faults during a total connection outage.
+H051	U11	U11	google_ads	block	Keep your current PMS and add CelesteOS on top.
+H052	U11	U11	email	block	No migration needed.
+H053	U11	U11	page_meta	block	Works with the PMS you already have.
+H054	U11	U11	social_generic	block	No need to replace AMOS.
+H055	U11	U11	blog	block	A companion to your existing maintenance software.
+H056	U11	U11	linkedin	block	Plugs straight into IDEA.
+H057	U11	U11	meta	block	No rip and replace: keep the system your crew knows.
+H058	U11	U11	google_ads	block	Integrates with your existing PMS in minutes.
+H059	U11	U11	email	block	Stick with your legacy system; we sit beside it.
+H060	U11	U11	page_meta	block	You don't have to switch systems to use CelesteOS.
+H061	U12	U12	social_generic	block	DNV approved maintenance software.
+H062	U12	U12	blog	block	Lloyd's Register certified.
+H063	U12	U12	linkedin	block	Approved by ABS for class surveys.
+H064	U12	U12	meta	block	Bureau Veritas type-approved platform.
+H065	U12	U12	google_ads	block	Certified by class.
+H066	U12	U12	email	block	ISO 27001 certified hosting and platform.
+H067	U12	U12	page_meta	block	SOC 2 Type II certified.
+H068	U12	U12	social_generic	block	Class-endorsed audit trail.
+H069	U12	U12	blog	block	RINA recognised PMS.
+H070	U12	U12	linkedin	block	MCA approved for ISM record keeping.
+H071	U18	U18	meta	block	A link flows to every related record.
+H072	U18	U18	google_ads	block	Accept once and it applies everywhere.
+H073	U18	U18	email	block	Attach a manual and it spreads to all linked faults.
+H074	U18	U18	page_meta	block	One approval updates every work order on that equipment.
+H075	U18	U18	social_generic	block	Linked documents ripple through the whole vessel.
+H076	U18	U18	blog	block	Every crew after you inherits the link.
+H077	U18	U18	linkedin	block	Changes push to all connected parts automatically.
+H078	U18	U18	meta	block	Confirm the manual once; it shows up on every fault for that pump.
+H079	U18	U18	google_ads	block	Documents carried across to every related work order.
+H080	U18	U18	email	block	The link is copied to all equipment of the same model.
+H081	U21	U21	page_meta	block	99.9% uptime guaranteed.
+H082	U21	U21	social_generic	block	Guaranteed availability of 99.95%.
+H083	U21	U21	blog	block	We promise 99.5% uptime.
+H084	U21	U21	linkedin	block	Backed by an SLA.
+H085	U21	U21	meta	block	Always on, never down.
+H086	U21	U21	google_ads	block	Zero downtime, guaranteed.
+H087	U21	U21	email	block	Five nines of availability.
+H088	U21	U21	page_meta	block	Uptime of 100% in the last year.
+H089	U21	U21	social_generic	block	Our availability commitment: 99.9 percent.
+H090	U21	U21	blog	block	Service credits if we go down.
+H091	U22	U22	linkedin	block	We move your history across for you.
+H092	U22	U22	meta	block	Our team transfers every record from your old system.
+H093	U22	U22	google_ads	block	Full data migration included.
+H094	U22	U22	email	block	White-glove onboarding: we load your AMOS history.
+H095	U22	U22	page_meta	block	We bring your maintenance data over at no extra cost.
+H096	U22	U22	social_generic	block	Migration is on us.
+H097	U22	U22	blog	block	Our engineers handle the entire import.
+H098	U22	U22	linkedin	block	Free data migration from any PMS.
+H099	U22	U22	meta	block	Done-for-you migration.
+H100	U22	U22	google_ads	block	We'll convert your spreadsheets and import them.
+H101	U25	U25	email	block	20% off your first year.
+H102	U25	U25	page_meta	block	Early-adopter pricing for the first ten vessels.
+H103	U25	U25	social_generic	block	Prices go up in January.
+H104	U25	U25	blog	block	Founding-vessel rate: ends Friday.
+H105	U25	U25	linkedin	block	Only three pilot places remain.
+H106	U25	U25	meta	block	Lock in today's price.
+H107	U25	U25	google_ads	block	Save 30% when you sign this month.
+H108	U25	U25	email	block	Half price for the first six months.
+H109	U25	U25	page_meta	block	Special introductory rate for new fleets.
+H110	U25	U25	social_generic	block	Act now before rates rise.
+H111	U27	U27	blog	block	Cancel whenever you like.
+H112	U27	U27	linkedin	block	Leave any time, no questions asked.
+H113	U27	U27	meta	block	No notice period.
+H114	U27	U27	google_ads	block	No commitment, no contract.
+H115	U27	U27	email	block	No strings attached.
+H116	U27	U27	page_meta	block	Stop at any point with one click.
+H117	U27	U27	social_generic	block	No minimum term.
+H118	U27	U27	blog	block	Quit whenever it stops being useful.
+H119	U27	U27	linkedin	block	Zero lock-in, cancel instantly.
+H120	U27	U27	meta	block	Walk away anytime without notice.
+H121	U34	U34	google_ads	block	Recover thousands in missed warranty claims.
+H122	U34	U34	email	block	Turn expired warranties into cash.
+H123	U34	U34	page_meta	block	Find the money you're leaving on the table.
+H124	U34	U34	social_generic	block	CelesteOS pays for itself in one claim.
+H125	U34	U34	blog	block	Claw back lost warranty value.
+H126	U34	U34	linkedin	block	Uncover unclaimed warranty on every pump.
+H127	U34	U34	meta	block	Get money back from manufacturers automatically.
+H128	U34	U34	google_ads	block	Warranty recovery built in.
+H129	U34	U34	email	block	Unlock hidden warranty revenue.
+H130	U34	U34	page_meta	block	Every missed claim is money we find for you.
+H131	U10	U10	social_generic	block	Up And Running In A Day
+H132	U10	U10	blog	block	Onboard Your Vessel In 24 Hours!
+H133	U10	U10	linkedin	block	Go Live Tomorrow.
+H134	U10	U10	meta	block	Set Up In Minutes, Not Months
+H135	U10	U10	google_ads	block	Same-day onboarding.
+H136	U10	U10	email	block	Deployed over a weekend.
+H137	U10	U10	page_meta	block	Live on your vessel within 48 hours.
+H138	U10	U10	social_generic	block	Fast setup: ready by Monday.
+H139	U10	U10	blog	block	Fully operational in under a week.
+H140	U10	U10	linkedin	block	Implementation in one afternoon.
+H141	U03	U03	meta	block	AI-driven maintenance insights.
+H142	U03	U03	google_ads	block	Our machine-learning engine reads your manuals.
+H143	U03	U03	email	block	Powered by large language models.
+H144	U04	U04	page_meta	block	It never makes things up.
+H145	U04	U04	social_generic	block	Zero hallucinations, guaranteed.
+H146	U04	U04	blog	block	No made-up answers.
+H147	U06	U06	linkedin	block	Pinpoints the root cause of every recurring fault.
+H148	U06	U06	meta	block	Your vessel as a knowledge graph.
+H149	U06	U06	google_ads	block	Gets straight to the root cause for you.
+H150	U07	U07	email	block	Export an inspection-ready PDF in one click.
+H151	U07	U07	page_meta	block	One-click audit pack.
+H152	U07	U07	social_generic	block	Download a sealed audit bundle.
+H153	U08	U08	blog	block	Certificate alerts 60, 30 and 7 days out.
+H154	U08	U08	linkedin	block	Automatic reminders at 90/30/7 days.
+H155	U08	U08	meta	block	Alerts at thirty, fourteen and seven days.
+H156	U13	U13	google_ads	block	Your data never leaves the vessel.
+H157	U13	U13	email	block	No third party ever touches your records.
+H158	U13	U13	page_meta	block	Zero data retention by any provider.
+H159	U14	U14	social_generic	block	Military-grade encryption.
+H160	U14	U14	blog	block	Bank-level security for your logs.
+H161	U14	U14	linkedin	block	Unhackable by design.
+H162	U15	U15	meta	block	Check any receipt at verify.celeste7.ai.
+H163	U15	U15	google_ads	block	Visit https://verify.celeste7.ai/r/123
+H164	U15	U15	email	block	Proofs live at VERIFY.CELESTE7.AI
+H165	U16	U16	page_meta	block	See who read the SOP and for how long.
+H166	U16	U16	social_generic	block	Read receipts on every manual.
+H167	U16	U16	blog	block	Know whether each crew member opened the risk assessment.
+H168	U17	U17	linkedin	block	Track crew hours of rest.
+H169	U17	U17	meta	block	Raise purchase orders from the fault.
+H170	U17	U17	google_ads	block	We read your inbox and file the emails.
+H171	U19	U19	email	block	The Maritime Technical Intelligence System.
+H172	U19	U19	page_meta	block	An intelligent maintenance assistant.
+H173	U19	U19	social_generic	block	Intelligence for your engine room.
+H174	U20	U20	blog	block	Support that replies in minutes.
+H175	U20	U20	linkedin	block	Round-the-clock engineering help.
+H176	U20	U20	meta	block	Same-day response from our team.
+H177	U23	U23	google_ads	block	Onboarding fee waived this quarter.
+H178	U23	U23	email	block	Free setup for pilot vessels.
+H179	U23	U23	page_meta	block	Complimentary implementation (normally charged).
+H180	U24	U24	social_generic	block	Nothing to install, ever.
+H181	U24	U24	blog	block	No software to download.
+H182	U24	U24	linkedin	block	Zero installation required.
+H183	U26	U26	meta	block	EU data is processed in the US.
+H184	U26	U26	google_ads	block	Your records are hosted in the United States.
+H185	U26	U26	email	block	Data stored on American servers.
+H186	U28	U28	page_meta	block	Saves $40,000 a year.
+H187	U28	U28	social_generic	block	A denied claim costs tens of thousands.
+H188	U28	U28	blog	block	Worth USD 25k per vessel annually.
+H189	U29	U29	linkedin	block	Less than 1% of your running costs.
+H190	U29	U29	meta	block	A fraction of what one charter day costs.
+H191	U29	U29	google_ads	block	Costs less than a single failed repair.
+H192	U30	U30	email	block	Trusted by 200+ superyachts.
+H193	U30	U30	page_meta	block	Join over a thousand engineers already using it.
+H194	U30	U30	social_generic	block	Hundreds of captains follow our build.
+H195	U31	U31	blog	block	Cut audit prep by 70%.
+H196	U31	U31	linkedin	block	"Changed how we run the boat" - Chief Engineer, M/Y Aurora
+H197	U31	U31	meta	block	Engineers report saving 10 hours a week.
+H198	U32	U32	google_ads	block	Pick up exactly where you left off.
+H199	U32	U32	email	block	Like browser history for your engine room.
+H200	U32	U32	page_meta	block	Jump back into any job you started.
+H201	U35	U35	social_generic	block	Book a 15-minute demo.
+H202	U35	U35	blog	block	Grab a 20 min walkthrough.
+H203	U35	U35	linkedin	block	Schedule a 45-minute call.
+H204	U36	U36	meta	block	World-class maintenance software.
+H205	U36	U36	google_ads	block	State-of-the-art platform for superyachts.
+H206	U36	U36	email	block	We believe this changes everything.
+H207	U37	U37	page_meta	block	Every change tied to a named individual.
+H208	U37	U37	social_generic	block	Optional two-factor login.
+H209	U37	U37	blog	block	Everything you do is findable.
+H210	K01	K01	linkedin	block	From $995 a month.
+H211	K01	K01	meta	block	Only €900 per vessel.
+H212	K01	K01	google_ads	block	GBP 800 monthly.
+H213	K03	K03	email	block	Billed per vessel per year.
+H214	K03	K03	page_meta	block	Pricing per month, per hull.
+H215	K03	K03	social_generic	block	Just 900 per month.
+H216	K07	K07	blog	block	Start your free trial today.
+H217	K07	K07	linkedin	block	Try it free for 30 days.
+H218	K07	K07	meta	block	Free 14-day trial.
+HL01	-	lookalike	blog	pass	The chief engineer writes the handover in the last week of the rotation, usually from memory.
+HL02	-	lookalike	blog	pass	When the VSAT drops, most crews fall back to paper logs.
+HL03	-	lookalike	blog	pass	The generator was taken offline for its 2,000-hour service.
+HL04	-	lookalike	blog	pass	Class surveyors expect evidence that planned maintenance was carried out.
+HL05	-	lookalike	blog	pass	The warranty period on the watermaker ends 24 months after commissioning.
+HL06	-	lookalike	blog	pass	A recurring fault usually has a cause that no single log entry shows.
+HL07	-	lookalike	blog	pass	Most yachts migrate their maintenance records only when they change management company.
+HL08	-	lookalike	blog	pass	The ISM Code requires that the company keeps records of maintenance.
+HL09	-	lookalike	blog	pass	Engineers on rotation hand over to a back-to-back colleague.
+HL10	-	lookalike	blog	pass	Turnover in some superyacht roles is high, according to industry surveys.
+HL11	-	lookalike	blog	pass	A manufacturer may deny a claim if the service history is incomplete.
+HL12	-	lookalike	blog	pass	The engineer reviews each suggested entry before it goes into the draft.
+HL13	-	lookalike	linkedin	pass	Captured as you work.
+HL14	-	lookalike	linkedin	pass	The incoming engineer inherits context, not chaos.
+HL15	-	lookalike	email	pass	Monthly billing; cancel or remove a vessel with 30 days' written notice.
+HL16	-	lookalike	email	pass	Email support 09:00-17:00 US Eastern, Mon-Fri; reply within one business day.
+HL17	-	lookalike	email	pass	Your data is yours. Download it free for 30 days after any ending.
+HL18	-	lookalike	page_meta	pass	Existing manuals, PDFs, scans and exports are imported as they are. No reformatting.
+HL19	-	lookalike	page_meta	pass	Works in any modern browser: desktop, tablet, mobile.
+HL20	-	lookalike	page_meta	pass	ISM Code: aligned with sections 10 and 11. Audit evidence, not class approval.
+HL21	-	lookalike	meta	pass	See what's connected. Immediately.
+HL22	-	lookalike	google_ads	pass	Per vessel, not per user
+HL23	-	lookalike	blog	pass	Following one record leads to every connected record.
+HL24	-	lookalike	blog	pass	Accept links the document to the record in front of you.
+HL25	-	lookalike	linkedin	pass	Every action is attributed and timestamped: who acted, what, when, which record.
+HL26	-	lookalike	blog	pass	The pump was replaced in March and the fault did not recur.
+HL27	-	lookalike	blog	pass	Before the season, the crew reviews every certificate due to expire.
+HL28	-	lookalike	email	pass	Book a demo.
+HL29	-	lookalike	blog	pass	Paper logbooks are easy to lose during a refit.
+HL30	-	lookalike	blog	pass	The second engineer logged the alarm at 03:10 and the chief signed it off.
+HL31	-	lookalike	blog	warn	We don't claim the handover writes itself; the engineer captures each item.
+HL32	-	lookalike	blog	warn	Nothing here works offline today.
+HL33	-	lookalike	blog	warn	CelesteOS is not DNV type approved, and we never say it is.
+HL34	-	lookalike	blog	warn	No vendor should promise 99.9% uptime without an SLA they can honour.
+HL35	-	lookalike	blog	warn	We will never tell you the handover is already drafted.
+HL36	-	lookalike	blog	warn	There is no AI magic involved.
+HL37	-	lookalike	blog	warn	We do not migrate your data for you.
+HL38	-	lookalike	blog	warn	Don't believe anyone who says their system searches every system on board.
+HL39	-	lookalike	linkedin	block	We don't claim the handover writes itself, but it nearly does.
+HL40	-	lookalike	meta	block	Not just fast: answers in milliseconds.
+HL41	-	lookalike	blog	pass	The manual sat in a folder named by an engineer four chiefs ago.
+HL42	-	lookalike	blog	pass	Crew turnover means knowledge walks off the gangway.

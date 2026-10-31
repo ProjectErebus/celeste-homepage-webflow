@@ -1,0 +1,169 @@
+case_id	rule_id	family	channel	expect	text
+D001	U01	U01	blog	block	Your handover is already done when rotation comes.
+D002	U01	U01	email	block	The handover compiles on its own.
+D003	U01	U01	google_ads	block	We write the handover so you don't have to.
+D004	U01	U01	linkedin	block	Handover packs prepared for you automatically.
+D005	U01	U01	social_generic	block	Handovers that write themselves.
+D006	U01	U01	page_meta	block	The software drafts the handover for the outgoing chief.
+D007	U01	U01	meta	block	Handover: finished before you pack your bag.
+D008	U01	U01	blog	block	Zero effort handover notes.
+D009	U05	U05	email	block	Results in less than a second.
+D010	U05	U05	google_ads	block	Millisecond search.
+D011	U05	U05	linkedin	block	Lightning quick answers.
+D012	U05	U05	social_generic	block	Real-time data across the fleet.
+D013	U05	U05	page_meta	block	No lag, no spinning wheel.
+D014	U05	U05	meta	block	Always current, always in sync.
+D015	U33	U33	blog	block	Indexed the instant you type it.
+D016	U33	U33	email	block	Findable right after you save.
+D017	U33	U33	google_ads	block	Notes appear in search immediately.
+D018	U33	U33	linkedin	block	Searchable the second you upload.
+D019	U33	U33	social_generic	block	Instantly available to the whole crew.
+D020	U33	U33	page_meta	block	Type it, find it, no delay.
+D021	U02	U02	meta	block	Searches every system you run.
+D022	U02	U02	blog	block	All your data in one search.
+D023	U02	U02	email	block	Nothing slips through.
+D024	U02	U02	google_ads	block	Every document on board, in one place.
+D025	U02	U02	linkedin	block	Full visibility of all records.
+D026	U02	U02	social_generic	block	Seals every entry anyone makes.
+D027	U09	U09	page_meta	block	No connection needed.
+D028	U09	U09	meta	block	Works at sea without internet.
+D029	U09	U09	blog	block	Keeps running when the satellite drops.
+D030	U09	U09	email	block	Offline mode for the engine room.
+D031	U09	U09	google_ads	block	Syncs when you reconnect.
+D032	U09	U09	linkedin	block	No Wi-Fi, no problem.
+D033	U11	U11	social_generic	block	Keep using AMOS.
+D034	U11	U11	page_meta	block	Sits on top of your existing PMS.
+D035	U11	U11	meta	block	No need to migrate.
+D036	U11	U11	blog	block	An add-on for your current maintenance system.
+D037	U11	U11	email	block	Works alongside the software you already use.
+D038	U11	U11	google_ads	block	No switching required.
+D039	U12	U12	linkedin	block	Approved by DNV.
+D040	U12	U12	social_generic	block	Lloyds certified.
+D041	U12	U12	page_meta	block	ABS type approved.
+D042	U12	U12	meta	block	Class approved software.
+D043	U12	U12	blog	block	ISO certified platform.
+D044	U12	U12	email	block	Certified SOC 2 compliant.
+D045	U18	U18	google_ads	block	Links spread to every fault on that equipment.
+D046	U18	U18	linkedin	block	Approve once, applied everywhere.
+D047	U18	U18	social_generic	block	The manual is attached to all related work orders automatically.
+D048	U18	U18	page_meta	block	Updates flow through to every connected record.
+D049	U18	U18	meta	block	Everyone who follows you inherits it.
+D050	U18	U18	blog	block	One click links it across the fleet.
+D051	U21	U21	email	block	Guaranteed 99.9% uptime.
+D052	U21	U21	google_ads	block	A 99.5% availability guarantee.
+D053	U21	U21	linkedin	block	SLA-backed service.
+D054	U21	U21	social_generic	block	Never goes down.
+D055	U21	U21	page_meta	block	100% uptime promise.
+D056	U21	U21	meta	block	Always-on platform with guaranteed availability.
+D057	U22	U22	blog	block	We migrate everything for you.
+D058	U22	U22	email	block	Our team imports your full history.
+D059	U22	U22	google_ads	block	Migration included in the price.
+D060	U22	U22	linkedin	block	We handle the data transfer.
+D061	U22	U22	social_generic	block	Free import of your old records.
+D062	U22	U22	page_meta	block	We'll bring your data across.
+D063	U25	U25	meta	block	15% off for early adopters.
+D064	U25	U25	blog	block	Introductory pricing ends soon.
+D065	U25	U25	email	block	Only 2 slots left this quarter.
+D066	U25	U25	google_ads	block	Founding member discount.
+D067	U25	U25	linkedin	block	Price rises next month.
+D068	U25	U25	social_generic	block	Limited-time offer.
+D069	U27	U27	page_meta	block	Cancel any time.
+D070	U27	U27	meta	block	No contract required.
+D071	U27	U27	blog	block	Leave whenever you want.
+D072	U27	U27	email	block	No notice needed.
+D073	U27	U27	google_ads	block	No long-term commitment.
+D074	U27	U27	linkedin	block	Stop anytime with a click.
+D075	U34	U34	social_generic	block	Recover lost warranty money.
+D076	U34	U34	page_meta	block	Find thousands in unclaimed warranty.
+D077	U34	U34	meta	block	It pays for itself.
+D078	U34	U34	blog	block	Get cash back on failed parts.
+D079	U34	U34	email	block	Warranty money you would have missed.
+D080	U34	U34	google_ads	block	Reclaim warranty value automatically.
+D081	U10	U10	linkedin	block	Onboarded In Hours
+D082	U10	U10	social_generic	block	Ready Same Day
+D083	U10	U10	page_meta	block	Live In 48 Hours
+D084	U10	U10	meta	block	Setup in under an hour.
+D085	U10	U10	blog	block	Go live in a week.
+D086	U10	U10	email	block	Quick setup, running tomorrow.
+D087	U03	U03	google_ads	block	Smart maintenance with AI.
+D088	U03	U03	linkedin	block	Neural search for engineers.
+D089	U04	U04	social_generic	block	No hallucinated answers.
+D090	U04	U04	page_meta	block	Never invents an answer.
+D091	U06	U06	meta	block	Maps every fault to its root cause.
+D092	U06	U06	blog	block	Explore the vessel graph.
+D093	U07	U07	email	block	One-click inspection pack.
+D094	U07	U07	google_ads	block	Export the audit trail to PDF.
+D095	U08	U08	linkedin	block	Reminders at 30, 14 and 7 days.
+D096	U08	U08	social_generic	block	Alerts 90 days before expiry.
+D097	U13	U13	page_meta	block	Your data stays private and never leaves.
+D098	U13	U13	meta	block	No third party can see your records.
+D099	U14	U14	blog	block	Bank grade encryption.
+D100	U14	U14	email	block	Military level security.
+D101	U15	U15	google_ads	block	verify.celeste7.ai
+D102	U15	U15	linkedin	block	Go to verify.celeste7.ai
+D103	U16	U16	social_generic	block	Track who opened each manual.
+D104	U16	U16	page_meta	block	Know how long crew spent reading the SOP.
+D105	U17	U17	meta	block	Hours of rest tracking.
+D106	U17	U17	blog	block	Purchase order workflow.
+D107	U19	U19	email	block	Intelligent PMS.
+D108	U19	U19	google_ads	block	Technical intelligence for yachts.
+D109	U20	U20	linkedin	block	24/7 support.
+D110	U20	U20	social_generic	block	Replies within the hour.
+D111	U23	U23	page_meta	block	Setup fee waived.
+D112	U23	U23	meta	block	Free onboarding.
+D113	U24	U24	blog	block	No installation.
+D114	U24	U24	email	block	Nothing to download.
+D115	U26	U26	google_ads	block	Data processed in the United States.
+D116	U26	U26	linkedin	block	Hosted in the US.
+D117	U28	U28	social_generic	block	Saves $10k a year.
+D118	U28	U28	page_meta	block	Costs thousands per claim.
+D119	U29	U29	meta	block	1% of your annual running costs.
+D120	U29	U29	blog	block	Less than the cost of one repair.
+D121	U30	U30	email	block	500+ engineers follow the build.
+D122	U30	U30	google_ads	block	Used by 50 yachts.
+D123	U31	U31	linkedin	block	3x faster audits.
+D124	U31	U31	social_generic	block	Saved 12 hours per handover.
+D125	U32	U32	page_meta	block	Resume where you stopped.
+D126	U32	U32	meta	block	Browser history for work.
+D127	U35	U35	blog	block	30-minute demo.
+D128	U35	U35	email	block	Book a 10 min call.
+D129	U36	U36	google_ads	block	Cutting-edge platform.
+D130	U36	U36	linkedin	block	Industry-leading software.
+D131	U37	U37	social_generic	block	Named individual attribution.
+D132	U37	U37	page_meta	block	Two-factor authentication.
+D133	K01	K01	meta	block	$450 a month.
+D134	K01	K01	blog	block	EUR 500.
+D135	K03	K03	email	block	Per month pricing.
+D136	K03	K03	google_ads	block	500 per year.
+D137	K07	K07	linkedin	block	Free trial available.
+D138	K07	K07	social_generic	block	30-day trial.
+DL01	-	lookalike	blog	pass	The outgoing engineer writes notes the night before leaving.
+DL02	-	lookalike	blog	pass	The satellite link drops often in the Pacific.
+DL03	-	lookalike	blog	pass	A class survey checks the maintenance history.
+DL04	-	lookalike	blog	pass	Warranty terms differ by manufacturer.
+DL05	-	lookalike	blog	pass	Root cause analysis takes time when records are scattered.
+DL06	-	lookalike	blog	pass	Yachts change PMS rarely.
+DL07	-	lookalike	linkedin	pass	Natural-language search across your vessel's records and manuals.
+DL08	-	lookalike	meta	pass	Finds what you mean, not what you typed.
+DL09	-	lookalike	email	pass	Price fixed for 12 months from your first subscription start.
+DL10	-	lookalike	page_meta	pass	Encrypted at rest and in transit.
+DL11	-	lookalike	blog	pass	Every record an engineer closes — a fault, a work order, a note — offers a single tap to add it to the handover draft.
+DL12	-	lookalike	blog	pass	Search lives at the top of every screen — phone, tablet, laptop.
+DL13	-	lookalike	blog	pass	The engine was down for repairs for two weeks.
+DL14	-	lookalike	blog	pass	Most engineers keep their own spreadsheet alongside the official system.
+DL15	-	lookalike	blog	pass	Crew read the risk assessment before the job.
+DL16	-	lookalike	blog	warn	Nobody should claim the handover writes itself.
+DL17	-	lookalike	blog	warn	We never promise sub-second search.
+DL18	-	lookalike	blog	warn	It does not work offline.
+DL19	-	lookalike	blog	warn	We don't import your data for you.
+DL20	-	lookalike	blog	pass	There is no discount.
+DL21	-	lookalike	linkedin	block	We never promise sub-second search, but results come back in milliseconds.
+DL22	-	lookalike	email	block	It isn't magic, it's automation.
+DL23	-	lookalike	blog	pass	The chief signs the handover; the incoming engineer acknowledges it.
+DL24	-	lookalike	blog	pass	The ISM Code asks for documented procedures.
+DL25	-	lookalike	blog	pass	Downtime on a charter yacht is expensive.
+DL26	-	lookalike	blog	pass	Parts were ordered after the fault was logged.
+DL27	-	lookalike	blog	pass	The incoming engineer starts the rotation by reading the handover.
+DL28	-	lookalike	blog	pass	Turnover is high in junior engineering roles.
+DL29	-	lookalike	blog	pass	The certificate expires in March.
+DL30	-	lookalike	blog	pass	Manuals are often scanned PDFs.

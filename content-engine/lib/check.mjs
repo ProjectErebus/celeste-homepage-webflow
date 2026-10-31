@@ -22,9 +22,9 @@ export function legacyView(res, pack) {
   });
 }
 
-export function checkText(text, { fullPage = false, pack, field } = {}) {
+export function checkText(text, { fullPage = false, pack, field, site = false } = {}) {
   pack = pack || loadPack();
   const f = field || (fullPage ? 'page_html' : 'draft_html');
-  const res = checkArtifact({ channel: 'blog', fields: { [f]: text } }, { pack, legacy: true });
+  const res = checkArtifact({ channel: 'blog', fields: { [f]: text } }, { pack, legacy: true, site });
   return legacyView(res, pack);
 }
