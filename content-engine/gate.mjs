@@ -4,6 +4,8 @@
 // this file is the command line around them.
 //
 //   node gate.mjs <file|posts/slug>                 blog gate, human report (unchanged UX). Exit 0 clean · 1 violation · 2 usage
+//   node gate.mjs <file> --channel email --email-type one_to_one|automated|marketing   (FD2: a price is allowed only in a 1:1 email;
+//                                                   a missing or unknown type is treated as marketing, so prices are blocked)
 //   node gate.mjs <page.html> --site                a site page (not a blog post): an exact commercial.C* line inside data-pricing is allowed (FD2)
 //   node gate.mjs <file> --channel <c> [--json]     same file checked on another channel (blog|page_meta|email|linkedin|meta|google_ads|social_generic)
 //   node gate.mjs <file|posts/slug> --json          ClaimsCheckResult JSON (ReviewRecord check shape) on stdout
@@ -192,6 +194,9 @@ function selfTest(pack) {
   for (const [t, exp] of [['The handover writes <span>it</span>self.', 'fail'], ['The handover writes it-self.', 'fail'], ['The handover writ\u0435s its\u0435lf.', 'fail'],
     ['A.I.-powered search.', 'fail'], ['995 USD per vessel.', 'fail'], ['Priced at 995/month per vessel.', 'fail'], ['Try it free for a month.', 'fail'],
     ["There's no doubt the handover writes itself.", 'fail'], ["We don't claim the handover writes itself.", 'warn'], ['For how long has the alarm been sounding?', 'pass'],
+    ['The handover \u{1D430}rites itself.', 'fail'], ['The handover writes it\nself.', 'fail'], ['The handover writes\nitself.', 'fail'],
+    ['The handover w r i t e s itself.', 'fail'], ['The handover writes &lt;span&gt;it&lt;/span&gt;self.', 'fail'], ['The handover writes &amp;lt;b&amp;gt;it&amp;lt;/b&amp;gt;self.', 'fail'],
+    ['The handover writes <b>i</b><b>tself</b>.', 'fail'],
     ['Clear your inbox before the guests board.', 'pass'], ['We create a shared folder for each refit.', 'pass'], ['Spend real time with the crew.', 'pass']]) {
     const r = checkArtifact({ channel: 'blog', fields: { body: t }, claim_provenance: { claims: [] } }, { pack, skip: ['CC05'] });
     ok(r.verdict === exp, `blog: ${JSON.stringify(t)} → ${exp}`, `got ${r.verdict} ${r.violations.map(v => v.rule_id).join(',')}`);
@@ -207,10 +212,15 @@ function selfTest(pack) {
   const neg = t => checkArtifact({ channel: 'blog', fields: { body: t }, claim_provenance: { claims: [] } }, { pack, skip: ['CC05'] });
   ok(neg('Nothing claims to write itself.').verdict === 'warn', 'FD-29d: negated banned phrase on blog → verdict warn');
   ok(checkArtifact({ channel: 'linkedin', fields: { post_text: 'Nothing claims to write itself.' }, claim_provenance: { claims: [] } }, { pack, skip: ['CC05'] }).verdict === 'fail', 'FD-29d: same phrase on linkedin → fail');
-  const c01 = ch => checkArtifact({ channel: ch, fields: { body: 'USD 995 per vessel per month.' }, claim_provenance: { claims: [{ claim_id: 'c1', text: 'USD 995 per vessel per month.', kind: 'pricing', location: { field: '/body' }, support: { type: 'brand_pack', ref: 'commercial.C01' } }] } }, { pack });
-  ok(c01('email').checks.find(c => c.id === 'CC03').result === 'pass' && c01('email').checks.find(c => c.id === 'CC06').result === 'pass', 'commercial.C01 with provenance on email → CC03/CC06 pass');
+  const c01 = (ch, emailType) => checkArtifact({ channel: ch, fields: { body: 'USD 995 per vessel per month.' }, claim_provenance: { claims: [{ claim_id: 'c1', text: 'USD 995 per vessel per month.', kind: 'pricing', location: { field: '/body' }, support: { type: 'brand_pack', ref: 'commercial.C01' } }] } }, { pack, emailType });
+  ok(c01('email', 'one_to_one').checks.find(c => c.id === 'CC03').result === 'pass' && c01('email', 'one_to_one').checks.find(c => c.id === 'CC06').result === 'pass', 'FD2: commercial.C01 with provenance in a one_to_one email → CC03/CC06 pass');
+  ok(c01('email').checks.find(c => c.id === 'CC03').result === 'fail', 'FD2: same price with no email type (default marketing) → CC03 fail');
+  ok(c01('email', 'automated').checks.find(c => c.id === 'CC03').result === 'fail', 'FD2: automated email → price blocked');
+  ok(c01('email', 'marketing').checks.find(c => c.id === 'CC03').result === 'fail', 'FD2: marketing email → price blocked');
+  ok(c01('email', 'bogus').checks.find(c => c.id === 'CC03').result === 'fail', 'FD2: unknown email type → treated as marketing → price blocked');
+  ok(checkArtifact({ channel: 'email', fields: { body: '<div data-pricing>USD 995 per vessel per month.</div>' } }, { pack, emailType: 'marketing' }).checks.find(c => c.id === 'CC03').result === 'fail', 'FD2: data-pricing in a marketing email → blocked');
   ok(c01('google_ads').checks.find(c => c.id === 'CC06').result === 'fail', 'commercial.C01 on google_ads → CC06 wrong_channel');
-  const r1 = JSON.stringify(c01('email')), r2 = JSON.stringify(c01('email'));
+  const r1 = JSON.stringify(c01('email', 'one_to_one')), r2 = JSON.stringify(c01('email', 'one_to_one'));
   ok(r1 === r2, 'determinism: same input + pack → identical bytes');
   ok(checkArtifact({ channel: 'tiktok', fields: { body: 'x' } }, { pack }).verdict === 'insufficient_evidence', 'unknown channel → insufficient_evidence (abstain)');
   ok(checkArtifact({ channel: 'meta', fields: { headline: 'Captured as you work, every single day' }, claim_provenance: { claims: [] } }, { pack }).limits.some(l => l.field === '/headline'), 'CC07: meta headline > 27 chars → limit violation');
@@ -255,14 +265,14 @@ function args(argv) {
   const o = { _: [] };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if (['--channel', '--artifact', '--blind'].includes(a)) o[a.slice(2)] = argv[++i];
+    if (['--channel', '--artifact', '--blind', '--email-type'].includes(a)) o[a.slice(2)] = argv[++i];
     else if (a.startsWith('--')) o[a.slice(2)] = true;
     else o._.push(a);
   }
   return o;
 }
 
-const USAGE = 'usage: node gate.mjs <file|posts/slug-dir> [--site] [--channel <c>] [--json] | --artifact <input.json> | --blind <cases.tsv> | --pack-info | --self-test';
+const USAGE = 'usage: node gate.mjs <file|posts/slug-dir> [--site] [--channel <c>] [--email-type one_to_one|automated|marketing] [--json] | --artifact <input.json> | --blind <cases.tsv> | --pack-info | --self-test';
 const a = args(process.argv.slice(2));
 
 if (a['self-test']) {
@@ -289,6 +299,7 @@ if (a.artifact) {
   let input;
   try { input = JSON.parse(readFileSync(resolve(a.artifact), 'utf8')); } catch (e) { console.error(`gate --artifact: ${e.message}`); process.exit(2); }
   if (a.channel && a.channel !== true) input.channel = a.channel;
+  if (a['email-type'] && a['email-type'] !== true) input.email_type = a['email-type'];
   const res = checkArtifact(input);                 // pack integrity failure → CC12 insufficient_evidence → exit 3
   console.log(JSON.stringify(res, null, 2));
   process.exit(exitCodeFor(res));
@@ -303,7 +314,7 @@ if (!parts) process.exit(2);
 
 if (a.json || channel !== 'blog') {
   const fields = Object.fromEntries(parts.map(p => [channel === 'blog' ? p.field : (p.field === 'meta_json' ? 'meta_json' : 'body'), p.text]));
-  const res = checkArtifact({ channel, fields }, { pack, site: !!a.site, legacy: channel === 'blog', skip: channel === 'blog' ? [] : ['CC05', 'CC06', 'CC07'] });
+  const res = checkArtifact({ channel, fields }, { pack, site: !!a.site, emailType: a['email-type'] && a['email-type'] !== true ? a['email-type'] : undefined, legacy: channel === 'blog', skip: channel === 'blog' ? [] : ['CC05', 'CC06', 'CC07'] });
   if (a.json) { console.log(JSON.stringify(res, null, 2)); process.exit(exitCodeFor(res)); }
   const fails = report(parts.map(p => p.name).join(' + '), legacyView(res, pack));
   console.log(fails ? `\ngate: FAIL — ${fails} blocking violation(s).` : '\ngate: PASS — no blocking violations.');

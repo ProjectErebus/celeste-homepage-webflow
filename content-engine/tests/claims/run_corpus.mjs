@@ -73,7 +73,8 @@ if (args.gate) {
   const lib = await import(pathToFileURL(resolve(args.lib)).href);
   runOne = c => { const field = c.field ? c.field.split('.')[1] : 'body';
     const prov = c.claim_id ? [{ claim_id: 'c1', text: c.text, kind: 'product_capability', location: { field: `/${field}` }, support: { type: 'brand_pack', ref: c.claim_id }, status: 'supported' }] : [];
-    const res = lib.checkArtifact({ channel: c.channel || 'page_meta', fields: { [field]: c.text }, claim_provenance: { claims: prov } }, { skip: c.claim_id ? [] : ['CC05'] });
+    // approved commercial lines on email are 1:1 email lines (FD2/FD3), so email rows run as one_to_one
+    const res = lib.checkArtifact({ channel: c.channel || 'page_meta', fields: { [field]: c.text }, claim_provenance: { claims: prov }, ...(c.channel === 'email' ? { email_type: 'one_to_one' } : {}) }, { skip: c.claim_id ? [] : ['CC05'] });
     const failed = res.checks.filter(k => k.result === 'fail').map(k => k.id);
     return { blocked: res.verdict === 'fail', contentBlocked: failed.some(id => ['CC01','CC02','CC03','CC04','CC05','CC06'].includes(id)), rules: failed }; };
 } else { console.error('usage: [--lib <claims-check.mjs>] | --gate <gate.mjs> --tmp <dir> | --blind <tsv>'); process.exit(2); }

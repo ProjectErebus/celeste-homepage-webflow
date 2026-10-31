@@ -19,6 +19,7 @@ export interface ClaimsCheckInput {
   evidence?: EvidenceItem[];
   links?: string[];
   basis?: 'transactional' | 'relationship' | 'promotional';
+  email_type?: 'one_to_one' | 'automated' | 'marketing';   // FD2: price allowed only in one_to_one; missing/unknown = marketing
   platform?: string;
   brand_pack?: { id: string; version: string; sha256: string };
 }
@@ -45,7 +46,7 @@ export class PackIntegrityError extends Error {}
 export const CHANNELS: Channel[];
 export const CHECK_IDS: CheckId[];
 export function loadPack(opts?: { jsonPath?: string; mdPath?: string | null; expectSha256?: string }): Pack;
-export function checkArtifact(input: ClaimsCheckInput, opts?: { pack?: Pack; legacy?: boolean; skip?: CheckId[]; web_sha?: string; assetIds?: string[] }): ClaimsCheckResult;
+export function checkArtifact(input: ClaimsCheckInput, opts?: { pack?: Pack; legacy?: boolean; skip?: CheckId[]; web_sha?: string; assetIds?: string[]; site?: boolean; emailType?: 'one_to_one' | 'automated' | 'marketing' | string }): ClaimsCheckResult;
 export function normalise(text: string, opts?: { html?: boolean; synonyms?: Record<string, string> }): { text: string; map: Int32Array };
 export function exitCodeFor(res: ClaimsCheckResult): 0 | 1 | 3;
 export function contentVerdict(res: ClaimsCheckResult): 'pass' | 'warn' | 'fail' | 'insufficient_evidence';

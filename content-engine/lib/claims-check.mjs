@@ -103,9 +103,9 @@ function isEditorial(raw, at) { return /data-editorial|<!--\s*editorial/i.test(l
 // Normalise one field value the same way everywhere (rule scan, provenance spans, coverage).
 // JSON fields (meta.json) are read as JSON string values; keys are skipped.
 const JSON_PRE = '<script type="application/json">';
-export function normField(raw, { html, json, synonyms } = {}) {
-  if (!json) return norm(raw, { html, synonyms });
-  const r = norm(JSON_PRE + raw + '</script>', { html: true, synonyms });
+export function normField(raw, { html, json, synonyms, joinBreaks } = {}) {
+  if (!json) return norm(raw, { html, synonyms, joinBreaks });
+  const r = norm(JSON_PRE + raw + '</script>', { html: true, synonyms, joinBreaks });
   return { text: r.text, map: r.map.map(i => Math.max(0, i - JSON_PRE.length)) };
 }
 
@@ -124,7 +124,8 @@ export function scanText(raw, opts) {
       if (m[0] === '') { re.lastIndex++; continue; }
       const start = map[m.index], end = map[m.index + m[0].length - 1] + 1;
       if (r.domain_guard && n[m.index - 1] === '.') continue;                 // celeste7.ai, foo.ml
-      if (r.check === 'CC03' && opts.exempt && opts.exempt(m.index, m.index + m[0].length, r, n)) continue;
+      // exemption spans are in RAW offsets, so the joined-breaks pass is judged the same way
+      if (r.check === 'CC03' && opts.exempt && opts.exempt(map[m.index], map[m.index + m[0].length - 1] + 1, r)) continue;
       let severity = 'fail', negated = false;
       if (r.check !== 'CC03' && r.check !== 'CC04' && (NEGATION.test(n.slice(Math.max(0, m.index - 60), m.index).replace(NEG_IDIOM, ',')) || (!r.selfneg && NEG_INSIDE.test(m[0].replace(NEG_IDIOM, ','))))) negated = true;
       if (channel === 'blog') {
@@ -133,6 +134,11 @@ export function scanText(raw, opts) {
       }
       hits.push({ check: r.check, rule_id: r.id, family: r.family, severity, start, end, match: raw.slice(start, end), normalised: m[0], safe: r.safe || null, why: r.why || null, negated, regex: r.regex });
     }
+  }
+  // second pass with line breaks inside words joined ("it\nself"), merged below by rule + start
+  if (/[A-Za-z][ \t]*\r?\n[ \t]*[A-Za-z]/.test(raw) && !opts.noJoinPass) {
+    const alt = scanText(raw, { ...opts, normed: normField(raw, { html: opts.html, json: opts.json === true, synonyms: pack.synonyms, joinBreaks: true }), noJoinPass: true });
+    hits.push(...alt.hits.filter(h => h.rule_id !== 'INT' && !(h.check === 'CC04' && h.rule_id === 'U15')));
   }
   // internal code / file names: case-sensitive, raw text (CC04)
   for (const re of pack.internalNames) {
@@ -373,7 +379,10 @@ export function checkArtifact(input, opts = {}) {
   if (!claims.length) set('CC06', 'not_applicable', 'no claims');
 
   // CC01–CC04 — rule engine per field
-  const kExemptBasis = !(channel === 'email' && input.basis === 'promotional');
+  // FD2: on email a price is allowed only in a 1:1 email. Missing or unknown type = marketing = blocked.
+  const emailType = String(opts.emailType ?? input.email_type ?? 'marketing').toLowerCase();
+  const oneToOne = emailType === 'one_to_one';
+  const kExemptBasis = channel !== 'email' || oneToOne;
   for (const [f, v] of Object.entries(fields)) {
     const vals = Array.isArray(v) ? v : [v];
     vals.forEach((raw, idx) => {
@@ -382,12 +391,15 @@ export function checkArtifact(input, opts = {}) {
       const html = /html/.test(f) ? true : undefined;
       const fullPage = /<html[\s>]|<head[\s>]/i.test(raw);
       // data-pricing (FD2) applies only to site pages (opts.site, the page CLI / sweep) and page_meta / email — never to blog posts or drafts
-      const pricingAllowed = channel === 'page_meta' || channel === 'email' || opts.site === true;
+      const pricingAllowed = channel === 'page_meta' || (channel === 'email' && oneToOne) || opts.site === true;
       const priceSpans = pricingAllowed && /data-pricing/.test(raw) ? pricingSpans(raw, pack) : [];
       // llms.txt (page_meta, plain text): an approved commercial.C* line allowed on page_meta, used verbatim, is its own provenance
       const llmsSpans = channel === 'page_meta' && f === 'llms_txt' ? exactCommercialSpans(fieldNorm[f][idx].text, pack, channel) : [];
+      const nmap = fieldNorm[f][idx].map;
+      const toRaw = c => ({ ...c, start: nmap[c.start], end: nmap[Math.max(c.start, c.end - 1)] + 1 });
+      const covRaw = cov.map(toRaw), llmsRaw = llmsSpans.map(toRaw);
       const { hits } = scanText(raw, { channel, pack, html, json: /json/.test(f), normed: fieldNorm[f][idx],
-        exempt: (s, e, r) => (kExemptBasis && cov.some(c => c.isC && c.result === 'supported' && s >= c.start && e <= c.end)) || llmsSpans.some(c => s >= c.start && e <= c.end) });
+        exempt: (s, e, r) => (kExemptBasis && covRaw.some(c => c.isC && c.result === 'supported' && s >= c.start && e <= c.end)) || llmsRaw.some(c => s >= c.start && e <= c.end) });
       for (const h of hits) {
         if (h.check === 'CC03' && priceSpans.some(p => h.start >= p.start && h.end <= p.end)) continue;
         const fld = Array.isArray(v) ? `/${f}/${idx}` : `/${f}`;

@@ -99,10 +99,15 @@ function scriptPieces(body, bodyRel, isJson) {
 }
 
 export function normalise(input, opts = {}) {
-  const html = opts.html ?? /<[a-z!\/][^>]*>/i.test(input);
   const st = { s: String(input), map: Array.from({ length: String(input).length }, (_, i) => i) };
 
-  // 1. HTML
+  // Order (CONTROL01, same on every path): entities → tags → NFKC → confusables → breaks inside words
+  // → spaced single letters → case / punctuation → numbers, currency, synonyms.
+  // 1. entities, repeated so double-escaped markup (&amp;lt;span&amp;gt;) is decoded too
+  for (let pass = 0; pass < 3 && /&(#\d+|#x[0-9a-f]+|[a-z][a-z0-9]*);/i.test(st.s); pass++)
+    sub(st, /&(#\d+|#x[0-9a-f]+|[a-z][a-z0-9]*);/gi, m => decodeEntities(m));
+  const html = opts.html ?? /<[a-z!\/][^>]*>/i.test(st.s);
+  // 2. HTML: block tags are sentence breaks; inline tags are removed (not replaced by a space)
   if (html) {
     sub(st, /<!--[\s\S]*?-->/g, () => BR);
     sub(st, /<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, () => BR);
@@ -119,19 +124,14 @@ export function normalise(input, opts = {}) {
         const v = a[1] ?? a[2];
         pieces.push([BR, base + a.index], [v, base + a.index + a[0].length - 1 - v.length], [BR, base + a.index + a[0].length - 1]);
       }
-      // an inline tag inside a word (writes <span>it</span>self) is removed; between elements it separates words
-      const prev = src[at - 1] || '', next = src[at + m.length] || '';
-      const intraWord = /[A-Za-z0-9]/.test(prev) && /[A-Za-z0-9]/.test(next);
-      const nl = BLOCK.test(tag) ? BR : intraWord ? '' : ' ';
+      const nl = BLOCK.test(tag) ? BR : '';
       return pieces.length ? pieces : nl;
     });
   }
   // URLs are addresses, not copy (dead hosts are caught on raw text by the engine)
   sub(st, /\b(?:https?:\/\/|www\.)[^\s"'<>]+/gi, () => ' ');
-  // 2. entities
-  sub(st, /&(#\d+|#x[0-9a-f]+|[a-z][a-z0-9]*);/gi, m => decodeEntities(m));
-  // 3. NFKC per character (keeps the map aligned); soft hyphen / zero-width removed
-  sub(st, /[^\x00-\x7f]/g, ch => ch.normalize('NFKC'));
+  // 3. NFKC per code point (astral too: mathematical 𝐰 → w); soft hyphen / zero-width removed
+  sub(st, /[^\x00-\x7f]/gu, ch => ch.normalize('NFKC'));
   sub(st, /[­​-‍⁠﻿]/g, () => '');
   // confusables: Cyrillic / Greek letters that look Latin
   sub(st, /[\u0391-\u03c9\u0400-\u04ff]/g, ch => CONFUSABLE[ch] ?? ch);
@@ -140,7 +140,12 @@ export function normalise(input, opts = {}) {
   sub(st, /[“”„″«»]/g, () => '"');
   sub(st, /[‐-―−]/g, () => '-');
   // 5. lowercase (per char, so the map stays aligned) + whitespace
+  // breaks inside words: the joinBreaks pass (run alongside the normal pass by the engine) removes a
+  // line break between two letters ("it\nself"); the normal pass keeps it as a space ("writes\nitself")
+  if (opts.joinBreaks) sub(st, /(?<=[A-Za-z])[ \t]*\r?\n[ \t]*(?=[A-Za-z])/g, () => '');
   sub(st, /[A-ZÀ-￿]/g, ch => { const l = ch.toLowerCase(); return l.length === 1 ? l : ch; });
+  // spaced single letters ("w r i t e s" → writes); 3+ letters separated by single spaces
+  sub(st, /(?<![a-z0-9'])[a-z](?: [a-z]){2,}(?![a-z0-9'])/g, m => m.replace(/ /g, ''));
   sub(st, /[^\S\u0001]+/g, () => ' ');
   // 6. spacing variants (it-self → it self → itself via synonyms)
   sub(st, /\ba\.\s?i\.?(?![a-z])/g, () => 'ai');

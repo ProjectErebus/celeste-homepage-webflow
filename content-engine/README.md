@@ -139,6 +139,20 @@ Misses in the builder's own held-out set (`tests/claims/builder_sets/heldout_v1.
 - U30: "Join over a thousand engineers already using it."
 - U36: "We believe this changes everything."
 
+Free-trial paraphrases (FD3: the trial is offered only in a 1:1 email). K07 catches "free trial", "N-day trial", "try it free" and "free for N days/months". These paraphrases pass today (checked 31 Oct):
+- "First month on us."
+- "Pay nothing for the first 30 days."
+- "No charge until day 31."
+- "A 30-day evaluation period at no cost."
+
+Spaced-letter and separator tricks. The normaliser handles these (in this order: entities including double-escaped, tags removed, NFKC so `𝐰` becomes `w`, confusables, line breaks inside words, single letters separated by single spaces). These forms still pass:
+- letters separated by dots or hyphens ("w.r.i.t.e.s", "w-r-i-t-e-s")
+- letters separated by two or more spaces
+- a spaced run with no gap between words ("w r i t e s i t s e l f", which folds to "writesitself")
+- other symbol or emoji separators
+
+Email pricing (FD2): a price is allowed only in a 1:1 email (`--email-type one_to_one`, library `emailType`). A missing or unknown email type is treated as marketing, so prices are blocked.
+
 To close a gap: add a rule line and a corpus row in `claims-allowlist.md` and `tests/claims/`, run `node gen-claims.mjs`, and keep the corpus at 0 approved blocked and the site sweep at 0 failing.
 
 ## The two gates that aren't code
