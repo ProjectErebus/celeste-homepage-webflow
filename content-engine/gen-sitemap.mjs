@@ -33,6 +33,7 @@ if (existsSync(SITEMAP)) {
   let m;
   while ((m = blockRe.exec(xml))) {
     const loc = m[1].trim();
+    if (loc === `${ORIGIN}/blogs/index`) continue; // redirects to /blogs (listed separately); never a sitemap entry
     const rest = m[2];
     const lastmod = (rest.match(/<lastmod>\s*([^<]+?)\s*<\/lastmod>/) || [])[1];
     const priority = (rest.match(/<priority>\s*([^<]+?)\s*<\/priority>/) || [])[1];
@@ -45,7 +46,9 @@ if (existsSync(SITEMAP)) {
 
 // 2. Ensure every live blog file is present.
 const blogsDir = join(ROOT, 'blogs');
-const blogFiles = existsSync(blogsDir) ? readdirSync(blogsDir).filter((f) => f.endsWith('.html')) : [];
+// blogs/index.html is the blog index, served (and listed) as /blogs; /blogs/index only 308-redirects there, and a
+// redirecting URL in a sitemap is reported by Search Console and the bcc web feed (sitemap.redirecting_url).
+const blogFiles = existsSync(blogsDir) ? readdirSync(blogsDir).filter((f) => f.endsWith('.html') && f !== 'index.html') : [];
 let added = 0;
 for (const f of blogFiles) {
   const loc = `${ORIGIN}/blogs/${f.replace(/\.html$/, '')}`;
