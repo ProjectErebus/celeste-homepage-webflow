@@ -261,11 +261,16 @@ export function structure(html, { fullPage }) {
 // call-only hits inside it. Returns [{start,end}] in raw offsets.
 function pricingSpans(raw, pack) {
   const spans = [];
-  for (const m of raw.matchAll(/<([a-z][a-z0-9]*)\b[^>]*\bdata-pricing\b[^>]*>([\s\S]*?)<\/\1\s*>/gi)) {
-    const inner = m[2];
-    const c = canon(plain(inner), pack.synonyms);
+  for (const m of raw.matchAll(/<([a-z][a-z0-9]*)\b(?:[^>"']|"[^"]*"|'[^']*')*\bdata-pricing\b(?:[^>"']|"[^"]*"|'[^']*')*>/gi)) {
+    // find the matching close tag (nesting-aware for the same tag name)
+    const tag = m[1].toLowerCase(), re = new RegExp(`<(/?)${tag}\\b[^>]*>`, 'gi');
+    re.lastIndex = m.index + m[0].length;
+    let depth = 1, end = -1, t;
+    while ((t = re.exec(raw))) { depth += t[1] ? -1 : 1; if (!depth) { end = t.index; break; } }
+    if (end < 0) continue;
+    const c = canon(decodeEntities(raw.slice(m.index + m[0].length, end).replace(/<[^>]+>/g, ' ')), pack.synonyms);
     const ok = [...pack.approved.values()].some(a => /^commercial\.C\d\d$/.test(a.id) && a.channelSet.has('page_meta') && (a.forms.has(c) || a.units.includes(c)));
-    if (ok) spans.push({ start: m.index, end: m.index + m[0].length });
+    if (ok) spans.push({ start: m.index, end: end + tag.length + 3 });
   }
   return spans;
 }

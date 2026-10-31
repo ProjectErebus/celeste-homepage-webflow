@@ -117,6 +117,8 @@ function selfTest(pack) {
     ['v2 K03 narrowed: "Per vessel, not per user" passes', '<p>Per vessel, not per user. Unlimited seats.</p>', false, false],
     ['v2 negated on blog → warn only: "Nothing writes itself"', '<p>Nothing writes itself. Captured as you work.</p>', false, false],
     ['v2 data-pricing: exact commercial.C01 line exempt', '<div data-pricing>USD 995 per vessel per month.</div>', false, false],
+    ['v2 data-pricing: nested markup, exact C01 text', '<div class="pm" data-pricing><h2>$995</h2><div class="sub">per vessel per month</div></div><p>From $450.</p>', true, false],
+    ['v2 data-pricing: nested markup only exempts inside', '<div class="pm" data-pricing><h2>$995</h2><div class="sub">per vessel per month</div></div>', false, false],
     ['v2 data-pricing: other price text still call-only', '<div data-pricing>USD 450 per month, pilot only.</div>', true, false],
     ['v2 JSON-LD strings are copy', '<html><head><script type="application/ld+json">{"@graph":[{"description":"The handover writes itself."}]}</script></head><body></body></html>', true, true],
   ];

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // site_sweep.mjs — run the claims gate over every live page of celeste7.ai. Node stdlib only, $0.
 //
-//   node content-engine/tests/claims/site_sweep.mjs [--json]
+//   node content-engine/tests/claims/site_sweep.mjs [--json] [--root <site checkout>]
 //
 // Live pages = the <loc> entries in sitemap.xml, plus llms.txt. Legal pages are not marketing
 // copy and are excluded, matching check_no_beside_pms.sh (privacy-policy, terms-of-service,
@@ -18,7 +18,8 @@ import { fileURLToPath } from 'node:url';
 import { loadPack, checkArtifact } from '../../lib/claims-check.mjs';
 import { legacyView } from '../../lib/check.mjs';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const rootArg = process.argv.indexOf('--root');
+const ROOT = rootArg > 0 ? process.argv[rootArg + 1] : join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const LEGAL = new Set(['privacy-policy', 'terms-of-service', 'cookies', 'acceptable-use', 'subprocessors']);
 const pack = loadPack();
 const locs = [...readFileSync(join(ROOT, 'sitemap.xml'), 'utf8').matchAll(/<loc>https:\/\/celeste7\.ai\/?([^<]*)<\/loc>/g)].map(m => m[1].replace(/\/$/, ''));
