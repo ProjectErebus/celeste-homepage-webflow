@@ -113,6 +113,34 @@ Pulls Search Console by page for `sc-domain:celeste7.ai`, classifies each
 to rewrite against a sharper keyword — the same restraint as the rest of the
 pipeline. Reads the JARVIS GSC OAuth token; override with `GSC_OAUTH_TOKEN`.
 
+## Known gaps (blind_v2, 31 Oct)
+
+The claims gate is a deterministic regex check, so it misses some paraphrases. CONTROL01's sealed blind_v2 set scored **40/49 = 81.6% blocked** at `0eca3c3`, with 0/10 false blocks and every warn row correct. That is below the 95% bar. CONTROL01 ruled that this PR and the site-copy PR merge as a strict improvement, and moved the 95% bar to the agent path (gate + verifier P14).
+
+**The gate alone is not sufficient for unreviewed outward copy.** The content engine stays PR-only: a person reviews and merges every post. Agent-produced artifacts must also pass the verifier's P14 check before they ship.
+
+Families missed by blind_v2 (no texts were disclosed, only the shape):
+- U04: "never makes things up" phrasing
+- U08: reminder schedules phrased as a month / two weeks / a week before
+- U11: no-migration phrasing
+- U13: "keeps none of your data"
+- U16: read-completion tracking
+- U17: purchase orders / spares as a product feature
+- U20: day-or-night support
+- U24: no downloads
+- U25: deadline pricing with a saving ("save … if you sign by …")
+
+Misses in the builder's own held-out set (`tests/claims/builder_sets/heldout_v1.tsv`, 213/220 = 96.8%):
+- U33: "Logged at 09:00, searchable at 09:00."
+- U02: "All your vessel data, unified and searchable."
+- U34: "Uncover unclaimed warranty on every pump."
+- U04: "No made-up answers."
+- U16: "Know whether each crew member opened the risk assessment."
+- U30: "Join over a thousand engineers already using it."
+- U36: "We believe this changes everything."
+
+To close a gap: add a rule line and a corpus row in `claims-allowlist.md` and `tests/claims/`, run `node gen-claims.mjs`, and keep the corpus at 0 approved blocked and the site sweep at 0 failing.
+
 ## The two gates that aren't code
 
 - **Claude drafts** (step 2) — judgment a script can't have: which SAFE claim
