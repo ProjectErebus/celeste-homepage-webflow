@@ -220,6 +220,23 @@ function selfTest(pack) {
   ok(c01('email', 'bogus').checks.find(c => c.id === 'CC03').result === 'fail', 'FD2: unknown email type → treated as marketing → price blocked');
   ok(checkArtifact({ channel: 'email', fields: { body: '<div data-pricing>USD 995 per vessel per month.</div>' } }, { pack, emailType: 'marketing' }).checks.find(c => c.id === 'CC03').result === 'fail', 'FD2: data-pricing in a marketing email → blocked');
   ok(c01('google_ads').checks.find(c => c.id === 'CC06').result === 'fail', 'commercial.C01 on google_ads → CC06 wrong_channel');
+  // FD2 over the corpus: every approved email row that contains a price (a call-only hit without provenance)
+  // must FAIL as marketing, as automated and with no email type, and pass as one_to_one.
+  {
+    const rows = readFileSync(join(HERE, 'tests', 'claims', 'approved.tsv'), 'utf8').trimEnd().split('\n').slice(1).map(l => l.split('\t'))
+      .filter(([, , , ch]) => ch === 'email').map(([case_id, claim_id, , , , text]) => ({ case_id, claim_id, text }));
+    const priced = rows.filter(r => checkArtifact({ channel: 'email', fields: { body: r.text }, claim_provenance: { claims: [] } }, { pack, skip: ['CC05'] })
+      .violations.some(v => v.id === 'CC03'));
+    const content = res => res.checks.filter(c => ['CC01', 'CC02', 'CC03', 'CC04', 'CC05', 'CC06'].includes(c.id) && c.result === 'fail').map(c => c.id);
+    const bad = [];
+    for (const r of priced) {
+      const run = emailType => checkArtifact({ channel: 'email', fields: { body: r.text }, claim_provenance: { claims: [{ claim_id: 'c1', text: r.text, kind: 'pricing',
+        location: { field: '/body' }, support: { type: 'brand_pack', ref: r.claim_id } }] } }, { pack, emailType });
+      for (const t of ['marketing', 'automated', undefined]) if (!content(run(t)).includes('CC03')) bad.push(`${r.case_id} as ${t ?? '(none)'} did not fail`);
+      if (content(run('one_to_one')).length) bad.push(`${r.case_id} as one_to_one failed ${content(run('one_to_one')).join(',')}`);
+    }
+    ok(priced.length > 0 && !bad.length, `FD2 corpus: ${priced.length} priced approved email rows fail as marketing / automated / no type and pass as one_to_one`, bad.join(' | '));
+  }
   const r1 = JSON.stringify(c01('email', 'one_to_one')), r2 = JSON.stringify(c01('email', 'one_to_one'));
   ok(r1 === r2, 'determinism: same input + pack → identical bytes');
   ok(checkArtifact({ channel: 'tiktok', fields: { body: 'x' } }, { pack }).verdict === 'insufficient_evidence', 'unknown channel → insufficient_evidence (abstain)');
