@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Every Action Has a Name and a Timestamp: Why Audit Trails Matter on Superyachts — CelesteOS</title>
-  <meta name="description" content="Most yacht maintenance systems record task completions but not who opened a document, who reviewed a record, or who authorised an action. Immutable audit trails with timestamped, attributable records change the legal defence.">
+  <title>Why Audit Trails Matter on Superyachts — CelesteOS</title>
+  <meta name="description" content="Most yacht maintenance systems record task completions, not who authorised an action. Why timestamped, attributable audit trails change the legal defence.">
   <meta property="og:title" content="Every Action Has a Name and a Timestamp: Why Audit Trails Matter on Superyachts">
   <meta property="og:description" content="Most yacht maintenance systems record task completions but not who opened a document, who reviewed a record, or who authorised an action. Immutable audit trails with timestamped, attributable records change the legal defence.">
   <meta property="og:type" content="article">
@@ -206,13 +206,13 @@
       <p>An audit trail in CelesteOS records every interaction between a user and a record. Not task completions — interactions.</p>
 
       <span class="topic-label">Document access</span>
-      <p>When a crew member opens an SOP, a technical manual, or a manufacturer's advisory, the system records who opened it, when, and the duration of access. This creates a verifiable record that the document was reviewed — not a checkbox claiming it was read, but a timestamped log showing it was opened by a named individual for a specific period.</p>
+      <p>When a crew member opens an SOP, a technical manual, or a manufacturer's advisory, the system records who opened it, when, and the duration of access. This creates a verifiable record that the document was reviewed — not a checkbox claiming it was read, but a timestamped log showing it was opened by a signed-in user for a specific period.</p>
 
       <span class="topic-label">Record review</span>
       <p>When an engineer opens a fault report, a work order, or an equipment record, the access is logged. When the chief engineer reviews a second engineer's fault diagnosis before authorising a repair, that review is recorded — who reviewed, when, and which record. The decision chain is preserved.</p>
 
       <span class="topic-label">Action attribution</span>
-      <p>Every action taken in the system — logging a fault, creating a work order, signing a <a href="/blogs/auto-generated-handover">handover</a>, closing a defect — is attributed to a named individual with a timestamp. Not "the system updated the record." A specific person, at a specific time, made a specific decision.</p>
+      <p>Every action taken in the system — logging a fault, creating a work order, signing a <a href="/blogs/auto-generated-handover">handover</a>, closing a defect — is attributed — by signed-in user and role — and timestamped. Not "the system updated the record." A specific person, at a specific time, made a specific decision.</p>
 
       <span class="topic-label">Immutability</span>
       <p>Once a record is created, it cannot be altered or deleted. The audit trail is append-only. If a record needs correction, a new entry is created that references the original — the original remains intact. This is not a software limitation. It is a design requirement. Records that can be retroactively modified cannot serve as evidence.</p>
@@ -263,7 +263,7 @@
 
       <p>The engineer opens the enclosed space entry procedure. The system logs: "M. Torres opened SOP-ENG-042: Enclosed Space Entry Procedure — 14:32 UTC." The engineer spends four minutes reviewing the document. The system logs the duration. No action required from the engineer. No checkbox. No confirmation dialog. The record exists because the interaction happened.</p>
 
-      <p>The chief engineer reviews a fault report submitted by the second engineer. The system logs: "Chief Engineer reviewed Fault F-2847: Port fuel isolation valve leak — 09:15 UTC." When the chief engineer authorises the repair and creates a work order, that action is logged with attribution and timestamp. The chain from fault report to review to authorisation to work order is preserved — each link attributable to a named individual at a recorded time.</p>
+      <p>The chief engineer reviews a fault report submitted by the second engineer. The system logs: "Chief Engineer reviewed Fault F-2847: Port fuel isolation valve leak — 09:15 UTC." When the chief engineer authorises the repair and creates a work order, that action is logged with attribution and timestamp. The chain from fault report to review to authorisation to work order is preserved — each link attributable to a signed-in user and role at a recorded time.</p>
 
       <p>When the incoming engineer asks "has the team been following the updated procedure?" the captain opens the audit trail. The record is there. Timestamped. Named. Immutable. The question is answered in seconds, not reconstructed from memory over hours.</p>
 
@@ -273,7 +273,7 @@
 
       <ul class="summary-list">
         <li>Most yacht maintenance systems record task completions but not the operational interactions between tasks — who opened a document, who reviewed a record, who authorised an action, and when.</li>
-        <li>An audit trail captures every interaction: document access with duration, record review, action attribution, and timestamps — all tied to a named individual.</li>
+        <li>An audit trail captures every interaction: document access with duration, record review, action attribution, and timestamps — all tied to a signed-in user and role.</li>
         <li>Immutability is the critical distinction between a log and an audit trail. Append-only records that cannot be altered or deleted serve as evidence. Editable logs do not.</li>
         <li>Immutable audit trails strengthen <a href="/blogs/warranty-claim-documentation">warranty claim defences</a>, support incident investigations, and provide internal accountability — by creating proof at the time of the work that cannot be disputed.</li>
         <li>The audit trail is not a feature. It is a legal defence.</li>
@@ -356,7 +356,7 @@
         <a href="/#handover">Handover</a>
         <a href="/#datum">Search</a>
         <a href="/#show-related">Show Related</a>
-        <a href="/#money">Warranty-finder</a>
+        <a href="/#money">Warranty</a>
         <a href="/#onboarding">Onboarding</a>
       </div>
       <div>
@@ -388,7 +388,7 @@
       <div class="c7f-contact">
         <div class="c7f-h">Get in touch</div>
         <a class="c7f-mail" href="mailto:contact@celeste7.ai?subject=CelesteOS%20Pilot">contact@celeste7.ai</a>
-        <p class="c7f-note">Operational correspondence only. A pilot is three to five vessels. Replies arrive within hours, not days.</p>
+        <p class="c7f-note">Operational correspondence only. A pilot is three to five vessels. Replies within one business day (09:00–17:00 US Eastern, Monday to Friday).</p>
       </div>
     </div>
     <div class="c7f-base">

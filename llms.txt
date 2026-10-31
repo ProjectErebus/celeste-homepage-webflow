@@ -6,13 +6,13 @@ Key facts:
 
 - Category: engineering and maintenance software for superyachts. It is a planned maintenance system, web-based.
 - Who uses it: chief engineers (the primary users), ETOs, captains and shore-based fleet technical managers.
-- Handover: the engineering handover assembles from work as it is logged. Every line links back to its live record, and the outgoing and incoming engineers sign and acknowledge it.
-- Ledger: every record carries an append-only audit trail showing who did what and when, with before and after values. Corrections reference the original, and nothing is overwritten. Records are sealed, can be exported as a structured PDF, and can be verified without an account.
-- Search: plain-language search across manuals, faults, work orders, parts and history. Every answer cites its source.
-- Certificates: flag, class and statutory certificates are tracked to expiry, with alerts at 30, 14 and 7 days and the source PDF attached.
+- Handover: captured as you work. Each line of the engineering handover links back to its live record, and the outgoing and incoming engineers sign and acknowledge it.
+- Ledger: every record carries an append-only audit trail showing who did what and when, with before and after values. Corrections reference the original, and nothing is overwritten. Key actions are sealed into a receipt anyone can verify at verifier.celeste7.ai, without an account.
+- Search: plain-language search across manuals, faults, work orders, parts and history. Results open the source record itself.
+- Certificates: flag, class and statutory certificates are tracked to expiry, source PDF attached; alerts as expiry approaches.
 - Onboarding: existing manuals, PDFs, scans and exports are indexed as they are, with no reformatting. The equipment register, certificates and work-order history are imported for the vessel.
 - Compliance: aligned with ISM Code sections 10 and 11. CelesteOS is audit evidence, not class approval. It does not hold DNV, LR, BV or ABS Type Approval.
-- Pricing: the pilot is USD 995 per vessel per month. Pricing is per vessel, not per user, with unlimited seats and no per-module tiering. The pilot rate is locked for 12 months from go-live, and each pilot runs on three to five vessels.
+- Pricing: USD 995 per vessel per month. Per vessel, not per user. Unlimited seats. No per-module tiering. Price fixed for 12 months from your first subscription start. Each pilot runs on three to five vessels.
 - Founder: Alex Short, formerly an Electro-Technical Officer and then Head of Department on motor yachts from 70 to 125 metres.
 
 ## Product and company
@@ -43,7 +43,7 @@ Key facts:
 - [Why Superyacht Maintenance Systems Create the Problems They Claim to Solve](https://celeste7.ai/blogs/siloed-maintenance-systems): the cost of siloed data.
 - [If the System Cannot Compete with WhatsApp, the System Is the Problem](https://celeste7.ai/blogs/software-bypass-superyachts): why crews bypass their maintenance software.
 - [Cross-Domain Actions on Superyachts](https://celeste7.ai/blogs/cross-domain-actions-yacht): connecting faults, work orders, parts and the handover.
-- [Natural Language Search on a Vessel](https://celeste7.ai/blogs/natural-language-search-yacht): one query that returns results across every domain.
+- [Natural Language Search on a Vessel](https://celeste7.ai/blogs/natural-language-search-yacht): one plain-language query across manuals, faults, work orders and parts.
 
 ## Legal
 
