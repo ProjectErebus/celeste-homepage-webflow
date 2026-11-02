@@ -7,6 +7,13 @@
 const ORIGIN = 'https://celeste7.ai';
 export const ORG = { '@type': 'Organization', '@id': `${ORIGIN}/#organization`, name: 'CelesteOS', url: `${ORIGIN}/` };
 export const WEBSITE = { '@id': `${ORIGIN}/#website` };
+// Blog author: the founder as a schema.org Person (same @id as the Person on the homepage graph, index.html).
+// name: index.html "@id": "https://celeste7.ai/#founder" -> "name": "Alex Short"; sameAs: the founder LinkedIn link
+// on the site (landing-v3.html / landing-v4.html founder block).
+export const AUTHOR = {
+  '@type': 'Person', '@id': `${ORIGIN}/#founder`, name: 'Alex Short', url: `${ORIGIN}/about`,
+  sameAs: ['https://www.linkedin.com/in/short-alex'],
+};
 export const FALLBACK_IMAGE = `${ORIGIN}/og-hero.jpg`;
 
 export function decodeEntities(s) {
@@ -83,7 +90,7 @@ export function buildGraph({ html, canonical, datePublished, dateModified, image
     '@type': 'BlogPosting', '@id': id('article'), headline, description,
     datePublished: isoDate(datePublished), dateModified: isoDate(dateModified || datePublished),
     image: { '@type': 'ImageObject', '@id': id('primaryimage'), url: img, contentUrl: img },
-    author: ORG, publisher: ORG,
+    author: AUTHOR, publisher: ORG,
     mainEntityOfPage: { '@id': id('webpage') }, isPartOf: WEBSITE, inLanguage: 'en',
   };
   if (keyword) article.keywords = keyword;
