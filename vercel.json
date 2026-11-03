@@ -17,6 +17,20 @@
       ]
     },
     {
+      "source": "/.well-known/verify-v2.pem",
+      "headers": [
+        { "key": "Content-Type",  "value": "application/x-pem-file" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/.well-known/keys.json",
+      "headers": [
+        { "key": "Content-Type",  "value": "application/json; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
       "source": "/.well-known/revocation.txt",
       "headers": [
         { "key": "Content-Type",  "value": "text/plain; charset=utf-8" },

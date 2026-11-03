@@ -2,6 +2,40 @@ CELESTEOS EVIDENCE SIGNING: REVOCATION NOTICE
 ==============================================
 
 Published:   27 September 2026
+Updated:     3 November 2026 (key version v2 retired, v3 current)
+Machine-readable list of every key version:
+             https://celeste7.ai/.well-known/keys.json
+
+CURRENT CERTIFICATE (key version v3)
+------------------------------------
+Subject:     C=GB, ST=England, L=London, O=CelesteOS Ltd,
+             OU=Evidence Signing Key v3, CN=CelesteOS Evidence Signing,
+             emailAddress=verify@celeste7.ai
+SHA-256:     9E:4F:8B:04:14:39:97:7B:FF:FC:26:0D:3A:DA:1E:E7:
+             6A:3D:82:C5:F1:9F:87:B4:9C:C8:DD:1A:57:96:43:5A
+Certificate: https://celeste7.ai/.well-known/verify.pem
+In use from: 3 November 2026 23:15 UTC
+Valid until: 2 November 2029
+
+RETIRED CERTIFICATE (key version v2) - NOT REVOKED
+--------------------------------------------------
+Subject:     C=GB, ST=England, L=London, O=CelesteOS Ltd,
+             OU=Evidence Signing Key v2, CN=CelesteOS Evidence Signing,
+             emailAddress=verify@celeste7.ai
+SHA-256:     12:59:FB:1A:DD:0B:0B:E6:F1:A3:12:AE:F3:BA:FF:49:
+             5D:5E:B1:5A:E6:4C:41:CB:75:14:7F:C5:91:C5:82:D5
+Archived at: https://celeste7.ai/.well-known/verify-v2.pem
+In use:      27 September 2026 17:43 UTC until 3 November 2026 23:15 UTC
+Status:      retired 2026-11-03 (possible partial exposure); valid only
+             for receipts sealed before 3 November 2026 23:15 UTC
+
+WHAT THIS MEANS FOR A V2 DOCUMENT
+---------------------------------
+The v2 key is retired as a precaution, not revoked. A document sealed
+with key version v2 is still authentic if its embedded RFC 3161
+timestamp is earlier than 3 November 2026 23:15 UTC. A v2 seal timestamped at or
+after that time must be treated as NOT authentic. To get a current
+seal, request a re-export from the vessel's CelesteOS account.
 
 REVOKED CERTIFICATE (key version v1)
 ------------------------------------
@@ -31,18 +65,7 @@ Subject:     C=GB, ST=England, L=London, O=CelesteOS Ltd,
 SHA-256:     1C:87:4B:EC:0D:0F:B0:B2:13:22:BB:35:F5:70:D4:D4:
              67:3A:44:6F:F1:F7:4A:F2:19:D3:C0:28:8A:2E:80:CC
 Note:        Served at /.well-known/verify.pem until it was replaced by
-             the v2 certificate below, but it is not the v1 key that
-             sealed exports; do not use it.
-
-REPLACEMENT CERTIFICATE (key version v2)
-----------------------------------------
-Subject:     C=GB, ST=England, L=London, O=CelesteOS Ltd,
-             OU=Evidence Signing Key v2, CN=CelesteOS Evidence Signing,
-             emailAddress=verify@celeste7.ai
-SHA-256:     12:59:FB:1A:DD:0B:0B:E6:F1:A3:12:AE:F3:BA:FF:49:
-             5D:5E:B1:5A:E6:4C:41:CB:75:14:7F:C5:91:C5:82:D5
-Certificate: https://celeste7.ai/.well-known/verify.pem
-In use from: 27 September 2026 17:43 UTC
-Valid until: 26 September 2029
+             the v2 certificate, but it is not the v1 key that sealed
+             exports; do not use it.
 
 Questions: verify@celeste7.ai
