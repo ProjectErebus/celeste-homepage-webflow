@@ -1,6 +1,7 @@
 CelesteOS Evidence Export — Verification Policy
 ================================================
 Published:  2026-04-13
+Updated:    2026-11-03 (signing key v3)
 Maintained: verify@celeste7.ai
 
 WHAT THIS DOCUMENT IS
@@ -19,15 +20,21 @@ PUBLIC SIGNING CERTIFICATE
 Algorithm:   RSA-4096
 Digest:      SHA-256
 Subject:     C=GB, ST=England, L=London, O=CelesteOS Ltd,
-             OU=Evidence Signing Key v2, CN=CelesteOS Evidence Signing,
+             OU=Evidence Signing Key v3, CN=CelesteOS Evidence Signing,
              emailAddress=verify@celeste7.ai
 Certificate: https://celeste7.ai/.well-known/verify.pem
-Key version: v2 (receipts record the key_version they were sealed with)
-SHA-256:     12:59:FB:1A:DD:0B:0B:E6:F1:A3:12:AE:F3:BA:FF:49:
-             5D:5E:B1:5A:E6:4C:41:CB:75:14:7F:C5:91:C5:82:D5
-Valid until: 26 September 2029
+Key version: v3 (receipts record the key_version they were sealed with)
+SHA-256:     9E:4F:8B:04:14:39:97:7B:FF:FC:26:0D:3A:DA:1E:E7:
+             6A:3D:82:C5:F1:9F:87:B4:9C:C8:DD:1A:57:96:43:5A
+In use from: 3 November 2026 23:15 UTC
+Valid until: 2 November 2029
 Status:      Self-signed (v0.1 staging). CA-issued certificate to follow.
-Previous:    v1 (revoked, see REVOCATION):
+All keys:    https://celeste7.ai/.well-known/keys.json
+Previous:    v2 (retired 2026-11-03, possible partial exposure; NOT
+             revoked; valid only for receipts sealed before
+             3 November 2026 23:15 UTC, see REVOCATION):
+             https://celeste7.ai/.well-known/verify-v2.pem
+             v1 (revoked, see REVOCATION):
              https://celeste7.ai/.well-known/verify-v1.pem
 
 EXPORT FORMAT
