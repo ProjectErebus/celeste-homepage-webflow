@@ -14,7 +14,7 @@ Subject:     C=GB, ST=England, L=London, O=CelesteOS Ltd,
 SHA-256:     9E:4F:8B:04:14:39:97:7B:FF:FC:26:0D:3A:DA:1E:E7:
              6A:3D:82:C5:F1:9F:87:B4:9C:C8:DD:1A:57:96:43:5A
 Certificate: https://celeste7.ai/.well-known/verify.pem
-In use from: 3 November 2026 23:15 UTC
+In use from: 3 November 2026 22:49 UTC
 Valid until: 2 November 2029
 
 RETIRED CERTIFICATE (key version v2) - NOT REVOKED
@@ -25,15 +25,15 @@ Subject:     C=GB, ST=England, L=London, O=CelesteOS Ltd,
 SHA-256:     12:59:FB:1A:DD:0B:0B:E6:F1:A3:12:AE:F3:BA:FF:49:
              5D:5E:B1:5A:E6:4C:41:CB:75:14:7F:C5:91:C5:82:D5
 Archived at: https://celeste7.ai/.well-known/verify-v2.pem
-In use:      27 September 2026 17:43 UTC until 3 November 2026 23:15 UTC
+In use:      27 September 2026 17:43 UTC until 3 November 2026 22:49 UTC
 Status:      retired 2026-11-03 (possible partial exposure); valid only
-             for receipts sealed before 3 November 2026 23:15 UTC
+             for receipts sealed before 3 November 2026 22:49 UTC
 
 WHAT THIS MEANS FOR A V2 DOCUMENT
 ---------------------------------
 The v2 key is retired as a precaution, not revoked. A document sealed
 with key version v2 is still authentic if its embedded RFC 3161
-timestamp is earlier than 3 November 2026 23:15 UTC. A v2 seal timestamped at or
+timestamp is earlier than 3 November 2026 22:49 UTC. A v2 seal timestamped at or
 after that time must be treated as NOT authentic. To get a current
 seal, request a re-export from the vessel's CelesteOS account.
 
