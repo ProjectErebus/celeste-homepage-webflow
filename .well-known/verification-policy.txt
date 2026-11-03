@@ -26,13 +26,13 @@ Certificate: https://celeste7.ai/.well-known/verify.pem
 Key version: v3 (receipts record the key_version they were sealed with)
 SHA-256:     9E:4F:8B:04:14:39:97:7B:FF:FC:26:0D:3A:DA:1E:E7:
              6A:3D:82:C5:F1:9F:87:B4:9C:C8:DD:1A:57:96:43:5A
-In use from: 3 November 2026 23:15 UTC
+In use from: 3 November 2026 22:49 UTC
 Valid until: 2 November 2029
 Status:      Self-signed (v0.1 staging). CA-issued certificate to follow.
 All keys:    https://celeste7.ai/.well-known/keys.json
 Previous:    v2 (retired 2026-11-03, possible partial exposure; NOT
              revoked; valid only for receipts sealed before
-             3 November 2026 23:15 UTC, see REVOCATION):
+             3 November 2026 22:49 UTC, see REVOCATION):
              https://celeste7.ai/.well-known/verify-v2.pem
              v1 (revoked, see REVOCATION):
              https://celeste7.ai/.well-known/verify-v1.pem
