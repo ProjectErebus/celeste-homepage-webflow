@@ -256,7 +256,7 @@
   <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
   <script src="/js/cookie-consent.js"></script>
   <script src="/js/celeste-attribution.js" defer></script>
-  <link rel="stylesheet" href="landing-v12.css?v=mom1">
+  <link rel="stylesheet" href="landing-v12.css?v=mom2">
 </head>
 <body>
 
@@ -568,6 +568,7 @@
             </div>
             <button type="button" class="lm-add" id="lm-add">+ Add another entry</button>
             <input type="email" class="lm-input" id="lm-email" placeholder="Email" required>
+            <label class="lm-optin" for="lm-marketing"><input type="checkbox" id="lm-marketing" name="marketing" value="1"><span>Send me CelesteOS updates (no more than 2 a week, unsubscribe anytime)</span></label>
             <button type="submit" class="lm-btn">Generate the handover →</button>
           </form>
           <div class="lm-subtext">Arrives by email.</div>
@@ -2065,8 +2066,15 @@
         if (inp.value.trim()) { jobs.push(inp.value.trim()); }
       });
       track('magnet_submit', { entries: jobs.length });
+      /* Marketing opt-in tick box (unticked by default): adds marketing:true to lead_submit. */
+      var optIn = !!(document.getElementById('lm-marketing') || {}).checked;
       /* lead_submit to the first-party ledger: consent-gated inside celesteAttribution (no-op without analytics opt-in) */
-      try { if (EVENTS_ENDPOINT && email && window.celesteAttribution) { window.celesteAttribution.lead(email); } } catch (err) {}
+      try { if (EVENTS_ENDPOINT && email && window.celesteAttribution) { window.celesteAttribution.lead(email, optIn ? { marketing: true } : null); } } catch (err) {}
+      /* Without analytics consent lead_submit is not sent, so carry the opt-in as a newsletter_signup (double opt-in) instead. */
+      try {
+        var cc = window.celesteConsent && window.celesteConsent.get ? window.celesteConsent.get() : null;
+        if (optIn && email && !(cc && cc.analytics) && window.celesteNewsletter) { window.celesteNewsletter.subscribe(email); }
+      } catch (err) {}
       if (MAGNET_ENDPOINT) {
         try {
           fetch(MAGNET_ENDPOINT, {

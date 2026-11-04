@@ -19,7 +19,11 @@
  *    advertising consent no pixel / conversion fires and no fbp / fbc is read.
  *
  * Load after cookie-consent.js:  <script src="/js/celeste-attribution.js" defer></script>
- * API: window.celesteAttribution.lead(email)  call after a successful form submit
+ * API: window.celesteAttribution.lead(email, extra)  call after a successful form submit
+ *      (extra: optional fields merged into the lead_submit body, e.g. { marketing: true })
+ *      window.celesteAttribution.uuid() / .anonId()  shared id helpers (anonId() only after analytics consent)
+ *
+ * Also loads /js/celeste-newsletter.js (footer newsletter sign-up), so every page with this script gets it.
  */
 (function () {
   'use strict';
@@ -171,9 +175,26 @@
   document.addEventListener('celeste:consent', onConsented);
 
   window.celesteAttribution = {
-    lead: function (email) { return send('lead_submit', { email: String(email || '').slice(0, 254) }); },
+    lead: function (email, extra) {
+      var x = { email: String(email || '').slice(0, 254) };
+      for (var k in (extra || {})) if (k !== 'email') x[k] = extra[k];
+      return send('lead_submit', x);
+    },
+    uuid: uuid,
+    /* The stored anon id exists only with analytics consent; null otherwise (nothing is created). */
+    anonId: function () { return allowed() ? anonId() : null; },
     forget: forget
   };
+
+  /* Footer newsletter sign-up: one shared include for every page that has a footer. */
+  try {
+    if (!window.celesteNewsletter && !document.querySelector('script[src*="celeste-newsletter.js"]')) {
+      var nl = document.createElement('script');
+      nl.src = '/js/celeste-newsletter.js';
+      nl.defer = true;
+      document.head.appendChild(nl);
+    }
+  } catch (e) {}
 
   onConsented();
 })();
