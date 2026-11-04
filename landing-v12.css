@@ -1008,6 +1008,13 @@ body:not(.pin) .pin-layer:first-child { margin-top: 0; }
 }
 .lm-optin input { flex: none; width: 18px; height: 18px; margin: 0.1rem 0 0; accent-color: var(--teal); cursor: pointer; }
 .lm-optin input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.lm-more { border: 0; margin: 0 0 0.2rem; padding: 0; min-width: 0; }
+.lm-more legend { padding: 0; margin-bottom: 0.5rem; font-size: 0.78rem; color: var(--txt3); }
+.lm-label { display: block; font-size: 0.8rem; color: var(--txt2); margin-bottom: 0.3rem; }
+select.lm-input { height: 2.95rem; padding-top: 0; padding-bottom: 0; }
+.lm-pair { display: flex; gap: 0.8rem; }
+.lm-pair > div { flex: 1; min-width: 0; }
+@media (max-width: 480px) { .lm-pair { flex-direction: column; gap: 0; } }
 .lm-confirm { text-align: center; padding: 1.5rem 0; }
 .lm-confirm .seal-mark { width: 36px; height: 36px; margin: 0 auto 1.2rem; font-size: 1rem; }
 .lm-confirm h4 { font-weight: 500; color: var(--txt); margin-bottom: 0.5rem; }
