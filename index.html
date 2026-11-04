@@ -256,7 +256,8 @@
   <!-- Consent manager: sets Consent Mode v2 defaults, then loads Google (GA4/Ads) and Contentsquare ONLY after opt-in; honors GPC. Must stay synchronous. -->
   <script src="/js/cookie-consent.js"></script>
   <script src="/js/celeste-attribution.js" defer></script>
-  <link rel="stylesheet" href="landing-v12.css?v=mom2">
+  <script src="/js/celeste-sample.js" defer></script>
+  <link rel="stylesheet" href="landing-v12.css?v=mom4">
 </head>
 <body>
 
@@ -553,7 +554,7 @@
           <div class="eyebrow">Your vessel</div>
           <h2 class="display" style="font-size: clamp(1.7rem, 3vw, 2.5rem);">See it with your vessel's name <span class="accent">on it.</span></h2>
           <p class="lead">Name your vessel. Type three recent jobs the way you'd say them out loud: no format, no structure. A handover pack assembled from your entries comes back, sealed like the real thing. <strong>Yours, not a generic demo.</strong></p>
-          <a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Get a sample pack →</a>
+          <a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Get a sample pack →</a>
         </div>
         <div class="magnet-card reveal" id="magnet-card">
           <div class="lm-header">Your handover, assembled</div>
@@ -568,6 +569,22 @@
             </div>
             <button type="button" class="lm-add" id="lm-add">+ Add another entry</button>
             <input type="email" class="lm-input" id="lm-email" placeholder="Email" required>
+            <fieldset class="lm-more">
+              <legend>About you (optional)</legend>
+              <label class="lm-label" for="lm-role">Role</label>
+              <select class="lm-input" id="lm-role">
+                <option value="">Select</option>
+                <option value="engineer">Chief Engineer / ETO</option>
+                <option value="captain">Captain</option>
+                <option value="fleet_manager">Fleet or technical manager</option>
+                <option value="owner_rep">Owner's representative</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="lm-pair">
+                <div><label class="lm-label" for="lm-count">Number of vessels</label><input type="number" class="lm-input" id="lm-count" min="1" max="500" step="1" inputmode="numeric"></div>
+                <div><label class="lm-label" for="lm-pms">Current PMS</label><input type="text" class="lm-input" id="lm-pms" maxlength="80" autocomplete="off"></div>
+              </div>
+            </fieldset>
             <label class="lm-optin" for="lm-marketing"><input type="checkbox" id="lm-marketing" name="marketing" value="1"><span>Send me CelesteOS updates (no more than 2 a week, unsubscribe anytime).</span></label>
             <button type="submit" class="lm-btn">Generate the handover →</button>
           </form>
@@ -592,7 +609,7 @@
           <span class="how-k">How</span>
           <span class="how-v">The ledger isn't a separate place. Every record carries two tabs, <strong>Audit Trail</strong> and <strong>Notes</strong>, sealed and queryable. Append-only: corrections reference the original, deleted rows strike through. <strong>Nothing is ever overwritten.</strong></span>
         </div>
-        <a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">See the trail →</a>
+        <a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">See the trail →</a>
       </div>
     </section>
 
@@ -700,7 +717,7 @@
         <h2 class="display">Every PMS produces records. <span class="accent">Few produce proof.</span></h2>
         <p class="lead">Every action, fault, handover, work order, signature, is sealed into a cryptographic receipt that anyone can verify at <strong>verifier.celeste7.ai</strong>. Export critical proof when it matters.</p>
         <p class="pr-law">The audit trail is not big-brother. <em>It is a legal defence.</em></p>
-        <a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Get provable records →</a>
+        <a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Get provable records →</a>
       </div>
     </section>
 
@@ -918,7 +935,7 @@
 
   <!-- search render slots -->
   <section class="section" data-screen-label="04b · Search CTA">
-    <div class="sec-cta-row reveal"><a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Search the vessel →</a></div>
+    <div class="sec-cta-row reveal"><a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Search the vessel →</a></div>
   </section>
 
   <div class="handoff reveal has-photo on-photo">
@@ -936,7 +953,7 @@
         <p class="ev-quote">"You actually built it. This is the Bitcoin in 2009."</p>
         <div class="ev-who">Captain · live demo · reacting to this drawer</div>
       </div>
-      <a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Find what's buried →</a>
+      <a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Find what's buried →</a>
     </div>
   </section>
 
@@ -1019,7 +1036,7 @@
         <h2 class="display">The right manual exists. <span class="accent">It finds the work.</span></h2>
         <p class="lead">Crew find documents the way they always have: ask whoever was here last, hunt the filing cabinet, scroll a folder named by an engineer four chiefs ago. The file exists. <strong>Connecting it to the work in front of you is the labour.</strong> That labour is gone.</p>
         <div class="contrast-line">Show Related <strong>finds</strong> what nobody connected.<br>This <strong>spreads</strong> what one person found.</div>
-        <a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Link the manuals →</a>
+        <a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Link the manuals →</a>
       </div>
     </section>
 
@@ -1118,7 +1135,7 @@
       <div class="evidence">
         <p class="ev-fact">One denied claim runs <strong>$20k to $100k+</strong>. The PMS holds the warranty date. It never connects it to the fault you just logged.</p>
       </div>
-      <a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Check the warranty →</a>
+      <a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">Check the warranty →</a>
     </div>
   </section>
 
@@ -1386,7 +1403,7 @@
       </div>
     </div>
     <p class="cov-plus reveal">Plus the four things you wouldn't: <em>handover generation, immutable audit trails, cross-domain search, fleet view</em>, built into the same record, not bolted on.</p>
-    <div class="reveal" style="margin-top: 2.5rem;"><a class="sec-cta" href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">See every domain →</a></div>
+    <div class="reveal" style="margin-top: 2.5rem;"><a class="sec-cta" data-sample-pack href="mailto:contact@celeste7.ai?subject=CelesteOS%20pilot%20access&body=Hi%20CelesteOS%20team%2C%0A%0AI%20run%20a%20vessel%20and%20would%20like%20to%20understand%20the%20pilot.%0A%0AVessel%20name%3A%0ALength%3A%0AMy%20role%3A%0ACurrent%20PMS%3A%0A%0ASent%20from%20celeste7.ai" target="_blank" rel="noopener">See every domain →</a></div>
   </section>
 
   <!-- ═══ SECTION 09b · FOUNDER NOTE · the human voice before the ask ═══ -->
@@ -2068,12 +2085,23 @@
       track('magnet_submit', { entries: jobs.length });
       /* Marketing opt-in tick box (unticked by default): adds marketing:true to lead_submit. */
       var optIn = !!(document.getElementById('lm-marketing') || {}).checked;
+      /* Optional lead fields: role, vessel_count (whole number 1-500, else left out), current_pms (<=80 chars). */
+      var leadFields = {};
+      var role = document.getElementById('lm-role').value;
+      if (role) { leadFields.role = role; }
+      var countRaw = document.getElementById('lm-count').value.trim();
+      if (/^\d+$/.test(countRaw) && +countRaw >= 1 && +countRaw <= 500) { leadFields.vessel_count = +countRaw; }
+      var pms = document.getElementById('lm-pms').value.trim().slice(0, 80);
+      if (pms) { leadFields.current_pms = pms; }
+      var leadExtra = {};
+      for (var lk in leadFields) { leadExtra[lk] = leadFields[lk]; }
+      if (optIn) { leadExtra.marketing = true; }
       /* lead_submit to the first-party ledger: consent-gated inside celesteAttribution (no-op without analytics opt-in) */
-      try { if (EVENTS_ENDPOINT && email && window.celesteAttribution) { window.celesteAttribution.lead(email, optIn ? { marketing: true } : null); } } catch (err) {}
+      try { if (EVENTS_ENDPOINT && email && window.celesteAttribution) { window.celesteAttribution.lead(email, leadExtra); } } catch (err) {}
       /* Without analytics consent lead_submit is not sent, so carry the opt-in as a newsletter_signup (double opt-in) instead. */
       try {
         var cc = window.celesteConsent && window.celesteConsent.get ? window.celesteConsent.get() : null;
-        if (optIn && email && !(cc && cc.analytics) && window.celesteNewsletter) { window.celesteNewsletter.subscribe(email); }
+        if (optIn && email && !(cc && cc.analytics) && window.celesteNewsletter) { window.celesteNewsletter.subscribe(email, leadFields); }
       } catch (err) {}
       if (MAGNET_ENDPOINT) {
         try {

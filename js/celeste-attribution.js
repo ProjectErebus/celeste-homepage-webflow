@@ -22,6 +22,7 @@
  * API: window.celesteAttribution.lead(email, extra)  call after a successful form submit
  *      (extra: optional fields merged into the lead_submit body, e.g. { marketing: true })
  *      window.celesteAttribution.uuid() / .anonId()  shared id helpers (anonId() only after analytics consent)
+ *      window.celesteAttribution.touch()  UTMs / click ids / referrer / first + last touch ({} without analytics consent)
  *
  * Also loads /js/celeste-newsletter.js (footer newsletter sign-up), so every page with this script gets it.
  */
@@ -123,6 +124,24 @@
     if (isTouch || !get(K.lt)) set(K.lt, JSON.stringify(t));
   }
 
+  /* Attribution fields every collector event carries after analytics consent: UTMs / click ids, referrer,
+     first / last touch, plus fbp / fbc / gclid with advertising consent. {} without analytics consent. */
+  function touchFields(c) {
+    if (!(c && c.analytics)) return {};
+    var out = currentParams();
+    if (adsAllowed(c)) {
+      var m = metaIds();
+      if (m.fbp) out.fbp = m.fbp;
+      if (m.fbc) out.fbc = m.fbc;
+      if (!out.gclid) { var g = gclAw(); if (g) out.gclid = g; }
+    }
+    out.referrer = document.referrer || '';
+    var ft = parse(get(K.ft)), lt = parse(get(K.lt));
+    if (ft) out.first_touch = ft;
+    if (lt) out.last_touch = lt;
+    return out;
+  }
+
   function send(name, extra) {
     var c = consent();
     if (!c) return false;
@@ -130,20 +149,13 @@
     var ads = adsAllowed(c);
     if (ads) fireAdConversions(name, eventId);
     if (!c.analytics) return ads;
-    var p = currentParams();
-    if (ads) {
-      var m = metaIds();
-      if (m.fbp) p.fbp = m.fbp;
-      if (m.fbc) p.fbc = m.fbc;
-      if (!p.gclid) { var g = gclAw(); if (g) p.gclid = g; }
-    }
     var ev = {
       event_id: eventId, event: name, anon_id: anonId(), ts: Date.now(),
-      page: location.origin + location.pathname, referrer: document.referrer || '',
-      first_touch: parse(get(K.ft)) || undefined, last_touch: parse(get(K.lt)) || undefined,
+      page: location.origin + location.pathname,
       consent: { analytics: true, ads: ads }
     };
-    for (var k in p) ev[k] = p[k];
+    var t = touchFields(c);
+    for (var k in t) ev[k] = t[k];
     for (var x in (extra || {})) ev[x] = extra[x];
     var body = JSON.stringify(ev);
     try {
@@ -181,6 +193,8 @@
       return send('lead_submit', x);
     },
     uuid: uuid,
+    /* Attribution fields for a form event sent by another script ({} without analytics consent). */
+    touch: function () { return touchFields(consent()); },
     /* The stored anon id exists only with analytics consent; null otherwise (nothing is created). */
     anonId: function () { return allowed() ? anonId() : null; },
     forget: forget

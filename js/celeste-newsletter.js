@@ -7,12 +7,12 @@
  *   <script src="/js/celeste-newsletter.js" defer></script>
  *
  * Sends ONE event to the CelesteOS control plane, the same collector lead_submit uses:
- *   { event_id, event: "newsletter_signup", anon_id, email, page, consent: { analytics, ads } }
+ *   { event_id, event: "newsletter_signup", anon_id, email, page, consent: { analytics, ads }, role?, vessel_count?, current_pms? }
  * Analytics consent is not required for this event (the visitor asked for it). anon_id is the stored
  * celeste_anon id when analytics consent exists, otherwise a fresh id for this request that is never stored.
  * The control plane sends the confirmation email; the browser never sends email and never stores the address.
  *
- * API: window.celesteNewsletter.subscribe(email) -> Promise<number HTTP status, 0 on network error>
+ * API: window.celesteNewsletter.subscribe(email, extra?) -> Promise<number HTTP status, 0 on network error>
  */
 (function () {
   'use strict';
@@ -43,16 +43,21 @@
     return uuid();
   }
 
-  function subscribe(email) {
+  /* Optional lead fields the collector accepts on newsletter_signup (sent by the index.html lead-form fallback). */
+  var EXTRA_KEYS = ['role', 'vessel_count', 'current_pms'];
+
+  function subscribe(email, extra) {
     var c = consent();
-    var body = JSON.stringify({
+    var ev = {
       event_id: uuid(),
       event: 'newsletter_signup',
       anon_id: anonId(c),
       email: String(email || '').trim().slice(0, 254),
       page: location.origin + location.pathname,
       consent: { analytics: !!(c && c.analytics), ads: !!(c && c.ads && !c.gpc) }
-    });
+    };
+    EXTRA_KEYS.forEach(function (k) { if (extra && extra[k] != null && extra[k] !== '') ev[k] = extra[k]; });
+    var body = JSON.stringify(ev);
     try {
       /* JSON as text/plain = CORS "simple" request (no preflight), same as celeste-attribution.js. */
       return fetch(ENDPOINT, { method: 'POST', body: body, mode: 'cors', credentials: 'omit', headers: { 'Content-Type': 'text/plain' } })
