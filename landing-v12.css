@@ -994,6 +994,20 @@ body:not(.pin) .pin-layer:first-child { margin-top: 0; }
   color: var(--txt3);
   margin-top: 1rem;
 }
+.lm-optin {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0.2rem 0 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--txt2);
+  cursor: pointer;
+  text-align: left;
+}
+.lm-optin input { flex: none; width: 18px; height: 18px; margin: 0.1rem 0 0; accent-color: var(--teal); cursor: pointer; }
+.lm-optin input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 .lm-confirm { text-align: center; padding: 1.5rem 0; }
 .lm-confirm .seal-mark { width: 36px; height: 36px; margin: 0 auto 1.2rem; font-size: 1rem; }
 .lm-confirm h4 { font-weight: 500; color: var(--txt); margin-bottom: 0.5rem; }
