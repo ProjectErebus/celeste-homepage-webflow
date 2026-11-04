@@ -6,7 +6,8 @@
  *
  * Sends ONE event to the CelesteOS control plane (same collector and text/plain JSON send as the newsletter):
  *   { event_id, event: "sample_request", anon_id, email, page, consent: { analytics, ads },
- *     role?, vessel_count?, vessel_name?, marketing?: true }
+ *     role?, vessel_count?, vessel_name?, marketing?: true,
+ *     + with analytics consent: celesteAttribution.touch() fields (UTMs, click ids, referrer, first_touch, last_touch) }
  * anon_id is the stored celeste_anon id when analytics consent exists, otherwise a one-off id that is never stored
  * (celeste-attribution.js decides). The email is never written to storage or the URL.
  *
@@ -60,6 +61,11 @@
       page: location.origin + location.pathname,
       consent: { analytics: !!(c && c.analytics), ads: !!(c && c.ads && !c.gpc) }
     };
+    /* With analytics consent: the same attribution fields lead_submit carries (UTMs, click ids, touches, referrer). */
+    try {
+      var t = c && c.analytics && window.celesteAttribution && window.celesteAttribution.touch ? window.celesteAttribution.touch() : {};
+      for (var k in t) ev[k] = t[k];
+    } catch (e) {}
     if (fields.role) ev.role = fields.role;
     if (fields.vessel_count) ev.vessel_count = fields.vessel_count;
     if (fields.vessel_name) ev.vessel_name = String(fields.vessel_name).slice(0, 80);
@@ -79,7 +85,7 @@
     '.c7sp-h{font-size:1.25rem;font-weight:500;margin:0 2.5rem .4rem 0}' +
     '.c7sp-p{font-size:.9rem;font-weight:300;color:var(--txt2,rgba(255,255,255,.7));margin:0 0 1.2rem}' +
     '.c7sp-l{display:block;font-size:.8rem;color:var(--txt2,rgba(255,255,255,.7));margin:0 0 .3rem}' +
-    '.c7sp-in{display:block;width:100%;height:44px;margin:0 0 .9rem;padding:0 .9rem;background:var(--bg,#0C0B0A);border:1px solid var(--border,rgba(255,255,255,.16));border-radius:2px;color:var(--txt,rgba(255,255,255,.92));font-family:inherit;font-size:.92rem}' +
+    '.c7sp-in{display:block;width:100%;height:44px;margin:0 0 .9rem;padding:0 .9rem;background:var(--bg,#0C0B0A);border:1px solid var(--border,rgba(255,255,255,.16));border-radius:2px;color:var(--txt,rgba(255,255,255,.92));font-family:inherit;font-size:16px}' +
     '.c7sp-in:focus{outline:none;border-color:var(--teal,#5AABCC)}' +
     '.c7sp-row{display:flex;gap:.8rem}.c7sp-row>div{flex:1;min-width:0}' +
     '.c7sp-opt{display:flex;align-items:flex-start;gap:.6rem;margin:.1rem 0 .9rem;font-size:.82rem;font-weight:300;line-height:1.5;color:var(--txt2,rgba(255,255,255,.7));cursor:pointer}' +
@@ -91,7 +97,8 @@
     '.c7sp-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}' +
     '@media (max-width:480px){.c7sp{padding:1.5rem 1rem 1.2rem}.c7sp-row{flex-direction:column;gap:0}}';
 
-  var dlg = null, opener = null;
+  var dlg = null, opener = null, done = false;
+  var touchDevice = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
 
   function build() {
     var st = document.createElement('style'); st.id = 'c7sp-css'; st.textContent = CSS; document.head.appendChild(st);
@@ -105,7 +112,7 @@
       '<h2 class="c7sp-h" id="c7sp-h">Get a sample pack</h2>' +
       '<p class="c7sp-p">We&#39;ll email the sample pack to you.</p>' +
       '<form novalidate>' +
-        '<input class="c7sp-hp" id="c7sp-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+        '<input class="c7sp-hp" id="c7sp-trap" type="text" name="c7sp_trap" tabindex="-1" autocomplete="off" aria-hidden="true">' +
         '<label class="c7sp-l" for="c7sp-email">Email</label>' +
         '<input class="c7sp-in" id="c7sp-email" type="email" name="email" autocomplete="email" inputmode="email" maxlength="254" required>' +
         '<label class="c7sp-l" for="c7sp-role">Role</label>' +
@@ -125,17 +132,28 @@
     document.body.appendChild(dlg);
 
     var form = dlg.querySelector('form'), btn = dlg.querySelector('.c7sp-btn'), status = dlg.querySelector('.c7sp-status');
-    var email = dlg.querySelector('#c7sp-email'), count = dlg.querySelector('#c7sp-count'), hp = dlg.querySelector('#c7sp-hp');
+    var email = dlg.querySelector('#c7sp-email'), count = dlg.querySelector('#c7sp-count'), hp = dlg.querySelector('#c7sp-trap');
     var role = dlg.querySelector('#c7sp-role'), vessel = dlg.querySelector('#c7sp-vessel'), mktBox = dlg.querySelector('#c7sp-mkt');
     function say(t, err) { status.textContent = t; status.className = 'c7sp-status' + (err ? ' is-err' : ''); }
+    /* After a success the button stays disabled: one request per page view. */
+    function finish(mkt) {
+      done = true; btn.disabled = true; form.reset();
+      say('Thanks. We’ll email the sample pack to you.' + (mkt ? ' Check your inbox to confirm your subscription.' : ''), false);
+    }
 
     dlg.querySelector('.c7sp-x').addEventListener('click', function () { dlg.close(); });
-    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); }); /* backdrop click */
+    /* Close only on a click outside the dialog box (the backdrop), never on one inside it. */
+    dlg.addEventListener('click', function (e) {
+      if (e.target !== dlg) return;
+      var b = dlg.getBoundingClientRect();
+      if (e.clientX < b.left || e.clientX > b.right || e.clientY < b.top || e.clientY > b.bottom) dlg.close();
+    });
     dlg.addEventListener('close', function () { if (opener && opener.focus) opener.focus(); });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (hp.value) return; /* bot: drop silently */
+      if (done) return;
+      if (hp.value) { finish(false); return; } /* bot: drop silently, show the normal thank-you */
       var em = email.value.trim();
       if (!EMAIL_RE.test(em)) { say(MSG_INVALID, true); email.focus(); return; }
       var n = null, raw = count.value.trim();
@@ -146,12 +164,14 @@
       var mkt = mktBox.checked;
       btn.disabled = true; say('');
       request({ email: em, role: role.value, vessel_count: n, vessel_name: vessel.value.trim(), marketing: mkt }).then(function (code) {
-        btn.disabled = false;
-        if (code === 202 || code === 200) {
-          form.reset();
-          say('Thanks. We’ll email the sample pack to you.' + (mkt ? ' Check your inbox to confirm your subscription.' : ''), false);
+        /* Only 202 is success (the collector answers 202 for sample_request with or without analytics consent). */
+        if (code === 202) {
+          finish(mkt);
           try { if (typeof window.gtag === 'function') window.gtag('event', 'sample_request', {}); } catch (err) {}
-        } else if (code === 429) say(MSG_RATE, true);
+          return;
+        }
+        btn.disabled = false;
+        if (code === 429) say(MSG_RATE, true);
         else say(MSG_ERR, true);
       });
     });
@@ -160,9 +180,10 @@
   function open(link) {
     if (!dlg) build();
     opener = link || null;
-    dlg.querySelector('.c7sp-status').textContent = '';
+    if (!done) dlg.querySelector('.c7sp-status').textContent = '';
     dlg.showModal();
-    dlg.querySelector('#c7sp-email').focus();
+    /* No autofocus on touch devices (the keyboard would cover the form). */
+    if (!touchDevice && !done) dlg.querySelector('#c7sp-email').focus();
   }
 
   var supported = typeof window.HTMLDialogElement === 'function' && 'showModal' in document.createElement('dialog');

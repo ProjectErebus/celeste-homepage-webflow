@@ -1014,7 +1014,7 @@ body:not(.pin) .pin-layer:first-child { margin-top: 0; }
 select.lm-input { height: 2.95rem; padding-top: 0; padding-bottom: 0; }
 .lm-pair { display: flex; gap: 0.8rem; }
 .lm-pair > div { flex: 1; min-width: 0; }
-@media (max-width: 480px) { .lm-pair { flex-direction: column; gap: 0; } }
+@media (max-width: 480px) { .lm-pair { flex-direction: column; gap: 0; } .lm-input { font-size: 16px; } }
 .lm-confirm { text-align: center; padding: 1.5rem 0; }
 .lm-confirm .seal-mark { width: 36px; height: 36px; margin: 0 auto 1.2rem; font-size: 1rem; }
 .lm-confirm h4 { font-weight: 500; color: var(--txt); margin-bottom: 0.5rem; }
