@@ -568,7 +568,7 @@
             </div>
             <button type="button" class="lm-add" id="lm-add">+ Add another entry</button>
             <input type="email" class="lm-input" id="lm-email" placeholder="Email" required>
-            <label class="lm-optin" for="lm-marketing"><input type="checkbox" id="lm-marketing" name="marketing" value="1"><span>Send me CelesteOS updates (no more than 2 a week, unsubscribe anytime)</span></label>
+            <label class="lm-optin" for="lm-marketing"><input type="checkbox" id="lm-marketing" name="marketing" value="1"><span>Send me CelesteOS updates (no more than 2 a week, unsubscribe anytime).</span></label>
             <button type="submit" class="lm-btn">Generate the handover →</button>
           </form>
           <div class="lm-subtext">Arrives by email.</div>
@@ -2090,6 +2090,7 @@
           '<span class="seal-mark"><svg class="seal-svg" aria-hidden="true"><use href="#celeste-seal"></use></svg></span>' +
           '<h4>Entries received.</h4>' +
           '<p>The handover for <strong>' + (vessel ? esc(vessel) : 'your vessel') + '</strong> is being assembled.<br>It lands at ' + (email ? esc(email) : 'your address') + ' shortly.</p>' +
+          (optIn ? '<p>Check your inbox to confirm your subscription.</p>' : '') +
         '</div>';
     });
   </script>

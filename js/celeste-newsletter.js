@@ -21,7 +21,7 @@
   var ENDPOINT = 'https://control.celeste7.ai/api/collect/web';
   var CONSENT_TEXT = 'Send me CelesteOS updates (no more than 2 a week, unsubscribe anytime).';
   var MSG_OK = 'Check your inbox to confirm your subscription.';
-  var MSG_RATE = 'Please try again later';
+  var MSG_RATE = 'Please try again later.';
   var MSG_INVALID = 'Please enter a valid email address.';
   var MSG_ERR = 'That did not go through. Please check the address and try again.';
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -101,7 +101,7 @@
       '<p class="c7nl-status" id="c7nl-status" role="status" aria-live="polite"></p>';
     var consentEl = wrap.querySelector('.c7nl-consent');
     consentEl.appendChild(document.createTextNode(CONSENT_TEXT + ' '));
-    var pp = document.createElement('a'); pp.href = '/privacy-policy#newsletter'; pp.textContent = 'Privacy Policy';
+    var pp = document.createElement('a'); pp.href = '/privacy-policy#newsletter-policy'; pp.textContent = 'Privacy Policy';
     consentEl.appendChild(pp);
     host.appendChild(wrap);
 
