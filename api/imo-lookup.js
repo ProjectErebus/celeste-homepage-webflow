@@ -10,7 +10,7 @@
 // Returns particulars only. No MMSI, no position: owner security.
 
 import { get } from '@vercel/blob';
-import { buildIndex, lookup, GT_LIMIT_DEFAULT } from './_lib/imo.mjs';
+import { buildIndex, lookup, GT_LIMIT_DEFAULT } from './_lib/imo.js';
 
 const TTL_MS = 60 * 60 * 1000;
 let cache = { at: 0, index: null };
