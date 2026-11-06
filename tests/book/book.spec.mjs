@@ -8,7 +8,7 @@ let srv;
 test.beforeAll(async () => { srv = await startServer(); });
 test.afterAll(async () => { await new Promise((r) => srv.server.close(r)); });
 
-test.use({ locale: 'en-GB', timezoneId: 'America/New_York' });
+test.use({ locale: 'en-GB', timezoneId: 'Europe/Paris' });
 
 async function open(page, mock, path = '/book', extra = '') {
   await mock.install(page);
@@ -38,10 +38,10 @@ test('page is noindex and slots render in visitor local time with organiser zone
   await open(page, mock);
   await expect(page.locator('meta[name=robots]')).toHaveAttribute('content', /noindex/);
   const first = mock.slots[0];
-  const expected = new Date(first.start).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'America/New_York' });
+  const expected = new Date(first.start).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
   await expect(page.locator('.bk-time').first()).toHaveText(expected);
-  await expect(page.locator('#bk-zone')).toContainText('America/New_York');
-  await expect(page.locator('#bk-zone')).toContainText('Europe/London');
+  await expect(page.locator('#bk-zone')).toContainText('Europe/Paris');
+  await expect(page.locator('#bk-zone')).toContainText('organiser in Miami (ET)');
   expect(mock.calls[0].search).toContain('days=14');
 });
 
@@ -93,13 +93,13 @@ test('booking_disabled on POST: calm message plus mailto fallback', async ({ pag
   await fill(page);
   await page.getByRole('button', { name: 'Confirm booking' }).click();
   await expect(page.locator('#bk-status')).toContainText('not available just now');
-  await expect(page.locator('#bk-status a')).toHaveAttribute('href', 'mailto:contact@celeste7.ai');
+  await expect(page.locator('#bk-status a')).toHaveAttribute('href', 'mailto:onboarding@celeste7.ai');
 });
 
 test('booking_disabled on slots GET: message plus mailto, no slot buttons', async ({ page }) => {
   const mock = createMock({ slotsMode: 'booking_disabled' });
   await open(page, mock);
-  await expect(page.locator('#bk-status a')).toHaveAttribute('href', 'mailto:contact@celeste7.ai');
+  await expect(page.locator('#bk-status a')).toHaveAttribute('href', 'mailto:onboarding@celeste7.ai');
   await expect(page.locator('.bk-time')).toHaveCount(0);
 });
 
@@ -110,7 +110,7 @@ test('rate_limited shows calm message plus mailto', async ({ page }) => {
   await fill(page);
   await page.getByRole('button', { name: 'Confirm booking' }).click();
   await expect(page.locator('#bk-status')).toContainText('wait a little');
-  await expect(page.locator('#bk-status a')).toHaveAttribute('href', 'mailto:contact@celeste7.ai');
+  await expect(page.locator('#bk-status a')).toHaveAttribute('href', 'mailto:onboarding@celeste7.ai');
 });
 
 test('honeypot website field is hidden from users and sent empty', async ({ page }) => {

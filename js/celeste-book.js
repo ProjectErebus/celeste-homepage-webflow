@@ -5,7 +5,7 @@
 (function () {
   'use strict';
   var PROD_API = 'https://control.celeste7.ai';
-  var MAIL = 'contact@celeste7.ai';
+  var MAIL = 'onboarding@celeste7.ai';
 
   function apiBase() {
     var base = '';
@@ -111,8 +111,10 @@
     });
   }
 
+  var ZONE_NAMES = { 'America/New_York': 'Miami (ET)' };
   function zoneLine(tz) {
-    return 'Times are shown in your time zone (' + visitorZone() + '). The call is hosted in ' + (tz || 'Europe/London') +
+    var label = ZONE_NAMES[tz] || tz || 'Miami (ET)';
+    return 'Times shown in your local time (' + visitorZone() + ') \u00b7 organiser in ' + label +
       (tz ? ', where it is now ' + organiserNow(tz) + '.' : '.');
   }
 

@@ -45,7 +45,7 @@ export function createMock(opts = {}) {
       if (req.method() === 'GET' && path === '/api/book/slots') {
         if (state.slotsMode === 'booking_disabled') return json(route, 503, { error: 'booking_disabled' });
         const free = state.slots.filter((s) => !state.taken.has(s.start));
-        return json(route, 200, { timezone: 'Europe/London', slotMinutes: 30, generatedAt: new Date().toISOString(), dryRun: true, slots: free });
+        return json(route, 200, { timezone: 'America/New_York', slotMinutes: 30, generatedAt: new Date().toISOString(), dryRun: true, slots: free });
       }
       if (req.method() === 'POST' && path === '/api/book') {
         if (state.mode === 'slot_taken') { state.taken.add(body.slotStart); return json(route, 409, { error: 'slot_taken' }); }
