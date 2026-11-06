@@ -28,6 +28,9 @@ export function createMock(opts = {}) {
     taken: new Set(),
     cancelled: false,
     appts: {},
+    leadMode: opts.leadMode || 'ok',
+    vesselMode: opts.vesselMode || 'ok', // ok | name_mismatch | ambiguous | over_limit | not_found | rate_limited | disabled | fail | bad_request
+    vessel: { imo: '9074729', name: 'Test Star', type: 'Motor yacht', length_m: 42.1, flag: 'Cayman Islands', gross_tonnage: 310 },
   };
   const cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': 'content-type', 'access-control-allow-methods': 'GET,POST,OPTIONS' };
   const json = (route, status, body) => route.fulfill({ status, headers: { ...cors, 'content-type': 'application/json' }, body: JSON.stringify(body) });
@@ -47,7 +50,19 @@ export function createMock(opts = {}) {
         const free = state.slots.filter((s) => !state.taken.has(s.start));
         return json(route, 200, { timezone: 'America/New_York', slotMinutes: 30, generatedAt: new Date().toISOString(), dryRun: true, slots: free });
       }
+      if (req.method() === 'POST' && path === '/api/book/lead') {
+        if (state.leadMode === 'rate_limited') return json(route, 429, { error: 'rate_limited' });
+        if (state.leadMode === 'booking_disabled') return json(route, 503, { error: 'booking_disabled' });
+        if (state.leadMode === 'invalid' || body.website) return json(route, 400, { error: 'invalid' });
+        state.leads = state.leads || {};
+        const tok = 'lt_' + (Object.keys(state.leads).length + 1);
+        state.leads[tok] = body;
+        return json(route, 201, { leadToken: tok, vessel: null });
+      }
       if (req.method() === 'POST' && path === '/api/book') {
+        if (body.leadToken && state.expireTokens && state.expireTokens.has(body.leadToken)) return json(route, 403, { error: 'token_expired' });
+        if (body.leadToken && state.badToken) return json(route, 403, { error: 'bad_token' });
+        if (body.leadToken && !(state.leads || {})[body.leadToken]) return json(route, 400, { error: 'invalid' });
         if (state.mode === 'slot_taken') { state.taken.add(body.slotStart); return json(route, 409, { error: 'slot_taken' }); }
         if (['booking_disabled', 'graph_unavailable'].includes(state.mode)) return json(route, 503, { error: state.mode });
         if (state.mode === 'rate_limited') return json(route, 429, { error: 'rate_limited' });
@@ -73,7 +88,39 @@ export function createMock(opts = {}) {
       return json(route, 404, { error: 'not_found' });
     });
   };
+  /* SERVER04 same-origin endpoint: POST <site origin>/api/imo-lookup (no ?api override). */
+  state.installImo = async (page, origin) => {
+    await page.route(origin + '/api/imo-lookup', async (route) => {
+      const req = route.request();
+      let body = null; try { body = req.postDataJSON(); } catch {}
+      state.calls.push({ method: req.method(), path: '/api/imo-lookup', search: '', body });
+      const m = state.vesselMode, v = state.vessel;
+      if (m === 'fail') return route.abort('failed');
+      if (m === 'disabled') return json(route, 503, { error: 'lookup_unavailable' });
+      if (m === 'rate_limited') return json(route, 429, { error: 'rate_limited' });
+      if (m === 'bad_request') return json(route, 400, { error: 'bad_request' });
+      if (m === 'not_found') return json(route, 200, { status: 'not_found' });
+      if (m === 'name_mismatch') return json(route, 200, { status: 'name_mismatch', vessel: v, eligibility: 'eligible' });
+      if (m === 'over_limit') return json(route, 200, { status: 'found', vessel: { ...v, gross_tonnage: 812 }, eligibility: 'over_limit' });
+      if (m === 'ambiguous') return json(route, 200, { status: 'ambiguous', candidates: [v, { ...v, imo: '9074729', name: 'Test Moon', length_m: null, flag: null, gross_tonnage: null }] });
+      return json(route, 200, { status: 'found', vessel: v, eligibility: 'eligible' });
+    });
+  };
   return state;
 }
 
 function posts0(st) { return st.calls.filter((c) => c.method === 'POST' && c.path === '/api/book').length; }
+
+/* Capture what the page sends to the (production-constant) collector. Returns the live array of parsed events. */
+export const COLLECTOR = 'https://control.celeste7.ai/api/collect/web';
+export async function captureCollector(page) {
+  const sent = [];
+  await page.route(COLLECTOR, (route) => {
+    try { sent.push(JSON.parse(route.request().postData() || '{}')); } catch { sent.push({ unparsable: true }); }
+    return route.fulfill({ status: 202, contentType: 'application/json', body: '{"received":true}', headers: { 'access-control-allow-origin': '*' } });
+  });
+  return sent;
+}
+export const CONSENT_KEY = 'celeste_consent';
+export const CONSENT_VERSION = '2026-10-31';
+export const consentJson = (analytics) => JSON.stringify({ v: CONSENT_VERSION, analytics, ads: false, ts: new Date().toISOString() });

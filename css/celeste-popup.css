@@ -1,0 +1,59 @@
+/* Exit popup styles (pairs with js/celeste-popup.js). Split card: image left (~40%), form right; image strip on top under 640px.
+ * Light is the default (white card, dark text, site teal). Dark only under prefers-color-scheme: dark (unless the site chose light). */
+.cp-dialog {
+  --cp-bg: #ffffff; --cp-txt: #14110f; --cp-txt2: #4f4a45; --cp-border: rgba(20,17,15,.16);
+  --cp-teal-ink: #0f4a63; --cp-btn: #5AABCC; --cp-btn-txt: #0a2a38; --cp-err: #a3402c; --cp-field: #f6f4f1;
+  padding: 0; border: 0; border-radius: 6px; background: var(--cp-bg); color: var(--cp-txt);
+  width: min(760px, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); overflow: auto;
+  font-family: 'DM Sans', -apple-system, system-ui, sans-serif; font-weight: 400; line-height: 1.55;
+  box-shadow: 0 24px 60px rgba(12,11,10,.28);
+}
+@media (prefers-color-scheme: dark) {
+  html:not(.light-mode) .cp-dialog { --cp-bg:#181614; --cp-txt:rgba(255,255,255,.92); --cp-txt2:rgba(255,255,255,.62); --cp-border:rgba(255,255,255,.14);
+    --cp-teal-ink:#5AABCC; --cp-btn:#5AABCC; --cp-btn-txt:#0a2a38; --cp-err:#E08A76; --cp-field:#1e1b18; }
+}
+.cp-dialog::backdrop { background: rgba(12,11,10,.55); }
+.cp-dialog *, .cp-dialog *::before, .cp-dialog *::after { box-sizing: border-box; }
+.cp-split { position: relative; display: grid; grid-template-columns: 40% 1fr; min-height: 22rem; }
+.cp-figure { position: relative; overflow: hidden; background: #e9e8e6; }
+/* Hull photo crop: the bow nameplate sits at x ~47-60% of the source, so the left ~40% (windows + hull panel) is shown. */
+.cp-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0% 40%; display: block; }
+.cp-img[data-crop="custom"] { object-position: 50% 50%; }
+.cp-panel { padding: 2.25rem 1.75rem 1.5rem; align-self: center; }
+.cp-close { position: absolute; top: .4rem; right: .4rem; z-index: 2; width: 44px; height: 44px; font: inherit; font-size: 1.6rem; line-height: 1;
+  background: transparent; border: 0; color: var(--cp-txt2); cursor: pointer; border-radius: 2px; }
+.cp-close:hover { color: var(--cp-txt); }
+.cp-h { font-family: 'Eloquia Display', 'DM Sans', system-ui, sans-serif; font-weight: 300; font-size: 1.55rem; line-height: 1.2; margin: 0 1.5rem .5rem 0; color: var(--cp-txt); }
+.cp-p { margin: 0 0 1.1rem; color: var(--cp-txt2); font-size: .95rem; }
+.cp-field { margin: 0 0 .9rem; }
+.cp-field[hidden], .cp-link[hidden] { display: none; }
+.cp-field label { display: block; font-size: .85rem; color: var(--cp-txt2); margin-bottom: .3rem; }
+.cp-field input[type=text], .cp-field input[type=email] { width: 100%; min-height: 44px; font: inherit; font-size: 1rem; color: var(--cp-txt);
+  background: var(--cp-field); border: 1px solid var(--cp-border); border-radius: 2px; padding: .5rem .7rem; }
+.cp-check { display: flex; gap: .7rem; align-items: flex-start; font-size: .82rem; color: var(--cp-txt2); }
+.cp-check input { width: 1.2rem; height: 1.2rem; margin-top: .15rem; flex: 0 0 auto; accent-color: var(--cp-teal-ink); }
+.cp-hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.cp-msg { min-height: 1.3rem; margin: 0 0 .5rem; font-size: .88rem; color: var(--cp-err); }
+.cp-btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 46px; font: inherit; font-weight: 500; text-decoration: none;
+  border-radius: 2px; cursor: pointer; padding: 0 1.2rem; border: 0; background: var(--cp-btn); color: var(--cp-btn-txt); }
+.cp-btn:hover { filter: brightness(.95); }
+.cp-btn[disabled] { opacity: .5; cursor: progress; }
+.cp-link { display: block; margin: 0 0 .9rem; padding: .25rem 0; min-height: 32px; background: none; border: 0; font: inherit; font-size: .85rem; color: var(--cp-teal-ink); text-decoration: underline; cursor: pointer; }
+.cp-no { margin: .7rem auto 0; color: var(--cp-txt2); text-align: center; }
+.cp-dialog :focus-visible { outline: 2px solid var(--cp-teal-ink); outline-offset: 2px; }
+.cp-form[hidden] { display: none; }
+@media (max-width: 639px) {
+  .cp-dialog { width: min(26rem, calc(100vw - 1.5rem)); }
+  .cp-split { grid-template-columns: 1fr; min-height: 0; }
+  .cp-figure { height: 120px; }
+  /* Strip crop: magnify so only the left third of the photo shows (windows + hull panel), clear of the bow nameplate. */
+  .cp-img[data-crop="hull"] { width: 300%; max-width: none; object-position: 0% 36%; }
+  .cp-panel { padding: 1.4rem 1.25rem 1.25rem; }
+  .cp-close { background: rgba(255,255,255,.85); color: #14110f; border-radius: 50%; top: .5rem; right: .5rem; width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cp-dialog[open] { animation: cp-in .18s ease-out; }
+  .cp-dialog[open]::backdrop { animation: cp-fade .18s ease-out; }
+  @keyframes cp-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes cp-fade { from { opacity: 0; } to { opacity: 1; } }
+}

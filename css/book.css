@@ -49,3 +49,10 @@ body.bk { margin: 0; background: var(--bg); color: var(--txt); font-family: var(
 @media (max-width: 480px) { .bk-main { padding-top: 2rem; } .bk-actions .bk-btn { flex: 1 1 100%; } }
 /* The consent banner is fixed to the bottom and tall on phones: leave room so the form can scroll clear of it. */
 @media (max-width: 640px) { .bk-main { padding-bottom: 17rem; } }
+.bk-vessel { margin: .4rem 0 0; min-height: 1.2rem; font-size: .88rem; color: var(--green); }
+.bk-vessel.bk-err { color: var(--red); }
+.bk-gt { color: var(--txt2); }
+.bk-cands { display: flex; flex-direction: column; gap: .4rem; margin-top: .4rem; }
+.bk-cands:empty { display: none; }
+.bk-cand { min-height: 44px; text-align: left; font: inherit; color: var(--txt); background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: .4rem .7rem; cursor: pointer; }
+.bk-cand:hover { border-color: var(--teal-bd); }

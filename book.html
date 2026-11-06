@@ -24,19 +24,13 @@
   <p id="bk-status" class="bk-status" role="status" aria-live="polite"></p>
 
   <section id="bk-step1" class="bk-step" aria-labelledby="bk-h1">
-    <p class="bk-lead" id="bk-h1">Pick a time that suits you. The invite arrives by email with a Teams link.</p>
-    <p class="bk-zone" id="bk-zone"></p>
-    <div id="bk-slots" aria-busy="true">Loading available times&hellip;</div>
-  </section>
-
-  <section id="bk-step2" class="bk-step" hidden aria-labelledby="bk-h2">
-    <p class="bk-lead" id="bk-h2">Your details</p>
-    <p class="bk-chosen" id="bk-chosen"></p>
-    <form id="bk-form" novalidate>
-      <div class="bk-field"><label for="bk-name">Name</label><input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="120"></div>
-      <div class="bk-field"><label for="bk-email">Email</label><input type="email" id="bk-email" name="email" autocomplete="email" required maxlength="254"></div>
-      <div class="bk-field"><label for="bk-company">Company</label><input type="text" id="bk-company" name="company" autocomplete="organization" required maxlength="120"></div>
-      <div class="bk-field"><label for="bk-vessel">Vessel <span class="bk-opt">(optional)</span></label><input type="text" id="bk-vessel" name="vessel" maxlength="120"></div>
+    <p class="bk-lead" id="bk-h1">Tell us who you are, then pick a time. The invite arrives by email with a Teams link.</p>
+    <form id="bk-lead" novalidate>
+      <div class="bk-field"><label for="bk-imo">Vessel IMO number <span class="bk-opt">(optional, but it helps us prepare)</span></label>
+        <input type="text" id="bk-imo" name="imo" inputmode="numeric" autocomplete="off" maxlength="12" aria-describedby="bk-imo-note">
+        <p class="bk-vessel" id="bk-imo-note" role="status" aria-live="polite"></p>
+        <p class="bk-vessel bk-gt" id="bk-imo-gt" data-copy-slot="gt-over-limit" hidden></p>
+        <div class="bk-cands" id="bk-imo-cands"></div></div>
       <div class="bk-field"><label for="bk-role">Your role</label>
         <select id="bk-role" name="role" required>
           <option value="">Choose a role</option>
@@ -44,19 +38,33 @@
           <option value="eto">ETO</option>
           <option value="captain">Captain</option>
           <option value="manager">Manager</option>
+          <option value="owner">Owner</option>
           <option value="other">Other</option>
         </select></div>
-      <div class="bk-field"><label for="bk-notes">Anything we should know? <span class="bk-opt">(optional, 500 characters)</span></label><textarea id="bk-notes" name="notes" maxlength="500"></textarea></div>
+      <div class="bk-field"><label for="bk-name">Name</label><input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="120"></div>
+      <div class="bk-field"><label for="bk-email">Email</label><input type="email" id="bk-email" name="email" autocomplete="email" required maxlength="254"></div>
       <div class="bk-hp" aria-hidden="true"><label for="bk-website">Website</label><input type="text" id="bk-website" name="website" tabindex="-1" autocomplete="off"></div>
       <div class="bk-field"><label class="bk-check"><input type="checkbox" id="bk-marketing" name="marketing"><span>Send me occasional CelesteOS updates by email. Optional; you can unsubscribe at any time.</span></label></div>
-      <div class="bk-actions">
-        <button type="submit" class="bk-btn" id="bk-submit">Confirm booking</button>
-        <button type="button" class="bk-btn bk-ghost" id="bk-back">Choose another time</button>
-      </div>
+      <div class="bk-actions"><button type="submit" class="bk-btn" id="bk-lead-submit">Choose a time</button></div>
     </form>
   </section>
 
-  <section id="bk-step3" class="bk-step" hidden aria-labelledby="bk-h3" tabindex="-1">
+  <section id="bk-step2" class="bk-step" hidden aria-labelledby="bk-h2">
+    <p class="bk-lead" id="bk-h2">Pick a time</p>
+    <p class="bk-zone" id="bk-zone"></p>
+    <div id="bk-slots" aria-busy="true">Loading available times&hellip;</div>
+  </section>
+
+  <section id="bk-step3" class="bk-step" hidden aria-labelledby="bk-h3c" tabindex="-1">
+    <p class="bk-lead" id="bk-h3c">Confirm your call</p>
+    <p class="bk-chosen" id="bk-chosen"></p>
+    <div class="bk-actions">
+      <button type="button" class="bk-btn" id="bk-submit">Confirm booking</button>
+      <button type="button" class="bk-btn bk-ghost" id="bk-back">Choose another time</button>
+    </div>
+  </section>
+
+  <section id="bk-done" class="bk-step" hidden aria-labelledby="bk-h3" tabindex="-1">
     <h2 id="bk-h3" style="font-family:var(--font-display);font-weight:300;margin:0 0 .6rem">You are booked</h2>
     <p class="bk-chosen" id="bk-when"></p>
     <p id="bk-invite"></p>
@@ -66,6 +74,7 @@
 
   <p class="bk-foot">Prefer email? <a href="mailto:onboarding@celeste7.ai">onboarding@celeste7.ai</a> &middot; <a href="/privacy-policy">Privacy</a></p>
 </main>
+<script src="/js/celeste-events.js"></script>
 <script src="/js/celeste-book.js"></script>
 <script src="/js/book-page.js"></script>
 </body>
