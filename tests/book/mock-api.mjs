@@ -70,6 +70,8 @@ export function createMock(opts = {}) {
         if (body.leadToken && state.expireTokens && state.expireTokens.has(body.leadToken)) return json(route, 403, { error: 'token_expired' });
         if (body.leadToken && state.badToken) return json(route, 403, { error: 'bad_token' });
         if (body.leadToken && !(state.leads || {})[body.leadToken]) return json(route, 400, { error: 'invalid' });
+        if (state.mode === 'already_booked') return json(route, 409, { error: 'already_booked' });
+        if (state.inProgressOnce) { state.inProgressOnce = false; return route.fulfill({ status: 409, headers: { ...cors, 'content-type': 'application/json', 'retry-after': '1' }, body: JSON.stringify({ error: 'in_progress' }) }); }
         if (state.mode === 'slot_taken') { state.taken.add(body.slotStart); return json(route, 409, { error: 'slot_taken' }); }
         if (['booking_disabled', 'graph_unavailable'].includes(state.mode)) return json(route, 503, { error: state.mode });
         if (state.mode === 'rate_limited') return json(route, 429, { error: 'rate_limited' });

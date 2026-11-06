@@ -32,12 +32,12 @@
   }
   var MANAGE_HOSTS = ['celeste7.ai', 'www.celeste7.ai'];
 
-  function call(method, path, body) {
+  function call(method, path, body, base) {
     var opts = { method: method, mode: 'cors', credentials: 'omit', headers: {} };
     if (body !== undefined) { opts.body = JSON.stringify(body); opts.headers['Content-Type'] = 'application/json'; }
-    return fetch(apiBase() + path, opts).then(function (res) {
+    return fetch((base ? String(base).replace(/\/+$/, '') : apiBase()) + path, opts).then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (data) {
-        return { ok: res.ok, status: res.status, data: data || {} };
+        return { ok: res.ok, status: res.status, data: data || {}, retryAfter: Number(res.headers.get('retry-after')) || 0 };
       });
     }, function () {
       return { ok: false, status: 0, data: { error: 'network' } };
@@ -85,6 +85,8 @@
   function organiserNow(tz) {
     try { return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: tz }); } catch (e) { return ''; }
   }
+  /* "Thu 12 Nov, 10:00" in the visitor's local time (popup done screen). */
+  function shortWhen(iso) { return localDay(iso, { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '') + ', ' + localTime(iso); }
   function fullWhen(iso) { return localDay(iso) + ' at ' + localTime(iso) + ' (' + visitorZone() + ')'; }
 
   /* Slot picker shared by /book and /book/manage. onPick(slot) gets the chosen {start,end}. */
@@ -144,6 +146,6 @@
 
   window.celesteBook = {
     apiBase: apiBase, safeUrl: safeUrl, MANAGE_HOSTS: MANAGE_HOSTS, call: call, uuid: uuid, attribution: attribution, renderSlots: renderSlots,
-    fullWhen: fullWhen, zoneLine: zoneLine, softError: softError, mailLink: mailLink, MAIL: MAIL
+    fullWhen: fullWhen, shortWhen: shortWhen, localTime: localTime, zoneLine: zoneLine, softError: softError, mailLink: mailLink, MAIL: MAIL
   };
 })();

@@ -1,16 +1,19 @@
 /* CelesteOS exit popup: self-contained drop-in. ONE line on any page (after cookie-consent.js is fine, not required):
  *   <script src="/js/celeste-popup.js" defer data-api="https://control.celeste7.ai"></script>
  * Uses the native <dialog> + showModal() (focus trap, Esc, backdrop come from the browser). No libraries.
- * Contract: booking-api-contract.md v1.4 (POST /api/book/lead with source=popup).
+ * Contract: booking-api-contract.md v1.6. ONE screen, two clicks: pick a time, enter IMO + email, "Book this call".
+ * The click chains POST /api/book/lead (IMO + email, source=popup) -> POST /api/book {slotStart, leadToken, idempotencyKey}.
+ * After booking, an optional name + role form saves through /api/book/lead/enrich.
+ * Slot list/helpers come from js/celeste-book.js (loaded on demand, same site root).
  *
  * Shown at most once per visitor per 30 days, never on /book*, never after a lead was submitted.
  * Storage is fail-closed: if localStorage throws, the popup does not show.
  * Image: data-image-slot; default /img/hull-light.webp (cropped clear of the bow lettering), /img/popup-lifestyle.webp if it exists,
- * or data-image="/img/x.webp" on the script tag.
+ * or data-image="/img/x.webp" on the script tag. Hidden on phones.
  * Optional tuning attributes on the script tag: data-exit-delay (ms on page before exit intent counts, default 8000),
  * data-mobile-fallback (ms before the mobile timer trigger, default 30000), data-mobile-scroll (fraction, default 0.5).
- * Copy lives in elements marked data-copy-slot="..." (heading, body, imo-hint, consent, submit, success-heading,
- * success-body, book): edit COPY below, or override at runtime with window.celestePopupCopy before this script runs.
+ * Copy lives in elements marked data-copy-slot="...": edit COPY below, or override at runtime with window.celestePopupCopy before this script runs.
+ * ?popup=preview shows it at once and fakes slots, lead, booking and enrichment (nothing is sent).
  */
 (function () {
   'use strict';
@@ -23,27 +26,53 @@
   var K_SHOWN = 'celeste_popup_shown', K_LEAD = 'celeste_lead_submitted';
   var DAY = 864e5, WINDOW_MS = 30 * DAY;
   var PREVIEW = false; try { PREVIEW = new URLSearchParams(location.search).get('popup') === 'preview'; } catch (e) {}
-  /* POST helper. In ?popup=preview mode nothing is sent: a fake success lets reviewers click through both steps. */
-  function post(path, body) {
-    if (PREVIEW) return Promise.resolve({ ok: true, json: function () { return Promise.resolve({ leadToken: 'preview' }); } });
-    return fetch(apiBase() + path, { method: 'POST', mode: 'cors', credentials: 'omit', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  /* Every call goes through req(): preview mode fakes the responses so reviewers can click through; nothing is sent. */
+  function previewSlots() {
+    var out = [], base = new Date(); base.setUTCHours(0, 0, 0, 0);
+    for (var d = 2; d < 5; d++) [14, 15, 17].forEach(function (h) {
+      var t = new Date(base.getTime() + d * 864e5 + h * 36e5);
+      out.push({ start: t.toISOString().replace('.000', ''), end: new Date(t.getTime() + 18e5).toISOString().replace('.000', '') });
+    });
+    return out;
   }
+  function fake(method, path, body) {
+    var d = {};
+    if (path.indexOf('/api/book/slots') === 0) d = { timezone: 'America/New_York', slotMinutes: 30, slots: previewSlots() };
+    else if (path === '/api/book/lead') d = { leadToken: 'preview' };
+    else if (path === '/api/book') d = { start: body && body.slotStart, dryRun: false };
+    else d = { ok: true };
+    return { ok: true, status: 200, data: d, retryAfter: 0 };
+  }
+  function req(method, path, body) {
+    if (PREVIEW) return Promise.resolve(fake(method, path, body));
+    return loadBook().then(function (B) { return B.call(method, path, body, apiBase()); },
+      function () { return { ok: false, status: 0, data: { error: 'network' }, retryAfter: 0 }; });
+  }
+  var bookReady = null;
+  function loadBook() {
+    if (window.celesteBook) return Promise.resolve(window.celesteBook);
+    if (bookReady) return bookReady;
+    bookReady = new Promise(function (res, rej) {
+      var sc = document.createElement('script');
+      sc.src = ((script && script.src) || '').replace(/\/js\/[^\/]*$/, '') + '/js/celeste-book.js';
+      sc.onload = function () { window.celesteBook ? res(window.celesteBook) : rej(); };
+      sc.onerror = function () { rej(); };
+      document.head.appendChild(sc);
+    });
+    return bookReady;
+  }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
   /* PLACEHOLDER COPY: price, offer and magnet wording are undecided. SITE01 / founder fill these in. */
   var COPY = {
-    'heading': 'Placeholder heading: the offer goes here',
-    'body': 'Placeholder text: one line on what the visitor gets.',
+    'heading': 'Book a 30-minute call',
+    'slots-label': 'Next free times (your time):',
+    'more': 'More times \u203a',
+    'zone-note': 'Organiser in Miami (ET)',
     'imo-hint': 'Vessel IMO number',
     'consent': 'Send me occasional CelesteOS updates by email. Optional; you can unsubscribe at any time.',
-    'submit': 'Placeholder button',
-    'success-heading': 'Thank you',
-    'success-body': 'We have your details. If you would like to talk it through, book a short call.',
-    'book': 'Book a call',
-    'step2-heading': 'One more step: who are you on board?',
-    'step2-body': 'Two quick details so we send what fits your role. You can skip this.',
-    'step2-submit': 'Finish',
-    'step1-label': 'Step 1 of 2',
-    'step2-label': 'Step 2 of 2'
+    'submit': 'Book this call',
+    'enrich-label': 'Optional: helps us prepare.'
   };
   try { var o = window.celestePopupCopy; if (o) for (var ck in o) if (ck in COPY) COPY[ck] = String(o[ck]); } catch (e) {}
 
@@ -84,6 +113,19 @@
     } catch (e) { return false; }
     return true;
   }
+  /* Handoff to /book (same origin, sessionStorage): the leadToken is a bearer secret, so it never goes in a URL. */
+  var K_HANDOFF = 'celeste_lead_handoff', handoff = null;
+  function saveHandoff(patch) {
+    try {
+      handoff = Object.assign(handoff || {}, patch);
+      sessionStorage.setItem(K_HANDOFF, JSON.stringify(handoff));
+    } catch (e) {}
+  }
+  function bookHref() {
+    var h = '/book?from=popup', b = apiBase();
+    if (b !== PROD_API) h += '&api=' + encodeURIComponent(b); /* localhost test override only (apiBase is production elsewhere) */
+    return h;
+  }
   function remember(key, val) { try { localStorage.setItem(key, val); return true; } catch (e) { return false; } }
 
   /* ---- IMO (contract v1.4): 7 digits, check digit (d1*7+...+d6*2)%10 === d7 ---- */
@@ -96,14 +138,12 @@
   }
 
   /* ---- DOM ---- */
-  var dlg = null, submitted = false, opener = null, shownOnce = false, leadToken = null, bar = null, barFill = null, barLabel = null;
-  /* Progress bar (endowed-progress technique): opens at 30%, step 2 at 70%, done at 100%. */
-  function progress(pct, label, slotName) {
+  var dlg = null, submitted = false, opener = null, shownOnce = false, bar = null, barFill = null;
+  /* Progress fills live as the form is completed: time 33, valid IMO +33, valid email +24 (= 90), booked 100. */
+  function progress(pct) {
     if (!bar) return;
-    if (slotName) barLabel.setAttribute('data-copy-slot', slotName); else barLabel.removeAttribute('data-copy-slot');
     barFill.style.width = pct + '%';
     bar.setAttribute('aria-valuenow', String(pct));
-    barLabel.textContent = label;
   }
   var uid = 'cp' + Math.random().toString(36).slice(2, 7);
 
@@ -121,17 +161,18 @@
   function field(label, input) {
     var w = el('div', 'cp-field'); w.appendChild(label); w.appendChild(input); return w;
   }
+  var ROLES = [['chief_engineer', 'Chief engineer'], ['eto', 'ETO'], ['captain', 'Captain'], ['manager', 'Yacht / fleet manager'], ['owner', 'Owner or owner’s rep'], ['other', 'Other']];
+  var MAIL = 'onboarding@celeste7.ai';
+  function mailHtml(lead) { return (lead ? lead + ' ' : '') + 'Email <a href="mailto:' + MAIL + '">' + MAIL + '</a> and we will arrange a time.'; }
 
   function build() {
-    dlg = el('dialog', 'cp-dialog', { 'aria-labelledby': uid + '-h', 'aria-describedby': uid + '-b' });
-    bar = el('div', 'cp-progress', { role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': '30', 'aria-label': 'Progress' });
+    dlg = el('dialog', 'cp-dialog', { 'aria-labelledby': uid + '-h' });
+    bar = el('div', 'cp-progress', { role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': '0', 'aria-label': 'Progress' });
     barFill = el('span', 'cp-progress-fill'); bar.appendChild(barFill);
-    barLabel = el('span', 'cp-progress-label'); bar.appendChild(barLabel);
     dlg.appendChild(bar);
-    progress(30, COPY['step1-label'], 'step1-label');
+    progress(0);
     var split = el('div', 'cp-split');
-    /* Image slot (left on desktop, top strip on phones). Decorative. Default: the hull photo, cropped so no bow lettering shows.
-       If /img/popup-lifestyle.webp exists it replaces it; the include line can also set data-image="/img/x.webp" on the script tag. */
+    /* Image slot (left on desktop, hidden on phones). Decorative. Default: the hull photo, cropped so no bow lettering shows. */
     var fig = el('div', 'cp-figure', { 'data-image-slot': '', 'aria-hidden': 'true' });
     var override = script && script.getAttribute('data-image');
     var img = el('img', 'cp-img', { src: override || IMG_DEFAULT, alt: '', width: '1920', height: '1153', decoding: 'async', 'data-crop': override ? 'custom' : 'hull' });
@@ -143,20 +184,30 @@
     }
     var panel = el('div', 'cp-panel');
     split.appendChild(panel);
-    var close = el('button', 'cp-close', { type: 'button', 'aria-label': 'Close' }, '\u00d7');
+    var close = el('button', 'cp-close', { type: 'button', 'aria-label': 'Close' }, '×');
     close.addEventListener('click', function () { dlg.close(); });
     split.appendChild(close);
 
     var form = el('form', 'cp-form', { novalidate: '' });
     form.appendChild(slot('h2', 'heading', 'cp-h', { id: uid + '-h' }));
-    form.appendChild(slot('p', 'body', 'cp-p', { id: uid + '-b' }));
 
+    /* time picker: soonest 3, then "More times" expands a compact day/time list inline */
+    form.appendChild(slot('p', 'slots-label', 'cp-label', { id: uid + '-sl' }));
+    var quick = el('div', 'cp-quick', { role: 'group', 'aria-labelledby': uid + '-sl', 'aria-busy': 'true' });
+    form.appendChild(quick);
+    var moreBtn = slot('button', 'more', 'cp-link cp-more', { type: 'button', 'aria-expanded': 'false' }); moreBtn.hidden = true;
+    form.appendChild(moreBtn);
+    var moreBox = el('div', 'cp-more-box'); moreBox.hidden = true; form.appendChild(moreBox);
+    form.appendChild(slot('p', 'zone-note', 'cp-zone'));
+
+    var row = el('div', 'cp-row');
     var imoL = slot('label', 'imo-hint', null, { 'for': uid + '-imo' });
     var imo = el('input', null, { type: 'text', id: uid + '-imo', name: 'imo', inputmode: 'numeric', autocomplete: 'off', maxlength: '12', required: '', 'aria-required': 'true' });
-    form.appendChild(field(imoL, imo));
+    row.appendChild(field(imoL, imo));
     var emailL = el('label', null, { 'for': uid + '-email' }, 'Email');
     var email = el('input', null, { type: 'email', id: uid + '-email', name: 'email', autocomplete: 'email', required: '', maxlength: '254' });
-    form.appendChild(field(emailL, email));
+    row.appendChild(field(emailL, email));
+    form.appendChild(row);
 
     var hp = el('div', 'cp-hp', { 'aria-hidden': 'true' });
     hp.appendChild(el('label', null, { 'for': uid + '-web' }, 'Website'));
@@ -171,7 +222,7 @@
 
     var msg = el('p', 'cp-msg', { role: 'alert' });
     form.appendChild(msg);
-    var submit = slot('button', 'submit', 'cp-btn', { type: 'submit' });
+    var submit = slot('button', 'submit', 'cp-btn', { type: 'submit', disabled: '' });
     form.appendChild(submit);
     var no = el('button', 'cp-link cp-no', { type: 'button' }, 'No thanks');
     no.addEventListener('click', function () { dlg.close(); });
@@ -186,14 +237,61 @@
       try { if (opener && opener.focus) opener.focus(); } catch (e) {}
     });
 
-    var busy = false;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (busy) return;
-      msg.textContent = '';
-      var em = email.value.trim(), imoRaw = imo.value.trim();
-      if (!em || !email.validity.valid) { msg.textContent = 'Please enter a valid email.'; email.focus(); return; }
-      if (!imoRaw || !imoValid(imoRaw)) { msg.textContent = imoRaw ? 'That IMO number does not look right. Check the 7 digits.' : 'Enter your vessel\'s 7-digit IMO number.'; imo.focus(); return; }
+    var chosen = null, busy = false, lead = null, renewed = false, attempt = null, B = null;
+
+    function emailOk() { return !!email.value.trim() && email.validity.valid; }
+    function imoOk() { return !!imo.value.trim() && imoValid(imo.value); }
+    function refresh() {
+      progress((chosen ? 33 : 0) + (imoOk() ? 33 : 0) + (emailOk() ? 24 : 0));
+      submit.disabled = busy || !(chosen && imoOk() && emailOk());
+    }
+    imo.addEventListener('input', function () {
+      var raw = imo.value.trim();
+      if (!imoOk() && cleanImo(raw).length >= 7) say('That IMO number does not look right. Check the 7 digits.'); else if (msg.textContent.indexOf('IMO') !== -1) say('');
+      refresh();
+    });
+    email.addEventListener('input', refresh);
+    function say(text, html) { if (html !== undefined) msg.innerHTML = html; else msg.textContent = text || ''; }
+
+    /* ---- times ---- */
+    function fmtSlot(iso) {
+      var d = new Date(iso);
+      return d.toLocaleDateString([], { weekday: 'short' }) + ' ' + d.getDate() + ' · ' + B.localTime(iso);
+    }
+    function pick(s) {
+      chosen = s;
+      Array.prototype.forEach.call(form.querySelectorAll('[data-start]'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-start') === s.start ? 'true' : 'false'); });
+      refresh();
+    }
+    function loadTimes(note) {
+      quick.setAttribute('aria-busy', 'true'); chosen = null; refresh();
+      return req('GET', '/api/book/slots?days=14').then(function (r) {
+        quick.setAttribute('aria-busy', 'false');
+        return loadBook().then(function (b) { B = b; return r; }, function () { return r; });
+      }).then(function (r) {
+        quick.textContent = ''; moreBox.textContent = ''; moreBtn.hidden = true;
+        var list = (r.ok && r.data.slots) || [];
+        if (!r.ok || !B) { say('', mailHtml('We could not load the times.')); return; }
+        if (!list.length) { say('', mailHtml('No times are open right now.')); return; }
+        if (note) say(note); else if (msg.textContent.indexOf('Email') === -1) say('');
+        list.slice(0, 3).forEach(function (s) {
+          var b = el('button', 'cp-slotbtn', { type: 'button', 'data-start': s.start, 'aria-pressed': 'false' }, fmtSlot(s.start));
+          b.addEventListener('click', function () { pick(s); });
+          quick.appendChild(b);
+        });
+        if (list.length > 3) {
+          moreBtn.hidden = false;
+          B.renderSlots(moreBox, list, pick);
+        }
+      });
+    }
+    moreBtn.addEventListener('click', function () {
+      var open = moreBox.hidden; moreBox.hidden = !open; moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    loadTimes();
+
+    /* ---- one click: lead -> book ---- */
+    function attribution() {
       var a = { anonId: null, utm: { source: null, medium: null, campaign: null, term: null, content: null }, gclid: null };
       try {
         var A = window.celesteAttribution;
@@ -204,74 +302,104 @@
           a.gclid = t.gclid || null;
         }
       } catch (x) {}
+      return a;
+    }
+    function ensureLead() {
+      var em = email.value.trim(), im = cleanImo(imo.value), mk = !!form.marketing.checked;
+      var sig = em + '|' + im + '|' + mk;
+      if (lead && lead.sig === sig) return Promise.resolve(lead);
+      var a = attribution();
       var body = {
-        imo: cleanImo(imoRaw), role: null, name: null, email: em, source: 'popup',
-        consent: { marketing: !!form.marketing.checked }, anonId: a.anonId, utm: a.utm, gclid: a.gclid, website: form.website.value
+        imo: im, role: null, name: null, email: em, source: 'popup',
+        consent: { marketing: mk }, anonId: a.anonId, utm: a.utm, gclid: a.gclid, website: form.website.value
       };
-      busy = true; submit.disabled = true;
-      post('/api/book/lead', body)
-        .then(function (res) { return res.json().catch(function () { return {}; }).then(function (d) { return { ok: res.ok, data: d || {} }; }); },
-              function () { return { ok: false, data: {} }; })
-        .then(function (r) {
-          busy = false; submit.disabled = false;
-          if (!r.ok) { msg.textContent = 'Sorry, that did not go through. Please try again in a moment.'; return; }
-          submitted = true;                 /* step 1 alone is a saved lead */
-          if (!PREVIEW) remember(K_LEAD, '1');
-          leadToken = (r.data && typeof r.data.leadToken === 'string') ? r.data.leadToken : null;
-          track('popup_submit');
-          if (leadToken) step2(panel, form); else success(panel, form);
+      return req('POST', '/api/book/lead', body).then(function (r) {
+        if (!r.ok || !r.data || typeof r.data.leadToken !== 'string') return { error: (r.data && r.data.error) || 'network' };
+        submitted = true;                 /* a saved lead */
+        if (!PREVIEW) remember(K_LEAD, '1');
+        track('popup_submit');
+        lead = { sig: sig, token: r.data.leadToken, body: body, email: em };
+        renewed = false;
+        return lead;
+      });
+    }
+    function done(d) {
+      progress(100);
+      form.hidden = true;
+      var when = B.shortWhen((d && d.start) || chosen.start);
+      var box = el('div', 'cp-done');
+      var test = d && d.dryRun === true;
+      box.appendChild(el('h2', 'cp-h', { id: uid + '-h2', tabindex: '-1' }, test ? 'Test booking only' : 'Booked: ' + when + ' your time.'));
+      box.appendChild(el('p', 'cp-p cp-booked', { id: uid + '-b2' }, test
+        ? when + ' your time. This was a test: nothing was sent and no call is scheduled. If you meant to book a real call, email ' + MAIL + '.'
+        : 'The Teams invite is on its way to ' + lead.email + '.'));
+      var manage = B.safeUrl(d && d.manageUrl, B.MANAGE_HOSTS);
+      if (manage) box.appendChild(el('a', 'cp-link cp-manage', { href: manage, rel: 'noopener' }, 'Need to change it? Cancel or pick a new time'));
+      /* optional enrichment: no skip button, just close */
+      var f = el('form', 'cp-enrich', { novalidate: '' });
+      f.appendChild(slot('p', 'enrich-label', 'cp-label'));
+      var n = el('input', null, { type: 'text', id: uid + '-name', name: 'name', autocomplete: 'name', maxlength: '120' });
+      f.appendChild(field(el('label', null, { 'for': uid + '-name' }, 'Your name'), n));
+      var r = el('select', null, { id: uid + '-role', name: 'role' });
+      r.appendChild(el('option', null, { value: '' }, 'Choose…'));
+      ROLES.forEach(function (o) { r.appendChild(el('option', null, { value: o[0] }, o[1])); });
+      f.appendChild(field(el('label', null, { 'for': uid + '-role' }, 'Your role'), r));
+      var em2 = el('p', 'cp-msg', { role: 'status' }); f.appendChild(em2);
+      var sv = el('button', 'cp-btn', { type: 'submit' }, 'Save'); f.appendChild(sv);
+      var saving = false;
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (saving) return;
+        var nv = n.value.trim(), rv = r.value;
+        if (!nv && !rv) return;
+        saving = true; sv.disabled = true;
+        req('POST', '/api/book/lead/enrich', { leadToken: lead.token, name: nv || null, role: rv || null }).then(function (x) {
+          if (x.ok) { f.textContent = ''; f.appendChild(el('p', 'cp-p', { role: 'status' }, 'Thanks.')); }
+          else { saving = false; sv.disabled = false; em2.textContent = 'Could not save that just now. No problem, the call is booked.'; }
         });
-    });
-  }
-
-  /* Step 2 (enrichment): name + role. Optional; skipping still leaves the step-1 lead saved. */
-  var ROLES = [['chief_engineer', 'Chief engineer'], ['eto', 'ETO'], ['captain', 'Captain'], ['manager', 'Yacht / fleet manager'], ['owner', 'Owner or owner\u2019s rep'], ['other', 'Other']];
-  function step2(panel, form1) {
-    form1.hidden = true;
-    progress(70, COPY['step2-label'], 'step2-label');
-    var f = el('form', 'cp-form', { novalidate: '' });
-    f.appendChild(slot('h2', 'step2-heading', 'cp-h', { id: uid + '-h2' }));
-    dlg.setAttribute('aria-labelledby', uid + '-h2'); dlg.setAttribute('aria-describedby', uid + '-b2');
-    f.appendChild(slot('p', 'step2-body', 'cp-p', { id: uid + '-b2' }));
-    var nL = el('label', null, { 'for': uid + '-name' }, 'Your name');
-    var n = el('input', null, { type: 'text', id: uid + '-name', name: 'name', autocomplete: 'name', maxlength: '120' });
-    f.appendChild(field(nL, n));
-    var rL = el('label', null, { 'for': uid + '-role' }, 'Your role');
-    var r = el('select', null, { id: uid + '-role', name: 'role' });
-    r.appendChild(el('option', null, { value: '' }, 'Choose\u2026'));
-    ROLES.forEach(function (o) { r.appendChild(el('option', null, { value: o[0] }, o[1])); });
-    f.appendChild(field(rL, r));
-    var m = el('p', 'cp-msg', { role: 'alert' }); f.appendChild(m);
-    var b = slot('button', 'step2-submit', 'cp-btn', { type: 'submit' }); f.appendChild(b);
-    var skip = el('button', 'cp-link cp-no', { type: 'button' }, 'Skip');
-    skip.addEventListener('click', function () { success(panel, f); });
-    f.appendChild(skip);
-    panel.appendChild(f);
-    n.focus();
-    var busy2 = false;
-    f.addEventListener('submit', function (e) {
+      });
+      box.appendChild(f);
+      dlg.setAttribute('aria-labelledby', uid + '-h2'); dlg.setAttribute('aria-describedby', uid + '-b2');
+      panel.appendChild(box);
+      box.firstChild.focus();
+    }
+    function fail() { busy = false; refresh(); }
+    function handle(r, tries) {
+      if (r.ok) { busy = false; done(r.data); return Promise.resolve(); }
+      var code = (r.data && r.data.error) || 'network';
+      if (code === 'in_progress' && tries < 4) return wait(Math.max(1, r.retryAfter || 2) * 1000).then(function () { return attemptBook(tries + 1); });
+      if ((code === 'token_expired' || code === 'bad_token') && !renewed && lead) {
+        renewed = true;                 /* re-submit the same lead once, then retry the booking */
+        return req('POST', '/api/book/lead', lead.body).then(function (lr) {
+          if (lr.ok && lr.data && typeof lr.data.leadToken === 'string') { lead.token = lr.data.leadToken; attempt = null; return attemptBook(tries); }
+          say('', mailHtml('Something went wrong on our side.')); fail();
+        });
+      }
+      if (code === 'slot_taken') { fail(); return loadTimes('That time just went. Here are the next ones.'); }
+      if (code === 'already_booked') say('You already have a call booked. Check your email.');
+      else if (code === 'in_progress') say('That is still being processed. Please wait a moment and try again.');
+      else if (code === 'rate_limited') say('That is a lot of requests from one place. Please wait a little and try again.');
+      else say('', mailHtml(code === 'booking_disabled' ? 'Online booking is not available just now.' : 'Something went wrong on our side.'));
+      fail();
+      return Promise.resolve();
+    }
+    function attemptBook(tries) {
+      var sig = chosen.start + '|' + lead.token;
+      if (!attempt || attempt.sig !== sig) attempt = { sig: sig, key: B.uuid() };
+      return req('POST', '/api/book', { slotStart: chosen.start, leadToken: lead.token, idempotencyKey: attempt.key }).then(function (r) { return handle(r, tries); });
+    }
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (busy2) return;
-      var nv = n.value.trim(), rv = r.value;
-      if (!nv && !rv) { success(panel, f); return; }       /* nothing to add = same as skip */
-      busy2 = true; b.disabled = true;
-      post('/api/book/lead/enrich', { leadToken: leadToken, name: nv || null, role: rv || null })
-        .then(function () {}, function () {})            /* enrichment is best-effort: the lead is already saved */
-        .then(function () { busy2 = false; b.disabled = false; success(panel, f); });
+      if (busy || submit.disabled || !chosen) return;
+      busy = true; submit.disabled = true; say('Booking your call…');
+      ensureLead().then(function (l) {
+        if (l.error) {
+          say(l.error === 'invalid' ? 'Please check your IMO number and email.' : '', l.error === 'invalid' ? undefined : mailHtml('Sorry, that did not go through. Please try again in a moment.'));
+          fail(); return;
+        }
+        return attemptBook(0);
+      });
     });
-  }
-
-  function success(panel, form) {
-    progress(100, 'Done');
-    form.hidden = true;
-    var box = el('div', 'cp-done');
-    box.appendChild(slot('h2', 'success-heading', 'cp-h', { id: uid + '-h3' }));
-    box.appendChild(slot('p', 'success-body', 'cp-p', { id: uid + '-b3' }));
-    dlg.setAttribute('aria-labelledby', uid + '-h3'); dlg.setAttribute('aria-describedby', uid + '-b3');
-    var link = slot('a', 'book', 'cp-btn', { href: '/book' });
-    box.appendChild(link);
-    panel.appendChild(box);
-    link.focus();
   }
 
   function show() {
@@ -283,7 +411,7 @@
     if (typeof dlg.showModal !== 'function') return; /* very old browser: skip rather than render a broken box */
     dlg.showModal();
     track('popup_shown');
-    var first = dlg.querySelector('input'); if (first) first.focus();
+    var first = dlg.querySelector('input[name=imo]'); if (first) first.focus();
   }
 
   /* ---- triggers ---- */

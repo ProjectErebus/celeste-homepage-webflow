@@ -30,16 +30,17 @@ const dialog = (page) => page.locator('dialog.cp-dialog');
 /* ouibounce technique: mouseleave on <html> with the pointer within 20px of the top edge. */
 const leaveAt = (page, y) => page.evaluate((cy) => document.documentElement.dispatchEvent(new MouseEvent('mouseleave', { clientY: cy, clientX: 300 })), y);
 const exitIntent = (page) => leaveAt(page, 3);
-const fillStep1 = async (page, { imo = '9074729', email = 'boss@example.com', marketing = false } = {}) => {
-  const d = dialog(page);
-  if (imo !== null) await d.locator('input[name=imo]').fill(imo);
-  if (email !== null) await d.getByLabel('Email', { exact: true }).fill(email);
-  if (marketing) await d.locator('input[name=marketing]').check();
+const D = (page) => dialog(page);
+const fillForm = async (page, { imo = '9074729', email = 'boss@example.com', marketing = false } = {}) => {
+  if (imo !== null) await D(page).locator('input[name=imo]').fill(imo);
+  if (email !== null) await D(page).getByLabel('Email', { exact: true }).fill(email);
+  if (marketing) await D(page).locator('input[name=marketing]').check();
 };
-const submitStep1 = (page) => dialog(page).locator('button[type=submit]').click();
+const pickTime = async (page, i = 0) => { const b = D(page).locator('.cp-slotbtn').nth(i); await expect(b).toBeVisible(); await b.click(); return b.getAttribute('data-start'); };
+const bookBtn = (page) => D(page).getByRole('button', { name: 'Book this call' });
 const bar = (page) => dialog(page).locator('.cp-progress');
 const barNow = async (page) => Number(await bar(page).getAttribute('aria-valuenow'));
-const fillW = async (page) => Number.parseFloat(await dialog(page).locator('.cp-progress-fill').evaluate((e) => e.style.width));
+const bookPosts = (mock) => mock.calls.filter((c) => c.method === 'POST' && c.path === '/api/book');
 async function armed(page) { await page.waitForTimeout(1300); } // past data-exit-delay=1200
 const names = (events, ev) => events.filter((e) => e.event === ev);
 
@@ -191,146 +192,228 @@ test('No thanks closes and counts as dismissed, nothing sent', async ({ page }) 
   expect(mock.calls.some((c) => c.path === '/api/book/lead')).toBe(false);
 });
 
-test('phone: image collapses to a ~120px strip above the form', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await setup(page);
-  await open(page); await armed(page); await exitIntent(page);
-  const f = await dialog(page).locator('[data-image-slot]').boundingBox();
-  const form = await dialog(page).locator('form').boundingBox();
-  expect(Math.round(f.height)).toBe(120);
-  expect(form.y).toBeGreaterThanOrEqual(f.y + f.height - 1);
-});
-
-test('copy slots are marked data-copy-slot', async ({ page }) => {
+test('copy slots are marked data-copy-slot, and there is no step text', async ({ page }) => {
   await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   const slots = await dialog(page).locator('[data-copy-slot]').evaluateAll((n) => n.map((e) => e.getAttribute('data-copy-slot')));
-  expect(slots).toEqual(expect.arrayContaining(['heading', 'body', 'imo-hint', 'consent', 'submit', 'step1-label']));
+  expect(slots).toEqual(expect.arrayContaining(['heading', 'slots-label', 'zone-note', 'imo-hint', 'consent', 'submit']));
+  await expect(D(page).locator('[data-copy-slot="heading"]')).toHaveText('Book a 30-minute call');
+  await expect(D(page).locator('[data-copy-slot="slots-label"]')).toHaveText('Next free times (your time):');
+  await expect(D(page).locator('[data-copy-slot="zone-note"]')).toHaveText('Organiser in Miami (ET)');
+  await expect(D(page)).not.toContainText(/step \d/i);
+  await expect(D(page)).not.toContainText('We have your details');
+  await expect(D(page).locator('a[href^="/book"]')).toHaveCount(0);
+  await expect(D(page).locator('.cp-progress')).toHaveAttribute('role', 'progressbar');
 });
 
-test('step 1 saves the lead BEFORE step 2 is shown (role/name null), then step 2 appears', async ({ page }) => {
-  const { mock } = await setup(page);
+test('two clicks: pick a time + IMO + email, then Book. Order lead -> book; /api/book never gets the email', async ({ page }) => {
+  const { mock, events } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
-  await expect(dialog(page).getByLabel(/occasional/i)).not.toBeChecked();
-  await fillStep1(page, { imo: 'IMO 9074729' });
-  await submitStep1(page);
-  await expect(dialog(page).locator('[data-copy-slot="step2-heading"]')).toBeVisible();
-  const leads = mock.calls.filter((c) => c.path === '/api/book/lead');
-  expect(leads.length).toBe(1);
-  expect(leads[0].body).toMatchObject({ source: 'popup', imo: '9074729', email: 'boss@example.com', name: null, role: null, consent: { marketing: false }, website: '' });
-  expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(false); // nothing enriched yet
-  expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBe('1');
-  await expect(dialog(page).getByLabel('Your name')).toBeFocused();
-});
-
-test('step 2 enrich success: POST /api/book/lead/enrich {leadToken, name, role}, then Book a call', async ({ page }) => {
-  const { mock } = await setup(page);
-  await open(page); await armed(page); await exitIntent(page);
-  await fillStep1(page); await submitStep1(page);
-  await dialog(page).getByLabel('Your name').fill('Sam Example');
-  await dialog(page).getByLabel('Your role').selectOption('captain');
-  await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
-  const link = dialog(page).getByRole('link', { name: 'Book a call' });
-  await expect(link).toBeVisible();
-  await expect(link).toHaveAttribute('href', '/book');
-  const e = mock.calls.find((c) => c.path === '/api/book/lead/enrich');
-  expect(e.body).toEqual({ leadToken: 'lt_1', name: 'Sam Example', role: 'captain' });
-  await expect(dialog(page).getByLabel('Your role')).toBeHidden();
-});
-
-test('step 2 role list matches the lead roles (incl. owner)', async ({ page }) => {
-  await setup(page);
-  await open(page); await armed(page); await exitIntent(page);
-  await fillStep1(page); await submitStep1(page);
-  await expect(dialog(page).locator('[data-copy-slot="step2-heading"]')).toBeVisible();
-  const vals = await dialog(page).locator('select[name=role] option').evaluateAll((o) => o.map((x) => x.value));
-  expect(vals).toEqual(['', 'chief_engineer', 'eto', 'captain', 'manager', 'owner', 'other']);
-});
-
-test('step 2 skip: no enrich call, lead stays saved, Book a call offered', async ({ page }) => {
-  const { mock } = await setup(page);
-  await open(page); await armed(page); await exitIntent(page);
-  await fillStep1(page); await submitStep1(page);
-  await dialog(page).getByRole('button', { name: 'Skip' }).click();
-  await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
-  expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(false);
-  expect(mock.calls.filter((c) => c.path === '/api/book/lead').length).toBe(1);
-  expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBe('1');
-});
-
-test('step 2 submitted empty counts as skip (no enrich call)', async ({ page }) => {
-  const { mock } = await setup(page);
-  await open(page); await armed(page); await exitIntent(page);
-  await fillStep1(page); await submitStep1(page);
-  await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
-  await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
-  expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(false);
-});
-
-for (const enrichMode of ['fail', 'error']) {
-  test(`enrich ${enrichMode}: still completes (best effort), lead already saved`, async ({ page }) => {
-    const { mock } = await setup(page);
-    mock.enrichMode = enrichMode;
-    await open(page); await armed(page); await exitIntent(page);
-    await fillStep1(page); await submitStep1(page);
-    await dialog(page).getByLabel('Your name').fill('Sam Example');
-    await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
-    await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
-    expect(await barNow(page)).toBe(100);
-    expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(true);
-    expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBe('1');
-  });
-}
-
-test('progress bar: 30% on step 1, 70% on step 2, 100% when done, with labels', async ({ page }) => {
-  await setup(page);
-  await open(page); await armed(page); await exitIntent(page);
-  await expect(bar(page)).toHaveAttribute('role', 'progressbar');
-  expect(await barNow(page)).toBe(30);
-  expect(await fillW(page)).toBe(30);
-  await expect(bar(page)).toContainText('Step 1 of 2');
-  await expect(bar(page).locator('[data-copy-slot="step1-label"]')).toHaveCount(1);
-  await fillStep1(page); await submitStep1(page);
-  await expect(bar(page)).toContainText('Step 2 of 2');
-  await expect(bar(page).locator('[data-copy-slot="step2-label"]')).toHaveCount(1);
-  expect(await barNow(page)).toBe(70);
-  expect(await fillW(page)).toBe(70);
-  await dialog(page).getByRole('button', { name: 'Skip' }).click();
+  await expect(D(page).locator('.cp-slotbtn')).toHaveCount(3);
+  await expect(D(page).getByLabel(/occasional/i)).not.toBeChecked();
+  await expect(bookBtn(page)).toBeDisabled();
+  const start = await pickTime(page);
+  await fillForm(page, { imo: 'IMO 9074729' });
+  await expect(bookBtn(page)).toBeEnabled();
+  await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked: .* your time\.$/ })).toBeVisible();
+  await expect(D(page)).toContainText('The Teams invite is on its way to boss@example.com.');
+  const seq = mock.calls.filter((c) => c.method === 'POST').map((c) => c.path);
+  expect(seq).toEqual(['/api/book/lead', '/api/book']);
+  const lead = mock.calls.find((c) => c.path === '/api/book/lead').body;
+  expect(lead).toMatchObject({ imo: '9074729', role: null, name: null, email: 'boss@example.com', source: 'popup', consent: { marketing: false }, website: '' });
+  const sent = bookPosts(mock)[0].body;
+  expect(Object.keys(sent).sort()).toEqual(['idempotencyKey', 'leadToken', 'slotStart']);
+  expect(sent).toMatchObject({ slotStart: start, leadToken: 'lt_1' });
+  expect(JSON.stringify(sent)).not.toContain('boss@example.com');
   expect(await barNow(page)).toBe(100);
-  expect(await fillW(page)).toBe(100);
+  expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBe('1');
+  await page.getByRole('button', { name: 'Close' }).click();
+  await expect.poll(() => names(events, 'popup_submit').length).toBe(1);
+  expect(names(events, 'popup_dismissed').length).toBe(0);
+  const blob = JSON.stringify(events);
+  expect(blob).not.toContain('boss@example');
+  expect(blob).not.toContain('9074729');
 });
 
-test('IMO is required in the popup: empty IMO blocks step 1, nothing is sent', async ({ page }) => {
+test('Book is disabled until a time, a valid IMO and a valid email are all present; nothing is sent meanwhile', async ({ page }) => {
   const { mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
-  await expect(dialog(page).locator('input[name=imo]')).toHaveAttribute('required', '');
-  await fillStep1(page, { imo: null });
-  await submitStep1(page);
-  await expect(dialog(page).locator('.cp-msg')).toContainText('7-digit IMO');
-  await expect(dialog(page).locator('input[name=imo]')).toBeFocused();
-  expect(mock.calls.some((c) => c.path === '/api/book/lead')).toBe(false);
-  expect(await barNow(page)).toBe(30);
+  await expect(D(page).locator('.cp-slotbtn').first()).toBeVisible();
+  await fillForm(page);                         // no time yet
+  await expect(bookBtn(page)).toBeDisabled();
+  await pickTime(page);
+  await expect(bookBtn(page)).toBeEnabled();
+  await D(page).locator('input[name=imo]').fill('9074728');   // bad check digit
+  await expect(bookBtn(page)).toBeDisabled();
+  await expect(D(page).locator('.cp-msg')).toContainText('does not look right');
+  await D(page).locator('input[name=imo]').fill('9074729');
+  await D(page).getByLabel('Email', { exact: true }).fill('not-an-email');
+  await expect(bookBtn(page)).toBeDisabled();
+  await D(page).getByLabel('Email', { exact: true }).fill('');
+  await expect(bookBtn(page)).toBeDisabled();
+  expect(mock.calls.filter((c) => c.method === 'POST').length).toBe(0);
 });
 
-test('submit validation: bad email and bad IMO block the request', async ({ page }) => {
+test('progress bar fills live: 0, 33 time, 66 IMO, 90 email, 100 booked; no step text, valuenow only', async ({ page }) => {
+  await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await expect(D(page).locator('.cp-slotbtn').first()).toBeVisible();
+  expect(await barNow(page)).toBe(0);
+  await pickTime(page); expect(await barNow(page)).toBe(33);
+  await D(page).locator('input[name=imo]').fill('9074729'); expect(await barNow(page)).toBe(66);
+  await D(page).getByLabel('Email', { exact: true }).fill('a@example.com'); expect(await barNow(page)).toBe(90);
+  expect(Number.parseFloat(await D(page).locator('.cp-progress-fill').evaluate((e) => e.style.width))).toBe(90);
+  expect((await bar(page).innerText()).trim()).toBe('');
+  await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  expect(await barNow(page)).toBe(100);
+});
+
+test('More times expands a compact list inline and a pick from it counts', async ({ page }) => {
   const { mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
-  await submitStep1(page);
-  await expect(dialog(page).locator('.cp-msg')).toContainText('valid email');
-  await fillStep1(page, { imo: '9074728' });
-  await submitStep1(page);
-  await expect(dialog(page).locator('.cp-msg')).toContainText('does not look right');
-  expect(mock.calls.some((c) => c.path === '/api/book/lead')).toBe(false);
+  await expect(D(page).locator('.cp-slotbtn').first()).toBeVisible();
+  await expect(D(page).locator('.cp-more-box')).toBeHidden();
+  await D(page).getByRole('button', { name: /More times/ }).click();
+  await expect(D(page).locator('.cp-more-box')).toBeVisible();
+  const last = D(page).locator('.cp-more-box .bk-time').last();
+  const start = await last.getAttribute('data-start');
+  await last.click();
+  await fillForm(page);
+  await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  expect(bookPosts(mock)[0].body.slotStart).toBe(start);
 });
 
-test('step 1 failure keeps the form on step 1 with a calm message', async ({ page }) => {
+test('slot_taken: the times refresh in place with a plain line; form values survive; second try books', async ({ page }) => {
+  const { mock } = await setup(page);
+  mock.mode = 'slot_taken';
+  await open(page); await armed(page); await exitIntent(page);
+  const first = await pickTime(page);
+  await fillForm(page);
+  await bookBtn(page).click();
+  await expect(D(page).locator('.cp-msg')).toHaveText('That time just went. Here are the next ones.');
+  await expect(D(page).locator(`[data-start="${first}"]`)).toHaveCount(0);   // taken slot is gone from the refreshed list
+  await expect(D(page).locator('input[name=imo]')).toHaveValue('9074729');
+  expect(mock.calls.filter((c) => c.path === '/api/book/slots').length).toBe(2);
+  mock.mode = 'ok';
+  await pickTime(page);
+  await expect(bookBtn(page)).toBeEnabled();
+  await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  expect(mock.calls.filter((c) => c.path === '/api/book/lead').length).toBe(1);   // the saved lead is reused
+});
+
+test('already_booked: calm line, stays on the form', async ({ page }) => {
+  const { mock } = await setup(page);
+  mock.mode = 'already_booked';
+  await open(page); await armed(page); await exitIntent(page);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).locator('.cp-msg')).toHaveText('You already have a call booked. Check your email.');
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toHaveCount(0);
+});
+
+test('token_expired: the lead is re-submitted once and the booking retried', async ({ page }) => {
+  const { mock } = await setup(page);
+  mock.expireTokens = new Set(['lt_1']);
+  await open(page); await armed(page); await exitIntent(page);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  expect(mock.calls.filter((c) => c.path === '/api/book/lead').length).toBe(2);
+  expect(bookPosts(mock).map((c) => c.body.leadToken)).toEqual(['lt_1', 'lt_2']);
+});
+
+test('in_progress: waits Retry-After, retries with the SAME idempotency key', async ({ page }) => {
+  const { mock } = await setup(page);
+  mock.inProgressOnce = true;
+  await open(page); await armed(page); await exitIntent(page);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible({ timeout: 8000 });
+  const p = bookPosts(mock);
+  expect(p.length).toBe(2);
+  expect(p[1].body.idempotencyKey).toBe(p[0].body.idempotencyKey);
+});
+
+test('other failure: calm line with a mailto, form stays', async ({ page }) => {
+  const { mock } = await setup(page);
+  mock.mode = 'graph_unavailable';
+  await open(page); await armed(page); await exitIntent(page);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).locator('.cp-msg a[href="mailto:onboarding@celeste7.ai"]')).toBeVisible();
+});
+
+test('lead failure: calm line, no booking attempted, flag not set', async ({ page }) => {
   const { mock } = await setup(page);
   mock.leadMode = 'rate_limited';
   await open(page); await armed(page); await exitIntent(page);
-  await fillStep1(page); await submitStep1(page);
-  await expect(dialog(page).locator('.cp-msg')).toContainText('did not go through');
-  expect(await barNow(page)).toBe(30);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).locator('.cp-msg')).toContainText('did not go through');
+  expect(bookPosts(mock).length).toBe(0);
   expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBeNull();
+});
+
+test('after booking: optional name + role save through /enrich; then "Thanks."', async ({ page }) => {
+  const { mock } = await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).locator('[data-copy-slot="enrich-label"]')).toHaveText('Optional: helps us prepare.');
+  await expect(D(page).getByRole('button', { name: /skip/i })).toHaveCount(0);
+  await D(page).getByLabel('Your name').fill('Pat Chief');
+  await D(page).getByLabel('Your role').selectOption('captain');
+  await D(page).getByRole('button', { name: 'Save' }).click();
+  await expect(D(page).getByText('Thanks.')).toBeVisible();
+  expect(mock.enriched).toEqual({ leadToken: 'lt_1', name: 'Pat Chief', role: 'captain' });
+});
+
+test('dryRun booking says it is a test and that nothing was sent', async ({ page }) => {
+  const { mock } = await setup(page);
+  mock.dryRun = true;
+  await open(page); await armed(page); await exitIntent(page);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: 'Test booking only' })).toBeVisible();
+  await expect(D(page)).toContainText('nothing was sent');
+  await expect(D(page)).not.toContainText('Teams invite is on its way');
+});
+
+test('manage link only if https on celeste7.ai', async ({ page }) => {
+  const { mock } = await setup(page);
+  mock.manageUrl = 'https://evil.example/x';
+  await open(page); await armed(page); await exitIntent(page);
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).locator('.cp-manage')).toHaveCount(0);
+});
+
+test('desktop keeps the photo on the left; phone hides it and stacks IMO over email, no overflow', async ({ page }) => {
+  await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await expect(D(page).locator('[data-image-slot]')).toBeVisible();
+  const i = await D(page).locator('input[name=imo]').boundingBox(), e = await D(page).getByLabel('Email', { exact: true }).boundingBox();
+  expect(Math.abs(i.y - e.y)).toBeLessThan(4);          // one row on desktop
+  await page.keyboard.press('Escape');
+  await page.evaluate(() => localStorage.removeItem('celeste_popup_shown'));
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.reload(); await armed(page); await exitIntent(page);
+  await expect(D(page).locator('[data-image-slot]')).toBeHidden();
+  const i2 = await D(page).locator('input[name=imo]').boundingBox(), e2 = await D(page).getByLabel('Email', { exact: true }).boundingBox();
+  expect(e2.y).toBeGreaterThan(i2.y + i2.height - 1);   // stacked on phone
+  const box = await D(page).boundingBox();
+  expect(box.x).toBeGreaterThanOrEqual(0); expect(box.x + box.width).toBeLessThanOrEqual(390);
+});
+
+test('?popup=preview: shows at once, fakes slots, lead, booking and enrich; sends nothing', async ({ page }) => {
+  const { mock } = await setup(page, { seed: { celeste_popup_shown: new Date().toISOString(), celeste_lead_submitted: '1' } });
+  await open(page, PAGE + '?popup=preview');
+  await expect(dialog(page)).toBeVisible({ timeout: 2000 });
+  await pickTime(page); await fillForm(page); await bookBtn(page).click();
+  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await D(page).getByLabel('Your name').fill('Rev Iewer');
+  await D(page).getByRole('button', { name: 'Save' }).click();
+  await expect(D(page).getByText('Thanks.')).toBeVisible();
+  expect(mock.calls.length).toBe(0);
+  expect(await page.evaluate(() => localStorage.getItem('celeste_popup_shown'))).not.toBeNull();
 });
 
 test('always light: white card even when the OS prefers dark', async ({ page }) => {
@@ -342,21 +425,6 @@ test('always light: white card even when the OS prefers dark', async ({ page }) 
   expect(c[1]).toBe('rgb(20, 17, 15)');
   expect(c[2]).toBe('light');
   expect(await dialog(page).locator('.cp-progress').evaluate((e) => getComputedStyle(e).backgroundColor)).toBe('rgb(241, 239, 236)');
-});
-
-test('?popup=preview: shows immediately, ignores the cap, sends nothing, clicks through both steps', async ({ page }) => {
-  // cap and lead flag would block a normal view
-  const { mock, events } = await setup(page, { seed: { celeste_popup_shown: new Date().toISOString(), celeste_lead_submitted: '1' } });
-  await open(page, PAGE + '?popup=preview');
-  await expect(dialog(page)).toBeVisible({ timeout: 2000 });
-  await fillStep1(page); await submitStep1(page);
-  await expect(dialog(page).locator('[data-copy-slot="step2-heading"]')).toBeVisible();
-  await dialog(page).getByLabel('Your name').fill('Rev Iewer');
-  await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
-  await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
-  expect(mock.calls.filter((c) => c.path.startsWith('/api/book/lead')).length).toBe(0); // network faked
-  // preview does not record a view: removing the seeded flags and reloading without ?popup=preview behaves normally
-  expect(await page.evaluate(() => localStorage.getItem('celeste_popup_shown'))).not.toBeNull();
 });
 
 test('without ?popup=preview the popup does not appear on load', async ({ page }) => {
@@ -420,22 +488,6 @@ test.describe('tracking events', () => {
     const e = names(events, 'popup_shown')[0];
     expect(e).toMatchObject({ event: 'popup_shown', consent: { analytics: true } });
     expect(e.event_id).toMatch(/^[0-9a-f-]{36}$/);
-  });
-
-  test('popup_submit fires on success and not popup_dismissed; the email never appears in an event', async ({ page }) => {
-    const { events } = await setup(page);
-    await open(page); await armed(page); await exitIntent(page);
-    await fillStep1(page, { email: 'secret.person@example.com' }); await submitStep1(page);
-    await dialog(page).getByLabel('Your name').fill('Secret Person');
-    await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
-    await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
-    await page.getByRole('button', { name: 'Close' }).click();
-    await expect.poll(() => names(events, 'popup_submit').length).toBe(1);
-    expect(names(events, 'popup_dismissed').length).toBe(0);
-    const blob = JSON.stringify(events.filter((x) => ['popup_shown', 'popup_submit', 'popup_dismissed'].includes(x.event)));
-    expect(blob).not.toContain('secret.person');
-    expect(blob).not.toContain('Secret Person');
-    expect(blob).not.toContain('9074729');
   });
 
   test('without consent: popup still works, but no funnel event is sent', async ({ page }) => {
