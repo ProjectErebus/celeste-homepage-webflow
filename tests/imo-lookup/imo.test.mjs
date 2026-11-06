@@ -2,7 +2,7 @@
 // Fixture vessels are SYNTHETIC (invented names/IMOs). Never put real snapshot data in this public repo.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { isValidImo, normName, buildIndex, lookup, eligibility } from '../../api/_lib/imo.mjs';
+import { isValidImo, normName, buildIndex, lookup, eligibility } from '../../api/_lib/imo.js';
 
 // valid check digits: 9919060 (sum 170), 9074729 (sum 7*9+6*0+5*7+4*4+3*7+2*2=63+0+35+16+21+4=139 -> 9)
 const snap = {
