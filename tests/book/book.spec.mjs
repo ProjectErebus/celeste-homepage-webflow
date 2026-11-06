@@ -19,7 +19,7 @@ async function open(page, mock, path = '/book', extra = '') {
 const posts = (mock) => mock.calls.filter((c) => c.method === 'POST' && c.path === '/api/book');
 
 async function lead(page, over = {}) {
-  if (over.imo !== undefined) await page.getByLabel(/Vessel IMO/).fill(over.imo);
+  await page.getByLabel(/Vessel IMO/).fill(over.imo ?? '9074729');
   await page.getByLabel('Your role').selectOption(over.role ?? 'chief_engineer');
   await page.getByLabel('Name', { exact: true }).fill(over.name ?? 'Test Chief');
   await page.getByLabel('Email', { exact: true }).fill(over.email ?? 'chief@example.com');
@@ -94,18 +94,24 @@ test('IMO check digit: valid passes, invalid is rejected client-side with no lea
   await page.getByLabel('Name', { exact: true }).fill('A B');
   await page.getByLabel('Email', { exact: true }).fill('a@b.co');
   await page.getByRole('button', { name: 'Choose a time' }).click();
-  await expect(page.locator('#bk-status')).toContainText('IMO number does not look right');
+  await expect(page.locator('#bk-status')).toContainText('does not look right');
   await expect(page.locator('#bk-step1')).toBeVisible();
   expect(mock.calls.some((c) => c.path === '/api/book/lead')).toBe(false);
   expect(mock.calls.some((c) => c.path === '/api/imo-lookup')).toBe(false);
 });
 
-test('IMO is optional: lead goes with imo null', async ({ page }) => {
+test('IMO is required on /book: empty IMO blocks the lead with a clear message', async ({ page }) => {
   const mock = createMock();
   await open(page, mock);
-  await lead(page);
-  await expect(page.locator('#bk-step2')).toBeVisible();
-  expect(mock.calls.find((c) => c.path === '/api/book/lead').body.imo).toBeNull();
+  await expect(page.locator('#bk-imo')).toHaveAttribute('required', '');
+  await page.getByLabel('Your role').selectOption('captain');
+  await page.getByLabel('Name', { exact: true }).fill('A B');
+  await page.getByLabel('Email', { exact: true }).fill('a@b.co');
+  await page.getByRole('button', { name: 'Choose a time' }).click();
+  await expect(page.locator('#bk-status')).toContainText('7-digit IMO');
+  await expect(page.locator('#bk-imo')).toBeFocused();
+  await expect(page.locator('#bk-step1')).toBeVisible();
+  expect(mock.calls.some((c) => c.path === '/api/book/lead')).toBe(false);
 });
 
 test('valid IMO: vessel confirm line shown (name, length, flag); IMO prefix stripped in the lookup', async ({ page }) => {

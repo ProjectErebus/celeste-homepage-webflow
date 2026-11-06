@@ -50,6 +50,13 @@ export function createMock(opts = {}) {
         const free = state.slots.filter((s) => !state.taken.has(s.start));
         return json(route, 200, { timezone: 'America/New_York', slotMinutes: 30, generatedAt: new Date().toISOString(), dryRun: true, slots: free });
       }
+      if (req.method() === 'POST' && path === '/api/book/lead/enrich') {
+        if (state.enrichMode === 'fail') return route.abort('failed');
+        if (state.enrichMode === 'error') return json(route, 500, { error: 'server' });
+        if (!(state.leads || {})[body.leadToken]) return json(route, 403, { error: 'bad_token' });
+        state.enriched = body;
+        return json(route, 200, { ok: true });
+      }
       if (req.method() === 'POST' && path === '/api/book/lead') {
         if (state.leadMode === 'rate_limited') return json(route, 429, { error: 'rate_limited' });
         if (state.leadMode === 'booking_disabled') return json(route, 503, { error: 'booking_disabled' });

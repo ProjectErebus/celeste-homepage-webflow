@@ -27,7 +27,19 @@ async function setup(page, { consent = true, seed = {} } = {}) {
 }
 const open = (page, path = PAGE) => page.goto(srv.url + path);
 const dialog = (page) => page.locator('dialog.cp-dialog');
-const exitIntent = (page) => page.evaluate(() => document.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, clientY: -1, relatedTarget: null })));
+/* ouibounce technique: mouseleave on <html> with the pointer within 20px of the top edge. */
+const leaveAt = (page, y) => page.evaluate((cy) => document.documentElement.dispatchEvent(new MouseEvent('mouseleave', { clientY: cy, clientX: 300 })), y);
+const exitIntent = (page) => leaveAt(page, 3);
+const fillStep1 = async (page, { imo = '9074729', email = 'boss@example.com', marketing = false } = {}) => {
+  const d = dialog(page);
+  if (imo !== null) await d.locator('input[name=imo]').fill(imo);
+  if (email !== null) await d.getByLabel('Email', { exact: true }).fill(email);
+  if (marketing) await d.locator('input[name=marketing]').check();
+};
+const submitStep1 = (page) => dialog(page).locator('button[type=submit]').click();
+const bar = (page) => dialog(page).locator('.cp-progress');
+const barNow = async (page) => Number(await bar(page).getAttribute('aria-valuenow'));
+const fillW = async (page) => Number.parseFloat(await dialog(page).locator('.cp-progress-fill').evaluate((e) => e.style.width));
 async function armed(page) { await page.waitForTimeout(1300); } // past data-exit-delay=1200
 const names = (events, ev) => events.filter((e) => e.event === ev);
 
@@ -57,9 +69,16 @@ test('exit intent ignored: too early, pointer moving into another element, or no
   await exitIntent(page); // before data-exit-delay
   await expect(dialog(page)).toHaveCount(0);
   await page.evaluate(() => { window.__off = 5000; }); // now well past the delay
-  await page.evaluate(() => document.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, clientY: -1, relatedTarget: document.body })));
-  await page.evaluate(() => document.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, clientY: 300, relatedTarget: null })));
+  await leaveAt(page, 300); // leaving through the side/bottom, not near the top edge
+  await leaveAt(page, 21);
   await expect(dialog(page)).toHaveCount(0);
+  await page.evaluate(() => document.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, clientY: -1, relatedTarget: null }))); // old trigger: no longer used
+  await expect(dialog(page)).toHaveCount(0);
+  await leaveAt(page, 20); // within 20px: fast movements skip y=0, so this counts
+  await expect(dialog(page)).toBeVisible();
+  await page.keyboard.press('Escape');
+  await page.evaluate(() => localStorage.removeItem('celeste_popup_shown'));
+  await page.reload(); await armed(page);
   await exitIntent(page);
   await expect(dialog(page)).toBeVisible();
   expect(t0).toBeGreaterThan(0);
@@ -142,14 +161,14 @@ test('Esc closes; focus is trapped inside; focus returns; close button is one ta
   await expect(dialog(page)).toBeHidden();
 });
 
-test('split layout: image slot left (~40%), decorative lazy image with dimensions, form right', async ({ page }) => {
+test('split layout: image slot left (~40%), decorative eager image with dimensions, form right', async ({ page }) => {
   await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   const fig = dialog(page).locator('[data-image-slot]');
   await expect(fig).toBeVisible();
   const img = fig.locator('img');
   await expect(img).toHaveAttribute('alt', '');
-  await expect(img).toHaveAttribute('loading', 'lazy');
+  await expect(img).not.toHaveAttribute('loading', /.+/);
   await expect(img).toHaveAttribute('width', /\d+/);
   await expect(img).toHaveAttribute('height', /\d+/);
   await expect(img).toHaveAttribute('src', '/img/hull-light.webp');
@@ -163,12 +182,9 @@ test('split layout: image slot left (~40%), decorative lazy image with dimension
   expect(await dialog(page).evaluate((e) => getComputedStyle(e).backgroundColor)).toBe('rgb(255, 255, 255)');
 });
 
-test('name is hidden by default and revealed on request; No thanks closes and counts as dismissed', async ({ page }) => {
+test('No thanks closes and counts as dismissed, nothing sent', async ({ page }) => {
   const { events, mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
-  await expect(dialog(page).getByLabel('Name (optional)')).toBeHidden();
-  await dialog(page).getByRole('button', { name: 'Add your name (optional)' }).click();
-  await expect(dialog(page).getByLabel('Name (optional)')).toBeFocused();
   await dialog(page).getByRole('button', { name: 'No thanks' }).click();
   await expect(dialog(page)).toBeHidden();
   await expect.poll(() => events.filter((e) => e.event === 'popup_dismissed').length).toBe(1);
@@ -189,44 +205,165 @@ test('copy slots are marked data-copy-slot', async ({ page }) => {
   await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   const slots = await dialog(page).locator('[data-copy-slot]').evaluateAll((n) => n.map((e) => e.getAttribute('data-copy-slot')));
-  expect(slots).toEqual(expect.arrayContaining(['heading', 'body', 'imo-hint', 'consent', 'submit']));
+  expect(slots).toEqual(expect.arrayContaining(['heading', 'body', 'imo-hint', 'consent', 'submit', 'step1-label']));
 });
 
-test('submit success: posts a popup lead, shows Book a call, sets the lead flag', async ({ page }) => {
+test('step 1 saves the lead BEFORE step 2 is shown (role/name null), then step 2 appears', async ({ page }) => {
   const { mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
-  await expect(dialog(page).getByLabel(/marketing|occasional/i)).not.toBeChecked();
-  await dialog(page).getByLabel('Email', { exact: true }).fill('boss@example.com');
-  await dialog(page).locator('input[name=imo]').fill('IMO 9074729');
-  await dialog(page).locator('button[type=submit]').click();
+  await expect(dialog(page).getByLabel(/occasional/i)).not.toBeChecked();
+  await fillStep1(page, { imo: 'IMO 9074729' });
+  await submitStep1(page);
+  await expect(dialog(page).locator('[data-copy-slot="step2-heading"]')).toBeVisible();
+  const leads = mock.calls.filter((c) => c.path === '/api/book/lead');
+  expect(leads.length).toBe(1);
+  expect(leads[0].body).toMatchObject({ source: 'popup', imo: '9074729', email: 'boss@example.com', name: null, role: null, consent: { marketing: false }, website: '' });
+  expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(false); // nothing enriched yet
+  expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBe('1');
+  await expect(dialog(page).getByLabel('Your name')).toBeFocused();
+});
+
+test('step 2 enrich success: POST /api/book/lead/enrich {leadToken, name, role}, then Book a call', async ({ page }) => {
+  const { mock } = await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await fillStep1(page); await submitStep1(page);
+  await dialog(page).getByLabel('Your name').fill('Sam Example');
+  await dialog(page).getByLabel('Your role').selectOption('captain');
+  await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
   const link = dialog(page).getByRole('link', { name: 'Book a call' });
   await expect(link).toBeVisible();
   await expect(link).toHaveAttribute('href', '/book');
-  const body = mock.calls.find((c) => c.path === '/api/book/lead').body;
-  expect(body).toMatchObject({ source: 'popup', imo: '9074729', email: 'boss@example.com', name: null, consent: { marketing: false }, website: '' });
+  const e = mock.calls.find((c) => c.path === '/api/book/lead/enrich');
+  expect(e.body).toEqual({ leadToken: 'lt_1', name: 'Sam Example', role: 'captain' });
+  await expect(dialog(page).getByLabel('Your role')).toBeHidden();
+});
+
+test('step 2 role list matches the lead roles (incl. owner)', async ({ page }) => {
+  await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await fillStep1(page); await submitStep1(page);
+  await expect(dialog(page).locator('[data-copy-slot="step2-heading"]')).toBeVisible();
+  const vals = await dialog(page).locator('select[name=role] option').evaluateAll((o) => o.map((x) => x.value));
+  expect(vals).toEqual(['', 'chief_engineer', 'eto', 'captain', 'manager', 'owner', 'other']);
+});
+
+test('step 2 skip: no enrich call, lead stays saved, Book a call offered', async ({ page }) => {
+  const { mock } = await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await fillStep1(page); await submitStep1(page);
+  await dialog(page).getByRole('button', { name: 'Skip' }).click();
+  await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
+  expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(false);
+  expect(mock.calls.filter((c) => c.path === '/api/book/lead').length).toBe(1);
   expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBe('1');
+});
+
+test('step 2 submitted empty counts as skip (no enrich call)', async ({ page }) => {
+  const { mock } = await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await fillStep1(page); await submitStep1(page);
+  await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
+  await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
+  expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(false);
+});
+
+for (const enrichMode of ['fail', 'error']) {
+  test(`enrich ${enrichMode}: still completes (best effort), lead already saved`, async ({ page }) => {
+    const { mock } = await setup(page);
+    mock.enrichMode = enrichMode;
+    await open(page); await armed(page); await exitIntent(page);
+    await fillStep1(page); await submitStep1(page);
+    await dialog(page).getByLabel('Your name').fill('Sam Example');
+    await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
+    await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
+    expect(await barNow(page)).toBe(100);
+    expect(mock.calls.some((c) => c.path === '/api/book/lead/enrich')).toBe(true);
+    expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBe('1');
+  });
+}
+
+test('progress bar: 30% on step 1, 70% on step 2, 100% when done, with labels', async ({ page }) => {
+  await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await expect(bar(page)).toHaveAttribute('role', 'progressbar');
+  expect(await barNow(page)).toBe(30);
+  expect(await fillW(page)).toBe(30);
+  await expect(bar(page)).toContainText('Step 1 of 2');
+  await expect(bar(page).locator('[data-copy-slot="step1-label"]')).toHaveCount(1);
+  await fillStep1(page); await submitStep1(page);
+  await expect(bar(page)).toContainText('Step 2 of 2');
+  await expect(bar(page).locator('[data-copy-slot="step2-label"]')).toHaveCount(1);
+  expect(await barNow(page)).toBe(70);
+  expect(await fillW(page)).toBe(70);
+  await dialog(page).getByRole('button', { name: 'Skip' }).click();
+  expect(await barNow(page)).toBe(100);
+  expect(await fillW(page)).toBe(100);
+});
+
+test('IMO is required in the popup: empty IMO blocks step 1, nothing is sent', async ({ page }) => {
+  const { mock } = await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await expect(dialog(page).locator('input[name=imo]')).toHaveAttribute('required', '');
+  await fillStep1(page, { imo: null });
+  await submitStep1(page);
+  await expect(dialog(page).locator('.cp-msg')).toContainText('7-digit IMO');
+  await expect(dialog(page).locator('input[name=imo]')).toBeFocused();
+  expect(mock.calls.some((c) => c.path === '/api/book/lead')).toBe(false);
+  expect(await barNow(page)).toBe(30);
 });
 
 test('submit validation: bad email and bad IMO block the request', async ({ page }) => {
   const { mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
-  await dialog(page).locator('button[type=submit]').click();
+  await submitStep1(page);
   await expect(dialog(page).locator('.cp-msg')).toContainText('valid email');
-  await dialog(page).getByLabel('Email', { exact: true }).fill('boss@example.com');
-  await dialog(page).locator('input[name=imo]').fill('9074728');
-  await dialog(page).locator('button[type=submit]').click();
-  await expect(dialog(page).locator('.cp-msg')).toContainText('IMO');
+  await fillStep1(page, { imo: '9074728' });
+  await submitStep1(page);
+  await expect(dialog(page).locator('.cp-msg')).toContainText('does not look right');
   expect(mock.calls.some((c) => c.path === '/api/book/lead')).toBe(false);
 });
 
-test('submit failure keeps the form and shows a calm message', async ({ page }) => {
+test('step 1 failure keeps the form on step 1 with a calm message', async ({ page }) => {
   const { mock } = await setup(page);
   mock.leadMode = 'rate_limited';
   await open(page); await armed(page); await exitIntent(page);
-  await dialog(page).getByLabel('Email', { exact: true }).fill('boss@example.com');
-  await dialog(page).locator('button[type=submit]').click();
+  await fillStep1(page); await submitStep1(page);
   await expect(dialog(page).locator('.cp-msg')).toContainText('did not go through');
+  expect(await barNow(page)).toBe(30);
   expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBeNull();
+});
+
+test('always light: white card even when the OS prefers dark', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  const c = await dialog(page).evaluate((e) => { const cs = getComputedStyle(e); return [cs.backgroundColor, cs.color, cs.colorScheme]; });
+  expect(c[0]).toBe('rgb(255, 255, 255)');
+  expect(c[1]).toBe('rgb(20, 17, 15)');
+  expect(c[2]).toBe('light');
+  expect(await dialog(page).locator('.cp-progress').evaluate((e) => getComputedStyle(e).backgroundColor)).toBe('rgb(241, 239, 236)');
+});
+
+test('?popup=preview: shows immediately, ignores the cap, sends nothing, clicks through both steps', async ({ page }) => {
+  // cap and lead flag would block a normal view
+  const { mock, events } = await setup(page, { seed: { celeste_popup_shown: new Date().toISOString(), celeste_lead_submitted: '1' } });
+  await open(page, PAGE + '?popup=preview');
+  await expect(dialog(page)).toBeVisible({ timeout: 2000 });
+  await fillStep1(page); await submitStep1(page);
+  await expect(dialog(page).locator('[data-copy-slot="step2-heading"]')).toBeVisible();
+  await dialog(page).getByLabel('Your name').fill('Rev Iewer');
+  await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
+  await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
+  expect(mock.calls.filter((c) => c.path.startsWith('/api/book/lead')).length).toBe(0); // network faked
+  // preview does not record a view: removing the seeded flags and reloading without ?popup=preview behaves normally
+  expect(await page.evaluate(() => localStorage.getItem('celeste_popup_shown'))).not.toBeNull();
+});
+
+test('without ?popup=preview the popup does not appear on load', async ({ page }) => {
+  await setup(page);
+  await open(page);
+  await page.waitForTimeout(500);
+  await expect(dialog(page)).toHaveCount(0);
 });
 
 test('reduced motion: no animation on the dialog', async ({ page }) => {
@@ -288,15 +425,16 @@ test.describe('tracking events', () => {
   test('popup_submit fires on success and not popup_dismissed; the email never appears in an event', async ({ page }) => {
     const { events } = await setup(page);
     await open(page); await armed(page); await exitIntent(page);
-    await dialog(page).getByLabel('Email', { exact: true }).fill('secret.person@example.com');
-    await dialog(page).locator('input[name=imo]').fill('9074729');
-    await dialog(page).locator('button[type=submit]').click();
+    await fillStep1(page, { email: 'secret.person@example.com' }); await submitStep1(page);
+    await dialog(page).getByLabel('Your name').fill('Secret Person');
+    await dialog(page).locator('[data-copy-slot="step2-submit"]').click();
     await expect(dialog(page).getByRole('link', { name: 'Book a call' })).toBeVisible();
     await page.getByRole('button', { name: 'Close' }).click();
     await expect.poll(() => names(events, 'popup_submit').length).toBe(1);
     expect(names(events, 'popup_dismissed').length).toBe(0);
     const blob = JSON.stringify(events.filter((x) => ['popup_shown', 'popup_submit', 'popup_dismissed'].includes(x.event)));
     expect(blob).not.toContain('secret.person');
+    expect(blob).not.toContain('Secret Person');
     expect(blob).not.toContain('9074729');
   });
 

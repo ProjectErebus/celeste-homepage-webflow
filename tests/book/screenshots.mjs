@@ -24,18 +24,20 @@ async function ctxPage(opts) {
   await page.screenshot({ path: `${out}/book-step1-vessel-confirm.png`, fullPage: true });
   await ctx.close();
 }
-async function popup(name, opts, colorScheme) {
-  const { ctx, page } = await ctxPage({ ...opts, colorScheme });
-  await page.goto(`${url}/tests/popup/popup-test.html`);
-  await page.waitForTimeout(1400);
-  if (opts.isMobile) await page.evaluate(() => window.scrollTo(0, (document.documentElement.scrollHeight - innerHeight) * 0.6));
-  else await page.evaluate(() => document.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, clientY: -1, relatedTarget: null })));
+async function popup(name, opts) {
+  const { ctx, page } = await ctxPage({ ...opts, colorScheme: 'light' });
+  await page.goto(`${url}/tests/popup/popup-test.html?popup=preview`);
   await page.locator('dialog.cp-dialog[open]').waitFor();
-  await page.waitForTimeout(500);
-  await page.screenshot({ path: `${out}/popup-${name}.png` });
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: `${out}/popup-step1-${name}.png` });
+  await page.locator('input[name=imo]').fill('9074729');
+  await page.getByLabel('Email', { exact: true }).fill('sam@example.com');
+  await page.locator('dialog button[type=submit]').click();
+  await page.locator('[data-copy-slot="step2-heading"]').waitFor();
+  await page.waitForTimeout(700);
+  await page.screenshot({ path: `${out}/popup-step2-${name}.png` });
   await ctx.close();
 }
-await popup('desktop-light', { viewport: { width: 1280, height: 800 } }, 'light');
-await popup('phone-light', { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 }, 'light');
-await popup('desktop-dark', { viewport: { width: 1280, height: 800 } }, 'dark');
+await popup('desktop-light', { viewport: { width: 1280, height: 800 } });
+await popup('phone-light', { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
 await browser.close(); server.close();

@@ -1,5 +1,6 @@
 /* Exit popup styles (pairs with js/celeste-popup.js). Split card: image left (~40%), form right; image strip on top under 640px.
- * Light is the default (white card, dark text, site teal). Dark only under prefers-color-scheme: dark (unless the site chose light). */
+ * Always light (founder 6 Nov: light mode prominent): white card, dark text, site teal. No dark variant. */
+.cp-dialog { color-scheme: light; }
 .cp-dialog {
   --cp-bg: #ffffff; --cp-txt: #14110f; --cp-txt2: #4f4a45; --cp-border: rgba(20,17,15,.16);
   --cp-teal-ink: #0f4a63; --cp-btn: #5AABCC; --cp-btn-txt: #0a2a38; --cp-err: #a3402c; --cp-field: #f6f4f1;
@@ -7,10 +8,6 @@
   width: min(760px, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); overflow: auto;
   font-family: 'DM Sans', -apple-system, system-ui, sans-serif; font-weight: 400; line-height: 1.55;
   box-shadow: 0 24px 60px rgba(12,11,10,.28);
-}
-@media (prefers-color-scheme: dark) {
-  html:not(.light-mode) .cp-dialog { --cp-bg:#181614; --cp-txt:rgba(255,255,255,.92); --cp-txt2:rgba(255,255,255,.62); --cp-border:rgba(255,255,255,.14);
-    --cp-teal-ink:#5AABCC; --cp-btn:#5AABCC; --cp-btn-txt:#0a2a38; --cp-err:#E08A76; --cp-field:#1e1b18; }
 }
 .cp-dialog::backdrop { background: rgba(12,11,10,.55); }
 .cp-dialog *, .cp-dialog *::before, .cp-dialog *::after { box-sizing: border-box; }
@@ -57,3 +54,9 @@
   @keyframes cp-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   @keyframes cp-fade { from { opacity: 0; } to { opacity: 1; } }
 }
+/* Progress bar across the top of the popup (two-step form). */
+.cp-progress { position: relative; height: 26px; background: #f1efec; border-bottom: 1px solid var(--cp-border); border-radius: 6px 6px 0 0; overflow: hidden; }
+.cp-progress-fill { position: absolute; inset: 0 auto 0 0; width: 30%; background: var(--cp-btn); transition: width .45s ease; }
+.cp-progress-label { position: relative; display: block; line-height: 26px; padding: 0 .9rem; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--cp-btn-txt); }
+.cp-field select { width: 100%; min-height: 44px; font: inherit; font-size: 1rem; color: var(--cp-txt); background: var(--cp-field); border: 1px solid var(--cp-border); border-radius: 2px; padding: .5rem .7rem; }
+@media (prefers-reduced-motion: reduce) { .cp-progress-fill { transition: none; } }

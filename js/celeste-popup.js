@@ -22,17 +22,28 @@
   var IMG_DEFAULT = '/img/hull-light.webp', IMG_LIFESTYLE = '/img/popup-lifestyle.webp';
   var K_SHOWN = 'celeste_popup_shown', K_LEAD = 'celeste_lead_submitted';
   var DAY = 864e5, WINDOW_MS = 30 * DAY;
+  var PREVIEW = false; try { PREVIEW = new URLSearchParams(location.search).get('popup') === 'preview'; } catch (e) {}
+  /* POST helper. In ?popup=preview mode nothing is sent: a fake success lets reviewers click through both steps. */
+  function post(path, body) {
+    if (PREVIEW) return Promise.resolve({ ok: true, json: function () { return Promise.resolve({ leadToken: 'preview' }); } });
+    return fetch(apiBase() + path, { method: 'POST', mode: 'cors', credentials: 'omit', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  }
 
   /* PLACEHOLDER COPY: price, offer and magnet wording are undecided. SITE01 / founder fill these in. */
   var COPY = {
     'heading': 'Placeholder heading: the offer goes here',
     'body': 'Placeholder text: one line on what the visitor gets.',
-    'imo-hint': 'IMO number (optional)',
+    'imo-hint': 'Vessel IMO number',
     'consent': 'Send me occasional CelesteOS updates by email. Optional; you can unsubscribe at any time.',
     'submit': 'Placeholder button',
     'success-heading': 'Thank you',
     'success-body': 'We have your details. If you would like to talk it through, book a short call.',
-    'book': 'Book a call'
+    'book': 'Book a call',
+    'step2-heading': 'One more step: who are you on board?',
+    'step2-body': 'Two quick details so we send what fits your role. You can skip this.',
+    'step2-submit': 'Finish',
+    'step1-label': 'Step 1 of 2',
+    'step2-label': 'Step 2 of 2'
   };
   try { var o = window.celestePopupCopy; if (o) for (var ck in o) if (ck in COPY) COPY[ck] = String(o[ck]); } catch (e) {}
 
@@ -85,7 +96,15 @@
   }
 
   /* ---- DOM ---- */
-  var dlg = null, submitted = false, opener = null, shownOnce = false;
+  var dlg = null, submitted = false, opener = null, shownOnce = false, leadToken = null, bar = null, barFill = null, barLabel = null;
+  /* Progress bar (endowed-progress technique): opens at 30%, step 2 at 70%, done at 100%. */
+  function progress(pct, label, slotName) {
+    if (!bar) return;
+    if (slotName) barLabel.setAttribute('data-copy-slot', slotName); else barLabel.removeAttribute('data-copy-slot');
+    barFill.style.width = pct + '%';
+    bar.setAttribute('aria-valuenow', String(pct));
+    barLabel.textContent = label;
+  }
   var uid = 'cp' + Math.random().toString(36).slice(2, 7);
 
   function el(tag, cls, attrs, text) {
@@ -105,12 +124,17 @@
 
   function build() {
     dlg = el('dialog', 'cp-dialog', { 'aria-labelledby': uid + '-h', 'aria-describedby': uid + '-b' });
+    bar = el('div', 'cp-progress', { role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': '30', 'aria-label': 'Progress' });
+    barFill = el('span', 'cp-progress-fill'); bar.appendChild(barFill);
+    barLabel = el('span', 'cp-progress-label'); bar.appendChild(barLabel);
+    dlg.appendChild(bar);
+    progress(30, COPY['step1-label'], 'step1-label');
     var split = el('div', 'cp-split');
     /* Image slot (left on desktop, top strip on phones). Decorative. Default: the hull photo, cropped so no bow lettering shows.
        If /img/popup-lifestyle.webp exists it replaces it; the include line can also set data-image="/img/x.webp" on the script tag. */
     var fig = el('div', 'cp-figure', { 'data-image-slot': '', 'aria-hidden': 'true' });
     var override = script && script.getAttribute('data-image');
-    var img = el('img', 'cp-img', { src: override || IMG_DEFAULT, alt: '', width: '1920', height: '1153', loading: 'lazy', decoding: 'async', 'data-crop': override ? 'custom' : 'hull' });
+    var img = el('img', 'cp-img', { src: override || IMG_DEFAULT, alt: '', width: '1920', height: '1153', decoding: 'async', 'data-crop': override ? 'custom' : 'hull' });
     fig.appendChild(img); split.appendChild(fig);
     if (!override) {
       var probe = new Image();
@@ -128,17 +152,11 @@
     form.appendChild(slot('p', 'body', 'cp-p', { id: uid + '-b' }));
 
     var imoL = slot('label', 'imo-hint', null, { 'for': uid + '-imo' });
-    var imo = el('input', null, { type: 'text', id: uid + '-imo', name: 'imo', inputmode: 'numeric', autocomplete: 'off', maxlength: '12' });
+    var imo = el('input', null, { type: 'text', id: uid + '-imo', name: 'imo', inputmode: 'numeric', autocomplete: 'off', maxlength: '12', required: '', 'aria-required': 'true' });
     form.appendChild(field(imoL, imo));
     var emailL = el('label', null, { 'for': uid + '-email' }, 'Email');
     var email = el('input', null, { type: 'email', id: uid + '-email', name: 'email', autocomplete: 'email', required: '', maxlength: '254' });
     form.appendChild(field(emailL, email));
-    var nameL = el('label', null, { 'for': uid + '-name' }, 'Name (optional)');
-    var name = el('input', null, { type: 'text', id: uid + '-name', name: 'name', autocomplete: 'name', maxlength: '120' });
-    var nameBox = field(nameL, name); nameBox.hidden = true;
-    var addName = el('button', 'cp-link', { type: 'button', 'aria-expanded': 'false' }, 'Add your name (optional)');
-    addName.addEventListener('click', function () { nameBox.hidden = false; addName.hidden = true; addName.setAttribute('aria-expanded', 'true'); name.focus(); });
-    form.appendChild(addName); form.appendChild(nameBox);
 
     var hp = el('div', 'cp-hp', { 'aria-hidden': 'true' });
     hp.appendChild(el('label', null, { 'for': uid + '-web' }, 'Website'));
@@ -175,7 +193,7 @@
       msg.textContent = '';
       var em = email.value.trim(), imoRaw = imo.value.trim();
       if (!em || !email.validity.valid) { msg.textContent = 'Please enter a valid email.'; email.focus(); return; }
-      if (imoRaw && !imoValid(imoRaw)) { msg.textContent = 'That IMO number does not look right. Check the 7 digits, or leave it blank.'; imo.focus(); return; }
+      if (!imoRaw || !imoValid(imoRaw)) { msg.textContent = imoRaw ? 'That IMO number does not look right. Check the 7 digits.' : 'Enter your vessel\'s 7-digit IMO number.'; imo.focus(); return; }
       var a = { anonId: null, utm: { source: null, medium: null, campaign: null, term: null, content: null }, gclid: null };
       try {
         var A = window.celesteAttribution;
@@ -187,29 +205,69 @@
         }
       } catch (x) {}
       var body = {
-        imo: imoRaw ? cleanImo(imoRaw) : null, role: 'other', name: name.value.trim() || null, email: em, source: 'popup',
+        imo: cleanImo(imoRaw), role: null, name: null, email: em, source: 'popup',
         consent: { marketing: !!form.marketing.checked }, anonId: a.anonId, utm: a.utm, gclid: a.gclid, website: form.website.value
       };
       busy = true; submit.disabled = true;
-      fetch(apiBase() + '/api/book/lead', { method: 'POST', mode: 'cors', credentials: 'omit', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      post('/api/book/lead', body)
         .then(function (res) { return res.json().catch(function () { return {}; }).then(function (d) { return { ok: res.ok, data: d || {} }; }); },
               function () { return { ok: false, data: {} }; })
         .then(function (r) {
           busy = false; submit.disabled = false;
           if (!r.ok) { msg.textContent = 'Sorry, that did not go through. Please try again in a moment.'; return; }
-          submitted = true;
-          remember(K_LEAD, '1');
+          submitted = true;                 /* step 1 alone is a saved lead */
+          if (!PREVIEW) remember(K_LEAD, '1');
+          leadToken = (r.data && typeof r.data.leadToken === 'string') ? r.data.leadToken : null;
           track('popup_submit');
-          success(panel, form);
+          if (leadToken) step2(panel, form); else success(panel, form);
         });
     });
   }
 
+  /* Step 2 (enrichment): name + role. Optional; skipping still leaves the step-1 lead saved. */
+  var ROLES = [['chief_engineer', 'Chief engineer'], ['eto', 'ETO'], ['captain', 'Captain'], ['manager', 'Yacht / fleet manager'], ['owner', 'Owner or owner\u2019s rep'], ['other', 'Other']];
+  function step2(panel, form1) {
+    form1.hidden = true;
+    progress(70, COPY['step2-label'], 'step2-label');
+    var f = el('form', 'cp-form', { novalidate: '' });
+    f.appendChild(slot('h2', 'step2-heading', 'cp-h', { id: uid + '-h2' }));
+    dlg.setAttribute('aria-labelledby', uid + '-h2'); dlg.setAttribute('aria-describedby', uid + '-b2');
+    f.appendChild(slot('p', 'step2-body', 'cp-p', { id: uid + '-b2' }));
+    var nL = el('label', null, { 'for': uid + '-name' }, 'Your name');
+    var n = el('input', null, { type: 'text', id: uid + '-name', name: 'name', autocomplete: 'name', maxlength: '120' });
+    f.appendChild(field(nL, n));
+    var rL = el('label', null, { 'for': uid + '-role' }, 'Your role');
+    var r = el('select', null, { id: uid + '-role', name: 'role' });
+    r.appendChild(el('option', null, { value: '' }, 'Choose\u2026'));
+    ROLES.forEach(function (o) { r.appendChild(el('option', null, { value: o[0] }, o[1])); });
+    f.appendChild(field(rL, r));
+    var m = el('p', 'cp-msg', { role: 'alert' }); f.appendChild(m);
+    var b = slot('button', 'step2-submit', 'cp-btn', { type: 'submit' }); f.appendChild(b);
+    var skip = el('button', 'cp-link cp-no', { type: 'button' }, 'Skip');
+    skip.addEventListener('click', function () { success(panel, f); });
+    f.appendChild(skip);
+    panel.appendChild(f);
+    n.focus();
+    var busy2 = false;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (busy2) return;
+      var nv = n.value.trim(), rv = r.value;
+      if (!nv && !rv) { success(panel, f); return; }       /* nothing to add = same as skip */
+      busy2 = true; b.disabled = true;
+      post('/api/book/lead/enrich', { leadToken: leadToken, name: nv || null, role: rv || null })
+        .then(function () {}, function () {})            /* enrichment is best-effort: the lead is already saved */
+        .then(function () { busy2 = false; b.disabled = false; success(panel, f); });
+    });
+  }
+
   function success(panel, form) {
+    progress(100, 'Done');
     form.hidden = true;
     var box = el('div', 'cp-done');
-    box.appendChild(slot('h2', 'success-heading', 'cp-h', { id: uid + '-h' }));
-    box.appendChild(slot('p', 'success-body', 'cp-p', { id: uid + '-b' }));
+    box.appendChild(slot('h2', 'success-heading', 'cp-h', { id: uid + '-h3' }));
+    box.appendChild(slot('p', 'success-body', 'cp-p', { id: uid + '-b3' }));
+    dlg.setAttribute('aria-labelledby', uid + '-h3'); dlg.setAttribute('aria-describedby', uid + '-b3');
     var link = slot('a', 'book', 'cp-btn', { href: '/book' });
     box.appendChild(link);
     panel.appendChild(box);
@@ -239,8 +297,9 @@
     try { touch = window.matchMedia('(hover: none), (pointer: coarse)').matches; } catch (e) {}
     if (!touch) {
       /* desktop exit intent: pointer leaves through the top edge, after EXIT_DELAY on the page */
-      on(document, 'mouseout', function (e) {
-        if (e.relatedTarget === null && e.clientY <= 0 && Date.now() - t0 >= EXIT_DELAY) show();
+      /* known technique (ouibounce): mouseleave on <html>, pointer within 20px of the top edge. Fast movements skip y=0. */
+      on(document.documentElement, 'mouseleave', function (e) {
+        if (e.clientY <= 20 && Date.now() - t0 >= EXIT_DELAY) show();
       });
     } else {
       function depth() {
@@ -253,7 +312,15 @@
     }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+  /* preview for review: ?popup=preview shows it immediately, without the frequency cap and without recording a view */
+  function preview() {
+    try { if (new URLSearchParams(location.search).get('popup') !== 'preview') return false; } catch (e) { return false; }
+    shownOnce = true; opener = document.activeElement; build();
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    return true;
+  }
+  function boot() { if (!preview()) start(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   /* test hook: lets tests assert the guard decision without waiting; read-only */
   window.celestePopup = { eligible: eligible, imoValid: imoValid };
 })();

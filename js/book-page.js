@@ -121,8 +121,8 @@
     if (busy) return;
     var f = e.target;
     var name = f.name.value.trim(), email = f.email.value.trim(), role = f.role.value, imoRaw = f.imo.value.trim();
-    if (imoRaw && !imoValid(imoRaw)) {
-      say('That IMO number does not look right. Please check the 7 digits, or leave it blank.', 'err'); f.imo.focus(); return;
+    if (!imoRaw || !imoValid(imoRaw)) {
+      say(imoRaw ? 'That IMO number does not look right. Please check the 7 digits.' : 'Please enter your vessel\'s 7-digit IMO number.', 'err'); f.imo.focus(); return;
     }
     if (!name || !email || !role || !f.email.validity.valid) {
       say('Please fill in your role, name and a valid email.', 'err');
