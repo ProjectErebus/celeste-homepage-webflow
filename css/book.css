@@ -1,0 +1,51 @@
+/* /book and /book/manage. Tokens mirror landing-v12.css :root so the page matches the site. */
+:root { --bg:#0C0B0A; --surface:#181614; --surface-el:#1e1b18; --border:rgba(255,255,255,0.11); --border-sub:rgba(255,255,255,0.07);
+  --teal:#5AABCC; --teal-dim:#1A3040; --teal-bd:#2A5068; --txt:rgba(255,255,255,0.92); --txt2:rgba(255,255,255,0.55);
+  --txt3:rgba(255,255,255,0.48); --green:#4A9468; --amber:#C9A66B; --red:#E08A76;
+  --font-body:'DM Sans',-apple-system,system-ui,sans-serif; --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --font-display:'Eloquia Display','DM Sans',system-ui,sans-serif; }
+html { background: var(--bg); }
+body.bk { margin: 0; background: var(--bg); color: var(--txt); font-family: var(--font-body); font-weight: 300; line-height: 1.6; }
+.bk *, .bk *::before, .bk *::after { box-sizing: border-box; }
+.bk-main { max-width: 640px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.bk-eyebrow { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); margin: 0 0 .8rem; }
+.bk h1 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.7rem, 5vw, 2.4rem); line-height: 1.2; margin: 0 0 .8rem; color: var(--txt); }
+.bk-lead { color: var(--txt2); margin: 0 0 1.6rem; }
+.bk-zone { font-size: .85rem; color: var(--txt3); margin: 0 0 1.2rem; }
+.bk-step[hidden] { display: none; }
+.bk-days { display: flex; gap: .5rem; overflow-x: auto; padding-bottom: .6rem; margin-bottom: 1rem; }
+.bk-day { flex: 0 0 auto; min-width: 4.4rem; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 3px; color: var(--txt2); font: inherit; cursor: pointer; padding: .4rem .6rem; }
+.bk-day-w { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; }
+.bk-day-d { font-size: .88rem; color: var(--txt); }
+.bk-day[aria-pressed="true"] { background: var(--teal-dim); border-color: var(--teal-bd); color: var(--teal); }
+.bk-times { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr)); gap: .5rem; }
+.bk-time, .bk-btn { min-height: 44px; font: inherit; font-weight: 500; border-radius: 2px; cursor: pointer; padding: 0 1.2rem;
+  border: 1px solid var(--teal-bd); background: var(--teal-dim); color: var(--teal); }
+.bk-time:hover, .bk-btn:hover { background: var(--teal-bd); }
+.bk-btn.bk-ghost { background: transparent; border-color: var(--border); color: var(--txt2); }
+.bk-btn.bk-danger { border-color: rgba(224,138,118,.5); background: transparent; color: var(--red); }
+.bk-btn[disabled] { opacity: .5; cursor: progress; }
+.bk a { color: var(--teal); }
+.bk :focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.bk-chosen { padding: .8rem 1rem; border-left: 2px solid var(--teal-bd); background: var(--surface); margin: 0 0 1.4rem; color: var(--txt); }
+.bk-field { margin: 0 0 1.1rem; }
+.bk-field label, .bk-field legend { display: block; font-size: .85rem; color: var(--txt2); margin-bottom: .35rem; }
+.bk-field input[type=text], .bk-field input[type=email], .bk-field select, .bk-field textarea {
+  width: 100%; min-height: 44px; font: inherit; font-size: 1rem; color: var(--txt); background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: .55rem .7rem; }
+.bk-field textarea { min-height: 6rem; resize: vertical; }
+.bk-opt { color: var(--txt3); }
+.bk-check { display: flex; gap: .7rem; align-items: flex-start; font-size: .88rem; color: var(--txt2); }
+.bk-check input { width: 1.2rem; height: 1.2rem; margin-top: .2rem; flex: 0 0 auto; accent-color: var(--teal); }
+.bk-hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.bk-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; }
+.bk-status { min-height: 1.5rem; margin: 1rem 0 0; font-size: .95rem; color: var(--txt2); }
+.bk-status.bk-err { color: var(--red); }
+.bk-status.bk-ok { color: var(--green); }
+.bk-foot { margin-top: 3rem; font-size: .8rem; color: var(--txt3); }
+.bk-foot a { color: var(--txt3); }
+.bk-bar { display: flex; align-items: center; justify-content: space-between; padding: 1.05rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,.06); background: rgba(12,11,10,.88); }
+.bk-bar a { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.55); text-decoration: none; }
+@media (max-width: 480px) { .bk-main { padding-top: 2rem; } .bk-actions .bk-btn { flex: 1 1 100%; } }
+/* The consent banner is fixed to the bottom and tall on phones: leave room so the form can scroll clear of it. */
+@media (max-width: 640px) { .bk-main { padding-bottom: 17rem; } }

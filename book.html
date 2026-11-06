@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Book a call, CelesteOS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="/css/hp-tokens.css" rel="stylesheet">
+  <link href="/css/book.css" rel="stylesheet">
+  <!-- Consent manager must stay synchronous (same as every other page). -->
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/celeste-attribution.js" defer></script>
+</head>
+<body class="bk">
+<header class="bk-bar"><a href="/">CelesteOS</a></header>
+<main class="bk-main" id="main">
+  <p class="bk-eyebrow">30-minute call</p>
+  <h1>Book a call with CelesteOS</h1>
+
+  <p id="bk-status" class="bk-status" role="status" aria-live="polite"></p>
+
+  <section id="bk-step1" class="bk-step" aria-labelledby="bk-h1">
+    <p class="bk-lead" id="bk-h1">Pick a time that suits you. The invite arrives by email with a Teams link.</p>
+    <p class="bk-zone" id="bk-zone"></p>
+    <div id="bk-slots" aria-busy="true">Loading available times&hellip;</div>
+  </section>
+
+  <section id="bk-step2" class="bk-step" hidden aria-labelledby="bk-h2">
+    <p class="bk-lead" id="bk-h2">Your details</p>
+    <p class="bk-chosen" id="bk-chosen"></p>
+    <form id="bk-form" novalidate>
+      <div class="bk-field"><label for="bk-name">Name</label><input type="text" id="bk-name" name="name" autocomplete="name" required maxlength="120"></div>
+      <div class="bk-field"><label for="bk-email">Email</label><input type="email" id="bk-email" name="email" autocomplete="email" required maxlength="254"></div>
+      <div class="bk-field"><label for="bk-company">Company</label><input type="text" id="bk-company" name="company" autocomplete="organization" required maxlength="120"></div>
+      <div class="bk-field"><label for="bk-vessel">Vessel <span class="bk-opt">(optional)</span></label><input type="text" id="bk-vessel" name="vessel" maxlength="120"></div>
+      <div class="bk-field"><label for="bk-role">Your role</label>
+        <select id="bk-role" name="role" required>
+          <option value="">Choose a role</option>
+          <option value="chief_engineer">Chief engineer</option>
+          <option value="eto">ETO</option>
+          <option value="captain">Captain</option>
+          <option value="manager">Manager</option>
+          <option value="other">Other</option>
+        </select></div>
+      <div class="bk-field"><label for="bk-notes">Anything we should know? <span class="bk-opt">(optional, 500 characters)</span></label><textarea id="bk-notes" name="notes" maxlength="500"></textarea></div>
+      <div class="bk-hp" aria-hidden="true"><label for="bk-website">Website</label><input type="text" id="bk-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="bk-field"><label class="bk-check"><input type="checkbox" id="bk-marketing" name="marketing"><span>Send me occasional CelesteOS updates by email. Optional; you can unsubscribe at any time.</span></label></div>
+      <div class="bk-actions">
+        <button type="submit" class="bk-btn" id="bk-submit">Confirm booking</button>
+        <button type="button" class="bk-btn bk-ghost" id="bk-back">Choose another time</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="bk-step3" class="bk-step" hidden aria-labelledby="bk-h3" tabindex="-1">
+    <h2 id="bk-h3" style="font-family:var(--font-display);font-weight:300;margin:0 0 .6rem">You are booked</h2>
+    <p class="bk-chosen" id="bk-when"></p>
+    <p id="bk-invite"></p>
+    <p id="bk-join" hidden><a id="bk-join-link" href="#" rel="noopener">Join the Teams meeting</a></p>
+    <p id="bk-manage" hidden>Need to change it? <a id="bk-manage-link" href="#">Cancel or pick a new time</a>.</p>
+  </section>
+
+  <p class="bk-foot">Prefer email? <a href="mailto:onboarding@celeste7.ai">onboarding@celeste7.ai</a> &middot; <a href="/privacy-policy">Privacy</a></p>
+</main>
+<script src="/js/celeste-book.js"></script>
+<script src="/js/book-page.js"></script>
+</body>
+</html>

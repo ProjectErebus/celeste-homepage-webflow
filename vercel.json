@@ -87,6 +87,15 @@
       ]
     },
     {
+      "source": "/(book|book/manage)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/(seanet|seanet-overview|seanet-proposal|seanet-security|seanet-security-companion|seanet-euphoria|seanet-euphoria-overview|seanet-euphoria-proposal)",
       "headers": [
         {

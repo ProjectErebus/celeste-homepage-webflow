@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Manage your booking, CelesteOS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="/css/hp-tokens.css" rel="stylesheet">
+  <link href="/css/book.css" rel="stylesheet">
+  <!-- Consent manager must stay synchronous (same as every other page). -->
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/celeste-attribution.js" defer></script>
+</head>
+<body class="bk">
+<header class="bk-bar"><a href="/">CelesteOS</a></header>
+<main class="bk-main" id="main">
+  <p class="bk-eyebrow">Your booking</p>
+  <h1>Manage your booking</h1>
+  <p id="bk-status" class="bk-status" role="status" aria-live="polite"></p>
+
+  <section id="bk-choice" class="bk-step">
+    <p class="bk-lead">Cancel this call, or pick a new time.</p>
+    <div class="bk-actions" id="bk-choice-actions">
+      <button type="button" class="bk-btn" id="bk-resched">Pick a new time</button>
+      <button type="button" class="bk-btn bk-danger" id="bk-cancel">Cancel this booking</button>
+    </div>
+    <div class="bk-actions" id="bk-confirm-cancel" hidden>
+      <button type="button" class="bk-btn bk-danger" id="bk-cancel-yes">Yes, cancel my booking</button>
+      <button type="button" class="bk-btn bk-ghost" id="bk-cancel-no">Keep it</button>
+    </div>
+  </section>
+
+  <section id="bk-slotstep" class="bk-step" hidden>
+    <p class="bk-zone" id="bk-zone"></p>
+    <div id="bk-slots" aria-busy="true">Loading available times&hellip;</div>
+    <div class="bk-actions"><button type="button" class="bk-btn bk-ghost" id="bk-slots-back">Back</button></div>
+  </section>
+
+  <p class="bk-foot">Prefer email? <a href="mailto:onboarding@celeste7.ai">onboarding@celeste7.ai</a> &middot; <a href="/privacy-policy">Privacy</a></p>
+</main>
+<script src="/js/celeste-book.js"></script>
+<script src="/js/book-manage.js"></script>
+</body>
+</html>
