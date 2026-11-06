@@ -3,7 +3,7 @@
   'use strict';
   var B = window.celesteBook;
   var $ = function (id) { return document.getElementById(id); };
-  var status = $('bk-status'), chosen = null, tz = null, busy = false;
+  var status = $('bk-status'), chosen = null, tz = null, busy = false, attempt = null;
 
   function say(html, kind) { status.className = 'bk-status' + (kind ? ' bk-' + kind : ''); status.innerHTML = html; }
   function step(n) {
@@ -54,16 +54,27 @@
       anonId: a.anonId, utm: a.utm, gclid: a.gclid,
       consent: { marketing: !!f.marketing.checked },
       website: f.website.value,
-      idempotencyKey: B.uuid()
+      idempotencyKey: null
     };
+    /* Same slot + same form data = same attempt: reuse the key so a retry after a lost response is idempotent. */
+    var sig = JSON.stringify(body);
+    if (!attempt || attempt.sig !== sig) attempt = { sig: sig, key: B.uuid() };
+    body.idempotencyKey = attempt.key;
     busy = true; $('bk-submit').disabled = true; say('Booking your call&hellip;');
     B.call('POST', '/api/book', body).then(function (r) {
       busy = false; $('bk-submit').disabled = false;
       if (r.ok) {
         $('bk-when').textContent = B.fullWhen(r.data.start || chosen.start);
-        $('bk-invite').textContent = 'The Teams invite is on its way to ' + email + '.';
-        if (r.data.joinUrl) { $('bk-join-link').href = r.data.joinUrl; $('bk-join').hidden = false; }
-        if (r.data.manageUrl) { $('bk-manage-link').href = r.data.manageUrl; $('bk-manage').hidden = false; }
+        var join = B.safeUrl(r.data.joinUrl), manage = B.safeUrl(r.data.manageUrl, B.MANAGE_HOSTS);
+        if (r.data.dryRun === true) {
+          $('bk-h3').textContent = 'Test booking only';
+          $('bk-invite').textContent = 'This is a test booking: no invite has been sent and no call is scheduled. If you meant to book a real call, please email ' + B.MAIL + '.';
+          join = null;
+        } else {
+          $('bk-invite').textContent = 'The Teams invite is on its way to ' + email + '.';
+        }
+        if (join) { $('bk-join-link').href = join; $('bk-join').hidden = false; }
+        if (manage) { $('bk-manage-link').href = manage; $('bk-manage').hidden = false; }
         say('');
         step(3);
         return;

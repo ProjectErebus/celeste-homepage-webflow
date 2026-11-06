@@ -7,7 +7,11 @@
   var PROD_API = 'https://control.celeste7.ai';
   var MAIL = 'onboarding@celeste7.ai';
 
+  /* The ?api= / data-api override is for local tests only: honoured solely on localhost / 127.0.0.1.
+     On any real host the base is the production constant, so a crafted link cannot redirect form data. */
+  function isLocalHost() { return location.hostname === 'localhost' || location.hostname === '127.0.0.1'; }
   function apiBase() {
+    if (!isLocalHost()) return PROD_API;
     var base = '';
     try { base = new URLSearchParams(location.search).get('api') || ''; } catch (e) {}
     if (!base) {
@@ -16,6 +20,17 @@
     }
     return (base || PROD_API).replace(/\/+$/, '');
   }
+
+  /* API-supplied links are rendered only if https (and, for manage links, on celeste7.ai). Else null. */
+  function safeUrl(x, hosts) {
+    try {
+      var u = new URL(String(x));
+      if (u.protocol !== 'https:') return null;
+      if (hosts && hosts.indexOf(u.hostname) === -1) return null;
+      return u.href;
+    } catch (e) { return null; }
+  }
+  var MANAGE_HOSTS = ['celeste7.ai', 'www.celeste7.ai'];
 
   function call(method, path, body) {
     var opts = { method: method, mode: 'cors', credentials: 'omit', headers: {} };
@@ -128,7 +143,7 @@
   function mailLink() { return 'Email us at <a href="mailto:' + MAIL + '">' + MAIL + '</a> and we will arrange a time.'; }
 
   window.celesteBook = {
-    apiBase: apiBase, call: call, uuid: uuid, attribution: attribution, renderSlots: renderSlots,
+    apiBase: apiBase, safeUrl: safeUrl, MANAGE_HOSTS: MANAGE_HOSTS, call: call, uuid: uuid, attribution: attribution, renderSlots: renderSlots,
     fullWhen: fullWhen, zoneLine: zoneLine, softError: softError, mailLink: mailLink, MAIL: MAIL
   };
 })();

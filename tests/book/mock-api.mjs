@@ -32,8 +32,8 @@ export function createMock(opts = {}) {
   const cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': 'content-type', 'access-control-allow-methods': 'GET,POST,OPTIONS' };
   const json = (route, status, body) => route.fulfill({ status, headers: { ...cors, 'content-type': 'application/json' }, body: JSON.stringify(body) });
 
-  state.install = async (page) => {
-    await page.route(API + '/**', async (route) => {
+  state.install = async (page, base = API) => {
+    await page.route(base + '/**', async (route) => {
       const req = route.request();
       const url = new URL(req.url());
       const path = url.pathname;
@@ -51,13 +51,14 @@ export function createMock(opts = {}) {
         if (state.mode === 'slot_taken') { state.taken.add(body.slotStart); return json(route, 409, { error: 'slot_taken' }); }
         if (['booking_disabled', 'graph_unavailable'].includes(state.mode)) return json(route, 503, { error: state.mode });
         if (state.mode === 'rate_limited') return json(route, 429, { error: 'rate_limited' });
+        if (state.dropFirstResponse && posts0(state) === 1) { state.dropFirstResponse = false; state.appts['lost'] = body; return route.abort('failed'); }
         if (body.website) return json(route, 400, { error: 'invalid' });
         const id = 'cb_test1';
         state.appts[id] = body;
         return json(route, 201, {
           appointmentId: id, start: body.slotStart, end: new Date(Date.parse(body.slotStart) + 18e5).toISOString(),
-          joinUrl: state.noJoin ? null : 'https://teams.microsoft.com/l/meetup-join/mock',
-          manageUrl: `https://celeste7.ai/book/manage?id=${id}&t=${state.token}`, dryRun: true,
+          joinUrl: state.noJoin ? null : (state.joinUrl || 'https://teams.microsoft.com/l/meetup-join/mock'),
+          manageUrl: state.manageUrl || `https://celeste7.ai/book/manage?id=${id}&t=${state.token}`, dryRun: state.dryRun ?? false,
         });
       }
       const m = path.match(/^\/api\/book\/([^/]+)\/(cancel|reschedule)$/);
@@ -74,3 +75,5 @@ export function createMock(opts = {}) {
   };
   return state;
 }
+
+function posts0(st) { return st.calls.filter((c) => c.method === 'POST' && c.path === '/api/book').length; }

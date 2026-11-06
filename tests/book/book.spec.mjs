@@ -179,3 +179,94 @@ test('manage: missing id or token', async ({ page }) => {
   await open(page, mock, '/book/manage');
   await expect(page.locator('#bk-status')).toContainText('incomplete');
 });
+
+/* ---- review D hardening ---- */
+const PROD_API = 'https://control.celeste7.ai';
+// Serve the local site under a non-local hostname so the page runs in "production mode".
+async function openAsProd(page, query) {
+  await page.route('https://celeste7.test/**', async (route) => {
+    const u = new URL(route.request().url());
+    const r = await route.fetch({ url: srv.url + u.pathname + u.search });
+    await route.fulfill({ response: r });
+  });
+  await page.goto('https://celeste7.test/book' + query);
+}
+
+test('production host ignores ?api= override: data goes only to control.celeste7.ai', async ({ page }) => {
+  const prod = createMock(), evil = createMock();
+  await prod.install(page, PROD_API);
+  await evil.install(page, 'https://evil.test');
+  await openAsProd(page, '?api=' + encodeURIComponent('https://evil.test'));
+  await pickFirstSlot(page);
+  await fill(page);
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-step3')).toBeVisible();
+  expect(evil.calls.length).toBe(0);
+  expect(prod.calls.some((c) => c.path === '/api/book' && c.method === 'POST')).toBe(true);
+});
+
+test('javascript: joinUrl and off-site / http manageUrl are not rendered', async ({ page }) => {
+  const mock = createMock();
+  mock.joinUrl = 'javascript:void(window.__pwned=1)';
+  mock.manageUrl = 'https://evil.example/book/manage?id=x&t=y';
+  await open(page, mock);
+  await pickFirstSlot(page);
+  await fill(page);
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-step3')).toBeVisible();
+  await expect(page.locator('#bk-join')).toBeHidden();
+  await expect(page.locator('#bk-manage')).toBeHidden();
+  expect(await page.evaluate(() => window.__pwned)).toBeUndefined();
+});
+
+test('valid https join link and celeste7.ai manage link are rendered', async ({ page }) => {
+  const mock = createMock();
+  await open(page, mock);
+  await pickFirstSlot(page);
+  await fill(page);
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-join')).toBeVisible();
+  await expect(page.locator('#bk-manage')).toBeVisible();
+});
+
+test('retry after a lost response reuses the idempotency key; changed data gets a new key', async ({ page }) => {
+  const mock = createMock();
+  mock.dropFirstResponse = true;
+  await open(page, mock);
+  await pickFirstSlot(page);
+  await fill(page);
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-status')).toContainText('Something went wrong');
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-step3')).toBeVisible();
+  const p = posts(mock);
+  expect(p.length).toBe(2);
+  expect(p[1].body.idempotencyKey).toBe(p[0].body.idempotencyKey);
+});
+
+test('changing the form between attempts generates a new idempotency key', async ({ page }) => {
+  const mock = createMock({ mode: 'rate_limited' });
+  await open(page, mock);
+  await pickFirstSlot(page);
+  await fill(page);
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-status')).toContainText('wait a little');
+  await page.getByLabel('Company', { exact: true }).fill('Other Marine');
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-status')).toContainText('wait a little');
+  const p = posts(mock);
+  expect(p[1].body.idempotencyKey).not.toBe(p[0].body.idempotencyKey);
+});
+
+test('dryRun response says test booking, no invite, no join link', async ({ page }) => {
+  const mock = createMock();
+  mock.dryRun = true;
+  await open(page, mock);
+  await pickFirstSlot(page);
+  await fill(page);
+  await page.getByRole('button', { name: 'Confirm booking' }).click();
+  await expect(page.locator('#bk-invite')).toContainText('test booking');
+  await expect(page.locator('#bk-invite')).toContainText('no invite has been sent');
+  await expect(page.locator('#bk-invite')).not.toContainText('on its way');
+  await expect(page.locator('#bk-join')).toBeHidden();
+});
