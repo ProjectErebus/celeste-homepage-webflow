@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@vercel/blob": "^2.8.2",
     "playwright": "^1.56.1"
   },
   "devDependencies": {
