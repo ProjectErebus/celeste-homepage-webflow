@@ -89,6 +89,12 @@
       }
     });
   }
+  /* digits only, max 7 (strips an 'IMO ' prefix or spaces, also on paste) */
+  function digits7(v) { return cleanImo(v).replace(/\D/g, '').slice(0, 7); }
+  $('bk-imo').addEventListener('input', function () { var el = $('bk-imo'), d = digits7(el.value); if (el.value !== d) el.value = d; });
+  $('bk-imo').addEventListener('paste', function (e) {
+    try { var t = (e.clipboardData || window.clipboardData).getData('text'); e.preventDefault(); $('bk-imo').value = digits7(t); $('bk-imo').dispatchEvent(new Event('input')); } catch (x) {}
+  });
   $('bk-imo').addEventListener('input', lookup);
 
   function loadSlots(keepMessage) {
@@ -106,7 +112,7 @@
       $('bk-zone').textContent = B.zoneLine(tz);
       B.renderSlots($('bk-slots'), r.data.slots || [], function (s) {
         chosen = s;
-        $('bk-chosen').textContent = B.fullWhen(s.start) + ', 30 minutes';
+        $('bk-chosen').textContent = B.fullWhen(s.start) + ', 25 minutes';
         say('');
         step(3);
       });

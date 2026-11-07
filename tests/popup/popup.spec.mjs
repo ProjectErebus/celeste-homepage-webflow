@@ -31,11 +31,13 @@ const dialog = (page) => page.locator('dialog.cp-dialog');
 const leaveAt = (page, y) => page.evaluate((cy) => document.documentElement.dispatchEvent(new MouseEvent('mouseleave', { clientY: cy, clientX: 300 })), y);
 const exitIntent = (page) => leaveAt(page, 3);
 const D = (page) => dialog(page);
-const fillForm = async (page, { imo = '9074729', email = 'boss@example.com', marketing = false } = {}) => {
+const EMAIL = (page) => D(page).getByLabel('Work email', { exact: true });
+const fillForm = async (page, { imo = '9074729', email = 'boss@example.com', terms = true } = {}) => {
   if (imo !== null) await D(page).locator('input[name=imo]').fill(imo);
-  if (email !== null) await D(page).getByLabel('Email', { exact: true }).fill(email);
-  if (marketing) await D(page).locator('input[name=marketing]').check();
+  if (email !== null) await EMAIL(page).fill(email);
+  if (terms) await D(page).locator('input[name=terms]').check();
 };
+const BOOKED = /You.re booked/;
 const pickTime = async (page, i = 0) => { const b = D(page).locator('.cp-slotbtn').nth(i); await expect(b).toBeVisible(); await b.click(); return b.getAttribute('data-start'); };
 const bookBtn = (page) => D(page).getByRole('button', { name: 'Book this call' });
 const bar = (page) => dialog(page).locator('.cp-progress');
@@ -172,7 +174,7 @@ test('split layout: image slot left (~40%), decorative eager image with dimensio
   await expect(img).not.toHaveAttribute('loading', /.+/);
   await expect(img).toHaveAttribute('width', /\d+/);
   await expect(img).toHaveAttribute('height', /\d+/);
-  await expect(img).toHaveAttribute('src', '/img/hull-light.webp');
+  await expect(img).toHaveAttribute('src', '/img/popup-yacht.webp');
   const d = await dialog(page).boundingBox(), f = await fig.boundingBox();
   expect(d.width).toBeLessThanOrEqual(760);
   expect(f.width / d.width).toBeGreaterThan(0.37);
@@ -197,9 +199,13 @@ test('copy slots are marked data-copy-slot, and there is no step text', async ({
   await open(page); await armed(page); await exitIntent(page);
   const slots = await dialog(page).locator('[data-copy-slot]').evaluateAll((n) => n.map((e) => e.getAttribute('data-copy-slot')));
   expect(slots).toEqual(expect.arrayContaining(['heading', 'slots-label', 'zone-note', 'imo-hint', 'consent', 'submit']));
-  await expect(D(page).locator('[data-copy-slot="heading"]')).toHaveText('Book a 30-minute call');
-  await expect(D(page).locator('[data-copy-slot="slots-label"]')).toHaveText('Next free times (your time):');
-  await expect(D(page).locator('[data-copy-slot="zone-note"]')).toHaveText('Organiser in Miami (ET)');
+  await expect(D(page).locator('[data-copy-slot="heading"]')).toHaveText('Book a 25-minute call');
+  await expect(D(page).locator('[data-copy-slot="slots-label"]')).toHaveText('Pick a time');
+  await expect(D(page).locator('[data-copy-slot="zone-note"]')).toHaveText('Eastern Time (ET)');
+  await expect(D(page).locator('[data-copy-slot="consent"]')).toHaveText('I accept the terms and conditions');
+  await expect(D(page).locator('[data-copy-slot="consent"] a')).toHaveAttribute('href', '/terms-of-service');
+  await expect(D(page).locator('[data-copy-slot="consent"] a')).toHaveAttribute('target', '_blank');
+  await expect(D(page)).not.toContainText('occasional');
   await expect(D(page)).not.toContainText(/step \d/i);
   await expect(D(page)).not.toContainText('We have your details');
   await expect(D(page).locator('a[href^="/book"]')).toHaveCount(0);
@@ -210,13 +216,16 @@ test('two clicks: pick a time + IMO + email, then Book. Order lead -> book; /api
   const { mock, events } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   await expect(D(page).locator('.cp-slotbtn')).toHaveCount(3);
-  await expect(D(page).getByLabel(/occasional/i)).not.toBeChecked();
+  await expect(D(page).locator('input[name=terms]')).not.toBeChecked();
   await expect(bookBtn(page)).toBeDisabled();
   const start = await pickTime(page);
-  await fillForm(page, { imo: 'IMO 9074729' });
+  await fillForm(page, { imo: null });
+  // pasting "IMO 9074729" (11 chars) into the 7-char box keeps just the digits
+  await D(page).locator('input[name=imo]').evaluate((i) => { const dt = new DataTransfer(); dt.setData('text', 'IMO 9074729'); i.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true })); });
+  await expect(D(page).locator('input[name=imo]')).toHaveValue('9074729');
   await expect(bookBtn(page)).toBeEnabled();
   await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked: .* your time\.$/ })).toBeVisible();
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
   await expect(D(page)).toContainText('The Teams invite is on its way to boss@example.com.');
   const seq = mock.calls.filter((c) => c.method === 'POST').map((c) => c.path);
   expect(seq).toEqual(['/api/book/lead', '/api/book']);
@@ -236,7 +245,7 @@ test('two clicks: pick a time + IMO + email, then Book. Order lead -> book; /api
   expect(blob).not.toContain('9074729');
 });
 
-test('Book is disabled until a time, a valid IMO and a valid email are all present; nothing is sent meanwhile', async ({ page }) => {
+test('Book is disabled until a time, a valid IMO, a valid email and the terms are all present; nothing is sent meanwhile', async ({ page }) => {
   const { mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   await expect(D(page).locator('.cp-slotbtn').first()).toBeVisible();
@@ -248,41 +257,53 @@ test('Book is disabled until a time, a valid IMO and a valid email are all prese
   await expect(bookBtn(page)).toBeDisabled();
   await expect(D(page).locator('.cp-msg')).toContainText('does not look right');
   await D(page).locator('input[name=imo]').fill('9074729');
-  await D(page).getByLabel('Email', { exact: true }).fill('not-an-email');
+  await EMAIL(page).fill('not-an-email');
   await expect(bookBtn(page)).toBeDisabled();
-  await D(page).getByLabel('Email', { exact: true }).fill('');
+  await EMAIL(page).fill('');
+  await expect(bookBtn(page)).toBeDisabled();
+  await EMAIL(page).fill('boss@example.com');
+  await expect(bookBtn(page)).toBeEnabled();
+  await D(page).locator('input[name=terms]').uncheck();       // terms not accepted
   await expect(bookBtn(page)).toBeDisabled();
   expect(mock.calls.filter((c) => c.method === 'POST').length).toBe(0);
 });
 
-test('progress bar fills live: 0, 33 time, 66 IMO, 90 email, 100 booked; no step text, valuenow only', async ({ page }) => {
+test('progress bar fills live: 0, 30 time, 60 IMO, 82 email, 90 terms, 100 booked; no step text, valuenow only', async ({ page }) => {
   await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   await expect(D(page).locator('.cp-slotbtn').first()).toBeVisible();
   expect(await barNow(page)).toBe(0);
-  await pickTime(page); expect(await barNow(page)).toBe(33);
-  await D(page).locator('input[name=imo]').fill('9074729'); expect(await barNow(page)).toBe(66);
-  await D(page).getByLabel('Email', { exact: true }).fill('a@example.com'); expect(await barNow(page)).toBe(90);
+  await pickTime(page); expect(await barNow(page)).toBe(30);
+  await D(page).locator('input[name=imo]').fill('9074729'); expect(await barNow(page)).toBe(60);
+  await EMAIL(page).fill('a@example.com'); expect(await barNow(page)).toBe(82);
+  await D(page).locator('input[name=terms]').check(); expect(await barNow(page)).toBe(90);
   expect(Number.parseFloat(await D(page).locator('.cp-progress-fill').evaluate((e) => e.style.width))).toBe(90);
   expect((await bar(page).innerText()).trim()).toBe('');
   await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
   expect(await barNow(page)).toBe(100);
 });
 
-test('More times expands a compact list inline and a pick from it counts', async ({ page }) => {
+test('More times opens a sheet over the form (popup keeps its size); a pick closes it and counts; Back closes it', async ({ page }) => {
   const { mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   await expect(D(page).locator('.cp-slotbtn').first()).toBeVisible();
-  await expect(D(page).locator('.cp-more-box')).toBeHidden();
+  const H = () => dialog(page).evaluate((d) => d.offsetHeight);
+  const h0 = await H();
+  await expect(D(page).locator('.cp-sheet')).toBeHidden();
   await D(page).getByRole('button', { name: /More times/ }).click();
-  await expect(D(page).locator('.cp-more-box')).toBeVisible();
+  await expect(D(page).locator('.cp-sheet')).toBeVisible();
+  expect(await H()).toBe(h0);
+  await D(page).getByRole('button', { name: 'Back' }).click();
+  await expect(D(page).locator('.cp-sheet')).toBeHidden();
+  await D(page).getByRole('button', { name: /More times/ }).click();
   const last = D(page).locator('.cp-more-box .bk-time').last();
   const start = await last.getAttribute('data-start');
   await last.click();
+  await expect(D(page).locator('.cp-sheet')).toBeHidden();
   await fillForm(page);
   await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
   expect(bookPosts(mock)[0].body.slotStart).toBe(start);
 });
 
@@ -301,7 +322,7 @@ test('slot_taken: the times refresh in place with a plain line; form values surv
   await pickTime(page);
   await expect(bookBtn(page)).toBeEnabled();
   await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
   expect(mock.calls.filter((c) => c.path === '/api/book/lead').length).toBe(1);   // the saved lead is reused
 });
 
@@ -311,7 +332,7 @@ test('already_booked: calm line, stays on the form', async ({ page }) => {
   await open(page); await armed(page); await exitIntent(page);
   await pickTime(page); await fillForm(page); await bookBtn(page).click();
   await expect(D(page).locator('.cp-msg')).toHaveText('You already have a call booked. Check your email.');
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toHaveCount(0);
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toHaveCount(0);
 });
 
 test('token_expired: the lead is re-submitted once and the booking retried', async ({ page }) => {
@@ -319,7 +340,7 @@ test('token_expired: the lead is re-submitted once and the booking retried', asy
   mock.expireTokens = new Set(['lt_1']);
   await open(page); await armed(page); await exitIntent(page);
   await pickTime(page); await fillForm(page); await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
   expect(mock.calls.filter((c) => c.path === '/api/book/lead').length).toBe(2);
   expect(bookPosts(mock).map((c) => c.body.leadToken)).toEqual(['lt_1', 'lt_2']);
 });
@@ -329,7 +350,7 @@ test('in_progress: waits Retry-After, retries with the SAME idempotency key', as
   mock.inProgressOnce = true;
   await open(page); await armed(page); await exitIntent(page);
   await pickTime(page); await fillForm(page); await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible({ timeout: 8000 });
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible({ timeout: 8000 });
   const p = bookPosts(mock);
   expect(p.length).toBe(2);
   expect(p[1].body.idempotencyKey).toBe(p[0].body.idempotencyKey);
@@ -353,17 +374,19 @@ test('lead failure: calm line, no booking attempted, flag not set', async ({ pag
   expect(await page.evaluate(() => localStorage.getItem('celeste_lead_submitted'))).toBeNull();
 });
 
-test('after booking: optional name + role save through /enrich; then "Thanks."', async ({ page }) => {
+test('after booking: optional name + role save through /enrich; the invite line switches from email to name', async ({ page }) => {
   const { mock } = await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   await pickTime(page); await fillForm(page); await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
-  await expect(D(page).locator('[data-copy-slot="enrich-label"]')).toHaveText('Optional: helps us prepare.');
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
+  await expect(D(page).locator('[data-copy-slot="enrich-label"]')).toHaveText('Help us prepare (optional)');
+  await expect(D(page)).toContainText('The Teams invite is on its way to boss@example.com.');
   await expect(D(page).getByRole('button', { name: /skip/i })).toHaveCount(0);
   await D(page).getByLabel('Your name').fill('Pat Chief');
   await D(page).getByLabel('Your role').selectOption('captain');
   await D(page).getByRole('button', { name: 'Save' }).click();
-  await expect(D(page).getByText('Thanks.')).toBeVisible();
+  await expect(D(page).getByText('Thanks, that helps us prepare.')).toBeVisible();
+  await expect(D(page)).toContainText('The Teams invite is on its way to Pat Chief.');   // name replaces the email once given
   expect(mock.enriched).toEqual({ leadToken: 'lt_1', name: 'Pat Chief', role: 'captain' });
 });
 
@@ -382,7 +405,7 @@ test('manage link only if https on celeste7.ai', async ({ page }) => {
   mock.manageUrl = 'https://evil.example/x';
   await open(page); await armed(page); await exitIntent(page);
   await pickTime(page); await fillForm(page); await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
   await expect(D(page).locator('.cp-manage')).toHaveCount(0);
 });
 
@@ -390,14 +413,14 @@ test('desktop keeps the photo on the left; phone hides it and stacks IMO over em
   await setup(page);
   await open(page); await armed(page); await exitIntent(page);
   await expect(D(page).locator('[data-image-slot]')).toBeVisible();
-  const i = await D(page).locator('input[name=imo]').boundingBox(), e = await D(page).getByLabel('Email', { exact: true }).boundingBox();
+  const i = await D(page).locator('input[name=imo]').boundingBox(), e = await EMAIL(page).boundingBox();
   expect(Math.abs(i.y - e.y)).toBeLessThan(4);          // one row on desktop
   await page.keyboard.press('Escape');
   await page.evaluate(() => localStorage.removeItem('celeste_popup_shown'));
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload(); await armed(page); await exitIntent(page);
   await expect(D(page).locator('[data-image-slot]')).toBeHidden();
-  const i2 = await D(page).locator('input[name=imo]').boundingBox(), e2 = await D(page).getByLabel('Email', { exact: true }).boundingBox();
+  const i2 = await D(page).locator('input[name=imo]').boundingBox(), e2 = await EMAIL(page).boundingBox();
   expect(e2.y).toBeGreaterThan(i2.y + i2.height - 1);   // stacked on phone
   const box = await D(page).boundingBox();
   expect(box.x).toBeGreaterThanOrEqual(0); expect(box.x + box.width).toBeLessThanOrEqual(390);
@@ -408,10 +431,10 @@ test('?popup=preview: shows at once, fakes slots, lead, booking and enrich; send
   await open(page, PAGE + '?popup=preview');
   await expect(dialog(page)).toBeVisible({ timeout: 2000 });
   await pickTime(page); await fillForm(page); await bookBtn(page).click();
-  await expect(D(page).getByRole('heading', { name: /^Booked:/ })).toBeVisible();
+  await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible();
   await D(page).getByLabel('Your name').fill('Rev Iewer');
   await D(page).getByRole('button', { name: 'Save' }).click();
-  await expect(D(page).getByText('Thanks.')).toBeVisible();
+  await expect(D(page).getByText('Thanks, that helps us prepare.')).toBeVisible();
   expect(mock.calls.length).toBe(0);
   expect(await page.evaluate(() => localStorage.getItem('celeste_popup_shown'))).not.toBeNull();
 });
@@ -422,9 +445,9 @@ test('always light: white card even when the OS prefers dark', async ({ page }) 
   await open(page); await armed(page); await exitIntent(page);
   const c = await dialog(page).evaluate((e) => { const cs = getComputedStyle(e); return [cs.backgroundColor, cs.color, cs.colorScheme]; });
   expect(c[0]).toBe('rgb(255, 255, 255)');
-  expect(c[1]).toBe('rgb(20, 17, 15)');
+  expect(c[1]).toBe('rgb(21, 18, 15)');   // --cp-txt #15120f
   expect(c[2]).toBe('light');
-  expect(await dialog(page).locator('.cp-progress').evaluate((e) => getComputedStyle(e).backgroundColor)).toBe('rgb(241, 239, 236)');
+  expect(await dialog(page).locator('.cp-progress').evaluate((e) => getComputedStyle(e).backgroundColor)).toBe('rgb(230, 227, 223)');   // --cp-line #e6e3df
 });
 
 test('without ?popup=preview the popup does not appear on load', async ({ page }) => {
@@ -524,4 +547,33 @@ test.describe('tracking events', () => {
     expect(JSON.stringify(e)).not.toContain('a@b.co');
     expect(JSON.stringify(e)).not.toContain('9074729');
   });
+});
+
+test('fixed size: the popup is the same height empty, with an error, with More times open, filled and booked', async ({ page }) => {
+  await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  await expect(D(page).locator('.cp-slotbtn').first()).toBeVisible();
+  const h = () => dialog(page).evaluate((d) => d.offsetHeight);   // layout height; the opening scale animation does not count
+  const h0 = await h(), seen = [h0];
+  await D(page).locator('input[name=imo]').fill('9074728'); await expect(D(page).locator('.cp-msg')).toContainText('does not look right'); seen.push(await h());
+  await D(page).getByRole('button', { name: /More times/ }).click(); seen.push(await h());
+  await D(page).getByRole('button', { name: 'Back' }).click();
+  await pickTime(page); await fillForm(page); seen.push(await h());
+  await bookBtn(page).click(); await expect(D(page).getByRole('heading', { name: BOOKED })).toBeVisible(); seen.push(await h());
+  expect(seen).toEqual(seen.map(() => h0));
+});
+
+test('times are shown in Eastern Time, whatever the visitor zone', async ({ browser }) => {
+  const ctx = await browser.newContext({ timezoneId: 'Asia/Tokyo', locale: 'en-GB', viewport: { width: 1280, height: 800 } });
+  const page = await ctx.newPage();
+  await setup(page);
+  await open(page); await armed(page); await exitIntent(page);
+  const b = D(page).locator('.cp-slotbtn').first();
+  await expect(b).toBeVisible();
+  const start = await b.getAttribute('data-start');
+  const et = new Date(start).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'America/New_York' });
+  const tokyo = new Date(start).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Tokyo' });
+  expect(et).not.toBe(tokyo);                       // the check can tell the two apart
+  await expect(b.locator('.cp-slot-t')).toHaveText(et);
+  await ctx.close();
 });

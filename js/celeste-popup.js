@@ -8,7 +8,7 @@
  *
  * Shown at most once per visitor per 30 days, never on /book*, never after a lead was submitted.
  * Storage is fail-closed: if localStorage throws, the popup does not show.
- * Image: data-image-slot; default /img/hull-light.webp (cropped clear of the bow lettering), /img/popup-lifestyle.webp if it exists,
+ * Image: data-image-slot; default /img/popup-yacht.webp (aerial yacht, no name visible),
  * or data-image="/img/x.webp" on the script tag. Hidden on phones.
  * Optional tuning attributes on the script tag: data-exit-delay (ms on page before exit intent counts, default 8000),
  * data-mobile-fallback (ms before the mobile timer trigger, default 30000), data-mobile-scroll (fraction, default 0.5).
@@ -22,17 +22,24 @@
 
   var script = document.currentScript;
   var PROD_API = 'https://control.celeste7.ai';
-  var IMG_DEFAULT = '/img/hull-light.webp', IMG_LIFESTYLE = '/img/popup-lifestyle.webp';
+  var IMG_DEFAULT = '/img/popup-yacht.webp';
   var K_SHOWN = 'celeste_popup_shown', K_LEAD = 'celeste_lead_submitted';
   var DAY = 864e5, WINDOW_MS = 30 * DAY;
   var PREVIEW = false; try { PREVIEW = new URLSearchParams(location.search).get('popup') === 'preview'; } catch (e) {}
   /* Every call goes through req(): preview mode fakes the responses so reviewers can click through; nothing is sent. */
+  /* Preview only: realistic sample times that follow the booking rules (Mon-Fri, 09:00-16:30 Miami time, at least 12 h ahead).
+     Real slots come from the API, which in live mode also removes times the host is busy in Outlook. */
   function previewSlots() {
-    var out = [], base = new Date(); base.setUTCHours(0, 0, 0, 0);
-    for (var d = 2; d < 5; d++) [14, 15, 17].forEach(function (h) {
-      var t = new Date(base.getTime() + d * 864e5 + h * 36e5);
-      out.push({ start: t.toISOString().replace('.000', ''), end: new Date(t.getTime() + 18e5).toISOString().replace('.000', '') });
-    });
+    var out = [], now = Date.now(), t = new Date(now + 12 * 36e5);
+    t.setUTCMinutes(t.getUTCMinutes() < 30 ? 30 : 60, 0, 0);
+    while (out.length < 18 && t.getTime() < now + 14 * 864e5) {
+      var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(t);
+      var wd = '', hh = 0, mm = 0;
+      parts.forEach(function (p) { if (p.type === 'weekday') wd = p.value; if (p.type === 'hour') hh = +p.value % 24; if (p.type === 'minute') mm = +p.value; });
+      var mins = hh * 60 + mm;
+      if (wd !== 'Sat' && wd !== 'Sun' && mins >= 540 && mins <= 990) out.push({ start: t.toISOString().replace('.000', ''), end: new Date(t.getTime() + 18e5).toISOString().replace('.000', '') });
+      t = new Date(t.getTime() + (out.length && mins >= 540 && mins <= 990 ? 90 : 30) * 6e4);
+    }
     return out;
   }
   function fake(method, path, body) {
@@ -65,14 +72,17 @@
 
   /* PLACEHOLDER COPY: price, offer and magnet wording are undecided. SITE01 / founder fill these in. */
   var COPY = {
-    'heading': 'Book a 30-minute call',
-    'slots-label': 'Next free times (your time):',
-    'more': 'More times \u203a',
-    'zone-note': 'Organiser in Miami (ET)',
-    'imo-hint': 'Vessel IMO number',
-    'consent': 'Send me occasional CelesteOS updates by email. Optional; you can unsubscribe at any time.',
+    'heading': 'Book a 25-minute call',
+    'sub': 'We walk through CelesteOS using your yacht. Pick a time and the Teams invite follows.',
+    'slots-label': 'Pick a time',
+    'more': 'More times',
+    'zone-note': 'Eastern Time (ET)',
+    'imo-hint': 'Yacht IMO number',
+    'email-hint': 'Work email',
+    'consent': 'I accept the {terms and conditions}',
     'submit': 'Book this call',
-    'enrich-label': 'Optional: helps us prepare.'
+    'reassure': '25 minutes on Microsoft Teams. Nothing to prepare.',
+    'enrich-label': 'Help us prepare (optional)'
   };
   try { var o = window.celestePopupCopy; if (o) for (var ck in o) if (ck in COPY) COPY[ck] = String(o[ck]); } catch (e) {}
 
@@ -172,16 +182,11 @@
     dlg.appendChild(bar);
     progress(0);
     var split = el('div', 'cp-split');
-    /* Image slot (left on desktop, hidden on phones). Decorative. Default: the hull photo, cropped so no bow lettering shows. */
+    /* Image slot (left on desktop, hidden on phones). Decorative. Default: aerial yacht photo. */
     var fig = el('div', 'cp-figure', { 'data-image-slot': '', 'aria-hidden': 'true' });
     var override = script && script.getAttribute('data-image');
-    var img = el('img', 'cp-img', { src: override || IMG_DEFAULT, alt: '', width: '1920', height: '1153', decoding: 'async', 'data-crop': override ? 'custom' : 'hull' });
+    var img = el('img', 'cp-img', { src: override || IMG_DEFAULT, alt: '', width: '840', height: '1050', decoding: 'async', 'data-crop': override ? 'custom' : 'yacht' });
     fig.appendChild(img); split.appendChild(fig);
-    if (!override) {
-      var probe = new Image();
-      probe.onload = function () { img.src = IMG_LIFESTYLE; img.setAttribute('data-crop', 'custom'); };
-      probe.src = IMG_LIFESTYLE;
-    }
     var panel = el('div', 'cp-panel');
     split.appendChild(panel);
     var close = el('button', 'cp-close', { type: 'button', 'aria-label': 'Close' }, '×');
@@ -190,22 +195,36 @@
 
     var form = el('form', 'cp-form', { novalidate: '' });
     form.appendChild(slot('h2', 'heading', 'cp-h', { id: uid + '-h' }));
+    form.appendChild(slot('p', 'sub', 'cp-sub', { id: uid + '-b' }));
 
     /* time picker: soonest 3, then "More times" expands a compact day/time list inline */
-    form.appendChild(slot('p', 'slots-label', 'cp-label', { id: uid + '-sl' }));
+    var lrow = el('div', 'cp-labelrow');
+    lrow.appendChild(slot('p', 'slots-label', 'cp-label', { id: uid + '-sl' }));
+    lrow.appendChild(slot('p', 'zone-note', 'cp-zone'));
+    form.appendChild(lrow);
     var quick = el('div', 'cp-quick', { role: 'group', 'aria-labelledby': uid + '-sl', 'aria-busy': 'true' });
     form.appendChild(quick);
     var moreBtn = slot('button', 'more', 'cp-link cp-more', { type: 'button', 'aria-expanded': 'false' }); moreBtn.hidden = true;
     form.appendChild(moreBtn);
-    var moreBox = el('div', 'cp-more-box'); moreBox.hidden = true; form.appendChild(moreBox);
-    form.appendChild(slot('p', 'zone-note', 'cp-zone'));
+    /* "More times" opens as a sheet over the form panel, so the popup never changes size */
+    var sheet = el('div', 'cp-sheet', { role: 'group', 'aria-label': 'More times' }); sheet.hidden = true;
+    var sheetHead = el('div', 'cp-sheet-head');
+    sheetHead.appendChild(el('p', 'cp-label', null, 'More times'));
+    var back = el('button', 'cp-link cp-back', { type: 'button' }, 'Back');
+    sheetHead.appendChild(back); sheet.appendChild(sheetHead);
+    var moreBox = el('div', 'cp-more-box'); sheet.appendChild(moreBox);
+    function openSheet(open) {
+      sheet.hidden = !open; moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) { var f = sheet.querySelector('button[aria-pressed="true"], .bk-day'); if (f) f.focus(); } else moreBtn.focus();
+    }
+    back.addEventListener('click', function () { openSheet(false); });
 
     var row = el('div', 'cp-row');
     var imoL = slot('label', 'imo-hint', null, { 'for': uid + '-imo' });
-    var imo = el('input', null, { type: 'text', id: uid + '-imo', name: 'imo', inputmode: 'numeric', autocomplete: 'off', maxlength: '12', required: '', 'aria-required': 'true' });
+    var imo = el('input', null, { type: 'text', id: uid + '-imo', name: 'imo', inputmode: 'numeric', pattern: '[0-9]{7}', autocomplete: 'off', maxlength: '7', required: '', 'aria-required': 'true', placeholder: 'e.g. 9074729' });
     row.appendChild(field(imoL, imo));
-    var emailL = el('label', null, { 'for': uid + '-email' }, 'Email');
-    var email = el('input', null, { type: 'email', id: uid + '-email', name: 'email', autocomplete: 'email', required: '', maxlength: '254' });
+    var emailL = slot('label', 'email-hint', null, { 'for': uid + '-email' });
+    var email = el('input', null, { type: 'email', id: uid + '-email', name: 'email', autocomplete: 'email', required: '', maxlength: '254', placeholder: 'you@yourvessel.com' });
     row.appendChild(field(emailL, email));
     form.appendChild(row);
 
@@ -215,19 +234,31 @@
     form.appendChild(hp);
 
     var cl = el('label', 'cp-check');
-    cl.appendChild(el('input', null, { type: 'checkbox', name: 'marketing' }));
-    cl.appendChild(slot('span', 'consent'));
+    var terms = el('input', null, { type: 'checkbox', name: 'terms', required: '', 'aria-required': 'true' });
+    cl.appendChild(terms);
+    /* "{...}" in the copy slot becomes the link to the terms page (opens in a new tab so the popup stays) */
+    var tc = slot('span', 'consent'), parts = COPY['consent'].split(/[{}]/);
+    tc.textContent = parts[0];
+    if (parts.length > 1) {
+      tc.appendChild(el('a', 'cp-terms', { href: '/terms-of-service', target: '_blank', rel: 'noopener' }, parts[1]));
+      tc.appendChild(document.createTextNode(parts[2] || ''));
+    }
+    cl.appendChild(tc);
+    terms.addEventListener('change', refresh);
     form.appendChild(el('div', 'cp-field'));
     form.lastChild.appendChild(cl);
 
     var msg = el('p', 'cp-msg', { role: 'alert' });
     form.appendChild(msg);
-    var submit = slot('button', 'submit', 'cp-btn', { type: 'submit', disabled: '' });
+    var submit = el('button', 'cp-btn cp-btn-primary', { type: 'submit', disabled: '' });
+    var submitTxt = slot('span', 'submit', 'cp-btn-txt'); submit.appendChild(el('span', 'cp-spin', { 'aria-hidden': 'true' })); submit.appendChild(submitTxt);
     form.appendChild(submit);
+    form.appendChild(slot('p', 'reassure', 'cp-reassure'));
     var no = el('button', 'cp-link cp-no', { type: 'button' }, 'No thanks');
     no.addEventListener('click', function () { dlg.close(); });
     form.appendChild(no);
     panel.appendChild(form);
+    panel.appendChild(sheet);
     dlg.appendChild(split);
     document.body.appendChild(dlg);
 
@@ -242,25 +273,37 @@
     function emailOk() { return !!email.value.trim() && email.validity.valid; }
     function imoOk() { return !!imo.value.trim() && imoValid(imo.value); }
     function refresh() {
-      progress((chosen ? 33 : 0) + (imoOk() ? 33 : 0) + (emailOk() ? 24 : 0));
-      submit.disabled = busy || !(chosen && imoOk() && emailOk());
+      progress((chosen ? 30 : 0) + (imoOk() ? 30 : 0) + (emailOk() ? 22 : 0) + (terms.checked ? 8 : 0));
+      submit.disabled = busy || !(chosen && imoOk() && emailOk() && terms.checked);
+      submit.classList.toggle('is-busy', busy);
+      submitTxt.textContent = busy ? 'Booking\u2026' : COPY['submit'];
     }
     imo.addEventListener('input', function () {
+      /* digits only, max 7: strips an 'IMO ' prefix or spaces on paste, so the box can never hold more than an IMO */
+      var digits = cleanImo(imo.value).replace(/\D/g, '').slice(0, 7);
+      if (imo.value !== digits) imo.value = digits;
       var raw = imo.value.trim();
       if (!imoOk() && cleanImo(raw).length >= 7) say('That IMO number does not look right. Check the 7 digits.'); else if (msg.textContent.indexOf('IMO') !== -1) say('');
       refresh();
+    });
+    imo.addEventListener('paste', function (e) {
+      try {
+        var t = (e.clipboardData || window.clipboardData).getData('text');
+        e.preventDefault();
+        imo.value = cleanImo(t).replace(/\D/g, '').slice(0, 7);
+        imo.dispatchEvent(new Event('input'));
+      } catch (x) {}
     });
     email.addEventListener('input', refresh);
     function say(text, html) { if (html !== undefined) msg.innerHTML = html; else msg.textContent = text || ''; }
 
     /* ---- times ---- */
     function fmtSlot(iso) {
-      var d = new Date(iso);
-      return d.toLocaleDateString([], { weekday: 'short' }) + ' ' + d.getDate() + ' · ' + B.localTime(iso);
+      return B.localDay(iso, { weekday: 'short', day: 'numeric' }).replace(',', '') + ' · ' + B.localTime(iso) + ' ET';
     }
     function pick(s) {
       chosen = s;
-      Array.prototype.forEach.call(form.querySelectorAll('[data-start]'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-start') === s.start ? 'true' : 'false'); });
+      Array.prototype.forEach.call(panel.querySelectorAll('[data-start]'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-start') === s.start ? 'true' : 'false'); });
       refresh();
     }
     function loadTimes(note) {
@@ -275,19 +318,27 @@
         if (!list.length) { say('', mailHtml('No times are open right now.')); return; }
         if (note) say(note); else if (msg.textContent.indexOf('Email') === -1) say('');
         list.slice(0, 3).forEach(function (s) {
-          var b = el('button', 'cp-slotbtn', { type: 'button', 'data-start': s.start, 'aria-pressed': 'false' }, fmtSlot(s.start));
+          var b = el('button', 'cp-slotbtn', { type: 'button', 'data-start': s.start, 'aria-pressed': 'false', 'aria-label': fmtSlot(s.start) });
+          b.appendChild(el('span', 'cp-slot-d', null, B.localDay(s.start, { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '')));
+          b.appendChild(el('span', 'cp-slot-t', null, B.localTime(s.start)));
           b.addEventListener('click', function () { pick(s); });
           quick.appendChild(b);
         });
         if (list.length > 3) {
           moreBtn.hidden = false;
-          B.renderSlots(moreBox, list, pick);
+          B.renderSlots(moreBox, list, function (s) { pick(s); if (!sheet.hidden) openSheet(false); });
         }
+        lockSize();
       });
     }
-    moreBtn.addEventListener('click', function () {
-      var open = moreBox.hidden; moreBox.hidden = !open; moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+    moreBtn.addEventListener('click', function () { openSheet(sheet.hidden); });
+    /* Lock the popup to the form's height once the times are in: errors, the More-times sheet and the booked state all fit inside it. */
+    function lockSize() {
+      if (form.hidden) return;
+      split.style.height = '';
+      split.style.height = split.offsetHeight + 'px';
+    }
+    window.addEventListener('resize', lockSize);
     loadTimes();
 
     /* ---- one click: lead -> book ---- */
@@ -305,7 +356,7 @@
       return a;
     }
     function ensureLead() {
-      var em = email.value.trim(), im = cleanImo(imo.value), mk = !!form.marketing.checked;
+      var em = email.value.trim(), im = cleanImo(imo.value), mk = false;
       var sig = em + '|' + im + '|' + mk;
       if (lead && lead.sig === sig) return Promise.resolve(lead);
       var a = attribution();
@@ -329,23 +380,37 @@
       var when = B.shortWhen((d && d.start) || chosen.start);
       var box = el('div', 'cp-done');
       var test = d && d.dryRun === true;
-      box.appendChild(el('h2', 'cp-h', { id: uid + '-h2', tabindex: '-1' }, test ? 'Test booking only' : 'Booked: ' + when + ' your time.'));
-      box.appendChild(el('p', 'cp-p cp-booked', { id: uid + '-b2' }, test
-        ? when + ' your time. This was a test: nothing was sent and no call is scheduled. If you meant to book a real call, email ' + MAIL + '.'
-        : 'The Teams invite is on its way to ' + lead.email + '.'));
+      /* check mark (inline SVG, decorative) */
+      var ic = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      ic.setAttribute('class', 'cp-check-ic'); ic.setAttribute('viewBox', '0 0 24 24'); ic.setAttribute('aria-hidden', 'true');
+      var pth = document.createElementNS('http://www.w3.org/2000/svg', 'path'); pth.setAttribute('d', 'M5 12.5l4.2 4.2L19 7');
+      ic.appendChild(pth); box.appendChild(ic);
+      box.appendChild(el('h2', 'cp-h', { id: uid + '-h2', tabindex: '-1' }, test ? 'Test booking only' : 'You\u2019re booked'));
+      var card = el('div', 'cp-when', { id: uid + '-b2' });
+      card.appendChild(el('p', 'cp-when-t', null, when));
+      card.appendChild(el('p', 'cp-when-s', null, test
+        ? 'Test mode: nothing was sent and no call is scheduled.'
+        : 'Eastern Time (ET) \u00b7 25 minutes \u00b7 Microsoft Teams'));
+      box.appendChild(card);
+      /* "on its way to <name>": the name once they give it below, the email until then */
+      function inviteLine(who) { return 'The Teams invite is on its way to ' + who + '.'; }
+      var booked = el('p', 'cp-sub cp-booked', null, test ? 'To book a real call, email ' + MAIL + '.' : inviteLine(lead.email));
+      box.appendChild(booked);
       var manage = B.safeUrl(d && d.manageUrl, B.MANAGE_HOSTS);
-      if (manage) box.appendChild(el('a', 'cp-link cp-manage', { href: manage, rel: 'noopener' }, 'Need to change it? Cancel or pick a new time'));
+      if (manage) box.appendChild(el('a', 'cp-link cp-manage', { href: manage, rel: 'noopener' }, 'Change or cancel'));
       /* optional enrichment: no skip button, just close */
       var f = el('form', 'cp-enrich', { novalidate: '' });
       f.appendChild(slot('p', 'enrich-label', 'cp-label'));
+      var er = el('div', 'cp-row');
       var n = el('input', null, { type: 'text', id: uid + '-name', name: 'name', autocomplete: 'name', maxlength: '120' });
-      f.appendChild(field(el('label', null, { 'for': uid + '-name' }, 'Your name'), n));
+      er.appendChild(field(el('label', null, { 'for': uid + '-name' }, 'Your name'), n));
       var r = el('select', null, { id: uid + '-role', name: 'role' });
       r.appendChild(el('option', null, { value: '' }, 'Choose…'));
       ROLES.forEach(function (o) { r.appendChild(el('option', null, { value: o[0] }, o[1])); });
-      f.appendChild(field(el('label', null, { 'for': uid + '-role' }, 'Your role'), r));
+      er.appendChild(field(el('label', null, { 'for': uid + '-role' }, 'Your role'), r));
+      f.appendChild(er);
       var em2 = el('p', 'cp-msg', { role: 'status' }); f.appendChild(em2);
-      var sv = el('button', 'cp-btn', { type: 'submit' }, 'Save'); f.appendChild(sv);
+      var sv = el('button', 'cp-btn cp-btn-ghost', { type: 'submit' }, 'Save'); f.appendChild(sv);
       var saving = false;
       f.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -354,7 +419,7 @@
         if (!nv && !rv) return;
         saving = true; sv.disabled = true;
         req('POST', '/api/book/lead/enrich', { leadToken: lead.token, name: nv || null, role: rv || null }).then(function (x) {
-          if (x.ok) { f.textContent = ''; f.appendChild(el('p', 'cp-p', { role: 'status' }, 'Thanks.')); }
+          if (x.ok) { if (nv && !test) booked.textContent = inviteLine(nv); f.textContent = ''; f.appendChild(el('p', 'cp-sub', { role: 'status' }, 'Thanks, that helps us prepare.')); }
           else { saving = false; sv.disabled = false; em2.textContent = 'Could not save that just now. No problem, the call is booked.'; }
         });
       });

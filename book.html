@@ -27,7 +27,7 @@
     <p class="bk-lead" id="bk-h1">Tell us who you are, then pick a time. The invite arrives by email with a Teams link.</p>
     <form id="bk-lead" novalidate>
       <div class="bk-field"><label for="bk-imo">Vessel IMO number</label>
-        <input type="text" id="bk-imo" name="imo" inputmode="numeric" autocomplete="off" maxlength="12" required aria-required="true" aria-describedby="bk-imo-note">
+        <input type="text" id="bk-imo" name="imo" inputmode="numeric" pattern="[0-9]{7}" autocomplete="off" maxlength="7" required aria-required="true" aria-describedby="bk-imo-note">
         <p class="bk-vessel" id="bk-imo-note" role="status" aria-live="polite"></p>
         <p class="bk-vessel bk-gt" id="bk-imo-gt" data-copy-slot="gt-over-limit" hidden></p>
         <div class="bk-cands" id="bk-imo-cands"></div></div>

@@ -37,16 +37,18 @@ const confirmBtn = (page) => page.getByRole('button', { name: 'Confirm booking' 
 /* form-first: lead -> slot -> (confirm click by the caller) */
 async function toConfirm(page, over = {}) { await lead(page, over); return pickFirstSlot(page); }
 
-test('page is noindex and slots render in visitor local time with organiser zone line', async ({ page }) => {
+test('page is noindex and slots render in Eastern Time (not the visitor zone) with an ET zone line', async ({ page }) => {
   const mock = createMock();
   await open(page, mock);
   await expect(page.locator('meta[name=robots]')).toHaveAttribute('content', /noindex/);
   await lead(page);
   const first = mock.slots[0];
-  const expected = new Date(first.start).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
+  const expected = new Date(first.start).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'America/New_York' });
+  const paris = new Date(first.start).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
+  expect(expected).not.toBe(paris);   // the visitor is in Paris: the check can tell the zones apart
   await expect(page.locator('.bk-time').first()).toHaveText(expected);
-  await expect(page.locator('#bk-zone')).toContainText('Europe/Paris');
-  await expect(page.locator('#bk-zone')).toContainText('organiser in Miami (ET)');
+  await expect(page.locator('#bk-zone')).toContainText('All times are Eastern Time (ET).');
+  await expect(page.locator('#bk-zone')).not.toContainText('Europe/Paris');
   expect(mock.calls.find((c) => c.path === '/api/book/slots').search).toContain('days=14');
 });
 
@@ -58,7 +60,7 @@ test('happy path: lead -> slot -> confirm', async ({ page }) => {
   await expect(page.locator('#bk-step2')).toBeVisible();
   const start = await pickFirstSlot(page);
   await expect(page.locator('#bk-step3')).toBeVisible();
-  await expect(page.locator('#bk-chosen')).toContainText('30 minutes');
+  await expect(page.locator('#bk-chosen')).toContainText(/ ET, 25 minutes$/);
   expect(mock.calls.filter((c) => c.path === '/api/book').length).toBe(0); // nothing booked until Confirm
   await confirmBtn(page).click();
   await expect(page.locator('#bk-invite')).toHaveText('The Teams invite is on its way to chief@example.com.');
@@ -117,7 +119,9 @@ test('IMO is required on /book: empty IMO blocks the lead with a clear message',
 test('valid IMO: vessel confirm line shown (name, length, flag); IMO prefix stripped in the lookup', async ({ page }) => {
   const mock = createMock();
   await open(page, mock);
-  await page.getByLabel(/Vessel IMO/).fill('IMO 9074729');
+  // pasted with its prefix into the 7-character box: only the digits stay
+  await page.getByLabel(/Vessel IMO/).evaluate((i) => { const dt = new DataTransfer(); dt.setData('text', 'IMO 9074729'); i.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true })); });
+  await expect(page.getByLabel(/Vessel IMO/)).toHaveValue('9074729');
   await expect(page.locator('#bk-imo-note')).toHaveText('M/Y Test Star \u00b7 42 m \u00b7 Cayman Islands. Is this your vessel?');
   const call = mock.calls.find((c) => c.path === '/api/imo-lookup');
   expect(call.method).toBe('POST');
