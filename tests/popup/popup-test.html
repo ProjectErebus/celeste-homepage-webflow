@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Popup test page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Test page only. This is the ONLY page that includes the popup; SITE01 adds the one script line to real pages. -->
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/celeste-attribution.js" defer></script>
+  <!-- data-exit-delay / data-mobile-fallback shortened so the specs do not wait 8 s / 30 s. data-api is honoured on localhost only. -->
+  <script src="/js/celeste-popup.js" defer data-api="http://mock.test" data-exit-delay="1200" data-mobile-fallback="4000"></script>
+  <style>body{font-family:system-ui,sans-serif;margin:0;padding:2rem}.filler{height:3000px;background:linear-gradient(#fff,#ddd)}</style>
+</head>
+<body>
+  <h1>Popup test page</h1>
+  <p>Move the pointer out through the top edge, or scroll halfway on a phone.</p>
+  <div class="filler"></div>
+</body>
+</html>

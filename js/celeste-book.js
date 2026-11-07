@@ -32,12 +32,12 @@
   }
   var MANAGE_HOSTS = ['celeste7.ai', 'www.celeste7.ai'];
 
-  function call(method, path, body) {
+  function call(method, path, body, base) {
     var opts = { method: method, mode: 'cors', credentials: 'omit', headers: {} };
     if (body !== undefined) { opts.body = JSON.stringify(body); opts.headers['Content-Type'] = 'application/json'; }
-    return fetch(apiBase() + path, opts).then(function (res) {
+    return fetch((base ? String(base).replace(/\/+$/, '') : apiBase()) + path, opts).then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (data) {
-        return { ok: res.ok, status: res.status, data: data || {} };
+        return { ok: res.ok, status: res.status, data: data || {}, retryAfter: Number(res.headers.get('retry-after')) || 0 };
       });
     }, function () {
       return { ok: false, status: 0, data: { error: 'network' } };
@@ -69,15 +69,17 @@
     return out;
   }
 
+  /* Every time on the site is shown in Eastern Time (the host's zone, America/New_York), labelled ET. */
+  var TZ = 'America/New_York';
+  function withTz(o) { var r = {}; for (var k in o) r[k] = o[k]; r.timeZone = TZ; return r; }
   function localTime(iso) {
-    return new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return new Date(iso).toLocaleTimeString([], withTz({ hour: '2-digit', minute: '2-digit' }));
   }
   function localDay(iso, opts) {
-    return new Date(iso).toLocaleDateString([], opts || { weekday: 'long', day: 'numeric', month: 'long' });
+    return new Date(iso).toLocaleDateString([], withTz(opts || { weekday: 'long', day: 'numeric', month: 'long' }));
   }
   function dayKey(iso) {
-    var d = new Date(iso);
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    return new Intl.DateTimeFormat('en-CA', withTz({ year: 'numeric', month: '2-digit', day: '2-digit' })).format(new Date(iso));
   }
   function visitorZone() {
     try { return Intl.DateTimeFormat().resolvedOptions().timeZone || 'your local time'; } catch (e) { return 'your local time'; }
@@ -85,7 +87,9 @@
   function organiserNow(tz) {
     try { return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: tz }); } catch (e) { return ''; }
   }
-  function fullWhen(iso) { return localDay(iso) + ' at ' + localTime(iso) + ' (' + visitorZone() + ')'; }
+  /* "Thu 12 Nov, 10:00" in Eastern Time (popup done screen). */
+  function shortWhen(iso) { return localDay(iso, { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '') + ', ' + localTime(iso); }
+  function fullWhen(iso) { return localDay(iso) + ' at ' + localTime(iso) + ' ET'; }
 
   /* Slot picker shared by /book and /book/manage. onPick(slot) gets the chosen {start,end}. */
   function renderSlots(root, slots, onPick) {
@@ -128,9 +132,7 @@
 
   var ZONE_NAMES = { 'America/New_York': 'Miami (ET)' };
   function zoneLine(tz) {
-    var label = ZONE_NAMES[tz] || tz || 'Miami (ET)';
-    return 'Times shown in your local time (' + visitorZone() + ') \u00b7 organiser in ' + label +
-      (tz ? ', where it is now ' + organiserNow(tz) + '.' : '.');
+    return 'All times are Eastern Time (ET). It is now ' + organiserNow(TZ) + ' ET.';
   }
 
   /* Calm copy for the failure codes that share one message. */
@@ -143,7 +145,7 @@
   function mailLink() { return 'Email us at <a href="mailto:' + MAIL + '">' + MAIL + '</a> and we will arrange a time.'; }
 
   window.celesteBook = {
-    apiBase: apiBase, safeUrl: safeUrl, MANAGE_HOSTS: MANAGE_HOSTS, call: call, uuid: uuid, attribution: attribution, renderSlots: renderSlots,
-    fullWhen: fullWhen, zoneLine: zoneLine, softError: softError, mailLink: mailLink, MAIL: MAIL
+    apiBase: apiBase, safeUrl: safeUrl, MANAGE_HOSTS: MANAGE_HOSTS, call: call, uuid: uuid, attribution: attribution, renderSlots: renderSlots, localDay: localDay,
+    fullWhen: fullWhen, shortWhen: shortWhen, localTime: localTime, zoneLine: zoneLine, softError: softError, mailLink: mailLink, MAIL: MAIL
   };
 })();
